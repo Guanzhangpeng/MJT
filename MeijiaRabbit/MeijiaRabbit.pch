@@ -1,0 +1,76 @@
+//
+//  MeijiaRabbit.pch
+//  MeijiaRabbit
+//
+//  Created by 管章鹏 on 2020/3/6.
+//  Copyright © 2020 管章鹏. All rights reserved.
+//
+
+#ifndef MeijiaRabbit_pch
+#define MeijiaRabbit_pch
+
+#import "MJTConstant.h"
+#import "UIView+Extension.h"
+/// 屏幕尺寸相关
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+/// 手机类型相关
+
+#define MJT_IS_IPHONE_4_OR_LESS  (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH  < 568.0)
+#define MJT_IS_IPHONE_5          (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH == 568.0)
+#define MJT_IS_IPHONE_6          (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH == 667.0)
+#define MJT_IS_IPHONE_6P         (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH == 736.0)
+#define MJT_IS_iPhoneX \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+/// 导航条高度
+#define TOP_BAR_HEIGHT  (MJT_IS_iPhoneX ? (88.0f) : (64.0f))
+
+/// tabBar高度
+#define TAB_BAR_HEIGHT (MJT_IS_iPhoneX ? (83.0f) : (49.0f))
+
+/// 状态栏高度
+#define STATUS_BAR_HEIGHT (MJT_IS_iPhoneX?44:20.0f)
+
+// 日记输出宏
+#ifdef DEBUG // 调试状态, 打开LOG功能
+#define MJTLog(...) NSLog(__VA_ARGS__)
+#else // 发布状态, 关闭LOG功能
+#define MJTLog(...)
+#endif
+
+// 打印方法
+#define MJTLogFunc MJTLog(@"%s", __func__)
+
+
+// 颜色
+#define MJTColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+// 颜色+透明度
+#define MJTAlphaColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+
+// 随机色
+#define MJTRandomColor MJTColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+// 根据rgbValue获取值
+#define MJTColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+
+// 销毁打印
+#define MJTDealloc MJTLog(@"\n =========+++ %@  销毁了 +++======== \n",[self class])
+
+// 字符串为空
+#define MJTStringIsEmpty(__string) ((__string.length == 0) || MJTObjectIsNil(__string))
+
+// 字符串不为空
+#define MJTStringIsNotEmpty(__string)  (!MJTStringIsEmpty(__string))
+
+// 数组为空
+#define MJTArrayIsEmpty(__array) ((MJTObjectIsNil(__array)) || (__array.count==0))
+
+#endif /* MeijiaRabbit_pch */

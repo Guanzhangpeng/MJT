@@ -1,0 +1,23 @@
+[
+      {
+            "title": "确认师傅",
+            "icon": "home_choseMaster",
+      },
+ 
+      {
+            "title": "预约",
+            "icon": "home_preorder",
+      },
+ 
+     {
+ 
+             "title": "确认方案",
+             "icon": "home_ensure",
+ 
+     },
+ 
+      {
+            "title": "签订合同",
+            "icon": "home_agreement",
+      }
+]
