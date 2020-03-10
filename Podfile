@@ -14,6 +14,7 @@ target 'MeijiaRabbit' do
   pod 'IQKeyboardManager'
   pod 'Masonry'
   pod 'WMZBanner', '~> 1.1.0'
+  pod 'YYModel'
 #  pod 'YYCategories'                      , '1.0.4'
 #  # 富文本
 #  pod 'YYText'                            , '1.0.7'

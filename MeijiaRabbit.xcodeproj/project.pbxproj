@@ -38,6 +38,23 @@
 		193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F2765241298B80000EB3B /* MjtBaseButton.m */; };
 		193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27682413A9EA0000EB3B /* MjtSpecialPriceCell.m */; };
 		193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F276B2413D05A0000EB3B /* MjtRecommendView.m */; };
+		193F276F241527160000EB3B /* MjtLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F276E241527160000EB3B /* MjtLocationViewController.m */; };
+		193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277324152D3B0000EB3B /* JFCSBaseInfoModel.m */; };
+		193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277424152D3B0000EB3B /* JFCSCityModel.m */; };
+		193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277824152D3B0000EB3B /* JFCSFileManager.m */; };
+		193F279324152D3B0000EB3B /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 193F277A24152D3B0000EB3B /* .gitkeep */; };
+		193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277B24152D3B0000EB3B /* JFCSTopToolsTableViewCell.m */; };
+		193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277C24152D3B0000EB3B /* JFCSTableViewHeaderView.m */; };
+		193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277D24152D3B0000EB3B /* JFCSTableViewController.m */; };
+		193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277E24152D3B0000EB3B /* JFCSPopularCitiesModel.m */; };
+		193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278224152D3B0000EB3B /* JFCSConfiguration.m */; };
+		193F279924152D3B0000EB3B /* JFCSProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278324152D3B0000EB3B /* JFCSProvinceModel.m */; };
+		193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278424152D3B0000EB3B /* JFCSAreaModel.m */; };
+		193F279B24152D3B0000EB3B /* JFCSSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278824152D3B0000EB3B /* JFCSSearchTableViewController.m */; };
+		193F279C24152D3B0000EB3B /* JFCSDataOpreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278924152D3B0000EB3B /* JFCSDataOpreation.m */; };
+		193F279D24152D3B0000EB3B /* JFCSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278A24152D3B0000EB3B /* JFCSData.m */; };
+		193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 193F278F24152D3B0000EB3B /* JFCitySelector.bundle */; };
+		193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +118,39 @@
 		193F27682413A9EA0000EB3B /* MjtSpecialPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MjtSpecialPriceCell.m; sourceTree = "<group>"; };
 		193F276A2413D05A0000EB3B /* MjtRecommendView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtRecommendView.h; sourceTree = "<group>"; };
 		193F276B2413D05A0000EB3B /* MjtRecommendView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtRecommendView.m; sourceTree = "<group>"; };
+		193F276D241527160000EB3B /* MjtLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtLocationViewController.h; sourceTree = "<group>"; };
+		193F276E241527160000EB3B /* MjtLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtLocationViewController.m; sourceTree = "<group>"; };
+		193F277224152D3B0000EB3B /* JFCSConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSConfiguration.h; sourceTree = "<group>"; };
+		193F277324152D3B0000EB3B /* JFCSBaseInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSBaseInfoModel.m; sourceTree = "<group>"; };
+		193F277424152D3B0000EB3B /* JFCSCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSCityModel.m; sourceTree = "<group>"; };
+		193F277524152D3B0000EB3B /* JFCSAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSAreaModel.h; sourceTree = "<group>"; };
+		193F277624152D3B0000EB3B /* JFCSProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSProvinceModel.h; sourceTree = "<group>"; };
+		193F277724152D3B0000EB3B /* JFCSDataOpreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSDataOpreation.h; sourceTree = "<group>"; };
+		193F277824152D3B0000EB3B /* JFCSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSFileManager.m; sourceTree = "<group>"; };
+		193F277924152D3B0000EB3B /* JFCSSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSSearchTableViewController.h; sourceTree = "<group>"; };
+		193F277A24152D3B0000EB3B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		193F277B24152D3B0000EB3B /* JFCSTopToolsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSTopToolsTableViewCell.m; sourceTree = "<group>"; };
+		193F277C24152D3B0000EB3B /* JFCSTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSTableViewHeaderView.m; sourceTree = "<group>"; };
+		193F277D24152D3B0000EB3B /* JFCSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSTableViewController.m; sourceTree = "<group>"; };
+		193F277E24152D3B0000EB3B /* JFCSPopularCitiesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSPopularCitiesModel.m; sourceTree = "<group>"; };
+		193F277F24152D3B0000EB3B /* JFCSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSData.h; sourceTree = "<group>"; };
+		193F278024152D3B0000EB3B /* JFCSCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSCityModel.h; sourceTree = "<group>"; };
+		193F278124152D3B0000EB3B /* JFCSBaseInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSBaseInfoModel.h; sourceTree = "<group>"; };
+		193F278224152D3B0000EB3B /* JFCSConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSConfiguration.m; sourceTree = "<group>"; };
+		193F278324152D3B0000EB3B /* JFCSProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSProvinceModel.m; sourceTree = "<group>"; };
+		193F278424152D3B0000EB3B /* JFCSAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSAreaModel.m; sourceTree = "<group>"; };
+		193F278524152D3B0000EB3B /* JFCSTopToolsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSTopToolsTableViewCell.h; sourceTree = "<group>"; };
+		193F278624152D3B0000EB3B /* JFCitySelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCitySelector.h; sourceTree = "<group>"; };
+		193F278724152D3B0000EB3B /* JFCSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSFileManager.h; sourceTree = "<group>"; };
+		193F278824152D3B0000EB3B /* JFCSSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSSearchTableViewController.m; sourceTree = "<group>"; };
+		193F278924152D3B0000EB3B /* JFCSDataOpreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSDataOpreation.m; sourceTree = "<group>"; };
+		193F278A24152D3B0000EB3B /* JFCSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSData.m; sourceTree = "<group>"; };
+		193F278B24152D3B0000EB3B /* JFCSPopularCitiesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSPopularCitiesModel.h; sourceTree = "<group>"; };
+		193F278C24152D3B0000EB3B /* JFCSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSTableViewController.h; sourceTree = "<group>"; };
+		193F278D24152D3B0000EB3B /* JFCSTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSTableViewHeaderView.h; sourceTree = "<group>"; };
+		193F278F24152D3B0000EB3B /* JFCitySelector.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JFCitySelector.bundle; sourceTree = "<group>"; };
+		193F279F24152EF70000EB3B /* UIViewController+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LL_Utils.h"; sourceTree = "<group>"; };
+		193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LL_Utils.m"; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +238,8 @@
 			children = (
 				191D59B624111327005632D0 /* HomeViewController.h */,
 				191D59B724111327005632D0 /* HomeViewController.m */,
+				193F276D241527160000EB3B /* MjtLocationViewController.h */,
+				193F276E241527160000EB3B /* MjtLocationViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,6 +316,8 @@
 		191D59A424111154005632D0 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				193F279F24152EF70000EB3B /* UIViewController+LL_Utils.h */,
+				193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */,
 				191D59DF2411197A005632D0 /* NSString+Extension.h */,
 				191D59DA2411197A005632D0 /* NSString+Extension.m */,
 				191D59C724111979005632D0 /* NullSafe.m */,
@@ -316,6 +370,7 @@
 		191D59A724111154005632D0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				193F277024152D3B0000EB3B /* JFCitySelect */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -386,6 +441,58 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		193F277024152D3B0000EB3B /* JFCitySelect */ = {
+			isa = PBXGroup;
+			children = (
+				193F277124152D3B0000EB3B /* Classes */,
+				193F278E24152D3B0000EB3B /* Resources */,
+			);
+			path = JFCitySelect;
+			sourceTree = "<group>";
+		};
+		193F277124152D3B0000EB3B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				193F277224152D3B0000EB3B /* JFCSConfiguration.h */,
+				193F277324152D3B0000EB3B /* JFCSBaseInfoModel.m */,
+				193F277424152D3B0000EB3B /* JFCSCityModel.m */,
+				193F277524152D3B0000EB3B /* JFCSAreaModel.h */,
+				193F277624152D3B0000EB3B /* JFCSProvinceModel.h */,
+				193F277724152D3B0000EB3B /* JFCSDataOpreation.h */,
+				193F277824152D3B0000EB3B /* JFCSFileManager.m */,
+				193F277924152D3B0000EB3B /* JFCSSearchTableViewController.h */,
+				193F278824152D3B0000EB3B /* JFCSSearchTableViewController.m */,
+				193F277A24152D3B0000EB3B /* .gitkeep */,
+				193F277B24152D3B0000EB3B /* JFCSTopToolsTableViewCell.m */,
+				193F277C24152D3B0000EB3B /* JFCSTableViewHeaderView.m */,
+				193F277D24152D3B0000EB3B /* JFCSTableViewController.m */,
+				193F277E24152D3B0000EB3B /* JFCSPopularCitiesModel.m */,
+				193F277F24152D3B0000EB3B /* JFCSData.h */,
+				193F278024152D3B0000EB3B /* JFCSCityModel.h */,
+				193F278124152D3B0000EB3B /* JFCSBaseInfoModel.h */,
+				193F278224152D3B0000EB3B /* JFCSConfiguration.m */,
+				193F278324152D3B0000EB3B /* JFCSProvinceModel.m */,
+				193F278424152D3B0000EB3B /* JFCSAreaModel.m */,
+				193F278524152D3B0000EB3B /* JFCSTopToolsTableViewCell.h */,
+				193F278624152D3B0000EB3B /* JFCitySelector.h */,
+				193F278724152D3B0000EB3B /* JFCSFileManager.h */,
+				193F278924152D3B0000EB3B /* JFCSDataOpreation.m */,
+				193F278A24152D3B0000EB3B /* JFCSData.m */,
+				193F278B24152D3B0000EB3B /* JFCSPopularCitiesModel.h */,
+				193F278C24152D3B0000EB3B /* JFCSTableViewController.h */,
+				193F278D24152D3B0000EB3B /* JFCSTableViewHeaderView.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		193F278E24152D3B0000EB3B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				193F278F24152D3B0000EB3B /* JFCitySelector.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C5107FA2523E0BEC7DC52C6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,7 +561,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
+				193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */,
 				1911AD2C240E20BE006FB7A3 /* LaunchScreen.storyboard in Resources */,
+				193F279324152D3B0000EB3B /* .gitkeep in Resources */,
 				1911AD29240E20BE006FB7A3 /* Assets.xcassets in Resources */,
 				1911AD27240E20BC006FB7A3 /* Main.storyboard in Resources */,
 			);
@@ -519,28 +628,43 @@
 				191D59F02411197A005632D0 /* UILabel+Utility.m in Sources */,
 				191D59E62411197A005632D0 /* UIImage+Extension.m in Sources */,
 				193F275B2412653B0000EB3B /* MjtTipView.m in Sources */,
+				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
+				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
+				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
+				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,
 				193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */,
+				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
+				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,
 				191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */,
+				193F279B24152D3B0000EB3B /* JFCSSearchTableViewController.m in Sources */,
+				193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */,
 				193F275524122EC90000EB3B /* MJTConstant.m in Sources */,
 				1911AD1E240E20BC006FB7A3 /* AppDelegate.m in Sources */,
 				191D59EA2411197A005632D0 /* UIView+Extension.m in Sources */,
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
 				1911AD2F240E20BE006FB7A3 /* main.m in Sources */,
+				193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */,
+				193F279C24152D3B0000EB3B /* JFCSDataOpreation.m in Sources */,
 				191D59E92411197A005632D0 /* UIButton+Extension.m in Sources */,
 				191D59ED2411197A005632D0 /* UIButton+Delay.m in Sources */,
+				193F279924152D3B0000EB3B /* JFCSProvinceModel.m in Sources */,
 				191D59C4241113AB005632D0 /* MallViewController.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
+				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
+				193F276F241527160000EB3B /* MjtLocationViewController.m in Sources */,
+				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
+				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,
 				191D59BB2411134F005632D0 /* MineViewController.m in Sources */,
 				191D59E32411197A005632D0 /* NullSafe.m in Sources */,
 			);
@@ -618,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -670,7 +794,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

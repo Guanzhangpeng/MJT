@@ -14,6 +14,10 @@
 #import "MjtSpecialPriceCell.h"
 #import "MjtTipView.h"
 #import "MjtRecommendView.h"
+#import "UIImage+Extension.h"
+#import "MjtBaseButton.h"
+#import "MjtLocationViewController.h"
+#import "JFCitySelector.h"
 @interface HomeViewController ()
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *topScrollAdView;///顶部轮播图
@@ -24,6 +28,29 @@
 
 @implementation HomeViewController
 
+#pragma mark --系统回调方法
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:MJTColorFromHexString(@"#FFCE00")] forBarMetrics:UIBarMetricsDefault];
+    
+//    self.navigationController.navigationBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
+    NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
+                             NSFontAttributeName: [UIFont systemFontOfSize:16],
+                             NSForegroundColorAttributeName:MJTColorFromHexString(@"#333333")};
+    [self.navigationController.navigationBar setTitleTextAttributes:attrs];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    
+//    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+    NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
+                             NSFontAttributeName: [UIFont boldSystemFontOfSize:17],
+                             NSForegroundColorAttributeName:MJTColorFromHexString(@"#333333")};
+    [self.navigationController.navigationBar setTitleTextAttributes:attrs];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -38,19 +65,37 @@
 }
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"美嘉兔";
+
+    
+
 }
 
 - (void)_setupNavigationItem{
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_location"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_addressClick)];
+    
+    MjtBaseButton *addressBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    addressBtn.frame = CGRectMake(0, 0, 85, 22);
+    [addressBtn setImage:[UIImage imageNamed:@"nav_location"] forState:UIControlStateNormal];
+    [addressBtn setTitle:@"巴彦淖尔" forState:UIControlStateNormal];
+    addressBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
+    addressBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    [addressBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    addressBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [addressBtn addTarget:self action:@selector(_addressClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addressBtn];
+    
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_location"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_addressClick)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
 }
 
 - (void)_setupSubViews{
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     self.scrollView = scrollView;
     
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, TAB_BAR_HEIGHT, 0);
     [self _setupTopScrollAdView];//顶部轮播图
     [self _setupMainFunView];//主功能
     [self _setupFitmentFlowView];//装修流程
@@ -275,7 +320,9 @@
 }
 #pragma mark -- 点击事件
 - (void)_addressClick{
-    
+    JFCSTableViewController *vc = [[JFCSTableViewController alloc] init];//WithConfiguration:self.config delegate:self];
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self.navigationController pushViewController:[MjtLocationViewController new] animated:YES];
 }
 
 - (void)_messageClick{
