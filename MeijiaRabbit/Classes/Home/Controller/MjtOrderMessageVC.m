@@ -1,22 +1,22 @@
 //
-//  MjtLocationViewController.m
+//  MjtOrderMessageVC.m
 //  MeijiaRabbit
 //
-//  Created by 管章鹏 on 2020/3/8.
+//  Created by 管章鹏 on 2020/3/10.
 //  Copyright © 2020 管章鹏. All rights reserved.
 //
 
-#import "MjtLocationViewController.h"
-#import "JFCitySelector.h"
-@interface MjtLocationViewController ()
+#import "MjtOrderMessageVC.h"
+
+@interface MjtOrderMessageVC ()
 
 @end
 
-@implementation MjtLocationViewController
+@implementation MjtOrderMessageVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    // Do any additional setup after loading the view.
 }
 
 /*

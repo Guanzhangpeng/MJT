@@ -38,7 +38,6 @@
 		193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F2765241298B80000EB3B /* MjtBaseButton.m */; };
 		193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27682413A9EA0000EB3B /* MjtSpecialPriceCell.m */; };
 		193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F276B2413D05A0000EB3B /* MjtRecommendView.m */; };
-		193F276F241527160000EB3B /* MjtLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F276E241527160000EB3B /* MjtLocationViewController.m */; };
 		193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277324152D3B0000EB3B /* JFCSBaseInfoModel.m */; };
 		193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277424152D3B0000EB3B /* JFCSCityModel.m */; };
 		193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F277824152D3B0000EB3B /* JFCSFileManager.m */; };
@@ -55,6 +54,13 @@
 		193F279D24152D3B0000EB3B /* JFCSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F278A24152D3B0000EB3B /* JFCSData.m */; };
 		193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 193F278F24152D3B0000EB3B /* JFCitySelector.bundle */; };
 		193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */; };
+		193F27A3241765FA0000EB3B /* me_order.json in Resources */ = {isa = PBXBuildFile; fileRef = 193F27A2241765FA0000EB3B /* me_order.json */; };
+		193F27A924177C9D0000EB3B /* MjtMessageBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */; };
+		193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27AB24177E640000EB3B /* MjtSysMessageVC.m */; };
+		193F27AF24177E940000EB3B /* MjtOrderMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27AE24177E940000EB3B /* MjtOrderMessageVC.m */; };
+		193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B1241786CC0000EB3B /* MjtMessageListVC.m */; };
+		193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B42417877A0000EB3B /* XLBaseTableController.m */; };
+		193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B52417877A0000EB3B /* UIScrollView+EmptyDataSet.m */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -118,8 +124,6 @@
 		193F27682413A9EA0000EB3B /* MjtSpecialPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MjtSpecialPriceCell.m; sourceTree = "<group>"; };
 		193F276A2413D05A0000EB3B /* MjtRecommendView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtRecommendView.h; sourceTree = "<group>"; };
 		193F276B2413D05A0000EB3B /* MjtRecommendView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtRecommendView.m; sourceTree = "<group>"; };
-		193F276D241527160000EB3B /* MjtLocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtLocationViewController.h; sourceTree = "<group>"; };
-		193F276E241527160000EB3B /* MjtLocationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtLocationViewController.m; sourceTree = "<group>"; };
 		193F277224152D3B0000EB3B /* JFCSConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCSConfiguration.h; sourceTree = "<group>"; };
 		193F277324152D3B0000EB3B /* JFCSBaseInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSBaseInfoModel.m; sourceTree = "<group>"; };
 		193F277424152D3B0000EB3B /* JFCSCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCSCityModel.m; sourceTree = "<group>"; };
@@ -151,6 +155,19 @@
 		193F278F24152D3B0000EB3B /* JFCitySelector.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JFCitySelector.bundle; sourceTree = "<group>"; };
 		193F279F24152EF70000EB3B /* UIViewController+LL_Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LL_Utils.h"; sourceTree = "<group>"; };
 		193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LL_Utils.m"; sourceTree = "<group>"; };
+		193F27A2241765FA0000EB3B /* me_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me_order.json; sourceTree = "<group>"; };
+		193F27A724177C9D0000EB3B /* MjtMessageBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageBaseVC.h; sourceTree = "<group>"; };
+		193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageBaseVC.m; sourceTree = "<group>"; };
+		193F27AA24177E640000EB3B /* MjtSysMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSysMessageVC.h; sourceTree = "<group>"; };
+		193F27AB24177E640000EB3B /* MjtSysMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSysMessageVC.m; sourceTree = "<group>"; };
+		193F27AD24177E940000EB3B /* MjtOrderMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtOrderMessageVC.h; sourceTree = "<group>"; };
+		193F27AE24177E940000EB3B /* MjtOrderMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtOrderMessageVC.m; sourceTree = "<group>"; };
+		193F27B0241786CC0000EB3B /* MjtMessageListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageListVC.h; sourceTree = "<group>"; };
+		193F27B1241786CC0000EB3B /* MjtMessageListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageListVC.m; sourceTree = "<group>"; };
+		193F27B42417877A0000EB3B /* XLBaseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLBaseTableController.m; sourceTree = "<group>"; };
+		193F27B52417877A0000EB3B /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
+		193F27B62417877A0000EB3B /* XLBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLBaseTableController.h; sourceTree = "<group>"; };
+		193F27B72417877A0000EB3B /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,8 +255,14 @@
 			children = (
 				191D59B624111327005632D0 /* HomeViewController.h */,
 				191D59B724111327005632D0 /* HomeViewController.m */,
-				193F276D241527160000EB3B /* MjtLocationViewController.h */,
-				193F276E241527160000EB3B /* MjtLocationViewController.m */,
+				193F27A724177C9D0000EB3B /* MjtMessageBaseVC.h */,
+				193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */,
+				193F27AA24177E640000EB3B /* MjtSysMessageVC.h */,
+				193F27AB24177E640000EB3B /* MjtSysMessageVC.m */,
+				193F27AD24177E940000EB3B /* MjtOrderMessageVC.h */,
+				193F27AE24177E940000EB3B /* MjtOrderMessageVC.m */,
+				193F27B0241786CC0000EB3B /* MjtMessageListVC.h */,
+				193F27B1241786CC0000EB3B /* MjtMessageListVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -370,6 +393,7 @@
 		191D59A724111154005632D0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				193F27B32417877A0000EB3B /* EmptyView */,
 				193F277024152D3B0000EB3B /* JFCitySelect */,
 			);
 			path = Helpers;
@@ -397,6 +421,7 @@
 		191D59AA24111154005632D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				193F27A2241765FA0000EB3B /* me_order.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,6 +518,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		193F27B32417877A0000EB3B /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				193F27B62417877A0000EB3B /* XLBaseTableController.h */,
+				193F27B42417877A0000EB3B /* XLBaseTableController.m */,
+				193F27B52417877A0000EB3B /* UIScrollView+EmptyDataSet.m */,
+				193F27B72417877A0000EB3B /* UIScrollView+EmptyDataSet.h */,
+			);
+			path = EmptyView;
+			sourceTree = "<group>";
+		};
 		C5107FA2523E0BEC7DC52C6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
+				193F27A3241765FA0000EB3B /* me_order.json in Resources */,
 				193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */,
 				1911AD2C240E20BE006FB7A3 /* LaunchScreen.storyboard in Resources */,
 				193F279324152D3B0000EB3B /* .gitkeep in Resources */,
@@ -627,7 +664,10 @@
 			files = (
 				191D59F02411197A005632D0 /* UILabel+Utility.m in Sources */,
 				191D59E62411197A005632D0 /* UIImage+Extension.m in Sources */,
+				193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */,
+				193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */,
 				193F275B2412653B0000EB3B /* MjtTipView.m in Sources */,
+				193F27A924177C9D0000EB3B /* MjtMessageBaseVC.m in Sources */,
 				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
 				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
@@ -637,9 +677,12 @@
 				193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */,
 				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
+				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
+				193F27AF24177E940000EB3B /* MjtOrderMessageVC.m in Sources */,
 				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,
 				191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */,
+				193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */,
 				193F279B24152D3B0000EB3B /* JFCSSearchTableViewController.m in Sources */,
 				193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */,
 				193F275524122EC90000EB3B /* MJTConstant.m in Sources */,
@@ -662,7 +705,6 @@
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
-				193F276F241527160000EB3B /* MjtLocationViewController.m in Sources */,
 				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
 				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,
 				191D59BB2411134F005632D0 /* MineViewController.m in Sources */,

@@ -1,8 +1,8 @@
 //
-//  MjtLocationViewController.h
+//  MjtMessageBaseVC.h
 //  MeijiaRabbit
 //
-//  Created by 管章鹏 on 2020/3/8.
+//  Created by 管章鹏 on 2020/3/10.
 //  Copyright © 2020 管章鹏. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MjtLocationViewController : UIViewController
+@interface MjtMessageBaseVC : UIViewController
 
 @end
 

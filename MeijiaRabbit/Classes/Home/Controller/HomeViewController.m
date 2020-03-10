@@ -16,8 +16,8 @@
 #import "MjtRecommendView.h"
 #import "UIImage+Extension.h"
 #import "MjtBaseButton.h"
-#import "MjtLocationViewController.h"
 #import "JFCitySelector.h"
+#import "MjtMessageBaseVC.h"
 @interface HomeViewController ()
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *topScrollAdView;///顶部轮播图
@@ -32,8 +32,6 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:MJTColorFromHexString(@"#FFCE00")] forBarMetrics:UIBarMetricsDefault];
-    
-//    self.navigationController.navigationBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
     NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
                              NSFontAttributeName: [UIFont systemFontOfSize:16],
                              NSForegroundColorAttributeName:MJTColorFromHexString(@"#333333")};
@@ -322,7 +320,8 @@
 }
 
 - (void)_messageClick{
-    
+    MjtMessageBaseVC *vc = [[MjtMessageBaseVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

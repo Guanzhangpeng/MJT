@@ -1,0 +1,27 @@
+[
+      {
+            "title": "待付款",
+            "icon": "me_pay",
+      },
+ 
+      {
+            "title": "待发货",
+            "icon": "me_deliver",
+      },
+ 
+     {
+ 
+             "title": "待收货",
+             "icon": "me_receive",
+ 
+     },
+ 
+      {
+            "title": "评价",
+            "icon": "me_evaluate",
+      },
+       {
+             "title": "售后",
+             "icon": "me_afterSale",
+       }
+]

@@ -32,7 +32,10 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define TOP_BAR_HEIGHT  (MJT_IS_iPhoneX ? (88.0f) : (64.0f))
 
 /// tabBar高度
-#define TAB_BAR_HEIGHT (MJT_IS_iPhoneX ? (83.0f) : (49.0f))
+#define TAB_BAR_HEIGHT (MJT_IS_iPhoneX ? (49.f+34.f) : (49.0f))
+
+//安全区域高度
+#define TAB_BAR_Safe_Margin (MJT_IS_iPhoneX ? 34.f : 0.f)
 
 /// 状态栏高度
 #define STATUS_BAR_HEIGHT (MJT_IS_iPhoneX?44:20.0f)
