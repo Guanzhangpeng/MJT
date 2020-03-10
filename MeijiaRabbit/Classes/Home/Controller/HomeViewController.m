@@ -65,9 +65,7 @@
 }
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"美嘉兔";
-
-    
+    self.navigationItem.title  = @"美嘉兔";
 
 }
 
@@ -83,8 +81,6 @@
     addressBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [addressBtn addTarget:self action:@selector(_addressClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addressBtn];
-    
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_location"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_addressClick)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
 }

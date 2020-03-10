@@ -23,16 +23,16 @@
 {
     [super viewDidLoad];
     HomeViewController *homeVC = [[HomeViewController alloc] init];
-    [self addChildVc:homeVC title:@"首页" image:@"tab_home" selectedImage:@"tab_home"];
+    [self addChildVc:homeVC title:@"首页" image:@"tab_home_normal" selectedImage:@"tab_home"];
     
     DesignViewController *designVC = [[DesignViewController alloc] init];
-    [self addChildVc:designVC title:@"灵感" image:@"tab_dessign" selectedImage:@"tab_dessign"];
+    [self addChildVc:designVC title:@"灵感" image:@"tab_dessign_normal" selectedImage:@"tab_dessign"];
     
     MallViewController *mallVC = [[MallViewController alloc] init];
-    [self addChildVc:mallVC title:@"商城" image:@"tab_mall" selectedImage:@"tab_mall"];
+    [self addChildVc:mallVC title:@"商城" image:@"tab_mall_normal" selectedImage:@"tab_mall"];
 
     MineViewController *mineVC = [[MineViewController alloc] init];
-    [self addChildVc:mineVC title:@"我的" image:@"tab_me" selectedImage:@"tab_me"];
+    [self addChildVc:mineVC title:@"我的" image:@"tab_me_normal" selectedImage:@"tab_me"];
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
@@ -45,7 +45,7 @@
     textAttrs[NSForegroundColorAttributeName] = MJTColorFromHexString(@"#333333");//[UIColor colorWithHexColorString:@"#333333"];
 
     NSMutableDictionary *selectTextAttrs = [NSMutableDictionary dictionary];
-    selectTextAttrs[NSForegroundColorAttributeName] = MJTColorFromHexString(@"#F7882E");;//[UIColor colorWithHexColorString:@"#F7882E"];
+    selectTextAttrs[NSForegroundColorAttributeName] = MJTGlobalMainColor;
 
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];

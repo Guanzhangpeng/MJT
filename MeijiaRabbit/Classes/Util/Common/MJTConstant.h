@@ -22,6 +22,11 @@
 #define MJTColorFromHexString(__hexString__) [UIColor colorFromHexString:__hexString__]
 
 /**
+ *  全局橘色主色调
+ */
+#define MJTGlobalMainColor       [UIColor colorFromHexString:@"#FFCE00"]
+
+/**
  *  全局灰色色字体颜色 + placeHolder字体颜色
  */
 #define MJTGlobalGrayTextColor       [UIColor colorFromHexString:@"#999999"]

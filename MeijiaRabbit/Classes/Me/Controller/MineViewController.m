@@ -16,17 +16,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self _setup];
+    [self _setupNavigation];
+    [self _setupSubviews];
+}
+- (void)_setup{
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"";
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)_setupNavigation{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"me_setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(settingClick)];
 }
-*/
+- (void)_setupSubviews{
+    
+}
 
+#pragma mark -- 点击事件
+- (void)settingClick{
+    
+}
 @end
