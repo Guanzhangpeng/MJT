@@ -103,6 +103,17 @@
   .wFrameSet(CGRectMake(MJTGlobalViewLeftInset, 0, ScreenWidth - MJTGlobalViewLeftInset *2, 160))
   //传入数据
   .wDataSet([self getData])
+    .wBannerControlImageSet(@"control_normal")
+    .wBannerControlSelectImageSet(@"control_selected")
+    .wBannerControlImageSizeSet(CGSizeMake(8, 8))
+    .wBannerControlSelectImageSizeSet(CGSizeMake(16, 4))
+    //自定义pageControl的位置
+//    .wCustomControlSet(^(UIPageControl *pageControl) {
+//        //随意改变xy值
+//        CGRect rect = pageControl.frame;
+//        rect.origin.y =  10;
+//        pageControl.frame = rect;
+//    })
   //开启循环滚动
   .wRepeatSet(YES)
   //开启自动滚动

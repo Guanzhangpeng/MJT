@@ -13,7 +13,8 @@
 #import "MallViewController.h"
 #import "MineViewController.h"
 #import "MjtNavigationController.h"
-@interface MjtTabBarController ()
+#import "MjtLoginVC.h"
+@interface MjtTabBarController ()<UITabBarControllerDelegate>
 
 @end
 
@@ -22,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.delegate = self;
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     [self addChildVc:homeVC title:@"首页" image:@"tab_home_normal" selectedImage:@"tab_home"];
     
@@ -51,5 +53,18 @@
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
     MjtNavigationController *nav = [[MjtNavigationController alloc] initWithRootViewController:childVc];
     [self addChildViewController:nav];
+}
+
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if ([viewController.title isEqualToString:@"商城"]) {
+        
+        //判断用户是否登录过,如果没有登录则跳转到登录界面
+        MjtLoginVC *loginVc = [[MjtLoginVC alloc] init];
+        loginVc.hidesBottomBarWhenPushed = YES;
+        MjtNavigationController *nav = tabBarController.selectedViewController;
+        [nav pushViewController:loginVc animated:YES];
+        return false;
+    }
+    return true;
 }
 @end

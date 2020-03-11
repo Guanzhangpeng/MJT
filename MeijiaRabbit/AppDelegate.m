@@ -18,9 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+//    [NSThread sleepForTimeInterval:2.f];
 ///导航栏样式
     [self _setupNavigationBar];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
      self.window.rootViewController = [[MjtTabBarController alloc] init];
      [self.window makeKeyAndVisible];
     return YES;

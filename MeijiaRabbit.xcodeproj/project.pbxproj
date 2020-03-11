@@ -61,6 +61,10 @@
 		193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B1241786CC0000EB3B /* MjtMessageListVC.m */; };
 		193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B42417877A0000EB3B /* XLBaseTableController.m */; };
 		193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B52417877A0000EB3B /* UIScrollView+EmptyDataSet.m */; };
+		193F27C32417998C0000EB3B /* MjtLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27C22417998C0000EB3B /* MjtLoginVC.m */; };
+		193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27C92418C0E20000EB3B /* MjtRegisterVC.m */; };
+		193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27CC2418C38F0000EB3B /* MjtTextField.m */; };
+		193F27D12418CE320000EB3B /* GSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27CF2418CE320000EB3B /* GSProxy.m */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +172,14 @@
 		193F27B52417877A0000EB3B /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		193F27B62417877A0000EB3B /* XLBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLBaseTableController.h; sourceTree = "<group>"; };
 		193F27B72417877A0000EB3B /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		193F27C12417998C0000EB3B /* MjtLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtLoginVC.h; sourceTree = "<group>"; };
+		193F27C22417998C0000EB3B /* MjtLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtLoginVC.m; sourceTree = "<group>"; };
+		193F27C82418C0E20000EB3B /* MjtRegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtRegisterVC.h; sourceTree = "<group>"; };
+		193F27C92418C0E20000EB3B /* MjtRegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtRegisterVC.m; sourceTree = "<group>"; };
+		193F27CB2418C38F0000EB3B /* MjtTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtTextField.h; sourceTree = "<group>"; };
+		193F27CC2418C38F0000EB3B /* MjtTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtTextField.m; sourceTree = "<group>"; };
+		193F27CF2418CE320000EB3B /* GSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSProxy.m; sourceTree = "<group>"; };
+		193F27D02418CE320000EB3B /* GSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSProxy.h; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				191D59A324111154005632D0 /* Util */,
+				193F27BD2417997B0000EB3B /* Login */,
 				191D59AC24111154005632D0 /* Mall */,
 				191D599B24111154005632D0 /* Home */,
 				191D599F24111154005632D0 /* Design */,
@@ -328,6 +341,7 @@
 		191D59A324111154005632D0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				193F27CE2418CE270000EB3B /* Tools */,
 				191D59A424111154005632D0 /* Category */,
 				191D59A524111154005632D0 /* Network */,
 				191D59A624111154005632D0 /* Common */,
@@ -529,6 +543,52 @@
 			path = EmptyView;
 			sourceTree = "<group>";
 		};
+		193F27BD2417997B0000EB3B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				193F27BE2417997B0000EB3B /* Controller */,
+				193F27BF2417997B0000EB3B /* Model */,
+				193F27C02417997B0000EB3B /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		193F27BE2417997B0000EB3B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				193F27C12417998C0000EB3B /* MjtLoginVC.h */,
+				193F27C22417998C0000EB3B /* MjtLoginVC.m */,
+				193F27C82418C0E20000EB3B /* MjtRegisterVC.h */,
+				193F27C92418C0E20000EB3B /* MjtRegisterVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		193F27BF2417997B0000EB3B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		193F27C02417997B0000EB3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				193F27CB2418C38F0000EB3B /* MjtTextField.h */,
+				193F27CC2418C38F0000EB3B /* MjtTextField.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		193F27CE2418CE270000EB3B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				193F27D02418CE320000EB3B /* GSProxy.h */,
+				193F27CF2418CE320000EB3B /* GSProxy.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		C5107FA2523E0BEC7DC52C6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,8 +724,10 @@
 			files = (
 				191D59F02411197A005632D0 /* UILabel+Utility.m in Sources */,
 				191D59E62411197A005632D0 /* UIImage+Extension.m in Sources */,
+				193F27D12418CE320000EB3B /* GSProxy.m in Sources */,
 				193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */,
 				193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */,
+				193F27C32417998C0000EB3B /* MjtLoginVC.m in Sources */,
 				193F275B2412653B0000EB3B /* MjtTipView.m in Sources */,
 				193F27A924177C9D0000EB3B /* MjtMessageBaseVC.m in Sources */,
 				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
@@ -674,6 +736,7 @@
 				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
 				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,
+				193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */,
 				193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */,
 				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
@@ -699,6 +762,7 @@
 				191D59C4241113AB005632D0 /* MallViewController.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
+				193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
