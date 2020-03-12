@@ -49,6 +49,12 @@
     NSMutableDictionary *selectTextAttrs = [NSMutableDictionary dictionary];
     selectTextAttrs[NSForegroundColorAttributeName] = MJTGlobalMainColor;
 
+    if (@available(iOS 13.0, *)) {
+
+        [[UITabBar appearance] setUnselectedItemTintColor:MJTColorFromHexString(@"#333333")];
+
+    }
+    
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
     MjtNavigationController *nav = [[MjtNavigationController alloc] initWithRootViewController:childVc];

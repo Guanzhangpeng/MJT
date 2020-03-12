@@ -12,7 +12,8 @@
 #import "MjtBaseButton.h"
 #import "MjtTextField.h"
 #import "GSProxy.h"
-@interface MjtRegisterVC (){
+#import "MjtWebView.h"
+@interface MjtRegisterVC ()<UITextViewDelegate>{
     NSTimer *_timer;
     int _leftTime;
 }
@@ -166,16 +167,29 @@
            make.top.mas_equalTo(passWord2.mas_bottom).with.offset(40);
        }];
     
+    
     //协议
-    UILabel *lienceLbl = [[UILabel alloc] init];
-    lienceLbl.font = [UIFont boldSystemFontOfSize:12];
-    lienceLbl.textColor = MJTColorFromHexString(@"#999999");
-    lienceLbl.text = @"注册即表示同意美嘉兔用户协议条款";
-    [contentView addSubview:lienceLbl];
-    [lienceLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(contentView.mas_centerX);
-        make.bottom.mas_equalTo(-20);
-    }];
+        NSMutableAttributedString *attributtedString = [[NSMutableAttributedString alloc] initWithString:@"登录即表示同意美嘉兔用户协议条款"];
+        [attributtedString addAttribute:NSLinkAttributeName value:@"Lience://" range:[[attributtedString string] rangeOfString:@"美嘉兔用户协议条款"]];
+        [attributtedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, attributtedString.length)];
+
+        UITextView *lienceTxt = [[UITextView alloc] init];
+        lienceTxt.attributedText = attributtedString;
+        lienceTxt.linkTextAttributes = @{NSForegroundColorAttributeName:MJTColorFromHexString(@"#3E3E3E"),
+           
+        };
+        lienceTxt.delegate = self;
+        lienceTxt.scrollEnabled = NO;
+        lienceTxt.editable = NO;
+    //    lienceTxt.selectable = NO;
+        lienceTxt.textColor = MJTColorFromHexString(@"#919191");
+        [contentView addSubview:lienceTxt];
+        [lienceTxt mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(contentView.mas_centerX);
+            make.bottom.mas_equalTo(-20);
+            make.height.mas_equalTo(21);
+            make.width.mas_equalTo(210);
+        }];
     
 }
 - (void)_makeSubviewConstraints{
@@ -231,5 +245,14 @@
     self.codeBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [self.codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
 }
-
+#pragma mark -- UITextViewDelegate
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
+    if([[URL scheme] isEqualToString:@"Lience"]){
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.url = @"https://www.baidu.com";
+        [self.navigationController pushViewController:webView animated:YES];
+        return NO;
+    }
+    return YES;
+}
 @end

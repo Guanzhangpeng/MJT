@@ -65,6 +65,7 @@
 		193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27C92418C0E20000EB3B /* MjtRegisterVC.m */; };
 		193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27CC2418C38F0000EB3B /* MjtTextField.m */; };
 		193F27D12418CE320000EB3B /* GSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27CF2418CE320000EB3B /* GSProxy.m */; };
+		193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27D3241A0DB10000EB3B /* MjtWebView.m */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +181,8 @@
 		193F27CC2418C38F0000EB3B /* MjtTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtTextField.m; sourceTree = "<group>"; };
 		193F27CF2418CE320000EB3B /* GSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSProxy.m; sourceTree = "<group>"; };
 		193F27D02418CE320000EB3B /* GSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSProxy.h; sourceTree = "<group>"; };
+		193F27D2241A0DB10000EB3B /* MjtWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtWebView.h; sourceTree = "<group>"; };
+		193F27D3241A0DB10000EB3B /* MjtWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtWebView.m; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -400,6 +403,8 @@
 				193F275424122EC80000EB3B /* MJTConstant.m */,
 				193F2764241298B80000EB3B /* MjtBaseButton.h */,
 				193F2765241298B80000EB3B /* MjtBaseButton.m */,
+				193F27D2241A0DB10000EB3B /* MjtWebView.h */,
+				193F27D3241A0DB10000EB3B /* MjtWebView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -733,6 +738,7 @@
 				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
 				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
+				193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */,
 				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
 				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,

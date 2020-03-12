@@ -16,7 +16,7 @@ target 'MeijiaRabbit' do
   pod 'WMZBanner', '~> 1.1.0'
   pod 'YYModel'
   pod 'ZPSegmentBarOC', '~> 0.2.5'
-#  pod 'YYCategories'                      , '1.0.4'
+  pod 'YYCategories'
 #  # 富文本
-#  pod 'YYText'                            , '1.0.7'
+  pod 'YYText'
 end
