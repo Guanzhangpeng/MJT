@@ -66,6 +66,10 @@
 		193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27CC2418C38F0000EB3B /* MjtTextField.m */; };
 		193F27D12418CE320000EB3B /* GSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27CF2418CE320000EB3B /* GSProxy.m */; };
 		193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27D3241A0DB10000EB3B /* MjtWebView.m */; };
+		193F27DA241A265C0000EB3B /* MjtSettingItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27D9241A265C0000EB3B /* MjtSettingItemModel.m */; };
+		193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DC241A27610000EB3B /* MjtSettingSectionModel.m */; };
+		193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DF241A27AE0000EB3B /* MjtSettingCell.m */; };
+		193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27E2241A29A30000EB3B /* MjtSettingVC.m */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +187,14 @@
 		193F27D02418CE320000EB3B /* GSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSProxy.h; sourceTree = "<group>"; };
 		193F27D2241A0DB10000EB3B /* MjtWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtWebView.h; sourceTree = "<group>"; };
 		193F27D3241A0DB10000EB3B /* MjtWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtWebView.m; sourceTree = "<group>"; };
+		193F27D8241A265C0000EB3B /* MjtSettingItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingItemModel.h; sourceTree = "<group>"; };
+		193F27D9241A265C0000EB3B /* MjtSettingItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingItemModel.m; sourceTree = "<group>"; };
+		193F27DB241A27610000EB3B /* MjtSettingSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingSectionModel.h; sourceTree = "<group>"; };
+		193F27DC241A27610000EB3B /* MjtSettingSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingSectionModel.m; sourceTree = "<group>"; };
+		193F27DE241A27AE0000EB3B /* MjtSettingCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingCell.h; sourceTree = "<group>"; };
+		193F27DF241A27AE0000EB3B /* MjtSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingCell.m; sourceTree = "<group>"; };
+		193F27E1241A29A30000EB3B /* MjtSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingVC.h; sourceTree = "<group>"; };
+		193F27E2241A29A30000EB3B /* MjtSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingVC.m; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,6 +424,7 @@
 		191D59A724111154005632D0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				193F27D5241A26110000EB3B /* Setting */,
 				193F27B32417877A0000EB3B /* EmptyView */,
 				193F277024152D3B0000EB3B /* JFCitySelect */,
 			);
@@ -433,6 +446,8 @@
 			children = (
 				191D59B92411134F005632D0 /* MineViewController.h */,
 				191D59BA2411134F005632D0 /* MineViewController.m */,
+				193F27E1241A29A30000EB3B /* MjtSettingVC.h */,
+				193F27E2241A29A30000EB3B /* MjtSettingVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -592,6 +607,35 @@
 				193F27CF2418CE320000EB3B /* GSProxy.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		193F27D5241A26110000EB3B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				193F27D6241A263C0000EB3B /* Model */,
+				193F27D7241A263C0000EB3B /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		193F27D6241A263C0000EB3B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				193F27D8241A265C0000EB3B /* MjtSettingItemModel.h */,
+				193F27D9241A265C0000EB3B /* MjtSettingItemModel.m */,
+				193F27DB241A27610000EB3B /* MjtSettingSectionModel.h */,
+				193F27DC241A27610000EB3B /* MjtSettingSectionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		193F27D7241A263C0000EB3B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				193F27DE241A27AE0000EB3B /* MjtSettingCell.h */,
+				193F27DF241A27AE0000EB3B /* MjtSettingCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C5107FA2523E0BEC7DC52C6A /* Frameworks */ = {
@@ -759,6 +803,7 @@
 				191D59EA2411197A005632D0 /* UIView+Extension.m in Sources */,
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
+				193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */,
 				1911AD2F240E20BE006FB7A3 /* main.m in Sources */,
 				193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */,
 				193F279C24152D3B0000EB3B /* JFCSDataOpreation.m in Sources */,
@@ -771,10 +816,13 @@
 				193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
+				193F27DA241A265C0000EB3B /* MjtSettingItemModel.m in Sources */,
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,
+				193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
+				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
 				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,
 				191D59BB2411134F005632D0 /* MineViewController.m in Sources */,
