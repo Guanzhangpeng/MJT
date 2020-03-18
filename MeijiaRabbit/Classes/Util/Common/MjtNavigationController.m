@@ -14,36 +14,16 @@
 
 @implementation MjtNavigationController
 
-//+ (void)load
-//{
-//       UINavigationBar *navBar = [UINavigationBar appearance];
-//    //    [navBar setBackgroundImage:[UIImage imageWithColor:MJTColorFromHexString(@"#FFCE00")] forBarMetrics:UIBarMetricsDefault];
-//        UIImage *backImg = [[UIImage imageNamed:@"nav_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//        navBar.backIndicatorImage = backImg;
-//        navBar.backIndicatorTransitionMaskImage = backImg;
-//        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-//        [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
-//       navBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
-//       NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
-//                                NSFontAttributeName: [UIFont systemFontOfSize:17],
-//                                NSForegroundColorAttributeName:[UIColor whiteColor]};
-//       [navBar setTitleTextAttributes:attrs];
-//       [navBar setTintColor:[UIColor whiteColor]];
-//   
-//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if (self.viewControllers.count > 0) { // 这时push进来的控制器viewController，不是第一个子控制器（不是根控制器）
+           /* 自动显示和隐藏tabbar */
+           viewController.hidesBottomBarWhenPushed = YES;
+         
+       }
+       [super pushViewController:viewController animated:animated];
 }
-*/
-
 @end

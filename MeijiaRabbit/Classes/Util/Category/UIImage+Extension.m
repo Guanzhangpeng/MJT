@@ -201,7 +201,7 @@
 }
 
 #pragma mark - TintColor
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
+- (UIImage *)_imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode
 {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
     [tintColor setFill];
@@ -220,14 +220,14 @@
     return image;
 }
 
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor
+- (UIImage *)_imageWithTintColor:(UIColor *)tintColor
 {
-    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
+    return [self _imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
 }
 
 - (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor
 {
-    return [self imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
+    return [self _imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
 }
 
 

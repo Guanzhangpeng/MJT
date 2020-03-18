@@ -10,120 +10,50 @@
 
 @implementation UIView (Extension)
 
-
-
-- (BOOL)findAndResignFirstResponder
-{
-    if (self.isFirstResponder) {
-        [self resignFirstResponder];
-        return YES;
-    }
-    for (UIView *subView in self.subviews) {
-        if ([subView findAndResignFirstResponder])
-            return YES;
-    }
-    return NO;
-}
-
-#pragma mark -
-
-- (void)removeAllSubviews
-{
-    while (self.subviews.count)
-    {
-        UIView* child = self.subviews.lastObject;
-        [child removeFromSuperview];
-    }
-}
-
-- (UIViewController *)viewController {
-    /// Finds the view's view controller.
-    
-    // Traverse responder chain. Return first found view controller, which will be the view's view controller.
-    UIResponder *responder = self;
-    while ((responder = [responder nextResponder]))
-        if ([responder isKindOfClass: [UIViewController class]])
-            return (UIViewController *)responder;
-    
-    // If the view controller isn't found, return nil.
-    return nil;
-}
-
-
-
--(void)cornerMe{
-    UIBezierPath *maskPath=  [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10, 10)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    self.layer.masksToBounds=YES;
-    maskLayer.frame = self.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.layer.mask = maskLayer;
-}
-
-
-
--(void)cornerMeBy20{
-    UIBezierPath *maskPath=  [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    self.layer.masksToBounds=YES;
-    maskLayer.frame = self.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.layer.mask = maskLayer;
-}
-
 - (instancetype)createFromNibFile {
     return [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
 }
 
-- (void)grayMaskMe{
-    [self setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8]];
+
+- (CGFloat)left {
+    return self.frame.origin.x;
 }
 
-- (void)showInfo:(NSString *)infoString{
-    // UIViewController *vc = [self viewController];
-    
-    
-    /*
-     [KKKHelper showToViewController:vc withTitle:@"提示" andInfo:infoString];
-     
-     */
-    
+- (void)setLeft:(CGFloat)x {
+    CGRect frame = self.frame;
+    frame.origin.x = x;
+    self.frame = frame;
 }
 
-
-/**
- *  @brief  震动动画
- */
--(void)ShakeView
-{
-    self.translatesAutoresizingMaskIntoConstraints = YES;
-    CALayer *lbl = [self layer];
-    CGPoint posLbl = [lbl position];
-    CGPoint y = CGPointMake(posLbl.x-10, posLbl.y);
-    CGPoint x = CGPointMake(posLbl.x+10, posLbl.y);
-    CABasicAnimation * animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    [animation setTimingFunction:[CAMediaTimingFunction
-                                  functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [animation setFromValue:[NSValue valueWithCGPoint:x]];
-    [animation setToValue:[NSValue valueWithCGPoint:y]];
-    [animation setAutoreverses:YES];
-    [animation setDuration:0.04];
-    [animation setRepeatCount:6];
-    [lbl addAnimation:animation forKey:nil];
-    
-    self.translatesAutoresizingMaskIntoConstraints = NO;
+- (CGFloat)top {
+    return self.frame.origin.y;
 }
 
-/**
- *  给视图添加响应事件
- */
--(void)addClikTarget:(id)target action:(SEL)selecter
-{
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:target action:selecter];
-    [self addGestureRecognizer:tap];
+- (void)setTop:(CGFloat)y {
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
 }
 
+- (CGFloat)right {
+    return self.frame.origin.x + self.frame.size.width;
+}
 
+- (void)setRight:(CGFloat)right {
+    CGRect frame = self.frame;
+    frame.origin.x = right - frame.size.width;
+    self.frame = frame;
+}
+
+- (CGFloat)bottom {
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (void)setBottom:(CGFloat)bottom {
+    CGRect frame = self.frame;
+    frame.origin.y = bottom - frame.size.height;
+    self.frame = frame;
+}
 - (void)setX:(CGFloat)x
 {
     CGRect frame = self.frame;
@@ -219,4 +149,34 @@
 {
     return self.frame.origin;
 }
+
++ (void)showOscillatoryAnimationWithLayer:(CALayer *)layer type:(SKOscillatoryAnimationType)type {
+    NSNumber *animationScale1 = type == SKOscillatoryAnimationToBigger ? @(1.15) : @(0.5);
+    NSNumber *animationScale2 = type == SKOscillatoryAnimationToBigger ? @(0.92) : @(1.15);
+    
+    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+        [layer setValue:animationScale1 forKeyPath:@"transform.scale"];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+            [layer setValue:animationScale2 forKeyPath:@"transform.scale"];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+                [layer setValue:@(1.0) forKeyPath:@"transform.scale"];
+            } completion:nil];
+        }];
+    }];
+}
+
+// 传入字符串，计算大小2
++ (CGSize)getSizeByString:(NSString *)string sizeConstraint:(CGSize)sizeConstraint font:(UIFont *)font {
+    CGSize size = [string boundingRectWithSize:sizeConstraint
+                                       options:NSStringDrawingTruncatesLastVisibleLine
+                   | NSStringDrawingUsesLineFragmentOrigin
+                   | NSStringDrawingUsesFontLeading
+                                    attributes:@{NSFontAttributeName:font}
+                                       context:nil].size;
+    size.width += 8;
+    return size;
+}
+
 @end

@@ -59,9 +59,9 @@
 - (UIImage *)normalOrientationImage;
 
 #pragma mark - TintColor
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor;
+- (UIImage *)_imageWithTintColor:(UIColor *)tintColor;
 - (UIImage *)imageWithGradientTintColor:(UIColor *)tintColor;
-- (UIImage *)imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode;
+- (UIImage *)_imageWithTintColor:(UIColor *)tintColor blendMode:(CGBlendMode)blendMode;
 - (UIImage *)grayImage;
 
 

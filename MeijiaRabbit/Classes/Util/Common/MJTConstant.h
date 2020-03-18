@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+Extension.h"
 
+#define WeakSelf                __weak typeof(self) weakSelf = self
+
 /**
  *  通知中心
  */

@@ -19,7 +19,7 @@
 #import "MjtSettingCell.h"
 #import "MjtSettingItemModel.h"
 #import "MjtSettingSectionModel.h"
-
+#import "MjtAddressListVC.h"
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -143,6 +143,11 @@
     item3.funcName = @"地址管理";
     item3.img = [UIImage imageNamed:@"me_address"];
     item3.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
+    __weak typeof(self) weakSelf = self;
+    item3.executeCode = ^{
+        MjtAddressListVC *addressVC = [[MjtAddressListVC alloc] init];
+        [weakSelf.navigationController pushViewController:addressVC animated:YES];
+    };
     
     MjtSettingItemModel *item4 = [[MjtSettingItemModel alloc] init];
     item4.funcName = @"我的家";
