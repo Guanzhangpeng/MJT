@@ -89,6 +89,8 @@
 		19D60A222423172A00DE37B8 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A172423172A00DE37B8 /* ProvinceModel.m */; };
 		19D60A232423172A00DE37B8 /* CountyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A1B2423172A00DE37B8 /* CountyModel.m */; };
 		19D60A242423172A00DE37B8 /* location.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19D60A1C2423172A00DE37B8 /* location.txt */; };
+		19D60A27242326DC00DE37B8 /* MjtAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A26242326DC00DE37B8 /* MjtAddressCell.m */; };
+		19D60A2A2423496D00DE37B8 /* MjtAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A292423496D00DE37B8 /* MjtAddressModel.m */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +249,10 @@
 		19D60A1A2423172A00DE37B8 /* TownModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TownModel.h; sourceTree = "<group>"; };
 		19D60A1B2423172A00DE37B8 /* CountyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountyModel.m; sourceTree = "<group>"; };
 		19D60A1C2423172A00DE37B8 /* location.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = location.txt; sourceTree = "<group>"; };
+		19D60A25242326DC00DE37B8 /* MjtAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtAddressCell.h; sourceTree = "<group>"; };
+		19D60A26242326DC00DE37B8 /* MjtAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressCell.m; sourceTree = "<group>"; };
+		19D60A282423496D00DE37B8 /* MjtAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtAddressModel.h; sourceTree = "<group>"; };
+		19D60A292423496D00DE37B8 /* MjtAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressModel.m; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -516,6 +522,8 @@
 				19D609EF242229A300DE37B8 /* YWAddressInfoModel.h */,
 				19D609F0242229A300DE37B8 /* YWAddressInfoModel.m */,
 				193F27A2241765FA0000EB3B /* me_order.json */,
+				19D60A282423496D00DE37B8 /* MjtAddressModel.h */,
+				19D60A292423496D00DE37B8 /* MjtAddressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -532,6 +540,8 @@
 				19D609E82422298B00DE37B8 /* YWAddressTableViewCell3.h */,
 				19D609E12422298B00DE37B8 /* YWAddressTableViewCell3.m */,
 				19D609E42422298B00DE37B8 /* YWAddressTableViewCell3.xib */,
+				19D60A25242326DC00DE37B8 /* MjtAddressCell.h */,
+				19D60A26242326DC00DE37B8 /* MjtAddressCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -881,7 +891,9 @@
 				19D60A202423172A00DE37B8 /* HttpRequest.m in Sources */,
 				19D60A1E2423172A00DE37B8 /* TownModel.m in Sources */,
 				191D59E62411197A005632D0 /* UIImage+Extension.m in Sources */,
+				19D60A27242326DC00DE37B8 /* MjtAddressCell.m in Sources */,
 				19D609EA2422298B00DE37B8 /* YWAddressTableViewCell3.m in Sources */,
+				19D60A2A2423496D00DE37B8 /* MjtAddressModel.m in Sources */,
 				193F27D12418CE320000EB3B /* GSProxy.m in Sources */,
 				193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */,
 				193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */,

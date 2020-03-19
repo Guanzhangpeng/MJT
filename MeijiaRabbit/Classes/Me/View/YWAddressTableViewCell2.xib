@@ -27,7 +27,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCv-gd-vfj">
-                        <rect key="frame" x="100" y="10" width="304" height="30"/>
+                        <rect key="frame" x="100" y="10" width="309" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="EGW-nm-0zy"/>
                         </constraints>
@@ -38,7 +38,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="OfL-T3-mj8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AKK-pK-8fz"/>
-                    <constraint firstAttribute="trailing" secondItem="TCv-gd-vfj" secondAttribute="trailing" constant="10" id="H3V-ET-KvM"/>
+                    <constraint firstAttribute="trailing" secondItem="TCv-gd-vfj" secondAttribute="trailing" constant="5" id="H3V-ET-KvM"/>
                     <constraint firstItem="TCv-gd-vfj" firstAttribute="leading" secondItem="OfL-T3-mj8" secondAttribute="trailing" constant="20" id="fsu-tZ-Ftg"/>
                     <constraint firstItem="TCv-gd-vfj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="j8p-aW-Ng4"/>
                     <constraint firstItem="OfL-T3-mj8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="n6D-HJ-yg7"/>

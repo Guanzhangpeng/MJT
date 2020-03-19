@@ -44,16 +44,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    
-    
     [self initUserDataSource];
     [self initUserInterface];
     
 }
 -(void)setUI{
     self.addTitleAddressView = [[ZHFAddTitleAddressView alloc]init];
+    self.addTitleAddressView.titleIDMarr = [[NSMutableArray alloc] initWithObjects:@"44",@"4405",@"440513",@"440513100", nil];
     self.addTitleAddressView.title = @"选择地址";
     self.addTitleAddressView.delegate1 = self;
     self.addTitleAddressView.defaultHeight = 350;
@@ -83,7 +80,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(navRightItem)];
     
     [self.view addSubview:self.tableView];
-//    [self.view addSubview:self.coverView];
     
     [self setUI];
 }
