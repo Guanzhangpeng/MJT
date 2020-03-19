@@ -20,6 +20,7 @@
 #import "MjtSettingItemModel.h"
 #import "MjtSettingSectionModel.h"
 #import "MjtAddressListVC.h"
+#import "Masonry.h"
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -64,7 +65,7 @@
 }
 
 - (void)_setupTableView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) style:UITableViewStylePlain];
     tableView.backgroundColor = [UIColor whiteColor];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -74,17 +75,13 @@
     [self.view addSubview:tableView];
     self.tableView = tableView;
     self.tableView.tableHeaderView = self.headerView;
-    
     CGRect rect=  CGRectOffset(self.tableView.bounds, 0, -self.tableView.bounds.size.height);
     UIView *bgView = [[UIView alloc] initWithFrame:rect];
     bgView.backgroundColor = MJTGlobalMainColor;
     [self.tableView insertSubview:bgView atIndex:0];
-    
 }
 - (void)_setupHeaderView{
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 240)];
-//    self.headerView.backgroundColor = MJTRandomColor;
-    
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 240)];    
     [self _setupUserView];
     [self _setupOrderView];
 }

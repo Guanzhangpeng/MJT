@@ -81,6 +81,10 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addressBtn];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
+    
+
+    //处理导航栏有条线的问题
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
 - (void)_setupSubViews{
