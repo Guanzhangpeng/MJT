@@ -8,8 +8,6 @@
 
 #import "YWAddressViewController.h"
 
-#import "YWChooseAddressView.h"
-#import "YWAddressDataTool.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <ContactsUI/ContactsUI.h>
 #import "YWTool.h"
@@ -17,22 +15,23 @@
 #import "YWAddressTableViewCell1.h"
 #import "YWAddressTableViewCell2.h"
 #import "YWAddressTableViewCell3.h"
-
+#import "ZHFAddTitleAddressView.h"
 #define CELL_IDENTIFIER1     @"YWAddressTableViewCell1"
 #define CELL_IDENTIFIER2     @"YWAddressTableViewCell2"
 #define CELL_IDENTIFIER3     @"YWAddressTableViewCell3"
 
-@interface YWAddressViewController ()<UITableViewDelegate, UITableViewDataSource, NSURLSessionDelegate,UIGestureRecognizerDelegate, CNContactViewControllerDelegate, CNContactPickerDelegate>
+@interface YWAddressViewController ()<UITableViewDelegate, UITableViewDataSource, NSURLSessionDelegate,UIGestureRecognizerDelegate, CNContactViewControllerDelegate, CNContactPickerDelegate,ZHFAddTitleAddressViewDelegate>
 
 @property (nonatomic, strong) UITableView         * tableView;
 @property (nonatomic, strong) NSArray             * dataSource;
 @property (nonatomic, strong) UITextView          * detailTextViw;
 
-@property (nonatomic,strong) YWChooseAddressView  * chooseAddressView;
-@property (nonatomic,strong) UIView               * coverView;
+//@property (nonatomic,strong) YWChooseAddressView  * chooseAddressView;
+@property (nonatomic, strong) UIView               * coverView;
 
 @property (nonatomic, strong) UILabel             * promptLable;
 
+@property (nonatomic, strong)ZHFAddTitleAddressView * addTitleAddressView;
 
 
 - (void)initUserInterface;  /**< 初始化用户界面 */
@@ -53,7 +52,21 @@
     [self initUserInterface];
     
 }
-
+-(void)setUI{
+    self.addTitleAddressView = [[ZHFAddTitleAddressView alloc]init];
+    self.addTitleAddressView.title = @"选择地址";
+    self.addTitleAddressView.delegate1 = self;
+    self.addTitleAddressView.defaultHeight = 350;
+    self.addTitleAddressView.titleScrollViewH = 37;
+    if (self.addTitleAddressView.titleIDMarr.count > 0) {
+        self.addTitleAddressView.isChangeAddress = true;
+    }
+    else{
+        self.addTitleAddressView.isChangeAddress = false;
+    }
+   
+    [self.view addSubview:[self.addTitleAddressView initAddressView]];
+}
 - (void)initUserInterface {
     
     self.title = @"添加新地址";
@@ -70,8 +83,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(navRightItem)];
     
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.coverView];
+//    [self.view addSubview:self.coverView];
     
+    [self setUI];
 }
 
 
@@ -82,7 +96,12 @@
 }
 
 #pragma mark -- action
-
+-(void)cancelBtnClick:(NSString *)titleAddress titleID:(NSString *)titleID{
+    _model.areaAddress = titleAddress;
+    [self.tableView reloadData];
+//    [self.addressBtn setTitle:titleAddress forState:UIControlStateNormal];
+    NSLog( @"%@", [NSString stringWithFormat:@"打印的对应省市县的id=%@",titleID]);
+}
 //*** 导航栏右上角 - 保存按钮 ***
 - (void)navRightItem {
     
@@ -94,7 +113,7 @@
     _model.nameStr = nameCell.textField.text;
     _model.phoneStr = phoneCell.textField.text;
     _model.detailAddress = _detailTextViw.text;
-    _model.areaAddress = _chooseAddressView.address;
+//    _model.areaAddress = _chooseAddressView.address;
     _model.isDefaultAddress = defaultCell.rightSwitch.isOn;
 
     if (_model.nameStr.length == 0) {
@@ -129,35 +148,7 @@
 
 #pragma mark *** 弹出选择地区视图 ***
 - (void)chooseAddress {
-    WeakSelf;
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-//        if (weakSelf.model) {
-//            static dispatch_once_t onceToken;
-//            dispatch_once(&onceToken, ^{
-//                weakSelf.chooseAddressView.areaCode = weakSelf.model.areaCode;
-//            });
-//        }
-        weakSelf.coverView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-        weakSelf.chooseAddressView.hidden = NO;
-    } completion:^(BOOL finished) {
-        // 动画结束之后添加阴影
-        weakSelf.coverView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
-    }];
-}
-
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    CGPoint point = [gestureRecognizer locationInView:gestureRecognizer.view];
-    if (CGRectContainsPoint(_chooseAddressView.frame, point)){
-        return NO;
-    }
-    return YES;
-}
-
-
-- (void)tapCover:(UITapGestureRecognizer *)tap {
-    if (_chooseAddressView.chooseFinish) {
-        _chooseAddressView.chooseFinish();
-    }
+    [self.addTitleAddressView addAnimate];
 }
 
 #pragma mark *** 从通讯录选择联系人 电话 & 姓名 ***
@@ -170,10 +161,6 @@
     [self presentViewController:pickerVC animated:YES completion:nil];
 }
 
-//这个方法在用户取消选择时调用
-- (void)contactPickerDidCancel:(CNContactPickerViewController *)picker; {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark - CNContactPickerDelegate
 // 这个方法在用户选择一个联系人后调用
@@ -354,49 +341,5 @@
     }
     return _promptLable;
 }
-
-- (YWChooseAddressView *)chooseAddressView {
-    if (!_chooseAddressView) {
-        WeakSelf;
-        _chooseAddressView = [[YWChooseAddressView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 350, ScreenWidth, 350)];
-        if ([_model.areaAddress isKindOfClass:[NSNull class]] || [_model.areaAddress isEqualToString:@""]) {
-            _model.areaAddress = @"请选择";
-        }
-        if (_model.areaCode && ![_model.areaCode isEqualToString:@""]) {
-            _chooseAddressView.areaCode = _model.areaCode;
-        }
-        
-        _chooseAddressView.address = _model.areaAddress;
-        _chooseAddressView.chooseFinish = ^{
-            weakSelf.coverView.backgroundColor = [UIColor clearColor];
-            NSLog(@"选择的地区为：%@ - %@", weakSelf.chooseAddressView.areaCode, weakSelf.chooseAddressView.address);
-            weakSelf.model.areaAddress = weakSelf.chooseAddressView.address;
-            if (weakSelf.model.areaAddress.length == 0) {
-                weakSelf.model.areaAddress = @"请选择";
-            }
-            [weakSelf.tableView reloadData];
-            // 隐藏视图 - 动画
-            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                weakSelf.coverView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, ScreenHeight);
-                weakSelf.chooseAddressView.hidden = NO;
-            } completion:nil];
-        };
-    }
-    return _chooseAddressView;
-}
-
-- (UIView *)coverView {
-    if (!_coverView) {
-        _coverView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, ScreenHeight)];
-        [_coverView addSubview:self.chooseAddressView];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapCover:)];
-        [_coverView addGestureRecognizer:tap];
-        tap.delegate = self;
-    }
-    return _coverView;
-}
-
-
-
 @end
 

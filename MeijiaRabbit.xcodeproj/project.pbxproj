@@ -79,13 +79,16 @@
 		19D609EE2422298B00DE37B8 /* YWAddressTableViewCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D609E52422298B00DE37B8 /* YWAddressTableViewCell1.xib */; };
 		19D609F1242229A300DE37B8 /* YWAddressInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609F0242229A300DE37B8 /* YWAddressInfoModel.m */; };
 		19D609F4242229BC00DE37B8 /* YWAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609F2242229BC00DE37B8 /* YWAddressViewController.m */; };
-		19D60A0124222D9C00DE37B8 /* YWAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609F824222D9C00DE37B8 /* YWAddressModel.m */; };
-		19D60A0224222D9C00DE37B8 /* YWChooseAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609FC24222D9C00DE37B8 /* YWChooseAddressView.m */; };
-		19D60A0324222D9C00DE37B8 /* YWAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609FE24222D9C00DE37B8 /* YWAddressTableViewCell.m */; };
-		19D60A0424222D9C00DE37B8 /* YWAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A0024222D9C00DE37B8 /* YWAddressView.m */; };
 		19D60A092422302200DE37B8 /* YWTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A062422302200DE37B8 /* YWTool.m */; };
-		19D60A0A2422302200DE37B8 /* YWAddressDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A082422302200DE37B8 /* YWAddressDataTool.m */; };
 		19D60A0C242233A200DE37B8 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 19D60A0B242233A200DE37B8 /* Cities.json */; };
+		19D60A1D2423172A00DE37B8 /* ZHFAddTitleAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A0F2423172A00DE37B8 /* ZHFAddTitleAddressView.m */; };
+		19D60A1E2423172A00DE37B8 /* TownModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A102423172A00DE37B8 /* TownModel.m */; };
+		19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A112423172A00DE37B8 /* CityModel.m */; };
+		19D60A202423172A00DE37B8 /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A122423172A00DE37B8 /* HttpRequest.m */; };
+		19D60A212423172A00DE37B8 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A152423172A00DE37B8 /* AddressCell.m */; };
+		19D60A222423172A00DE37B8 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A172423172A00DE37B8 /* ProvinceModel.m */; };
+		19D60A232423172A00DE37B8 /* CountyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A1B2423172A00DE37B8 /* CountyModel.m */; };
+		19D60A242423172A00DE37B8 /* location.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19D60A1C2423172A00DE37B8 /* location.txt */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -226,19 +229,24 @@
 		19D609F0242229A300DE37B8 /* YWAddressInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressInfoModel.m; sourceTree = "<group>"; };
 		19D609F2242229BC00DE37B8 /* YWAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressViewController.m; sourceTree = "<group>"; };
 		19D609F3242229BC00DE37B8 /* YWAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressViewController.h; sourceTree = "<group>"; };
-		19D609F824222D9C00DE37B8 /* YWAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressModel.m; sourceTree = "<group>"; };
-		19D609F924222D9C00DE37B8 /* YWAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressModel.h; sourceTree = "<group>"; };
-		19D609FB24222D9C00DE37B8 /* YWAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressView.h; sourceTree = "<group>"; };
-		19D609FC24222D9C00DE37B8 /* YWChooseAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWChooseAddressView.m; sourceTree = "<group>"; };
-		19D609FD24222D9C00DE37B8 /* YWAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressTableViewCell.h; sourceTree = "<group>"; };
-		19D609FE24222D9C00DE37B8 /* YWAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressTableViewCell.m; sourceTree = "<group>"; };
-		19D609FF24222D9C00DE37B8 /* YWChooseAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWChooseAddressView.h; sourceTree = "<group>"; };
-		19D60A0024222D9C00DE37B8 /* YWAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressView.m; sourceTree = "<group>"; };
 		19D60A052422302200DE37B8 /* YWTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWTool.h; sourceTree = "<group>"; };
 		19D60A062422302200DE37B8 /* YWTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWTool.m; sourceTree = "<group>"; };
-		19D60A072422302200DE37B8 /* YWAddressDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWAddressDataTool.h; sourceTree = "<group>"; };
-		19D60A082422302200DE37B8 /* YWAddressDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWAddressDataTool.m; sourceTree = "<group>"; };
 		19D60A0B242233A200DE37B8 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
+		19D60A0E2423172A00DE37B8 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		19D60A0F2423172A00DE37B8 /* ZHFAddTitleAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHFAddTitleAddressView.m; sourceTree = "<group>"; };
+		19D60A102423172A00DE37B8 /* TownModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TownModel.m; sourceTree = "<group>"; };
+		19D60A112423172A00DE37B8 /* CityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityModel.m; sourceTree = "<group>"; };
+		19D60A122423172A00DE37B8 /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
+		19D60A132423172A00DE37B8 /* ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceModel.h; sourceTree = "<group>"; };
+		19D60A142423172A00DE37B8 /* CountyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountyModel.h; sourceTree = "<group>"; };
+		19D60A152423172A00DE37B8 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		19D60A162423172A00DE37B8 /* ZHFAddTitleAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHFAddTitleAddressView.h; sourceTree = "<group>"; };
+		19D60A172423172A00DE37B8 /* ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceModel.m; sourceTree = "<group>"; };
+		19D60A182423172A00DE37B8 /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		19D60A192423172A00DE37B8 /* CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModel.h; sourceTree = "<group>"; };
+		19D60A1A2423172A00DE37B8 /* TownModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TownModel.h; sourceTree = "<group>"; };
+		19D60A1B2423172A00DE37B8 /* CountyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountyModel.m; sourceTree = "<group>"; };
+		19D60A1C2423172A00DE37B8 /* location.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = location.txt; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -702,44 +710,33 @@
 		19D609F524222D9C00DE37B8 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				19D60A072422302200DE37B8 /* YWAddressDataTool.h */,
-				19D60A082422302200DE37B8 /* YWAddressDataTool.m */,
+				19D60A0D2423172A00DE37B8 /* Address */,
 				19D60A052422302200DE37B8 /* YWTool.h */,
 				19D60A062422302200DE37B8 /* YWTool.m */,
-				19D609F624222D9C00DE37B8 /* YWChooseAddress */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
 		};
-		19D609F624222D9C00DE37B8 /* YWChooseAddress */ = {
+		19D60A0D2423172A00DE37B8 /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				19D609F724222D9C00DE37B8 /* Model */,
-				19D609FA24222D9C00DE37B8 /* View */,
+				19D60A0E2423172A00DE37B8 /* AddressCell.h */,
+				19D60A0F2423172A00DE37B8 /* ZHFAddTitleAddressView.m */,
+				19D60A102423172A00DE37B8 /* TownModel.m */,
+				19D60A112423172A00DE37B8 /* CityModel.m */,
+				19D60A122423172A00DE37B8 /* HttpRequest.m */,
+				19D60A132423172A00DE37B8 /* ProvinceModel.h */,
+				19D60A142423172A00DE37B8 /* CountyModel.h */,
+				19D60A152423172A00DE37B8 /* AddressCell.m */,
+				19D60A162423172A00DE37B8 /* ZHFAddTitleAddressView.h */,
+				19D60A172423172A00DE37B8 /* ProvinceModel.m */,
+				19D60A182423172A00DE37B8 /* HttpRequest.h */,
+				19D60A192423172A00DE37B8 /* CityModel.h */,
+				19D60A1A2423172A00DE37B8 /* TownModel.h */,
+				19D60A1B2423172A00DE37B8 /* CountyModel.m */,
+				19D60A1C2423172A00DE37B8 /* location.txt */,
 			);
-			path = YWChooseAddress;
-			sourceTree = "<group>";
-		};
-		19D609F724222D9C00DE37B8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				19D609F824222D9C00DE37B8 /* YWAddressModel.m */,
-				19D609F924222D9C00DE37B8 /* YWAddressModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		19D609FA24222D9C00DE37B8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				19D609FB24222D9C00DE37B8 /* YWAddressView.h */,
-				19D609FC24222D9C00DE37B8 /* YWChooseAddressView.m */,
-				19D609FD24222D9C00DE37B8 /* YWAddressTableViewCell.h */,
-				19D609FE24222D9C00DE37B8 /* YWAddressTableViewCell.m */,
-				19D609FF24222D9C00DE37B8 /* YWChooseAddressView.h */,
-				19D60A0024222D9C00DE37B8 /* YWAddressView.m */,
-			);
-			path = View;
+			path = Address;
 			sourceTree = "<group>";
 		};
 		C5107FA2523E0BEC7DC52C6A /* Frameworks */ = {
@@ -812,6 +809,7 @@
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
 				193F27A3241765FA0000EB3B /* me_order.json in Resources */,
 				193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */,
+				19D60A242423172A00DE37B8 /* location.txt in Resources */,
 				1911AD2C240E20BE006FB7A3 /* LaunchScreen.storyboard in Resources */,
 				193F279324152D3B0000EB3B /* .gitkeep in Resources */,
 				1911AD29240E20BE006FB7A3 /* Assets.xcassets in Resources */,
@@ -880,12 +878,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				191D59F02411197A005632D0 /* UILabel+Utility.m in Sources */,
+				19D60A202423172A00DE37B8 /* HttpRequest.m in Sources */,
+				19D60A1E2423172A00DE37B8 /* TownModel.m in Sources */,
 				191D59E62411197A005632D0 /* UIImage+Extension.m in Sources */,
 				19D609EA2422298B00DE37B8 /* YWAddressTableViewCell3.m in Sources */,
 				193F27D12418CE320000EB3B /* GSProxy.m in Sources */,
 				193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */,
 				193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */,
-				19D60A0124222D9C00DE37B8 /* YWAddressModel.m in Sources */,
 				193F27C32417998C0000EB3B /* MjtLoginVC.m in Sources */,
 				193F275B2412653B0000EB3B /* MjtTipView.m in Sources */,
 				193F27A924177C9D0000EB3B /* MjtMessageBaseVC.m in Sources */,
@@ -899,6 +898,7 @@
 				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,
 				193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */,
 				193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */,
+				19D60A232423172A00DE37B8 /* CountyModel.m in Sources */,
 				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
 				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
@@ -913,8 +913,8 @@
 				193F275524122EC90000EB3B /* MJTConstant.m in Sources */,
 				19D60A092422302200DE37B8 /* YWTool.m in Sources */,
 				1911AD1E240E20BC006FB7A3 /* AppDelegate.m in Sources */,
+				19D60A212423172A00DE37B8 /* AddressCell.m in Sources */,
 				191D59EA2411197A005632D0 /* UIView+Extension.m in Sources */,
-				19D60A0224222D9C00DE37B8 /* YWChooseAddressView.m in Sources */,
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
 				193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */,
@@ -927,22 +927,22 @@
 				191D59C4241113AB005632D0 /* MallViewController.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
+				19D60A1D2423172A00DE37B8 /* ZHFAddTitleAddressView.m in Sources */,
 				193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */,
+				19D60A222423172A00DE37B8 /* ProvinceModel.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
 				19D609EB2422298B00DE37B8 /* YWAddressTableViewCell2.m in Sources */,
-				19D60A0A2422302200DE37B8 /* YWAddressDataTool.m in Sources */,
 				193F27DA241A265C0000EB3B /* MjtSettingItemModel.m in Sources */,
 				19D609F1242229A300DE37B8 /* YWAddressInfoModel.m in Sources */,
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
-				19D60A0324222D9C00DE37B8 /* YWAddressTableViewCell.m in Sources */,
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,
 				193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */,
 				19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
-				19D60A0424222D9C00DE37B8 /* YWAddressView.m in Sources */,
+				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,
 				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
 				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,
 				191D59BB2411134F005632D0 /* MineViewController.m in Sources */,

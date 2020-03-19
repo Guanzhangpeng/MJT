@@ -8,7 +8,6 @@
 
 #import "MjtAddressListVC.h"
 #import "YWAddressViewController.h"
-#import "YWAddressDataTool.h"
 @interface MjtAddressListVC ()
 
 @end
@@ -24,12 +23,6 @@
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"地址管理";
-    
-    // 开启异步线程初始化数据
-     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         // 预加载地区信息到本地数据库（避免UI卡顿）
-         [[YWAddressDataTool sharedManager] requestGetData];
-     });
 }
 - (void)_setupUI{
     [self _setupNavigation];
