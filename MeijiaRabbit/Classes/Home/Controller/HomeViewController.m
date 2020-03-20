@@ -18,12 +18,14 @@
 #import "MjtBaseButton.h"
 #import "JFCitySelector.h"
 #import "MjtMessageBaseVC.h"
-@interface HomeViewController ()
+@interface HomeViewController ()<JFCSTableViewControllerDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *topScrollAdView;///顶部轮播图
 @property (nonatomic, weak) UIView *mainFunView;///主功能
 @property (nonatomic, weak) MjtGuideView *guideView;///装修流程
 @property (nonatomic, weak) UIView *specialPriceView;///每日特价
+
+@property (nonatomic, strong) MjtBaseButton *locationBtn;
 @end
 
 @implementation HomeViewController
@@ -65,20 +67,26 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title  = @"美嘉兔";
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LocationCity:) name:@"LOCATION_CITY" object:nil];
 }
-
+- (void)LocationCity:(NSNotification *)noti{
+    NSString *city = noti.userInfo[@"CurrentCity"];
+    [self.locationBtn setTitle:city forState:0];
+}
 - (void)_setupNavigationItem{
     
+    NSString *city = [[NSUserDefaults standardUserDefaults] objectForKey:@"City"];
     MjtBaseButton *addressBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
     addressBtn.frame = CGRectMake(0, 0, 85, 22);
     [addressBtn setImage:[UIImage imageNamed:@"nav_location"] forState:UIControlStateNormal];
-    [addressBtn setTitle:@"巴彦淖尔" forState:UIControlStateNormal];
+    [addressBtn setTitle:city forState:UIControlStateNormal];
     addressBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
     addressBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     [addressBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     addressBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [addressBtn addTarget:self action:@selector(_addressClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addressBtn];
+    self.locationBtn = addressBtn;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
     
@@ -329,7 +337,8 @@
 }
 #pragma mark -- 点击事件
 - (void)_addressClick{
-    JFCSTableViewController *vc = [[JFCSTableViewController alloc] init];//WithConfiguration:self.config delegate:self];
+    JFCSTableViewController *vc = [[JFCSTableViewController alloc] initWithConfiguration:[[JFCSConfiguration alloc] init] delegate:self];
+    
     [self.navigationController pushViewController:vc animated:YES];
 //    [self.navigationController pushViewController:[MjtLocationViewController new] animated:YES];
 }
@@ -338,5 +347,9 @@
     MjtMessageBaseVC *vc = [[MjtMessageBaseVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+- (void)viewController:(JFCSTableViewController *)viewController didSelectCity:(JFCSBaseInfoModel *)model{
+ 
+    [self.locationBtn setTitle:model.name forState:0];
+    MJTLog(model.name);
+}
 @end

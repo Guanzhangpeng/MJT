@@ -91,6 +91,9 @@
 		19D60A242423172A00DE37B8 /* location.txt in Resources */ = {isa = PBXBuildFile; fileRef = 19D60A1C2423172A00DE37B8 /* location.txt */; };
 		19D60A27242326DC00DE37B8 /* MjtAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A26242326DC00DE37B8 /* MjtAddressCell.m */; };
 		19D60A2A2423496D00DE37B8 /* MjtAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A292423496D00DE37B8 /* MjtAddressModel.m */; };
+		19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A2C2423723300DE37B8 /* MjtLocationManager.m */; };
+		19D60A34242494A700DE37B8 /* MjtDesignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D60A32242494A700DE37B8 /* MjtDesignCell.m */; };
+		19D60A35242494A700DE37B8 /* MjtDesignCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D60A33242494A700DE37B8 /* MjtDesignCell.xib */; };
 		1AD52F3ED1988639EFD57841 /* libPods-MeijiaRabbit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */; };
 /* End PBXBuildFile section */
 
@@ -253,6 +256,11 @@
 		19D60A26242326DC00DE37B8 /* MjtAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressCell.m; sourceTree = "<group>"; };
 		19D60A282423496D00DE37B8 /* MjtAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtAddressModel.h; sourceTree = "<group>"; };
 		19D60A292423496D00DE37B8 /* MjtAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressModel.m; sourceTree = "<group>"; };
+		19D60A2B2423723300DE37B8 /* MjtLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtLocationManager.h; sourceTree = "<group>"; };
+		19D60A2C2423723300DE37B8 /* MjtLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtLocationManager.m; sourceTree = "<group>"; };
+		19D60A31242494A700DE37B8 /* MjtDesignCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDesignCell.h; sourceTree = "<group>"; };
+		19D60A32242494A700DE37B8 /* MjtDesignCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDesignCell.m; sourceTree = "<group>"; };
+		19D60A33242494A700DE37B8 /* MjtDesignCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtDesignCell.xib; sourceTree = "<group>"; };
 		7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.debug.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.debug.xcconfig"; sourceTree = "<group>"; };
 		806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeijiaRabbit.release.xcconfig"; path = "Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit.release.xcconfig"; sourceTree = "<group>"; };
 		FCEA2ABD1D34B189B2303651 /* libPods-MeijiaRabbit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MeijiaRabbit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -407,6 +415,9 @@
 		191D59A224111154005632D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				19D60A31242494A700DE37B8 /* MjtDesignCell.h */,
+				19D60A32242494A700DE37B8 /* MjtDesignCell.m */,
+				19D60A33242494A700DE37B8 /* MjtDesignCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -475,6 +486,8 @@
 				193F2765241298B80000EB3B /* MjtBaseButton.m */,
 				193F27D2241A0DB10000EB3B /* MjtWebView.h */,
 				193F27D3241A0DB10000EB3B /* MjtWebView.m */,
+				19D60A2B2423723300DE37B8 /* MjtLocationManager.h */,
+				19D60A2C2423723300DE37B8 /* MjtLocationManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -818,6 +831,7 @@
 			files = (
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
 				193F27A3241765FA0000EB3B /* me_order.json in Resources */,
+				19D60A35242494A700DE37B8 /* MjtDesignCell.xib in Resources */,
 				193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */,
 				19D60A242423172A00DE37B8 /* location.txt in Resources */,
 				1911AD2C240E20BE006FB7A3 /* LaunchScreen.storyboard in Resources */,
@@ -914,6 +928,7 @@
 				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
 				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
+				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
 				193F27AF24177E940000EB3B /* MjtOrderMessageVC.m in Sources */,
 				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,
@@ -927,6 +942,7 @@
 				1911AD1E240E20BC006FB7A3 /* AppDelegate.m in Sources */,
 				19D60A212423172A00DE37B8 /* AddressCell.m in Sources */,
 				191D59EA2411197A005632D0 /* UIView+Extension.m in Sources */,
+				19D60A34242494A700DE37B8 /* MjtDesignCell.m in Sources */,
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
 				193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */,

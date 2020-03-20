@@ -28,6 +28,14 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 }\
 (isPhoneX);})
 
+
+// IOS版本
+#define MJTIOSVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+#define MJT_iOS7_VERSTION_LATER ([UIDevice currentDevice].systemVersion.floatValue >= 7.0)
+#define MJT_iOS8_VERSTION_LATER ([UIDevice currentDevice].systemVersion.floatValue >= 8.0)
+#define MJT_iOS9_VERSTION_LATER ([UIDevice currentDevice].systemVersion.floatValue >= 9.0)
+#define MJT_iOS10_VERSTION_LATER ([UIDevice currentDevice].systemVersion.floatValue >= 10.0)
+
 /// 导航条高度
 #define TOP_BAR_HEIGHT  (MJT_IS_iPhoneX ? (88.0f) : (64.0f))
 

@@ -1,54 +1,23 @@
 //
-//  AppDelegate.m
+//  MjtLocationManager.m
 //  MeijiaRabbit
 //
-//  Created by 管章鹏 on 2020/3/3.
+//  Created by 管章鹏 on 2020/3/19.
 //  Copyright © 2020 管章鹏. All rights reserved.
 //
 
-#import "AppDelegate.h"
-#import "MjtTabBarController.h"
-#import "UIImage+Extension.h"
+#import "MjtLocationManager.h"
 #import <CoreLocation/CoreLocation.h>
-@interface AppDelegate ()<CLLocationManagerDelegate>
-@property(nonatomic,retain)CLLocationManager *locationManager;
+@interface MjtLocationManager()<CLLocationManagerDelegate>
+
+@property (nonatomic,strong) CLLocationManager *locationManager;
+
 @end
+@implementation MjtLocationManager
 
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-//    [NSThread sleepForTimeInterval:2.f];
-///导航栏样式
-    [self _setupNavigationBar];
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-     self.window.rootViewController = [[MjtTabBarController alloc] init];
-     [self.window makeKeyAndVisible];
-    return YES;
-}
-- (void)_setupNavigationBar{
-    UINavigationBar *navBar = [UINavigationBar appearance];
-    [navBar setBackgroundImage:[UIImage imageWithColor:MJTColorFromHexString(@"#FFCE00")] forBarMetrics:UIBarMetricsDefault];
-    UIImage *backImg = [[UIImage imageNamed:@"nav_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navBar.backIndicatorImage = backImg;
-    navBar.backIndicatorTransitionMaskImage = backImg;
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
-//   navBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
-   NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
-                            NSFontAttributeName: [UIFont systemFontOfSize:17],
-                            NSForegroundColorAttributeName:[UIColor whiteColor]};
-   [navBar setTitleTextAttributes:attrs];
-   [navBar setTintColor:[UIColor whiteColor]];
-}
--(void)applicationDidBecomeActive:(UIApplication *)application{
-        [self locationStart];
-}
 //开始定位
 -(void)locationStart{
-    //判断定位操作是否被允许
-    
+    //判断定位操作是否被允许    
     if([CLLocationManager locationServicesEnabled]) {
         self.locationManager = [[CLLocationManager alloc] init] ;
         self.locationManager.delegate = self;
@@ -68,7 +37,6 @@
 }
 #pragma mark - CoreLocation Delegate
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-
 {
     //系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新
     [self.locationManager stopUpdatingLocation];
@@ -85,9 +53,7 @@
              CLPlacemark *placemark = [array objectAtIndex:0];
              //获取城市
              NSString *currCity = placemark.locality;
-             [[NSUserDefaults standardUserDefaults] setObject:@"City" forKey:currCity];
-             [[NSUserDefaults standardUserDefaults] synchronize];
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"LOCATION_CITY" object:nil userInfo:@{@"CurrentCity":currCity}];
+             self.currentCity = currCity;
              MJTLog(currCity);
 //             if (!currCity) {
 //                 //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
@@ -120,4 +86,5 @@
     }
     
 }
+
 @end

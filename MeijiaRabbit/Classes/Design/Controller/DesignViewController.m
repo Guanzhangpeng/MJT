@@ -7,26 +7,37 @@
 //
 
 #import "DesignViewController.h"
+#import "MjtDesignCell.h"
 
-@interface DesignViewController ()
-
+@interface DesignViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation DesignViewController
-
+static NSString *cellID = @"DesignCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self _setupSubviews];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)_setupSubviews{
+    [self _setupTableView];
 }
-*/
-
+- (void)_setupTableView{
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) style:UITableViewStylePlain];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    tableView.rowHeight = 220;
+    tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    [tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MjtDesignCell class]) bundle:nil] forCellReuseIdentifier:cellID];
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
+    
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MjtDesignCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    return cell;
+}
 @end
