@@ -32,9 +32,9 @@
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UIImageView *detailImageView;
 @property (nonatomic, strong) UIImageView *imgView;
-@property (nonatomic, strong) UIImageView *indicator;
+//@property (nonatomic, strong) UIImageView *indicator;
 @property (nonatomic, strong) UISwitch *aswitch;
-@property (nonatomic, strong) UIView *bottomLine;
+
 
 @end
 @implementation MjtSettingCell

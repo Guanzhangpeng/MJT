@@ -29,6 +29,7 @@
 		191D59ED2411197A005632D0 /* UIButton+Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D59D62411197A005632D0 /* UIButton+Delay.m */; };
 		191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D59DA2411197A005632D0 /* NSString+Extension.m */; };
 		191D59F02411197A005632D0 /* UILabel+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D59E02411197A005632D0 /* UILabel+Utility.m */; };
+		19341B512428835D00CB82E0 /* me_home.json in Resources */ = {isa = PBXBuildFile; fileRef = 19341B502428835D00CB82E0 /* me_home.json */; };
 		193F275524122EC90000EB3B /* MJTConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275424122EC80000EB3B /* MJTConstant.m */; };
 		193F275824125CE80000EB3B /* MjtView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275724125CE80000EB3B /* MjtView.m */; };
 		193F275B2412653B0000EB3B /* MjtTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275A2412653B0000EB3B /* MjtTipView.m */; };
@@ -139,6 +140,7 @@
 		191D59DF2411197A005632D0 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		191D59E02411197A005632D0 /* UILabel+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Utility.m"; sourceTree = "<group>"; };
 		191D59E12411197A005632D0 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		19341B502428835D00CB82E0 /* me_home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me_home.json; sourceTree = "<group>"; };
 		193F275224122B290000EB3B /* MeijiaRabbit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeijiaRabbit.pch; sourceTree = "<group>"; };
 		193F275324122EC80000EB3B /* MJTConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJTConstant.h; sourceTree = "<group>"; };
 		193F275424122EC80000EB3B /* MJTConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJTConstant.m; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 		191D59AA24111154005632D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				19341B502428835D00CB82E0 /* me_home.json */,
 				19D60A0B242233A200DE37B8 /* Cities.json */,
 				19D609EF242229A300DE37B8 /* YWAddressInfoModel.h */,
 				19D609F0242229A300DE37B8 /* YWAddressInfoModel.m */,
@@ -839,6 +842,7 @@
 				1911AD29240E20BE006FB7A3 /* Assets.xcassets in Resources */,
 				19D609EE2422298B00DE37B8 /* YWAddressTableViewCell1.xib in Resources */,
 				19D609ED2422298B00DE37B8 /* YWAddressTableViewCell3.xib in Resources */,
+				19341B512428835D00CB82E0 /* me_home.json in Resources */,
 				19D60A0C242233A200DE37B8 /* Cities.json in Resources */,
 				1911AD27240E20BC006FB7A3 /* Main.storyboard in Resources */,
 				19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */,

@@ -24,10 +24,12 @@
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *homeArray;
 @property (nonatomic, weak) UIView *userView;
 @property (nonatomic, weak) UIView *orderView;
 @property (nonatomic, strong) NSArray *sectionArray;
 @property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UIWebView *webView;
 @end
 
@@ -216,6 +218,9 @@
 - (void)_buttonClick:(MjtButton *)button{
     MJTLog(button.titleLabel.text);
 }
+- (void)_homeBtnClick:(MjtBaseButton *)button{
+    MJTLog(button.titleLabel.text);
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -240,6 +245,11 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.item = itemModel;
+    if(indexPath.row == sectionModel.itemArray.count - 1){
+        cell.bottomLine.hidden = YES;
+    }else{
+        cell.bottomLine.hidden = NO;
+    }
     return cell;
 }
 
@@ -257,6 +267,23 @@
     if (itemModel.executeCode) {
         itemModel.executeCode();
     }
+    
+    if(indexPath.row == sectionModel.itemArray.count - 1){
+        itemModel.isSelected = !itemModel.isSelected;
+        MjtSettingCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (itemModel.isSelected) {
+            self.tableView.tableFooterView = self.footerView;
+            [UIView animateWithDuration:0.25 animations:^{
+                cell.indicator.layer.transform = CATransform3DMakeRotation(M_PI, 1, 1, 0);
+            }];
+
+        }else{
+            self.tableView.tableFooterView = [UIView new];
+            [UIView animateWithDuration:0.25 animations:^{
+               cell.indicator.transform = CGAffineTransformIdentity;
+           }];
+        }
+    }
 }
 //uitableview处理section的不悬浮，禁止section停留的方法，主要是这段代码
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -271,6 +298,15 @@
 }
 
 #pragma mark -- 数据懒加载
+-(NSMutableArray *)homeArray{
+    if (!_homeArray) {
+        _homeArray = [NSMutableArray array];
+        NSString *fileName = [[NSBundle mainBundle] pathForResource:@"me_home.json" ofType:nil];
+          NSData *data =  [NSData dataWithContentsOfFile:fileName];
+          _homeArray =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    }
+    return _homeArray;
+}
 - (NSMutableArray *)dataArray
 {
     if (!_dataArray) {
@@ -286,5 +322,36 @@
         _webView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
     return _webView;
+}
+-(UIView *)footerView{
+    if (!_footerView) {
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 65)];
+        CGFloat marginY = 8;
+        CGFloat startY = 0;
+        int colCount = 3;
+        int appViewW = 90;
+        int marginX =  (ScreenWidth - colCount * 90-kStartX*2) / (colCount - 1);
+        for (int i = 0; i < self.homeArray.count; i++)
+        {
+            NSDictionary *dic = self.homeArray[i];
+            MjtButton *btn = [MjtButton buttonWithType:UIButtonTypeCustom];
+            [btn setTitle:dic[@"title"] forState:UIControlStateNormal];
+            [btn setImage:[UIImage imageNamed:dic[@"icon"]] forState:UIControlStateNormal];
+            btn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn addTarget:self action:@selector(_homeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setTitleColor:MJTColorFromHexString(@"#727272") forState:UIControlStateNormal];
+            int row = i / colCount;
+            int col = i % colCount;
+            CGFloat x = kStartX + col * (marginX + appViewW);
+            CGFloat y =  startY + marginY + row * (marginY + appViewW);
+            btn.imageWH = 22;
+            btn.margin = 12.f;
+            btn.frame = CGRectMake(x, y, appViewW, 45);
+            [_footerView addSubview:btn];
+        }
+//        _footerView.backgroundColor = MJTRandomColor;
+        
+    }
+    return _footerView;
 }
 @end
