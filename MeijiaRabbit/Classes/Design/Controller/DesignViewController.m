@@ -24,6 +24,7 @@ static NSString *cellID = @"DesignCellID";
 }
 - (void)_setupTableView{
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) style:UITableViewStylePlain];
+    tableView.contentInset = UIEdgeInsetsMake(15, 0, 0, 0 );
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.rowHeight = 220;
@@ -33,11 +34,15 @@ static NSString *cellID = @"DesignCellID";
     self.tableView = tableView;
     
 }
+#pragma mark -- UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 10;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MjtDesignCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.thumbAction = ^{
+        MJTLog(@"点赞--%ld",indexPath.row);
+    };
     return cell;
 }
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "OttoFPSButton.h"
+
 #import "MjtTabBarController.h"
 #import "UIImage+Extension.h"
 #import <CoreLocation/CoreLocation.h>
@@ -18,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    
 //    [NSThread sleepForTimeInterval:2.f];
 ///导航栏样式
     [self _setupNavigationBar];
@@ -25,6 +28,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
      self.window.rootViewController = [[MjtTabBarController alloc] init];
      [self.window makeKeyAndVisible];
+    
+    //FPS
+    CGRect frame = CGRectMake(0, 300, 80, 30);
+    UIColor *btnBGColor = [UIColor colorWithWhite:0.000 alpha:0.700];
+    OttoFPSButton *btn = [OttoFPSButton setTouchWithFrame:frame titleFont:[UIFont systemFontOfSize:15] backgroundColor:btnBGColor backgroundImage:nil];
+    [self.window addSubview:btn];
+    
     return YES;
 }
 - (void)_setupNavigationBar{

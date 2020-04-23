@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtDesignCell : UITableViewCell
 
+@property (nonatomic, strong) void(^thumbAction)();
 @end
 
 NS_ASSUME_NONNULL_END

@@ -18,6 +18,7 @@
 #import "MjtBaseButton.h"
 #import "JFCitySelector.h"
 #import "MjtMessageBaseVC.h"
+#import "MjtDiscountListVC.h"
 @interface HomeViewController ()<JFCSTableViewControllerDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *topScrollAdView;///顶部轮播图
@@ -132,6 +133,9 @@
   .wAutoScrollSet(YES)
   //自动滚动时间
   .wAutoScrollSecondSet(3)
+//  .wEventClickSet(^(id anyID, NSIndexPath *path) {
+//      NSLog(@"点击 %@ %@",anyID,path);
+//  })
   ;
   self.topScrollAdView =  [[WMZBannerView alloc] initConfigureWithModel:param withView:self.scrollView];
 }
@@ -281,6 +285,9 @@
        .wLineSpacingSet(10)
        //开启背景毛玻璃
        .wEffectSet(NO)
+    .wEventCenterClickSet(^(id anyID, NSInteger index,BOOL isCenter,UICollectionViewCell *cell) {
+        [self.navigationController pushViewController:[MjtDiscountListVC new] animated:YES];
+    })
 //       点击左右居中
 //       .wEventCenterClickSet(YES)
        ;

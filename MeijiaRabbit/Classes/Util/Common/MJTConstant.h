@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "UIColor+Extension.h"
+#import "HttpTool.h"
 
 #define WeakSelf                __weak typeof(self) weakSelf = self
 

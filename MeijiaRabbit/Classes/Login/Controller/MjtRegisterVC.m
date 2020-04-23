@@ -160,6 +160,7 @@
     loginBtn.layer.masksToBounds = YES;
        [loginBtn addTarget:self action:@selector(_loginAction) forControlEvents:UIControlEventTouchUpInside];
        [contentView addSubview:loginBtn];
+    
        [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
            make.left.mas_equalTo(passWord2.mas_left).with.offset(8);
            make.right.mas_equalTo(passWord2.mas_right).with.offset(-8);
@@ -168,15 +169,16 @@
        }];
     
     
-    //协议
-        NSMutableAttributedString *attributtedString = [[NSMutableAttributedString alloc] initWithString:@"登录即表示同意美嘉兔用户协议条款"];
+//    协议
+        NSMutableAttributedString *attributtedString = [[NSMutableAttributedString alloc] initWithString:@"登录即表示同意美嘉兔用户协议条款  百度"];
         [attributtedString addAttribute:NSLinkAttributeName value:@"Lience://" range:[[attributtedString string] rangeOfString:@"美嘉兔用户协议条款"]];
+    [attributtedString addAttribute:NSLinkAttributeName value:@"baidu://" range:[[attributtedString string] rangeOfString:@"百度"]];
         [attributtedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, attributtedString.length)];
 
         UITextView *lienceTxt = [[UITextView alloc] init];
         lienceTxt.attributedText = attributtedString;
         lienceTxt.linkTextAttributes = @{NSForegroundColorAttributeName:MJTColorFromHexString(@"#3E3E3E"),
-           
+
         };
         lienceTxt.delegate = self;
         lienceTxt.scrollEnabled = NO;
@@ -187,10 +189,9 @@
         [lienceTxt mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(contentView.mas_centerX);
             make.bottom.mas_equalTo(-20);
-            make.height.mas_equalTo(21);
+            make.height.mas_equalTo(22);
             make.width.mas_equalTo(210);
         }];
-    
 }
 - (void)_makeSubviewConstraints{
     
@@ -251,6 +252,9 @@
         MjtWebView *webView = [[MjtWebView alloc] init];
         webView.url = @"https://www.baidu.com";
         [self.navigationController pushViewController:webView animated:YES];
+        return NO;
+    }else     if([[URL scheme] isEqualToString:@"baidu"]){
+        MJTLog(@"baidu");
         return NO;
     }
     return YES;

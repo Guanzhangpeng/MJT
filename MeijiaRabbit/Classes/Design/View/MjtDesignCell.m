@@ -20,4 +20,9 @@
 @end
 @implementation MjtDesignCell
 
+- (IBAction)thumb_Click:(id)sender {
+    self.thumbBtn.selected = !_thumbBtn.selected;
+    !_thumbAction ?  :_thumbAction();
+}
+
 @end

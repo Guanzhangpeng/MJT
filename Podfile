@@ -13,7 +13,7 @@ target 'MeijiaRabbit' do
   pod 'SDWebImage'
   pod 'IQKeyboardManager'
   pod 'Masonry'
-  pod 'WMZBanner', '~> 1.1.0'
+  pod 'WMZBanner', '~> 1.1.2'
   pod 'YYModel'
   pod 'ZPSegmentBarOC', '~> 0.2.5'
   pod 'YYCategories'

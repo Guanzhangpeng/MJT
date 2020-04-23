@@ -71,6 +71,20 @@
 		193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DC241A27610000EB3B /* MjtSettingSectionModel.m */; };
 		193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DF241A27AE0000EB3B /* MjtSettingCell.m */; };
 		193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27E2241A29A30000EB3B /* MjtSettingVC.m */; };
+		1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9632448653B00C6C090 /* MjtDiscountListVC.m */; };
+		1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9672448669200C6C090 /* MjtDiscountCell.m */; };
+		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
+		1959A96E244870B400C6C090 /* MjtServiceListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A96D244870B400C6C090 /* MjtServiceListVC.m */; };
+		1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DF9F244D523800C1D65C /* OttoFPSButton.m */; };
+		1974DFA3244D723200C1D65C /* MjtServiceAllVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DFA2244D723200C1D65C /* MjtServiceAllVC.m */; };
+		1974DFA8244D734200C1D65C /* MjtServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DFA6244D734200C1D65C /* MjtServiceCell.m */; };
+		1974DFA9244D734200C1D65C /* MjtServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1974DFA7244D734200C1D65C /* MjtServiceCell.xib */; };
+		19B3EDB92450277C00251AFD /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDB52450277C00251AFD /* HttpTool.m */; };
+		19B3EDBA2450277C00251AFD /* NetBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDB82450277C00251AFD /* NetBaseTool.m */; };
+		19B3EDCA2451C38B00251AFD /* RSAUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC22451C38B00251AFD /* RSAUtil.m */; };
+		19B3EDCB2451C38B00251AFD /* NSString+NSReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC52451C38B00251AFD /* NSString+NSReplace.m */; };
+		19B3EDCC2451C38B00251AFD /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC72451C38B00251AFD /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC82451C38B00251AFD /* DES3Util.m */; };
 		19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609DE2422282600DE37B8 /* MjtAddressListVC.m */; };
 		19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D609E02422298A00DE37B8 /* YWAddressTableViewCell2.xib */; };
 		19D609EA2422298B00DE37B8 /* YWAddressTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609E12422298B00DE37B8 /* YWAddressTableViewCell3.m */; };
@@ -221,6 +235,33 @@
 		193F27DF241A27AE0000EB3B /* MjtSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingCell.m; sourceTree = "<group>"; };
 		193F27E1241A29A30000EB3B /* MjtSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingVC.h; sourceTree = "<group>"; };
 		193F27E2241A29A30000EB3B /* MjtSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingVC.m; sourceTree = "<group>"; };
+		1959A9622448653B00C6C090 /* MjtDiscountListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountListVC.h; sourceTree = "<group>"; };
+		1959A9632448653B00C6C090 /* MjtDiscountListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountListVC.m; sourceTree = "<group>"; };
+		1959A9662448669200C6C090 /* MjtDiscountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountCell.h; sourceTree = "<group>"; };
+		1959A9672448669200C6C090 /* MjtDiscountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountCell.m; sourceTree = "<group>"; };
+		1959A9682448669200C6C090 /* MjtDiscountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtDiscountCell.xib; sourceTree = "<group>"; };
+		1959A96C244870B400C6C090 /* MjtServiceListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceListVC.h; sourceTree = "<group>"; };
+		1959A96D244870B400C6C090 /* MjtServiceListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceListVC.m; sourceTree = "<group>"; };
+		1974DF9E244D523800C1D65C /* OttoFPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoFPSButton.h; sourceTree = "<group>"; };
+		1974DF9F244D523800C1D65C /* OttoFPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoFPSButton.m; sourceTree = "<group>"; };
+		1974DFA1244D723200C1D65C /* MjtServiceAllVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceAllVC.h; sourceTree = "<group>"; };
+		1974DFA2244D723200C1D65C /* MjtServiceAllVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceAllVC.m; sourceTree = "<group>"; };
+		1974DFA5244D734200C1D65C /* MjtServiceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceCell.h; sourceTree = "<group>"; };
+		1974DFA6244D734200C1D65C /* MjtServiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceCell.m; sourceTree = "<group>"; };
+		1974DFA7244D734200C1D65C /* MjtServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtServiceCell.xib; sourceTree = "<group>"; };
+		19B3EDB52450277C00251AFD /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
+		19B3EDB62450277C00251AFD /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
+		19B3EDB72450277C00251AFD /* NetBaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseTool.h; sourceTree = "<group>"; };
+		19B3EDB82450277C00251AFD /* NetBaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetBaseTool.m; sourceTree = "<group>"; };
+		19B3EDC12451C38B00251AFD /* NSString+NSReplace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSReplace.h"; sourceTree = "<group>"; };
+		19B3EDC22451C38B00251AFD /* RSAUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAUtil.m; sourceTree = "<group>"; };
+		19B3EDC32451C38B00251AFD /* DES3Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DES3Util.h; sourceTree = "<group>"; };
+		19B3EDC42451C38B00251AFD /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		19B3EDC52451C38B00251AFD /* NSString+NSReplace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSReplace.m"; sourceTree = "<group>"; };
+		19B3EDC62451C38B00251AFD /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		19B3EDC72451C38B00251AFD /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		19B3EDC82451C38B00251AFD /* DES3Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DES3Util.m; sourceTree = "<group>"; };
+		19B3EDC92451C38B00251AFD /* RSAUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAUtil.h; sourceTree = "<group>"; };
 		19D609DD2422282600DE37B8 /* MjtAddressListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtAddressListVC.h; sourceTree = "<group>"; };
 		19D609DE2422282600DE37B8 /* MjtAddressListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressListVC.m; sourceTree = "<group>"; };
 		19D609E02422298A00DE37B8 /* YWAddressTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWAddressTableViewCell2.xib; sourceTree = "<group>"; };
@@ -349,6 +390,8 @@
 		191D599C24111154005632D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1959A96B2448709700C6C090 /* 服务 */,
+				1959A9612448651100C6C090 /* 每日特价 */,
 				191D59B624111327005632D0 /* HomeViewController.h */,
 				191D59B724111327005632D0 /* HomeViewController.m */,
 				193F27A724177C9D0000EB3B /* MjtMessageBaseVC.h */,
@@ -374,6 +417,8 @@
 		191D599E24111154005632D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1974DFA4244D732900C1D65C /* 服务 */,
+				1959A9652448664600C6C090 /* 每日特价 */,
 				193F27672413A9EA0000EB3B /* MjtSpecialPriceCell.h */,
 				193F27682413A9EA0000EB3B /* MjtSpecialPriceCell.m */,
 				193F275C24128ABE0000EB3B /* MjtGuideView.h */,
@@ -469,6 +514,10 @@
 		191D59A524111154005632D0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				19B3EDB62450277C00251AFD /* HttpTool.h */,
+				19B3EDB52450277C00251AFD /* HttpTool.m */,
+				19B3EDB72450277C00251AFD /* NetBaseTool.h */,
+				19B3EDB82450277C00251AFD /* NetBaseTool.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -698,6 +747,9 @@
 		193F27CE2418CE270000EB3B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				19B3EDC02451C38B00251AFD /* Encrypttion */,
+				1974DF9E244D523800C1D65C /* OttoFPSButton.h */,
+				1974DF9F244D523800C1D65C /* OttoFPSButton.m */,
 				193F27D02418CE320000EB3B /* GSProxy.h */,
 				193F27CF2418CE320000EB3B /* GSProxy.m */,
 			);
@@ -731,6 +783,62 @@
 				193F27DF241A27AE0000EB3B /* MjtSettingCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1959A9612448651100C6C090 /* 每日特价 */ = {
+			isa = PBXGroup;
+			children = (
+				1959A9622448653B00C6C090 /* MjtDiscountListVC.h */,
+				1959A9632448653B00C6C090 /* MjtDiscountListVC.m */,
+			);
+			path = "每日特价";
+			sourceTree = "<group>";
+		};
+		1959A9652448664600C6C090 /* 每日特价 */ = {
+			isa = PBXGroup;
+			children = (
+				1959A9662448669200C6C090 /* MjtDiscountCell.h */,
+				1959A9672448669200C6C090 /* MjtDiscountCell.m */,
+				1959A9682448669200C6C090 /* MjtDiscountCell.xib */,
+			);
+			path = "每日特价";
+			sourceTree = "<group>";
+		};
+		1959A96B2448709700C6C090 /* 服务 */ = {
+			isa = PBXGroup;
+			children = (
+				1959A96C244870B400C6C090 /* MjtServiceListVC.h */,
+				1959A96D244870B400C6C090 /* MjtServiceListVC.m */,
+				1974DFA1244D723200C1D65C /* MjtServiceAllVC.h */,
+				1974DFA2244D723200C1D65C /* MjtServiceAllVC.m */,
+			);
+			path = "服务";
+			sourceTree = "<group>";
+		};
+		1974DFA4244D732900C1D65C /* 服务 */ = {
+			isa = PBXGroup;
+			children = (
+				1974DFA5244D734200C1D65C /* MjtServiceCell.h */,
+				1974DFA6244D734200C1D65C /* MjtServiceCell.m */,
+				1974DFA7244D734200C1D65C /* MjtServiceCell.xib */,
+			);
+			path = "服务";
+			sourceTree = "<group>";
+		};
+		19B3EDC02451C38B00251AFD /* Encrypttion */ = {
+			isa = PBXGroup;
+			children = (
+				19B3EDC62451C38B00251AFD /* GTMDefines.h */,
+				19B3EDC12451C38B00251AFD /* NSString+NSReplace.h */,
+				19B3EDC52451C38B00251AFD /* NSString+NSReplace.m */,
+				19B3EDC92451C38B00251AFD /* RSAUtil.h */,
+				19B3EDC22451C38B00251AFD /* RSAUtil.m */,
+				19B3EDC42451C38B00251AFD /* GTMBase64.h */,
+				19B3EDC72451C38B00251AFD /* GTMBase64.m */,
+				19B3EDC32451C38B00251AFD /* DES3Util.h */,
+				19B3EDC82451C38B00251AFD /* DES3Util.m */,
+			);
+			path = Encrypttion;
 			sourceTree = "<group>";
 		};
 		19D609F524222D9C00DE37B8 /* Tool */ = {
@@ -844,8 +952,10 @@
 				19D609ED2422298B00DE37B8 /* YWAddressTableViewCell3.xib in Resources */,
 				19341B512428835D00CB82E0 /* me_home.json in Resources */,
 				19D60A0C242233A200DE37B8 /* Cities.json in Resources */,
+				1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */,
 				1911AD27240E20BC006FB7A3 /* Main.storyboard in Resources */,
 				19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */,
+				1974DFA9244D734200C1D65C /* MjtServiceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,12 +1022,14 @@
 				19D60A27242326DC00DE37B8 /* MjtAddressCell.m in Sources */,
 				19D609EA2422298B00DE37B8 /* YWAddressTableViewCell3.m in Sources */,
 				19D60A2A2423496D00DE37B8 /* MjtAddressModel.m in Sources */,
+				1974DFA8244D734200C1D65C /* MjtServiceCell.m in Sources */,
 				193F27D12418CE320000EB3B /* GSProxy.m in Sources */,
 				193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */,
 				193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */,
 				193F27C32417998C0000EB3B /* MjtLoginVC.m in Sources */,
 				193F275B2412653B0000EB3B /* MjtTipView.m in Sources */,
 				193F27A924177C9D0000EB3B /* MjtMessageBaseVC.m in Sources */,
+				19B3EDBA2450277C00251AFD /* NetBaseTool.m in Sources */,
 				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
 				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
@@ -925,11 +1037,13 @@
 				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
 				19D609EC2422298B00DE37B8 /* YWAddressTableViewCell1.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
+				1959A96E244870B400C6C090 /* MjtServiceListVC.m in Sources */,
 				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,
 				193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */,
 				193F27692413A9EA0000EB3B /* MjtSpecialPriceCell.m in Sources */,
 				19D60A232423172A00DE37B8 /* CountyModel.m in Sources */,
 				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
+				19B3EDCA2451C38B00251AFD /* RSAUtil.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
 				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
@@ -938,8 +1052,10 @@
 				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,
 				191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */,
 				193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */,
+				19B3EDB92450277C00251AFD /* HttpTool.m in Sources */,
 				19D609F4242229BC00DE37B8 /* YWAddressViewController.m in Sources */,
 				193F279B24152D3B0000EB3B /* JFCSSearchTableViewController.m in Sources */,
+				1974DFA3244D723200C1D65C /* MjtServiceAllVC.m in Sources */,
 				193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */,
 				193F275524122EC90000EB3B /* MJTConstant.m in Sources */,
 				19D60A092422302200DE37B8 /* YWTool.m in Sources */,
@@ -950,9 +1066,11 @@
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
 				193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */,
+				19B3EDCB2451C38B00251AFD /* NSString+NSReplace.m in Sources */,
 				1911AD2F240E20BE006FB7A3 /* main.m in Sources */,
 				193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */,
 				193F279C24152D3B0000EB3B /* JFCSDataOpreation.m in Sources */,
+				1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */,
 				191D59E92411197A005632D0 /* UIButton+Extension.m in Sources */,
 				191D59ED2411197A005632D0 /* UIButton+Delay.m in Sources */,
 				193F279924152D3B0000EB3B /* JFCSProvinceModel.m in Sources */,
@@ -961,7 +1079,9 @@
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
 				19D60A1D2423172A00DE37B8 /* ZHFAddTitleAddressView.m in Sources */,
 				193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */,
+				1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */,
 				19D60A222423172A00DE37B8 /* ProvinceModel.m in Sources */,
+				19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
 				19D609EB2422298B00DE37B8 /* YWAddressTableViewCell2.m in Sources */,
@@ -972,11 +1092,13 @@
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,
 				193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */,
 				19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */,
+				1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,
 				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
 				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,
+				19B3EDCC2451C38B00251AFD /* GTMBase64.m in Sources */,
 				191D59BB2411134F005632D0 /* MineViewController.m in Sources */,
 				191D59E32411197A005632D0 /* NullSafe.m in Sources */,
 			);

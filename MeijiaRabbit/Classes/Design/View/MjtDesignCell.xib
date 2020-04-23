@@ -82,7 +82,12 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="vBU-17-lSR"/>
                         </constraints>
+                        <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" image="thumb"/>
+                        <state key="selected" image="thumb_selected"/>
+                        <connections>
+                            <action selector="thumb_Click:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EKw-oH-spj"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -125,5 +130,6 @@
     <resources>
         <image name="placeImg" width="1000" height="643"/>
         <image name="thumb" width="17" height="17"/>
+        <image name="thumb_selected" width="16.5" height="17.5"/>
     </resources>
 </document>
