@@ -8,7 +8,70 @@
 
 #import "HttpTool.h"
 #import "AFNetworking.h"
+#import "DES3Util.h"
+#import "RSAUtil.h"
+#import "NSDictionary+YYAdd.h"
+#import "NSString+Extension.h"
+#import "NSString+YYAdd.h"
+#import "MjtSignHelper.h"
+
 @implementation HttpTool
+#pragma mark - 字典加密
++ (NSString *)securitStringWithDict:(NSDictionary *)dict
+{
+    NSString *RSA_Public_key = [[NSUserDefaults standardUserDefaults] objectForKey:@"PUBLICKEY"];
+    NSString *value = [NSString DataTOjsonString:dict];
+    NSString *signString = [RSAUtil encryptString:value publicKey:RSA_Public_key];
+    return signString;
+}
+
++ (void)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure{
+    
+    //增加这几行代码；
+    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+    [securityPolicy setAllowInvalidCertificates:YES];
+    if (parameters == nil){
+        parameters = [[NSMutableDictionary alloc] init];
+    }
+    
+    //对参数进行加密
+    NSString *securitString = [self securitStringWithDict:parameters];
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"param"] = securitString;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    // 设置超时时间
+    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
+     manager.requestSerializer.timeoutInterval = 15.0f;
+    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
+    
+    //申明返回的结果类型
+    AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
+    serializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    manager.responseSerializer= serializer;
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//
+//    //声明请求的数据是json类型
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    //如果报接受类型不一致请替换一致text/html或别的
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
+    
+    NSString *urlStr = [URLString stringByRemovingPercentEncoding];
+    [manager POST:urlStr parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSString *responseString = [DES3Util decryptUseDES:desString key:DESKEY];
+            NSDictionary *responseDic = [responseString jsonValueDecoded];
+             success(responseDic);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 
 + (void)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     
@@ -20,8 +83,11 @@
     manager.requestSerializer.timeoutInterval = 10.f;
     [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
-    //申明返回的结果是json类型
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //申明返回的结果类型
+    AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
+    serializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    manager.responseSerializer= serializer;
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
 //    //申明请求的数据是json类型
 //    manager.requestSerializer=[AFJSONRequestSerializer serializer];
@@ -32,41 +98,10 @@
    
     [manager GET:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
-            success(responseObject);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
-+ (void)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    
-    //增加这几行代码；
-    AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-    [securityPolicy setAllowInvalidCertificates:YES];
-    if (parameters== nil){
-        parameters = [[NSMutableDictionary alloc] init];
-    }
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    // 设置超时时间
-    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-     manager.requestSerializer.timeoutInterval = 15.0f;
-    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
-    
-    //申明返回的结果是json类型
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-   
-    //声明请求的数据是json类型
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    //如果报接受类型不一致请替换一致text/html或别的
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
-    NSString *urlStr = [URLString stringByRemovingPercentEncoding];
-    [manager POST:urlStr parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(responseObject);
+           NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+           NSString *responseString = [DES3Util decryptUseDES:desString key:DESKEY];
+           NSDictionary *responseDic = [responseString jsonValueDecoded];
+            success(responseDic);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {

@@ -61,7 +61,7 @@
     [self.view addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(ScreenWidth *5/6);
-        make.height.mas_equalTo(ScreenHeight*2/3);
+        make.height.mas_equalTo(380);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.centerY.mas_equalTo(self.view.mas_centerY);
     }];
@@ -96,11 +96,12 @@
     [contentView addSubview:unameTxt];
     [unameTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(registerLbl.mas_bottom).with.offset(20);
-        make.left.mas_equalTo(35);
+        make.left.mas_equalTo(25);
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
 
+    
     
     MjtTextField *codeTxt = [[MjtTextField alloc] init];
     codeTxt.placeholder = @"请输入验证码";
@@ -108,7 +109,7 @@
     
     [codeTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(unameTxt.mas_bottom).with.offset(12);
-        make.left.mas_equalTo(35);
+        make.left.mas_equalTo(25);
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
@@ -134,7 +135,7 @@
     [contentView addSubview:passWordTxt];
     [passWordTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(codeTxt.mas_bottom).with.offset(12);
-        make.left.mas_equalTo(35);
+        make.left.mas_equalTo(25);
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
@@ -144,7 +145,7 @@
     [contentView addSubview:passWord2];
     [passWord2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(passWordTxt.mas_bottom).with.offset(12);
-        make.left.mas_equalTo(35);
+        make.left.mas_equalTo(25);
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
@@ -158,7 +159,7 @@
     loginBtn.backgroundColor = MJTGlobalMainColor;
     loginBtn.layer.cornerRadius = 20;
     loginBtn.layer.masksToBounds = YES;
-       [loginBtn addTarget:self action:@selector(_loginAction) forControlEvents:UIControlEventTouchUpInside];
+       [loginBtn addTarget:self action:@selector(_registerAction) forControlEvents:UIControlEventTouchUpInside];
        [contentView addSubview:loginBtn];
     
        [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -202,6 +203,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)_registerAction{
+    
+    
+    return;
     [self.navigationController pushViewController:[MjtRegisterVC new] animated:YES];
 }
 

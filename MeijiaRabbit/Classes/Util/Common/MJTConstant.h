@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "UIColor+Extension.h"
+#import "NetBaseTool.h"
 #import "HttpTool.h"
-
+#import "MjtInterfaceConst.h"
+#import "UIView+Extension.h"
 #define WeakSelf                __weak typeof(self) weakSelf = self
 
 /**

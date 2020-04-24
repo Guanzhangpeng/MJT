@@ -15,11 +15,10 @@
  *
  *  @param url         请求路径
  *  @param param       参数
- *  @param resultClass 返回的模型数据
  *  @param success     成功的block
  *  @param failure     失败的block
  */
-+ (void)getWithUrl:(NSString *)url params:(id)param resultClass:(Class)resultClass success:(void (^)(id))success failure:(void (^)(NSError *))failure;
++ (void)getWithUrl:(NSString *)url params:(id)param success:(void (^)(id responeseObject))success failure:(void (^)(NSError * error))failure;
 
 /**
  *  Post请求，字典转模型

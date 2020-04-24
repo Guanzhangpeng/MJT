@@ -85,6 +85,8 @@
 		19B3EDCB2451C38B00251AFD /* NSString+NSReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC52451C38B00251AFD /* NSString+NSReplace.m */; };
 		19B3EDCC2451C38B00251AFD /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC72451C38B00251AFD /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC82451C38B00251AFD /* DES3Util.m */; };
+		19B3EDD0245290D700251AFD /* MjtSignHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDCF245290D700251AFD /* MjtSignHelper.m */; };
+		19B3EDD42452D62000251AFD /* MjtSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDD32452D62000251AFD /* MjtSigner.m */; };
 		19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609DE2422282600DE37B8 /* MjtAddressListVC.m */; };
 		19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D609E02422298A00DE37B8 /* YWAddressTableViewCell2.xib */; };
 		19D609EA2422298B00DE37B8 /* YWAddressTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609E12422298B00DE37B8 /* YWAddressTableViewCell3.m */; };
@@ -262,6 +264,11 @@
 		19B3EDC72451C38B00251AFD /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
 		19B3EDC82451C38B00251AFD /* DES3Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DES3Util.m; sourceTree = "<group>"; };
 		19B3EDC92451C38B00251AFD /* RSAUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAUtil.h; sourceTree = "<group>"; };
+		19B3EDCE245290D700251AFD /* MjtSignHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSignHelper.h; sourceTree = "<group>"; };
+		19B3EDCF245290D700251AFD /* MjtSignHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSignHelper.m; sourceTree = "<group>"; };
+		19B3EDD12452C62500251AFD /* MjtInterfaceConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtInterfaceConst.h; sourceTree = "<group>"; };
+		19B3EDD22452D62000251AFD /* MjtSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSigner.h; sourceTree = "<group>"; };
+		19B3EDD32452D62000251AFD /* MjtSigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSigner.m; sourceTree = "<group>"; };
 		19D609DD2422282600DE37B8 /* MjtAddressListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtAddressListVC.h; sourceTree = "<group>"; };
 		19D609DE2422282600DE37B8 /* MjtAddressListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressListVC.m; sourceTree = "<group>"; };
 		19D609E02422298A00DE37B8 /* YWAddressTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWAddressTableViewCell2.xib; sourceTree = "<group>"; };
@@ -539,6 +546,11 @@
 				193F27D3241A0DB10000EB3B /* MjtWebView.m */,
 				19D60A2B2423723300DE37B8 /* MjtLocationManager.h */,
 				19D60A2C2423723300DE37B8 /* MjtLocationManager.m */,
+				19B3EDCE245290D700251AFD /* MjtSignHelper.h */,
+				19B3EDCF245290D700251AFD /* MjtSignHelper.m */,
+				19B3EDD12452C62500251AFD /* MjtInterfaceConst.h */,
+				19B3EDD22452D62000251AFD /* MjtSigner.h */,
+				19B3EDD32452D62000251AFD /* MjtSigner.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1032,11 +1044,13 @@
 				19B3EDBA2450277C00251AFD /* NetBaseTool.m in Sources */,
 				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
 				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
+				19B3EDD42452D62000251AFD /* MjtSigner.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
 				193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */,
 				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
 				19D609EC2422298B00DE37B8 /* YWAddressTableViewCell1.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
+				19B3EDD0245290D700251AFD /* MjtSignHelper.m in Sources */,
 				1959A96E244870B400C6C090 /* MjtServiceListVC.m in Sources */,
 				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,
 				193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */,

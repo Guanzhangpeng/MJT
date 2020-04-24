@@ -10,7 +10,11 @@
 #define MeijiaRabbit_pch
 
 #import "MJTConstant.h"
-#import "UIView+Extension.h"
+
+
+#define PUBLICKEY  @"PUBLICKEY"
+#define APP_TOKEN  @"APP_TOKEN"
+
 /// 屏幕尺寸相关
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height

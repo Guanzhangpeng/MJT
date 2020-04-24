@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface HttpTool : NSObject
-/** 用于一般Get请求 */
-+ (void)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *error))failure;
-
 /** 用于post请求 */
 + (void)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *error))failure;
+
+/** 用于一般Get请求 */
++ (void)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *error))failure;
 
 /** 用于postJson请求 */
 + (void)POSTJson:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *error))failure;

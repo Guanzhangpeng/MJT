@@ -8,10 +8,14 @@
 
 #import "AppDelegate.h"
 #import "OttoFPSButton.h"
-
+#import "MjtSigner.h"
+#import "DES3Util.h"
+#import "RSAUtil.h"
 #import "MjtTabBarController.h"
 #import "UIImage+Extension.h"
+#import "NSString+YYAdd.h"
 #import <CoreLocation/CoreLocation.h>
+
 @interface AppDelegate ()<CLLocationManagerDelegate>
 @property(nonatomic,retain)CLLocationManager *locationManager;
 @end
@@ -20,9 +24,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [self _loadPublickey];
+    [NSThread sleepForTimeInterval:2.f];
     
-//    [NSThread sleepForTimeInterval:2.f];
-///导航栏样式
+    ///导航栏样式
     [self _setupNavigationBar];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -37,6 +42,37 @@
     
     return YES;
 }
+
+- (void)_loadPublickey{
+    [NetBaseTool getWithUrl:MJT_PUBLICKEY_PATH params:nil success:^(id responeseObject) {
+        [MjtSigner signerWithDict:responeseObject];
+        [MjtSigner saveDataToKeyChian];
+    } failure:^(NSError *error) {
+        MJTLog(@"....");
+    }];
+    return;
+    //1.确定URL
+       NSURL *url = [NSURL URLWithString:MJT_PUBLICKEY_PATH];
+       
+       //2.创建请求对象
+       NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
+       //2.1 设置请求方法为post
+         request.HTTPMethod = @"POST";
+       //3.创建会话对象
+       NSURLSession * session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+
+       NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+           NSString *desString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+           NSString *responseString = [DES3Util decryptUseDES:desString key:DESKEY];
+           NSDictionary *responseDic = [responseString jsonValueDecoded];
+           [MjtSigner signerWithDict:responseDic];
+           [MjtSigner saveDataToKeyChian];
+       }];
+       
+       //5.执行Task
+       [dataTask resume];
+}
+
 - (void)_setupNavigationBar{
     UINavigationBar *navBar = [UINavigationBar appearance];
     [navBar setBackgroundImage:[UIImage imageWithColor:MJTColorFromHexString(@"#FFCE00")] forBarMetrics:UIBarMetricsDefault];

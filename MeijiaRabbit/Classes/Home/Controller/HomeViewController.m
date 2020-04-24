@@ -19,6 +19,12 @@
 #import "JFCitySelector.h"
 #import "MjtMessageBaseVC.h"
 #import "MjtDiscountListVC.h"
+#import "NSDictionary+YYAdd.h"
+
+
+
+#define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
+
 @interface HomeViewController ()<JFCSTableViewControllerDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *topScrollAdView;///顶部轮播图
@@ -54,6 +60,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+
     
     // 初始化
     [self _setup];

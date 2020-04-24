@@ -58,7 +58,7 @@
     [self.view addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(ScreenWidth *5/6);
-        make.height.mas_equalTo(ScreenHeight*2/3);
+        make.height.mas_equalTo(380);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.centerY.mas_equalTo(self.view.mas_centerY);
     }];
@@ -107,7 +107,7 @@
     [contentView addSubview:unameTxt];
     [unameTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(loginLbl.mas_bottom).with.offset(40);
-        make.left.mas_equalTo(35);
+        make.left.mas_equalTo(25);
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
@@ -118,7 +118,7 @@
     [contentView addSubview:passWordTxt];
     [passWordTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(unameTxt.mas_bottom).with.offset(20);
-        make.left.mas_equalTo(35);
+        make.left.mas_equalTo(25);
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];

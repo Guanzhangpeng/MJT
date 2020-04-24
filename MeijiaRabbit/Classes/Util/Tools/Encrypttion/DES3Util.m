@@ -7,11 +7,6 @@
 //
 
 #import "DES3Util.h"
-#define gkey            @"app_key_ioved1cm!@#$5678"
-//#define gkey            @"liuyunqiang@lx100$#365#$"
-#define gIv             @"01234567"
-
-
 @implementation DES3Util
 
 
