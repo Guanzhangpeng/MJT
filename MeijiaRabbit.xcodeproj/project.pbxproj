@@ -79,6 +79,13 @@
 		1974DFA3244D723200C1D65C /* MjtServiceAllVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DFA2244D723200C1D65C /* MjtServiceAllVC.m */; };
 		1974DFA8244D734200C1D65C /* MjtServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DFA6244D734200C1D65C /* MjtServiceCell.m */; };
 		1974DFA9244D734200C1D65C /* MjtServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1974DFA7244D734200C1D65C /* MjtServiceCell.xib */; };
+		1980FF47245596C800652AAD /* RegularHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF45245596C700652AAD /* RegularHelp.m */; };
+		1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */; };
+		1980FF4E2455AA1500652AAD /* WJSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF4D2455AA1500652AAD /* WJSuccessView.m */; };
+		1980FF512455AA3400652AAD /* WJColouredRibbonAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF4F2455AA3400652AAD /* WJColouredRibbonAnimation.m */; };
+		1980FF582456A84E00652AAD /* MjtFogetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF562456A84E00652AAD /* MjtFogetPassword.m */; };
+		1980FF592456A84E00652AAD /* MjtFogetPassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1980FF572456A84E00652AAD /* MjtFogetPassword.xib */; };
+		1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF5B2456BF7200652AAD /* MjtUserInfo.m */; };
 		19B3EDB92450277C00251AFD /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDB52450277C00251AFD /* HttpTool.m */; };
 		19B3EDBA2450277C00251AFD /* NetBaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDB82450277C00251AFD /* NetBaseTool.m */; };
 		19B3EDCA2451C38B00251AFD /* RSAUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC22451C38B00251AFD /* RSAUtil.m */; };
@@ -251,6 +258,19 @@
 		1974DFA5244D734200C1D65C /* MjtServiceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceCell.h; sourceTree = "<group>"; };
 		1974DFA6244D734200C1D65C /* MjtServiceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceCell.m; sourceTree = "<group>"; };
 		1974DFA7244D734200C1D65C /* MjtServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtServiceCell.xib; sourceTree = "<group>"; };
+		1980FF45245596C700652AAD /* RegularHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularHelp.m; sourceTree = "<group>"; };
+		1980FF46245596C700652AAD /* RegularHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegularHelp.h; sourceTree = "<group>"; };
+		1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+WJExtension.m"; sourceTree = "<group>"; };
+		1980FF4A2455A9E200652AAD /* MBProgressHUD+WJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+WJExtension.h"; sourceTree = "<group>"; };
+		1980FF4C2455AA1500652AAD /* WJSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJSuccessView.h; sourceTree = "<group>"; };
+		1980FF4D2455AA1500652AAD /* WJSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJSuccessView.m; sourceTree = "<group>"; };
+		1980FF4F2455AA3400652AAD /* WJColouredRibbonAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJColouredRibbonAnimation.m; sourceTree = "<group>"; };
+		1980FF502455AA3400652AAD /* WJColouredRibbonAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJColouredRibbonAnimation.h; sourceTree = "<group>"; };
+		1980FF552456A84E00652AAD /* MjtFogetPassword.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtFogetPassword.h; sourceTree = "<group>"; };
+		1980FF562456A84E00652AAD /* MjtFogetPassword.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtFogetPassword.m; sourceTree = "<group>"; };
+		1980FF572456A84E00652AAD /* MjtFogetPassword.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtFogetPassword.xib; sourceTree = "<group>"; };
+		1980FF5A2456BF7200652AAD /* MjtUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtUserInfo.h; sourceTree = "<group>"; };
+		1980FF5B2456BF7200652AAD /* MjtUserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtUserInfo.m; sourceTree = "<group>"; };
 		19B3EDB52450277C00251AFD /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		19B3EDB62450277C00251AFD /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
 		19B3EDB72450277C00251AFD /* NetBaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetBaseTool.h; sourceTree = "<group>"; };
@@ -532,6 +552,8 @@
 		191D59A624111154005632D0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1980FF46245596C700652AAD /* RegularHelp.h */,
+				1980FF45245596C700652AAD /* RegularHelp.m */,
 				193F276024128B200000EB3B /* MjtButton.h */,
 				193F275F24128B200000EB3B /* MjtButton.m */,
 				191D59B0241111B2005632D0 /* MjtTabBarController.h */,
@@ -558,6 +580,7 @@
 		191D59A724111154005632D0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1980FF482455A9E200652AAD /* MBProgressHud+Extension */,
 				193F27D5241A26110000EB3B /* Setting */,
 				193F27B32417877A0000EB3B /* EmptyView */,
 				193F277024152D3B0000EB3B /* JFCitySelect */,
@@ -736,6 +759,9 @@
 				193F27C22417998C0000EB3B /* MjtLoginVC.m */,
 				193F27C82418C0E20000EB3B /* MjtRegisterVC.h */,
 				193F27C92418C0E20000EB3B /* MjtRegisterVC.m */,
+				1980FF552456A84E00652AAD /* MjtFogetPassword.h */,
+				1980FF562456A84E00652AAD /* MjtFogetPassword.m */,
+				1980FF572456A84E00652AAD /* MjtFogetPassword.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -743,6 +769,8 @@
 		193F27BF2417997B0000EB3B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1980FF5A2456BF7200652AAD /* MjtUserInfo.h */,
+				1980FF5B2456BF7200652AAD /* MjtUserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -835,6 +863,19 @@
 				1974DFA7244D734200C1D65C /* MjtServiceCell.xib */,
 			);
 			path = "服务";
+			sourceTree = "<group>";
+		};
+		1980FF482455A9E200652AAD /* MBProgressHud+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1980FF502455AA3400652AAD /* WJColouredRibbonAnimation.h */,
+				1980FF4F2455AA3400652AAD /* WJColouredRibbonAnimation.m */,
+				1980FF4C2455AA1500652AAD /* WJSuccessView.h */,
+				1980FF4D2455AA1500652AAD /* WJSuccessView.m */,
+				1980FF4A2455A9E200652AAD /* MBProgressHUD+WJExtension.h */,
+				1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */,
+			);
+			path = "MBProgressHud+Extension";
 			sourceTree = "<group>";
 		};
 		19B3EDC02451C38B00251AFD /* Encrypttion */ = {
@@ -968,6 +1009,7 @@
 				1911AD27240E20BC006FB7A3 /* Main.storyboard in Resources */,
 				19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */,
 				1974DFA9244D734200C1D65C /* MjtServiceCell.xib in Resources */,
+				1980FF592456A84E00652AAD /* MjtFogetPassword.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,6 +1090,7 @@
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
 				193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */,
 				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
+				1980FF582456A84E00652AAD /* MjtFogetPassword.m in Sources */,
 				19D609EC2422298B00DE37B8 /* YWAddressTableViewCell1.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
 				19B3EDD0245290D700251AFD /* MjtSignHelper.m in Sources */,
@@ -1060,6 +1103,7 @@
 				19B3EDCA2451C38B00251AFD /* RSAUtil.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
 				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
+				1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
 				193F27AF24177E940000EB3B /* MjtOrderMessageVC.m in Sources */,
@@ -1081,14 +1125,17 @@
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
 				193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */,
 				19B3EDCB2451C38B00251AFD /* NSString+NSReplace.m in Sources */,
+				1980FF47245596C800652AAD /* RegularHelp.m in Sources */,
 				1911AD2F240E20BE006FB7A3 /* main.m in Sources */,
 				193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */,
 				193F279C24152D3B0000EB3B /* JFCSDataOpreation.m in Sources */,
 				1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */,
 				191D59E92411197A005632D0 /* UIButton+Extension.m in Sources */,
+				1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */,
 				191D59ED2411197A005632D0 /* UIButton+Delay.m in Sources */,
 				193F279924152D3B0000EB3B /* JFCSProvinceModel.m in Sources */,
 				191D59C4241113AB005632D0 /* MallViewController.m in Sources */,
+				1980FF512455AA3400652AAD /* WJColouredRibbonAnimation.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
 				19D60A1D2423172A00DE37B8 /* ZHFAddTitleAddressView.m in Sources */,
@@ -1101,6 +1148,7 @@
 				19D609EB2422298B00DE37B8 /* YWAddressTableViewCell2.m in Sources */,
 				193F27DA241A265C0000EB3B /* MjtSettingItemModel.m in Sources */,
 				19D609F1242229A300DE37B8 /* YWAddressInfoModel.m in Sources */,
+				1980FF4E2455AA1500652AAD /* WJSuccessView.m in Sources */,
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,

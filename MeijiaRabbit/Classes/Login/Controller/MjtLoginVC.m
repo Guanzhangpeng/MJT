@@ -13,7 +13,20 @@
 #import "MjtRegisterVC.h"
 #import "MjtTextField.h"
 #import "MjtWebView.h"
-@interface MjtLoginVC ()<UITextViewDelegate>
+#import "RegularHelp.h"
+#import "MjtFogetPassword.h"
+#import "GSProxy.h"
+#import "MJExtension.h"
+@interface MjtLoginVC ()<UITextViewDelegate>{
+    NSTimer *_timer;
+    int _leftTime;
+}
+@property (nonatomic, weak) MjtTextField *phoneTxt;
+@property (nonatomic, weak) MjtTextField *codeTxt;
+@property (nonatomic, weak) MjtTextField *pwdTxt;
+@property (nonatomic, weak) MjtBaseButton *codeButton;
+@property (nonatomic, weak) MjtBaseButton *fogetBtn;
+@property (nonatomic, weak) MjtBaseButton *loginType;
 
 @end
 
@@ -88,22 +101,26 @@
         make.height.mas_equalTo(18);
     }];
     
-    MjtBaseButton *codeButton = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
-    [codeButton setTitle:@"用验证码登录" forState:UIControlStateNormal];
-    [codeButton setTitleColor:MJTGlobalMainColor forState:UIControlStateNormal];
-    codeButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [codeButton addTarget:self action:@selector(_codeLoginAction) forControlEvents:UIControlEventTouchUpInside];
-    codeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [contentView addSubview:codeButton];
-    [codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    MjtBaseButton *loginType = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    [loginType setTitle:@"用验证码登录" forState:UIControlStateNormal];
+    [loginType setTitle:@"用账号密码登录" forState:UIControlStateSelected];
+    [loginType setTitleColor:MJTGlobalMainColor forState:UIControlStateNormal];
+    loginType.titleLabel.font = [UIFont systemFontOfSize:12];
+    [loginType addTarget:self action:@selector(_typeAction:) forControlEvents:UIControlEventTouchUpInside];
+    loginType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [contentView addSubview:loginType];
+    [loginType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(contentView.mas_right).with.offset(-30);
         make.height.mas_equalTo(20);
         make.centerY.mas_equalTo(loginLbl.mas_centerY);
         make.width.mas_equalTo(200);
     }];
+    self.loginType = loginType;
     
     MjtTextField *unameTxt = [[MjtTextField alloc] init];
     unameTxt.placeholder = @"请输入手机号";
+    unameTxt.clearButtonMode =  UITextFieldViewModeWhileEditing;
+    unameTxt.keyboardType = UIKeyboardTypePhonePad;
     [contentView addSubview:unameTxt];
     [unameTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(loginLbl.mas_bottom).with.offset(40);
@@ -111,10 +128,11 @@
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
-    
+    self.phoneTxt = unameTxt;
     
     MjtTextField *passWordTxt = [[MjtTextField alloc] init];
     passWordTxt.placeholder = @"请输入密码";
+    passWordTxt.secureTextEntry = YES;
     [contentView addSubview:passWordTxt];
     [passWordTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(unameTxt.mas_bottom).with.offset(20);
@@ -122,6 +140,23 @@
         make.right.mas_equalTo(-20);
         make.height.mas_equalTo(36);
     }];
+    self.pwdTxt = passWordTxt;
+    
+    MjtBaseButton *codeButton = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    [codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [codeButton setTitleColor:MJTGlobalMainColor forState:UIControlStateNormal];
+    codeButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    [codeButton addTarget:self action:@selector(_codeAction:) forControlEvents:UIControlEventTouchUpInside];
+    codeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [contentView addSubview:codeButton];
+    [codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(passWordTxt.mas_right);
+        make.height.mas_equalTo(30);
+        make.width.mas_equalTo(90);
+        make.centerY.mas_equalTo(self.pwdTxt.mas_centerY);
+    }];
+    codeButton.hidden = YES;
+    self.codeButton = codeButton;
     
     //忘记密码
     MjtBaseButton *fogetBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
@@ -136,7 +171,7 @@
         make.height.mas_equalTo(20);
         make.top.mas_equalTo(passWordTxt.mas_bottom).with.offset(8);
     }];
-    
+    self.fogetBtn = fogetBtn;
     //登录按钮
     MjtBaseButton *loginBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
        [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
@@ -185,25 +220,110 @@
 - (void)_closeAction{
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (void)_loginAction{
+    if (![RegularHelp validateUserPhone:self.phoneTxt.text] ) {
+        [MBProgressHUD wj_showPlainText:@"请输入合法的手机号" view:self.view];
+        return;
+    }
+    if (self.loginType.selected) {
+        if ([self.pwdTxt.text isEqualToString:@""] ) {
+            [MBProgressHUD wj_showPlainText:@"请输入验证码" view:self.view];
+            return;
+        }
+    }else{
+        if ([self.pwdTxt.text isEqualToString:@""] ) {
+            [MBProgressHUD wj_showPlainText:@"请输入密码" view:self.view];
+            return;
+        }
+    }
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"mobile"] = self.phoneTxt.text;
+    if (self.loginType.selected) {
+        param[@"mobilecode"] = self.pwdTxt.text;
+        //    1：验证码登录，2：账号密码登录，3：获取验证码
+        param[@"type"] = @"1";
+    }else{
+        param[@"user_pwd"] = self.pwdTxt.text;
+        param[@"type"] = @"2";
+    }
+    [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param success:^(id responseDict) {
+        MjtUserInfo *userInfo = [MjtUserInfo userWithDict:responseDict[@"data"]];
+        [MjtUserInfo saveDataToKeyChian];
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+    }];
+    
+}
 - (void)_registerAction{
     [self.navigationController pushViewController:[MjtRegisterVC new] animated:YES];
 }
 
+///获取验证码
+- (void)_codeAction:(MjtBaseButton *)button{
+        if (![RegularHelp validateUserPhone:self.phoneTxt.text] ) {
+            [MBProgressHUD wj_showPlainText:@"请输入合法的手机号" view:self.view];
+            return;
+        }
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"mobile"] = self.phoneTxt.text;
+
+    //    1：验证码登录，2：账号密码登录，3：获取验证码
+       param[@"type"] = @"3";
+       
+        WeakSelf;
+       [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param success:^(id responseDict) {
+           weakSelf.codeButton.enabled = NO;
+           weakSelf.codeButton.selected = YES;
+           self->_leftTime = 120;
+           self->_timer = [NSTimer timerWithTimeInterval:1.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_leftTime) userInfo:nil repeats:YES];
+           [[NSRunLoop mainRunLoop] addTimer:self->_timer forMode:NSRunLoopCommonModes];
+           
+       } failure:^(NSError *error) {
+           [self updatePhoneCodeButton];
+       }];
+}
+
 ///验证码登录
-- (void)_codeLoginAction{
+- (void)_typeAction:(MjtBaseButton *)button{
+    button.selected = !button.selected;
     
+    if (button.selected) {
+        self.pwdTxt.placeholder = @"输入验证码";
+        self.codeButton.hidden = NO;
+        self.fogetBtn.hidden = YES;
+    }else{
+        self.pwdTxt.placeholder = @"请输入密码";
+        self.codeButton.hidden = YES;
+         self.fogetBtn.hidden = NO;
+    }
 }
 
 ///忘记密码
 - (void)_fogetAction{
-    
+    [self.navigationController pushViewController:[MjtFogetPassword new] animated:YES];
 }
 
-///登录
-- (void)_loginAction{
-    
+
+-(void)_leftTime
+{
+    if (_leftTime > 0) {
+        [self.codeButton setTitle:[NSString stringWithFormat:@"%ds后重发",_leftTime] forState:UIControlStateNormal];
+        _leftTime--;
+        if (_leftTime==0) {
+            [self updatePhoneCodeButton];
+        }
+        return;
+    }
 }
 
+-(void)updatePhoneCodeButton
+{
+    [_timer invalidate];
+    _timer = nil;
+    self.codeButton.enabled = YES;
+    self.codeButton.selected = NO;
+    [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+}
 #pragma mark -- UITextViewDelegate
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
     if([[URL scheme] isEqualToString:@"Lience"]){

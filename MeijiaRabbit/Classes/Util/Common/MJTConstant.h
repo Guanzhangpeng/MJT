@@ -13,6 +13,9 @@
 #import "HttpTool.h"
 #import "MjtInterfaceConst.h"
 #import "UIView+Extension.h"
+#import "MBProgressHUD.h"
+#import "MBProgressHUD+WJExtension.h"
+#import "MjtUserInfo.h"
 #define WeakSelf                __weak typeof(self) weakSelf = self
 
 /**

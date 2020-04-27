@@ -8,7 +8,7 @@
 
 #import "MjtSignHelper.h"
 #import "NSString+YYAdd.h"
-#define APP_TOKEN @""
+#import "MjtSigner.h"
 @implementation MjtSignHelper
 
 +(NSDictionary *)urlWithString:(NSString *)url{
@@ -41,9 +41,8 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd";
     NSString *dateSting = [formatter stringFromDate:date];
-    
     //拼装sign
-    NSString *sign = [NSString stringWithFormat:@"%@%@%@",path,dateSting,APP_TOKEN];
+    NSString *sign = [NSString stringWithFormat:@"%@%@%@",path,dateSting,[MjtSigner sharedSigner].app_token];
     return [sign md5String];
 }
 

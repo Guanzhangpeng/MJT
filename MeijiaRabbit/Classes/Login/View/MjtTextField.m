@@ -32,7 +32,7 @@
     }];
 
     [self.grayLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.txtField.mas_bottom).with.offset(5);
+        make.top.mas_equalTo(self.txtField.mas_bottom).with.offset(8);
         make.left.mas_equalTo(-5);
         make.right.mas_equalTo(0);
         make.height.mas_equalTo(1);
@@ -47,6 +47,7 @@
     
     UIView *grayLine = [[UIView alloc] init];
     grayLine.backgroundColor = MJTColorFromHexString(@"#DBD8D8");
+    grayLine.alpha = 0.3;
     [self addSubview:grayLine];
     self.grayLine =grayLine;
     
@@ -54,5 +55,17 @@
 -(void)setPlaceholder:(NSString *)placeHolder{
     _placeholder = placeHolder;
     self.txtField.placeholder = placeHolder;
+}
+-(void)setKeyboardType:(UIKeyboardType)keyboardType{
+    self.txtField.keyboardType = keyboardType;
+}
+-(void)setClearButtonMode:(UITextFieldViewMode)clearButtonMode{
+    self.txtField.clearButtonMode = clearButtonMode;
+}
+-(NSString *)text{
+    return self.txtField.text;
+}
+-(void)setSecureTextEntry:(BOOL)secureTextEntry{
+    self.txtField.secureTextEntry = secureTextEntry;
 }
 @end

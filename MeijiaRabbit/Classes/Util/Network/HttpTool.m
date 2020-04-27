@@ -14,15 +14,38 @@
 #import "NSString+Extension.h"
 #import "NSString+YYAdd.h"
 #import "MjtSignHelper.h"
-
+#import "MjtSigner.h"
+#define DESKEY @"BJMJT88662020041"
 @implementation HttpTool
 #pragma mark - 字典加密
 + (NSString *)securitStringWithDict:(NSDictionary *)dict
 {
-    NSString *RSA_Public_key = [[NSUserDefaults standardUserDefaults] objectForKey:@"PUBLICKEY"];
+    NSString *RSA_Public_key =  [MjtSigner sharedSigner].publickey;
     NSString *value = [NSString DataTOjsonString:dict];
     NSString *signString = [RSAUtil encryptString:value publicKey:RSA_Public_key];
     return signString;
+}
+//生成八位随机字符串
++ (NSString *)randomString {
+    NSString *alphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    // Get the characters into a C array for efficient shuffling
+    NSUInteger numberOfCharacters = [alphabet length];
+    unichar *characters = calloc(numberOfCharacters, sizeof(unichar));
+    [alphabet getCharacters:characters range:NSMakeRange(0, numberOfCharacters)];
+    
+    // Perform a Fisher-Yates shuffle
+    for (NSUInteger i = 0; i < numberOfCharacters; ++i) {
+        NSUInteger j = (arc4random_uniform((float)numberOfCharacters - i) + i);
+        unichar c = characters[i];
+        characters[i] = characters[j];
+        characters[j] = c;
+    }
+    
+    // Turn the result back into a string
+    NSString *result = [NSString stringWithCharacters:characters length:8];
+    free(characters);
+    return result;
 }
 
 + (void)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure{
@@ -33,12 +56,21 @@
     if (parameters == nil){
         parameters = [[NSMutableDictionary alloc] init];
     }
+    NSString *des_Key = [self randomString];
+    parameters[@"sign"] = [MjtSignHelper signWithPath:URLString];
     
     //对参数进行加密
-    NSString *securitString = [self securitStringWithDict:parameters];
+    NSString * public_key= [MjtSigner sharedSigner].publickey;
+    
+    NSString *jsonString = [NSString DataTOjsonString:parameters];
+    
+    NSString *securitString = [DES3Util encryptUseDES:jsonString key:des_Key];
+    NSString *RSA_Key = [RSAUtil encryptString:des_Key publicKey:public_key];
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"encrytoken"] = RSA_Key;
     param[@"param"] = securitString;
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     // 设置超时时间
@@ -53,21 +85,39 @@
 //    manager.responseSerializer = [AFJSONResponseSerializer serializer];
 //
 //    //声明请求的数据是json类型
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     //如果报接受类型不一致请替换一致text/html或别的
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
     
-    NSString *urlStr = [URLString stringByRemovingPercentEncoding];
+    NSString *urlStr = [KURL(URLString)  stringByRemovingPercentEncoding];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [MBProgressHUD showHUDAddedTo:window animated:YES];
     [manager POST:urlStr parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:window animated:YES];
+        });
         if (success) {
             NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSString *responseString = [DES3Util decryptUseDES:desString key:DESKEY];
+            NSString *responseString = [DES3Util decryptUseDES:desString key:des_Key];
             NSDictionary *responseDic = [responseString jsonValueDecoded];
-             success(responseDic);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD wj_showPlainText:responseDic[@"msg"] view:window];
+            });
+            
+            success(responseDic);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:window animated:YES];
+                [MBProgressHUD wj_showPlainText:@"网络加载失败" view:window];
+            });
+            // 展示错误信息
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+            }];
             failure(error);
         }
     }];

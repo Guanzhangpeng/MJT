@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *placeholder;
 
+@property (nonatomic, strong) NSString *text;
+@property(nonatomic)        UITextFieldViewMode  clearButtonMode;
+@property(nonatomic) UIKeyboardType keyboardType;
+@property(nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry; 
 @end
 
 NS_ASSUME_NONNULL_END

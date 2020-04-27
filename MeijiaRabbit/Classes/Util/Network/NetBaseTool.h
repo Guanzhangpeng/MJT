@@ -53,7 +53,7 @@
  *  @param success     成功
  *  @param failure     失败
  */
-+ (void)postWithUrl:(NSString *)url params:(id)param success:(void (^)(id))success failure:(void (^)(NSError *))failure;
++ (void)postWithUrl:(NSString *)url params:(id)param success:(void (^)(id responseDict))success failure:(void (^)(NSError *error))failure;
 
 + (void)postWithUrl:(NSString *)url params:(id)param data:(NSData *)data paramName:(NSString *)paramName fileName:(NSString *)fileName mimeType:(NSString *)mimeType success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 
