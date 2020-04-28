@@ -19,4 +19,6 @@ target 'MeijiaRabbit' do
   pod 'YYCategories'
 #  # 富文本
   pod 'YYText'
+#---------------图片 视频 选择器,支持多选
+  pod 'TZImagePickerController'
 end

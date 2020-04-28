@@ -11,9 +11,7 @@
 
 #import "MJTConstant.h"
 
-
-#define PUBLICKEY  @"PUBLICKEY"
-#define APP_TOKEN  @"APP_TOKEN"
+#define DESKEY @"BJMJT88662020041"
 
 /// 屏幕尺寸相关
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width

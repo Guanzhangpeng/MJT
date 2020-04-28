@@ -37,20 +37,6 @@
         }
     }];
 }
-+(void)postJsonWithUrl:(NSString *)url params:(id)param resultClass:(Class)resultClass success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    NSDictionary *params = [param mj_keyValues];
-    [HttpTool POSTJson:url parameters:params success:^(id responseObj) {
-        if (success) {
-            id result = [resultClass mj_objectWithKeyValues:responseObj];// 将返回的字典自动转换成模型
-            success(result);
-        }
-    } failure:^(NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
 + (void)postWithUrl:(NSString *)url params:(id)param success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     
     NSDictionary *params = [param mj_keyValues];
@@ -77,4 +63,16 @@
         }
     }];
 }
++(void)postWithURL:(NSString *)url params:(NSMutableDictionary *)param formDataArray:(NSMutableDictionary *)formDataArray success:(void (^)(id))success failure:(void (^)(NSError *))failure{
+    [HttpTool postWithURL:url params:param formDataArray:formDataArray success:^(id responseObj) {
+        if (success) {
+            success(responseObj);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 @end

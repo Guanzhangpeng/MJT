@@ -25,4 +25,11 @@
 //找回密码
 #define MJT_PORGETPWD_PATH @"/userapi/forgetpwd.php"
 
+//修改昵称
+#define MJT_EditNICK_PATH @"/userapi/editnick.php"
+
+//修改头像
+#define MJT_EditAVATAR_PATH @"/userapi/useravatar.php"
+
+
 #endif /* MjtInterfaceConst_h */

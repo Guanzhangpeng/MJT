@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface XLBaseTableController : UIViewController
+@interface XLBaseTableController : MjtBaseViewController
 
 @property(nonatomic,strong) UITableView *tableView;
 

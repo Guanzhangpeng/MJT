@@ -40,9 +40,16 @@ static NSString *cellID = @"DesignCellID";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MjtDesignCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     cell.thumbAction = ^{
         MJTLog(@"点赞--%ld",indexPath.row);
     };
     return cell;
+}
+
+#pragma mark -- UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 @end

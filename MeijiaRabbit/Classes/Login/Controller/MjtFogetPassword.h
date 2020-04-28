@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MjtFogetPassword : UIViewController
+@interface MjtFogetPassword : MjtBaseViewController
 
 @end
 

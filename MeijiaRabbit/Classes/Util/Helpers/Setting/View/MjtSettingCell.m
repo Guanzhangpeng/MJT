@@ -195,7 +195,7 @@
 - (UIImageView *)indicator
 {
     if (!_indicator) {
-        _indicator = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon-arrow1"]];
+        _indicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-arrow1"]];
 //        _indicator.centerY = self.contentView.centerY;
         _indicator.x = ScreenWidth - _indicator.width - XBIndicatorToRightGap;
     }

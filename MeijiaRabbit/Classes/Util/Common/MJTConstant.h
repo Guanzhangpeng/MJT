@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "MBProgressHUD+WJExtension.h"
 #import "MjtUserInfo.h"
+#import "MjtBaseViewController.h"
 #define WeakSelf                __weak typeof(self) weakSelf = self
 
 /**

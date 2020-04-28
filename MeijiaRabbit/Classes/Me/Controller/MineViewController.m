@@ -21,6 +21,8 @@
 #import "MjtSettingSectionModel.h"
 #import "MjtAddressListVC.h"
 #import "Masonry.h"
+#import "MjtUserInfoEditVC.h"
+#import "MjtServiceListVC.h"
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -121,6 +123,23 @@
        make.top.mas_equalTo(userLbl.mas_bottom).offset(8);
        make.left.mas_equalTo(userLbl.mas_left);
    }];
+    
+    //箭头
+    UIImageView *arrowImg = [[UIImageView alloc] init];
+    arrowImg.image = [[UIImage imageNamed:@"icon-arrow1"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];  // 设置根据TintColor渲染图片
+    [arrowImg setTintColor:[UIColor blackColor]];
+    [userView addSubview:arrowImg];
+    [arrowImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(userView.mas_right).with.offset(-25);
+        make.width.mas_equalTo(8);
+        make.height.mas_equalTo(13);
+        make.centerY.mas_equalTo(avatar.mas_centerY);
+    }];
+    
+    [userView addGestureRecognizer:({
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userInfo_editClick)];
+        tapGes;
+    })];
 }
 
 - (void)_setupData{
@@ -167,12 +186,13 @@
    [self.headerView addSubview:titleLbl];
     
     //查看全部订单
-    UILabel *orderLbl = [[UILabel alloc] init];
-     orderLbl.font = [UIFont systemFontOfSize:12 weight:2.f];
-     orderLbl.textColor = MJTColorFromHexString(@"#FFCE00");
-    orderLbl.text = @"查看全部订单";
-    [self.headerView addSubview:orderLbl];
-    [orderLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+    MjtBaseButton *orderButton = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    [orderButton setTitle:@"查看全部订单" forState:0];
+    [orderButton setTitleColor:MJTColorFromHexString(@"#FFCE00") forState:0];
+    orderButton.titleLabel.font = [UIFont systemFontOfSize:12 weight:2.f];
+    [orderButton addTarget:self action:@selector(_orderButton_Click) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView addSubview:orderButton];
+    [orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(titleLbl.mas_centerY);
         make.right.mas_equalTo(self.headerView.mas_right).with.offset(-20);
     }];
@@ -220,6 +240,15 @@
 }
 - (void)_homeBtnClick:(MjtBaseButton *)button{
     MJTLog(button.titleLabel.text);
+}
+- (void)_orderButton_Click{
+    MjtServiceListVC *listVC = [[MjtServiceListVC alloc] init];
+    [self.navigationController pushViewController:listVC animated:YES];
+}
+///个人信息 --修改
+- (void)userInfo_editClick{
+    MjtUserInfoEditVC *userInfoVC = [[MjtUserInfoEditVC alloc] init];
+    [self.navigationController pushViewController:userInfoVC animated:YES];
 }
 
 #pragma mark - Table view data source

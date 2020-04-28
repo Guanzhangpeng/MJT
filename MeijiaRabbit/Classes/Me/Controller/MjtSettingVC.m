@@ -45,8 +45,6 @@
     
     //退出登录
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 85)];
-//    footerView.backgroundColor = MJTRandomColor;
-    
     MjtBaseButton *logoutBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
     [logoutBtn setTitle:@"退出登录" forState:UIControlStateNormal];
     [logoutBtn setTitleColor:MJTColorFromHexString(@"#000000") forState:UIControlStateNormal];
@@ -77,7 +75,6 @@
     MjtSettingSectionModel *sectionItem = [[MjtSettingSectionModel alloc] init];
     sectionItem.itemArray = @[item1,item2,item3];
     self.sectionArray = @[sectionItem];
-//    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
