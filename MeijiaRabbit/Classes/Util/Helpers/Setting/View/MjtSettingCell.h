@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class MjtSettingItemModel;
 @interface MjtSettingCell : UITableViewCell
 @property (nonatomic,strong) MjtSettingItemModel  *item; /**< item data*/
+@property (nonatomic, strong) UIImageView *detailImageView;
 @property (nonatomic, strong) UIImageView *indicator;
 @property (nonatomic, strong) UIView *bottomLine;
 @end

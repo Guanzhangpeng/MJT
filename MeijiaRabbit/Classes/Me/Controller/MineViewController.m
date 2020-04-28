@@ -23,6 +23,7 @@
 #import "Masonry.h"
 #import "MjtUserInfoEditVC.h"
 #import "MjtServiceListVC.h"
+#import "UIImageView+WebCache.h"
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -33,6 +34,9 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UIImageView *avatar;
+@property (nonatomic, strong) UILabel *nickNameLbl;
+
 @end
 
 @implementation MineViewController
@@ -94,33 +98,42 @@
     userView.backgroundColor = MJTGlobalMainColor;
     [self.headerView addSubview:userView];
     self.userView = userView;
+    MjtUserInfo *userInfo = [MjtUserInfo sharedUser];
     
     //头像
-    UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(18, 0, 60, 60)];
-    avatar.image = [UIImage imageNamed:@"me_avatar"];
-    avatar.layer.cornerRadius = 25;
-    avatar.layer.masksToBounds = YES;
+    UIImageView *avatar = [[UIImageView alloc] init];
+    [avatar sd_setImageWithURL:[NSURL URLWithString:userInfo.avatar] placeholderImage:[UIImage imageNamed:@"me_avatar"]];
     [userView addSubview:avatar];
+    self.avatar = avatar;
+    [avatar mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.top.mas_equalTo(0);
+        make.left.mas_equalTo(18);
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(60);
+    }];
+    avatar.layer.cornerRadius = 8;
+    avatar.layer.masksToBounds = YES;
     
     //昵称
     UILabel *userLbl = [[UILabel alloc] init];
-    userLbl.font = [UIFont boldSystemFontOfSize:15];
+    userLbl.font = [UIFont boldSystemFontOfSize:17];
     userLbl.textColor = MJTColorFromHexString(@"#333333");
-    userLbl.text = @"美嘉兔";
+    userLbl.text = ([userInfo.user_name isEqualToString:@""] || userInfo.user_name == nil) ? @"未设置" : userInfo.user_name;
     [userView addSubview:userLbl];
     [userLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(avatar.mas_centerY).offset(-10);
-        make.left.mas_equalTo(avatar.mas_right).offset(8);
+        make.top.mas_equalTo(avatar.mas_top).offset(5);
+        make.left.mas_equalTo(avatar.mas_right).offset(12);
     }];
+    self.nickNameLbl = userLbl;
     
     //手机号
     UILabel *phoneLbl = [[UILabel alloc] init];
     phoneLbl.font = [UIFont systemFontOfSize:13];
     phoneLbl.textColor = MJTColorFromHexString(@"#333333");
-   phoneLbl.text = @"1566668888";
+    phoneLbl.text = [MjtUserInfo sharedUser].mobile;
    [userView addSubview:phoneLbl];
    [phoneLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.top.mas_equalTo(userLbl.mas_bottom).offset(8);
+       make.bottom.mas_equalTo(avatar.mas_bottom).offset(-5);
        make.left.mas_equalTo(userLbl.mas_left);
    }];
     
@@ -248,6 +261,13 @@
 ///个人信息 --修改
 - (void)userInfo_editClick{
     MjtUserInfoEditVC *userInfoVC = [[MjtUserInfoEditVC alloc] init];
+    WeakSelf;
+    userInfoVC.avatarAction = ^(NSString * _Nonnull avatarPath) {
+        [weakSelf.avatar sd_setImageWithURL:[NSURL URLWithString:avatarPath]];
+    };
+    userInfoVC.nickNameAction = ^(NSString * _Nonnull nickName) {
+        weakSelf.nickNameLbl.text = nickName;
+    };
     [self.navigationController pushViewController:userInfoVC animated:YES];
 }
 

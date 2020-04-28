@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtEditVC : MjtBaseViewController
 
+@property (nonatomic, strong) void(^editAction)(NSString *editInfo);
 @end
 
 NS_ASSUME_NONNULL_END

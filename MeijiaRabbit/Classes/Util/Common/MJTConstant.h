@@ -57,7 +57,7 @@
 /**
  *  全局灰色 背景
  */
-#define MJTGlobalGrayBackgroundColor [UIColor colorFromHexString:@"#f8f8f8"]
+#define MJTGlobalGrayBackgroundColor [UIColor colorFromHexString:@"#E8E8E8"]
 
 /**
  *  全局细下滑线颜色 以及分割线颜色

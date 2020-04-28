@@ -26,11 +26,12 @@
 
 #import "MjtSettingCell.h"
 #import "MjtSettingItemModel.h"
+#import "Masonry.h"
 @interface MjtSettingCell()
 
 @property (nonatomic, strong) UILabel *funcNameLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
-@property (nonatomic, strong) UIImageView *detailImageView;
+
 @property (nonatomic, strong) UIImageView *imgView;
 //@property (nonatomic, strong) UIImageView *indicator;
 @property (nonatomic, strong) UISwitch *aswitch;
@@ -89,8 +90,8 @@
 }
 -(void)setupDetailImage
 {
-    self.detailImageView = [[UIImageView alloc]initWithImage:self.item.detailImage];
-//    self.detailImageView.centerY = self.contentView.centerY;
+    self.detailImageView = [[UIImageView alloc] initWithImage:self.item.detailImage];
+
     switch (self.item.accessoryType) {
         case MJTSettingAccessoryTypeNone:
             self.detailImageView.x = ScreenWidth - self.detailImageView.width - XBDetailViewToIndicatorGap - 2;

@@ -13,6 +13,8 @@
 #import "TZImagePickerController.h"
 #import "MjtEditVC.h"
 #import "MjtNavigationController.h"
+#import "UIImageView+WebCache.h"
+#import "NSString+YYAdd.h"
 @interface MjtUserInfoEditVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<MjtSettingSectionModel *>  *sectionArray; /**< section模型数组*/
@@ -45,6 +47,8 @@
 }
 
 - (void)_setupData{
+
+    
    MjtUserInfo *userInfo =  [MjtUserInfo sharedUser];
     MjtSettingItemModel *item1 = [[MjtSettingItemModel alloc] init];
     item1.funcName = @"头像";
@@ -67,8 +71,14 @@
     item2.funcName = @"昵称";
     item2.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
     item2.detailText = ([userInfo.user_name isEqualToString:@""] || userInfo.user_name == nil) ? @"未设置" : userInfo.user_name;
+    __weak typeof(item2) weakItem = item2;
     item2.executeCode = ^{
         MjtEditVC *editVC = [[MjtEditVC alloc] init];
+        editVC.editAction = ^(NSString * _Nonnull editInfo) {
+            weakItem.detailText = editInfo;
+            [weakSelf.tableView reloadData];
+            !weakSelf.nickNameAction ? :weakSelf.nickNameAction(editInfo);
+        };
         editVC.title = @"设置昵称";
         MjtNavigationController *nav = [[MjtNavigationController alloc] initWithRootViewController:editVC];
         [weakSelf presentViewController:nav animated:YES completion:nil];
@@ -111,8 +121,16 @@
     if (!cell) {
         cell = [[MjtSettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.item = itemModel;
+    if (indexPath.row == 0) {
+        cell.detailImageView.frame = CGRectMake(ScreenWidth - 70 - 40, 5, 60, 60);
+        cell.detailImageView.layer.cornerRadius = 8;
+        cell.detailImageView.layer.masksToBounds = YES;
+        NSString *avatarPath = [MjtUserInfo sharedUser].avatar;
+        [cell.detailImageView sd_setImageWithURL:[NSURL URLWithString:avatarPath]];
+    }
     return cell;
 }
 
@@ -156,14 +174,17 @@
     
 }
 - (void)_editAvatar:(UIImage *)avatarImg{
-    
     NSData *avatarData = UIImagePNGRepresentation(avatarImg);
+    WeakSelf;
     [NetBaseTool postWithUrl:MJT_EditAVATAR_PATH params:nil data:avatarData paramName:@"file" fileName:@"avatar.jpg" mimeType:@"image/jpeg" success:^(id responseObj) {
         if ([responseObj[@"status"] intValue] == 200) {
             NSString *file_path = responseObj[@"file_path"];
             [MjtUserInfo sharedUser].avatar = file_path;
             [MjtUserInfo saveDataToKeyChian];
-//            self.sectionArray[0].item
+            !weakSelf.avatarAction ? :weakSelf.avatarAction(file_path);
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0 ];
+            MjtSettingCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            [cell.detailImageView sd_setImageWithURL:[NSURL URLWithString:file_path]];
         }
     } failure:^(NSError *error) {
 
