@@ -17,19 +17,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *sex;
 @property (nonatomic, strong) NSString *user_name;
 
+/*
+    判断用户是否已经登录
+*/
+-(BOOL)isLogin;
+
 
 /*
- 获取User对象
+     获取User对象
  */
 + (instancetype)sharedUser;
 
 /*
- 根据字典创建User对象
+     根据字典创建User对象
  */
 + (instancetype)userWithDict:(NSDictionary *)userDic;
 
 /*
-User对象 保存
+    User对象 保存
 */
 + (void)saveDataToKeyChian;
 

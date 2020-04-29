@@ -62,14 +62,20 @@
 }
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-    if ([viewController.title isEqualToString:@"商城"]) {
+    if ([viewController.title isEqualToString:@"商城"] || [viewController.title isEqualToString:@"我的"]) {
         
         //判断用户是否登录过,如果没有登录则跳转到登录界面
-        MjtLoginVC *loginVc = [[MjtLoginVC alloc] init];
-        loginVc.hidesBottomBarWhenPushed = YES;
-        MjtNavigationController *nav = tabBarController.selectedViewController;
-        [nav pushViewController:loginVc animated:YES];
-        return false;
+        if(![MjtUserInfo sharedUser].isLogin){
+            MjtLoginVC *loginVc = [[MjtLoginVC alloc] init];
+            loginVc.hidesBottomBarWhenPushed = YES;
+            MjtNavigationController *nav = tabBarController.selectedViewController;
+            [nav pushViewController:loginVc animated:YES];
+            return false;
+        }
+        
+        
+        
+        
     }
     return true;
 }

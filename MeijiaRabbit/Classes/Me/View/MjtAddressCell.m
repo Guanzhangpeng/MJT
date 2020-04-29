@@ -96,9 +96,9 @@
 }
 -(void)setModel:(YWAddressInfoModel *)model{
     _model = model;
-    self.nameLbl.text = model.nameStr;
-    self.phoneLbl.text = model.phoneStr;
-    self.addressLbl.text = [NSString stringWithFormat:@"%@%@",model.areaAddress,model.detailAddress];
+    self.nameLbl.text = model.name;
+    self.phoneLbl.text = model.phone;
+    self.addressLbl.text = [NSString stringWithFormat:@"%@%@",model.areaAddress,model.house_number];
 }
 
 - (void)_editAddress{

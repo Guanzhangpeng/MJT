@@ -10,7 +10,7 @@
 #define MjtInterfaceConst_h
 
 
-#define MJT_ROOT_PATH @"http://192.168.10.247"
+#define MJT_ROOT_PATH @"http://192.168.8.174"
 #define KURL(url) ([NSString stringWithFormat:@"%@%@",MJT_ROOT_PATH,url])
 
 // 获取公钥
@@ -30,6 +30,15 @@
 
 //修改头像
 #define MJT_EditAVATAR_PATH @"/userapi/useravatar.php"
+
+//添加 或者 修改地址
+#define MJT_ADDADDRESS_PATH @"/userapi/useraddresschange.php"
+
+//省份城市区域街道接口
+#define MJT_LOCATION_PATH @"/userapi/province.php"
+
+//收货地址列表
+#define MJT_ADDRESSLIST_PATH @"/userapi/useraddresslist.php"
 
 
 #endif /* MjtInterfaceConst_h */

@@ -10,11 +10,22 @@
 
 @interface YWAddressInfoModel : NSObject
 
-@property (nonatomic, copy) NSString * phoneStr;            // 电话
-@property (nonatomic, copy) NSString * nameStr;             // 姓名
-@property (nonatomic, copy) NSString * areaCode;            // 地区码（如：510107）
-@property (nonatomic, copy) NSString * areaAddress;         // 地区（如：四川省成都市武侯区）
-@property (nonatomic, copy) NSString * detailAddress;       // 详细地址（如：红牌楼街道下一站都市B座406）
-@property (nonatomic, assign) BOOL     isDefaultAddress;    // 是否是默认地址
+@property (nonatomic, copy) NSString * phone;            // 电话
+@property (nonatomic, copy) NSString * name;             // 姓名
+@property (nonatomic, copy) NSString * province_code;
+@property (nonatomic, copy) NSString * city_code;
+@property (nonatomic, copy) NSString * area_code;
+@property (nonatomic, copy) NSString * street_code;            // 地区码（如：510107）
+@property (nonatomic, copy) NSString * areaAddress;     // 地区（如：四川省成都市武侯区）
+@property (nonatomic, copy) NSString * house_number;   // 门牌号 详细地址（如：红牌楼街道下一站都市B座406）
+@property (nonatomic, copy) NSString * detail_address;       // 四川省成都市武侯区红牌楼街道下一站都市B座406）
+@property (nonatomic, assign) BOOL     default_address;    // 是否是默认地址
+
+
+
+@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString * create_time;
+@property (nonatomic, copy) NSString * update_time;
+@property (nonatomic, copy) NSString * userid;
 
 @end

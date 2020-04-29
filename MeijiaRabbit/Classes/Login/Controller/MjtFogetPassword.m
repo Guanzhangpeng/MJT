@@ -85,7 +85,7 @@
       param[@"password"] = self.passwordTxt.text;
       
       WeakSelf;
-     [NetBaseTool postWithUrl:MJT_PORGETPWD_PATH params:param success:^(id responseDict) {
+     [NetBaseTool postWithUrl:MJT_PORGETPWD_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
          if ([responseDict[@"status"] intValue] == 200) {
              dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                  [weakSelf.navigationController popViewControllerAnimated:YES];
@@ -107,7 +107,7 @@
        param[@"type"] = @"3";
        
         WeakSelf;
-       [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param success:^(id responseDict) {
+       [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
            weakSelf.codeButton.enabled = NO;
            weakSelf.codeButton.selected = YES;
            self->_leftTime = 120;

@@ -12,7 +12,7 @@
 
 typedef void(^AddressBlock)(YWAddressInfoModel *model);
 
-@interface YWAddressViewController : UIViewController
+@interface YWAddressViewController : MjtBaseViewController
 
 /** 如果为编辑地址则需传入model **/
 @property (nonatomic, strong) YWAddressInfoModel         * model;

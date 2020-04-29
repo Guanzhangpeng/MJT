@@ -9,60 +9,65 @@
 #import "MjtUserInfo.h"
 #import "MjtSignHelper.h"
 @implementation MjtUserInfo
-+ (NSDictionary *) mj_replacedKeyFromPropertyName
-{
-    return @{@"ID":@"id"};
+//+ (NSDictionary *)mj_replacedKeyFromPropertyName{
+//    return @{
+//             @"ID" : @"id"//前边的是你想用的key，后边的是返回的key
+//             };
+//}
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    if ([key isEqualToString:@"id"]) {
+        self.ID = value;
+    }
 }
--(void)setValue:(id)value forUndefinedKey:(NSString *)key{}
 
-static id _instance;//静态全局变量
+static MjtUserInfo *_userInfo;//静态全局变量
 //copy方法有可能会产生新的对象，copy内部会调用该方法，对该进行拦截
 - (id)copyWithZone:(NSZone *)zone
 {
-    return _instance;
+    return _userInfo;
 }
 
 /***  alloc方法内部会调用这个方法*/
 + (id)allocWithZone:(struct _NSZone *)zone
 {
-    if (_instance == nil) { // 最严谨的方法，判断两次，防止频繁加锁
+    if (_userInfo == nil) { // 最严谨的方法，判断两次，防止频繁加锁
         @synchronized(self) {
-            if (_instance == nil) { // 防止创建多次
-                _instance = [super allocWithZone:zone];
+            if (_userInfo == nil) { // 防止创建多次
+                _userInfo = [super allocWithZone:zone];
             }
         }
     }
-    return _instance;
+    return _userInfo;
 }
 + (instancetype)sharedUser
 {
-    if (_instance == nil) { // 防止频繁加锁
+    if (_userInfo == nil) { // 防止频繁加锁
         @synchronized(self) {
-            if (_instance == nil) { // 防止创建多次
+            if (_userInfo == nil) { // 防止创建多次
                 NSString *path = [MjtSignHelper kUserPath];
-                NSData *signData = [NSData dataWithContentsOfFile:path];
-                if (signData != nil) {
-                    _instance = [NSKeyedUnarchiver unarchiveObjectWithData:signData];
+                NSData *userData = [NSData dataWithContentsOfFile:path];
+                if (userData != nil) {
+                    userData = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
                 }
-                if (signData == nil) {
-                    _instance = [[self alloc] init];
+                if (userData == nil) {
+                    userData = [[self alloc] init];
                 }
             }
         }
     }
-    return _instance;
+    return _userInfo;
 }
 
 
 + (instancetype)userWithDict:(NSDictionary *)userDic{
     [self destroyUser];
-    _instance = [self sharedUser];
-    [_instance setValuesForKeysWithDictionary:userDic];
-    return _instance;
+    _userInfo = [self sharedUser];
+    [_userInfo setValuesForKeysWithDictionary:userDic];
+    return _userInfo;
 }
 
 + (void)destroyUser{
-    _instance = nil;
+    _userInfo = nil;
     NSString *path = [MjtSignHelper kUserPath];
     [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
@@ -75,6 +80,13 @@ static id _instance;//静态全局变量
     }
 }
 
+-(BOOL)isLogin
+{
+    if (_userInfo && _userInfo.mobile != nil && _userInfo.ID != nil && ![_userInfo.mobile isEqualToString:@""] && ![_userInfo.ID isEqualToString:@""]) {
+        return true;
+    }
+    return false;
+}
 #pragma mark -- NSCoping
 - (void)encodeWithCoder:(NSCoder *)coder{
     [coder encodeObject:self.ID forKey:@"ID"];

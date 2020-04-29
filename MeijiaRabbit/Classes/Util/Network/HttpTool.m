@@ -18,7 +18,7 @@
 #import "NSString+YYAdd.h"
 @implementation HttpTool
 
-+ (void)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure{
++ (void)POST:(NSString *)URLString parameters:(id)parameters decryptResponse:(BOOL)isDecrypt showHud:(BOOL)isShowHud success:(void (^)(id))success failure:(void (^)(NSError *error))failure{
     
     //增加这几行代码；
     AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
@@ -56,12 +56,6 @@
     AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
     serializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     manager.responseSerializer= serializer;
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//
-//    //声明请求的数据是json类型
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    //如果报接受类型不一致请替换一致text/html或别的
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
     
     NSString *urlStr = [KURL(URLString)  stringByRemovingPercentEncoding];
@@ -72,15 +66,33 @@
             [MBProgressHUD hideHUDForView:window animated:YES];
         });
         if (success) {
-            NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            NSString *responseString = [DES3Util decryptUseDES:desString key:des_Key];
-            NSDictionary *responseDic = [responseString jsonValueDecoded];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD wj_showPlainText:responseDic[@"msg"] view:window];
-            });
-            
-            success(responseDic);
+            NSDictionary *responseDic;
+            if (isDecrypt) {
+                NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                NSString *responseString = [DES3Util decryptUseDES:desString key:des_Key];
+                responseDic = [responseString jsonValueDecoded];
+                if (isShowHud) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD wj_showPlainText:responseDic[@"msg"] view:window];
+                    });
+                }
+                success(responseDic);
+            }else{
+                 NSError *err;
+                 NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                       options:NSJSONReadingMutableContainers
+                                                                         error:&err];
+                if(!err)
+                {
+                    if (isShowHud) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [MBProgressHUD wj_showPlainText:responseDic[@"msg"] view:window];
+                        });
+                    }
+                  success(responseDic);
+                }
+                
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {

@@ -76,7 +76,7 @@
     WeakSelf;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"user_name"] = self.editTxt.text;
-    [NetBaseTool postWithUrl:MJT_EditNICK_PATH params:param success:^(id responseDict) {
+    [NetBaseTool postWithUrl:MJT_EditNICK_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
         if ([responseDict[@"status"] intValue] == 200) {
             !weakSelf.editAction ? :weakSelf.editAction(self.editTxt.text);
             [MjtUserInfo sharedUser].user_name = self.editTxt.text;

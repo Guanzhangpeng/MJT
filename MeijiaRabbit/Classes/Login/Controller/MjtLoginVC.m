@@ -246,7 +246,7 @@
         param[@"user_pwd"] = self.pwdTxt.text;
         param[@"type"] = @"2";
     }
-    [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param success:^(id responseDict) {
+    [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
         MjtUserInfo *userInfo = [MjtUserInfo userWithDict:responseDict[@"data"]];
         [MjtUserInfo saveDataToKeyChian];
         [self.navigationController popViewControllerAnimated:YES];
@@ -271,7 +271,7 @@
        param[@"type"] = @"3";
        
         WeakSelf;
-       [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param success:^(id responseDict) {
+       [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
            weakSelf.codeButton.enabled = NO;
            weakSelf.codeButton.selected = YES;
            self->_leftTime = 120;
