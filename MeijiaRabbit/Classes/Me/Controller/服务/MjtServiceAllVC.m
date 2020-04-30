@@ -44,8 +44,8 @@ static NSString *cellID = @"ServiceID";
     param[@"userid"] = [MjtUserInfo sharedUser].ID;
     param[@"get_type"] = [NSString stringWithFormat:@"%lu",(unsigned long)self.orderType];//获取类型(1:全部，2：待付款，3：待开工，4：待验收，5：待评价)
     
-    [NetBaseTool postWithUrl:MJT_SERVICEORDER_LIST_PATH params:nil decryptResponse:YES showHud:YES success:^(id responseDict) {
-        if ([responseDict[@"data"] intValue] == 200) {
+    [NetBaseTool postWithUrl:MJT_SERVICEORDER_LIST_PATH params:param decryptResponse:NO showHud:NO success:^(id responseDict) {
+        if ([responseDict[@"status"] intValue] == 200) {
             self.dataSource = [MjtServiceModel mj_objectArrayWithKeyValuesArray:responseDict[@"data"]];
             [self.tableview reloadData];
         }
@@ -66,6 +66,7 @@ static NSString *cellID = @"ServiceID";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MjtServiceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = self.dataSource[indexPath.row];
     return cell;
 }
 #pragma mark -- 懒加载
@@ -90,11 +91,17 @@ static NSString *cellID = @"ServiceID";
 -(MJTServiceOrderType)orderType{
     return MJTServiceOrderTypeAll;
 }
+-(void)viewDidLoad{
+    [super viewDidLoad];
+}
 @end
 
 @implementation MjtServicePayingVC
 -(MJTServiceOrderType)orderType{
     return MJTServiceOrderTypePaying;
+}
+-(void)viewDidLoad{
+    [super viewDidLoad];
 }
 @end
 
@@ -102,16 +109,25 @@ static NSString *cellID = @"ServiceID";
 -(MJTServiceOrderType)orderType{
     return MJTServiceOrderTypeWorking;
 }
+-(void)viewDidLoad{
+    [super viewDidLoad];
+}
 @end
 
 @implementation MjtServiceCheckingVC
 -(MJTServiceOrderType)orderType{
     return MJTServiceOrderTypeChecking;
 }
+-(void)viewDidLoad{
+    [super viewDidLoad];
+}
 @end
 
 @implementation MjtServicePricingVC
 -(MJTServiceOrderType)orderType{
     return MJTServiceOrderTypePricing;
+}
+-(void)viewDidLoad{
+    [super viewDidLoad];
 }
 @end

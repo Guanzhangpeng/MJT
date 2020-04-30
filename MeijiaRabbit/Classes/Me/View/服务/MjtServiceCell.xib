@@ -95,9 +95,6 @@
                             <constraint firstItem="pOK-oC-J38" firstAttribute="top" secondItem="wz0-ib-nOe" secondAttribute="top" id="wEZ-BO-afc"/>
                             <constraint firstItem="Cyj-1a-et5" firstAttribute="top" secondItem="s72-wk-gmJ" secondAttribute="top" id="yrJ-3P-5zu"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>

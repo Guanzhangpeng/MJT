@@ -60,10 +60,11 @@
     
     NSString *urlStr = [KURL(URLString)  stringByRemovingPercentEncoding];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [MBProgressHUD showHUDAddedTo:window animated:YES];
+   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
+
     [manager POST:urlStr parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:window animated:YES];
+            [hud hideAnimated:YES];
         });
         if (success) {
             NSDictionary *responseDic;
@@ -97,7 +98,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:window animated:YES];
+                [hud hideAnimated:YES];
                 [MBProgressHUD wj_showPlainText:@"网络加载失败" view:window];
             });
             // 展示错误信息
