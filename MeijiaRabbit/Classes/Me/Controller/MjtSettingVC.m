@@ -11,6 +11,8 @@
 #import "MjtSettingSectionModel.h"
 #import "MjtSettingCell.h"
 #import "MjtBaseButton.h"
+#import "SPAlertController.h"
+#import "MjtTabBarController.h"
 @interface MjtSettingVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray  *sectionArray; /**< section模型数组*/
@@ -132,6 +134,16 @@
 
 #pragma mark -- 点击事件
 - (void)_logoutAction{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定退出登录?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [MjtUserInfo destroyUser];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[MjtTabBarController alloc] init];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
     
 }
 @end

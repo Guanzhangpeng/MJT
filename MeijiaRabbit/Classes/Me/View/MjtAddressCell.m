@@ -16,6 +16,7 @@
 @property (nonatomic, weak) UILabel *addressLbl;
 @property (nonatomic, weak) UIButton *editBtn;
 @property (nonatomic, weak) UIView *bottomLine;
+@property (nonatomic, weak) UIImageView *defaultImg;
 
 @end
 @implementation MjtAddressCell
@@ -40,6 +41,11 @@
     [self.contentView addSubview:phoneLbl];
     self.phoneLbl = phoneLbl;
     
+    UIImageView *defaultImg = [[UIImageView alloc] init];
+    defaultImg.image = [UIImage imageNamed:@"address_default"];
+    [self.contentView addSubview:defaultImg];
+    self.defaultImg = defaultImg;
+    
     UILabel *addressLbl = [[UILabel alloc] init];
     addressLbl.font = [UIFont systemFontOfSize:11];
     addressLbl.textColor = [UIColor lightGrayColor];
@@ -51,6 +57,7 @@
     [editBtn setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
     [editBtn addTarget:self action:@selector(_editAddress) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:editBtn];
+    self.editBtn.backgroundColor = [UIColor redColor];
 
     self.editBtn = editBtn;
     
@@ -67,19 +74,26 @@
         make.top.mas_equalTo(10);
         make.left.mas_equalTo(10);
         make.height.mas_equalTo(21);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(85);
     }];
     
     [self.phoneLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.nameLbl.mas_right);
-        make.width.mas_equalTo(150);
+        make.width.mas_equalTo(90);
+        make.centerY.mas_equalTo(self.nameLbl.mas_centerY);
+    }];
+    
+    [self.defaultImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.phoneLbl.mas_right).with.offset(10);
+        make.width.mas_equalTo(32);
+        make.height.mas_equalTo(32);
         make.centerY.mas_equalTo(self.nameLbl.mas_centerY);
     }];
     
     [self.editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.bottom.mas_equalTo(0);
         make.right.mas_equalTo(self.mas_right).offset(-5);
-        make.width.mas_equalTo(32);
+        make.width.mas_equalTo(50);
     }];
     [self.bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
@@ -96,9 +110,18 @@
 }
 -(void)setModel:(YWAddressInfoModel *)model{
     _model = model;
+
     self.nameLbl.text = model.name;
-    self.phoneLbl.text = model.phone;
-    self.addressLbl.text = [NSString stringWithFormat:@"%@%@",model.areaAddress,model.house_number];
+    self.phoneLbl.text = [model.phone stringByReplacingCharactersInRange:NSMakeRange(model.phone.length -8, 4) withString:@"****"];//防止号码有前缀所以使用倒数第8位开始替换;
+      
+    self.addressLbl.text = model.detail_address;//[NSString stringWithFormat:@"%@%@",model.address,model.house_number];
+    
+    if ([model.default_address isEqualToString:@"1"]) {
+        self.defaultImg.hidden = NO;
+        !_defaultAddressBlock ? :_defaultAddressBlock();
+    }else{
+        self.defaultImg.hidden = YES;
+    }
 }
 
 - (void)_editAddress{

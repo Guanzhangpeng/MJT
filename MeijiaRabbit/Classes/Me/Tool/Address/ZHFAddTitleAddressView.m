@@ -113,10 +113,10 @@
 }
 -(UIView *)initAddressView{
     //初始化本地数据（如果是网络请求请注释掉-----
-    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"location" ofType:@"txt"];
-    NSString *string = [[NSString alloc] initWithContentsOfFile:imagePath encoding:NSUTF8StringEncoding error:nil];
-    NSData * resData = [[NSData alloc]initWithData:[string dataUsingEncoding:NSUTF8StringEncoding]];
-    _resultArr = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
+//    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"location" ofType:@"txt"];
+//    NSString *string = [[NSString alloc] initWithContentsOfFile:imagePath encoding:NSUTF8StringEncoding error:nil];
+//    NSData * resData = [[NSData alloc]initWithData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+//    _resultArr = [NSJSONSerialization JSONObjectWithData:resData options:NSJSONReadingMutableLeaves error:nil];
     //------到这里
     self.frame = CGRectMake(0, 0, screen_width, screen_height);
     self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
@@ -180,10 +180,10 @@
             else{
                 [titleID appendString:[[NSString alloc]initWithFormat:@"%@=",self.titleIDMarr[i]]];
             }
-            
+
             if ( i == 1 && [self.titleMarr[0] isEqualToString:self.titleMarr[1]]) {
                 continue;//过滤掉直辖市
-            }            
+            }
             [titleAddress appendString:[[NSString alloc]initWithFormat:@"%@",self.titleMarr[i]]];
 
         }
@@ -643,7 +643,6 @@
             param[@"code"] = provinceIdOrCityId;//父级id(获取省份code=0)
             param[@"type"] = @"4";//1:省份，2：城市，3：县、区，4：街道
         }
-
     [NetBaseTool postWithUrl:MJT_LOCATION_PATH  params:param decryptResponse:NO showHud:NO success:^(id responseObject) {
         MJTLog(@".");
         if (responseObject != nil)

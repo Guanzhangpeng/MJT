@@ -40,5 +40,11 @@
 //收货地址列表
 #define MJT_ADDRESSLIST_PATH @"/userapi/useraddresslist.php"
 
+//设置用户默认地址/删除用户地址
+#define MJT_ADDRESSOPERATION_PATH @"/userapi/useraddresshandle.php"
+
+//服务订单列表
+#define MJT_SERVICEORDER_LIST_PATH @"/userapi/userserviceorderlist.php"
+
 
 #endif /* MjtInterfaceConst_h */

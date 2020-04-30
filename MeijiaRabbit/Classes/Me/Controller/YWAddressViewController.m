@@ -50,28 +50,26 @@
 }
 -(void)setUI{
     self.addTitleAddressView = [[ZHFAddTitleAddressView alloc]init];
-//    self.addTitleAddressView.titleIDMarr = [[NSMutableArray alloc] initWithObjects:@"44",@"4405",@"440513",@"440513100", nil];
     self.addTitleAddressView.title = @"选择地址";
     self.addTitleAddressView.delegate1 = self;
     self.addTitleAddressView.defaultHeight = 350;
     self.addTitleAddressView.titleScrollViewH = 37;
-    self.addTitleAddressView.isChangeAddress = false;
-//    if (self.addTitleAddressView.titleIDMarr.count > 0) {
-//        self.addTitleAddressView.isChangeAddress = true;
-//    }
-//    else{
-//        self.addTitleAddressView.isChangeAddress = false;
-//    }
+    if (self.isEditing) {
+        self.addTitleAddressView.isChangeAddress = true;
+        self.addTitleAddressView.titleIDMarr = self.titleIDMarr;
+    }
+    else{
+        self.addTitleAddressView.isChangeAddress = false;
+    }
    
     [self.view addSubview:[self.addTitleAddressView initAddressView]];
 }
 - (void)initUserInterface {
     self.title = @"添加新地址";
-    if (_model) {
+    if (self.isEditing) {
         self.title = @"编辑地址";
     } else {
         _model = [[YWAddressInfoModel alloc] init];
-        _model.house_number = @"请选择";
     }
     
     //监听所有的textView
@@ -93,9 +91,8 @@
 
 #pragma mark -- action
 -(void)cancelBtnClick:(NSString *)titleAddress titleID:(NSString *)titleID{
-    _model.areaAddress = titleAddress;
+    _model.address = titleAddress;
     [self.tableView reloadData];
-//    [self.addressBtn setTitle:titleAddress forState:UIControlStateNormal];
     NSArray *areaIDS = [titleID componentsSeparatedByString:@"="];
     if (areaIDS.count == 4) {
         _model.province_code = areaIDS[0];
@@ -114,7 +111,7 @@
     _model.name = nameCell.textField.text;
     _model.phone = phoneCell.textField.text;
     _model.house_number = _detailTextViw.text;
-    _model.default_address = defaultCell.rightSwitch.isOn;
+    _model.default_address = defaultCell.rightSwitch.isOn ? @"1" : @"2";
 
     if (_model.name.length == 0) {
         [YWTool showAlterWithViewController:self Message:@"请填写收货人姓名！"];
@@ -125,7 +122,7 @@
     } else if (_model.phone.length != 11) {
         [YWTool showAlterWithViewController:self Message:@"手机号为11位，如果为座机请加上区号"];
         return;
-    } else if ([_model.areaAddress isEqualToString:@"请选择"]) {
+    } else if ([_model.address isEqualToString:@"请选择"]) {
         [YWTool showAlterWithViewController:self Message:@"请选择所在地区"];
         return;
     } else if (_model.house_number.length == 0 || _model.house_number.length < 5) {
@@ -142,20 +139,27 @@
     param[@"area_code"] = _model.area_code;//地区code
     param[@"street_code"] = _model.street_code;//街道code
     param[@"house_number"] = _model.house_number;//门牌号
-    param[@"detail_address"] = [NSString stringWithFormat:@"%@%@",_model.areaAddress,_model.house_number];//详细地址
-    param[@"default_address"] = _model.default_address ? @"1":@"2";//是否设默认地址（1：是，2：否）
+    param[@"detail_address"] = [NSString stringWithFormat:@"%@%@",_model.address,_model.house_number];//详细地址
+    param[@"default_address"] = _model.default_address;//是否设默认地址（1：是，2：否）
     
+    if(self.isEditing){
+        param[@"type"] = @"2";
+        param[@"id"] = _model.ID;
+        
+    }
+    WeakSelf;
     [NetBaseTool postWithUrl:MJT_ADDADDRESS_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
         if([responseDict[@"status"] intValue] == 200){
+                // 回调所填写的地址信息（姓名、电话、地址等等）
+            if (weakSelf.addressBlock) {
+                weakSelf.addressBlock(weakSelf.model);
+            }
             [self.navigationController popViewControllerAnimated:YES];
         }
     } failure:^(NSError *error) {
         
     }];
-    // 回调所填写的地址信息（姓名、电话、地址等等）
-    if (self.addressBlock) {
-        self.addressBlock(_model);
-    }
+
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -224,7 +228,7 @@
 #pragma mark *** UITableViewDataSource & UITableViewDelegate ***
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    if (_model.default_address) {
+    if ([_model.default_address isEqualToString:@"1"]) {
         // 如果该地址已经是默认地址，则无需再显示 "设为默认" 这个按钮，即隐藏
         return 1;
     }
@@ -265,9 +269,10 @@
         } else {
             YWAddressTableViewCell2 *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER2 forIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.leftStr = _dataSource[indexPath.section][indexPath.row];
-            cell.rightStr = _model.areaAddress;
-            if (![_model.areaAddress isEqualToString:@""] && ![_model.areaAddress isEqualToString:@"请选择"]) {
+            cell.rightStr = _model.address;
+            if (![_model.address isEqualToString:@""] && ![_model.address isEqualToString:@"请选择"]) {
                 cell.rightLabel.textColor = [UIColor blackColor];
             } else {
                 cell.rightLabel.textColor = [UIColor lightGrayColor];
@@ -285,24 +290,25 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0) {
         UIView *footerView = [[UIView alloc] init];
-        footerView.backgroundColor = MJTColorA(240, 240, 240, 1);
+        footerView.backgroundColor = [UIColor clearColor];
         [footerView addSubview:self.detailTextViw];
         return footerView;
     } else {
         return nil;
     }
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        return 75;
+    }else{
+        return 65;
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == 0) {
         return 90;
     }
     return 0;
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setSeparatorInset:UIEdgeInsetsZero];
-    [cell setLayoutMargins:UIEdgeInsetsZero];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -320,12 +326,8 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = MJTColorA(240, 240, 240, 1);
-        _tableView.rowHeight = 50;
         _tableView.tableFooterView = [UIView new];
-        // 设置分割线
-        [_tableView setSeparatorInset:UIEdgeInsetsZero];
-        [_tableView setLayoutMargins:UIEdgeInsetsZero];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         // 注册cell
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDENTIFIER1 bundle:nil] forCellReuseIdentifier:CELL_IDENTIFIER1];
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDENTIFIER2 bundle:nil] forCellReuseIdentifier:CELL_IDENTIFIER2];
@@ -337,7 +339,7 @@
 - (UITextView *)detailTextViw {
     if (!_detailTextViw) {
         _detailTextViw = [[UITextView alloc] initWithFrame:CGRectMake(0, 1, ScreenWidth, 80)];
-        _detailTextViw.textContainerInset = UIEdgeInsetsMake(5, 15, 5, 15);
+        _detailTextViw.textContainerInset = UIEdgeInsetsMake(8, 15, 8, 15);
         _detailTextViw.font = [UIFont systemFontOfSize:14];
         [_detailTextViw addSubview:self.promptLable];
         
@@ -351,7 +353,7 @@
 
 - (UILabel *)promptLable {
     if (!_promptLable) {
-        _promptLable = [[UILabel alloc] initWithFrame:CGRectMake(20 , 2, ScreenWidth, 24)];
+        _promptLable = [[UILabel alloc] initWithFrame:CGRectMake(20 , 8, ScreenWidth, 24)];
         _promptLable.text = @"请填写详细地址（尽量精确到单元楼或门牌号)";
         _promptLable.numberOfLines = 0;
         _promptLable.textColor = MJTColorA(200, 200, 200, 1);

@@ -15,13 +15,6 @@
     // Initialization code
     _rightLabel.lineBreakMode = NSLineBreakByCharWrapping;    //以字符为显示单位显示，后面部分省略不显示。  
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)setLeftStr:(NSString *)leftStr {
     _leftStr = leftStr;
     _leftLabel.text = _leftStr;

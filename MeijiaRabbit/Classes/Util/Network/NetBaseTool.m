@@ -8,7 +8,6 @@
 
 #import "NetBaseTool.h"
 #import "HttpTool.h"
-#import "MJExtension.h"
 @implementation NetBaseTool
 
 + (void)getWithUrl:(NSString *)url params:(id)param success:(void (^)(id responeseObject))success failure:(void (^)(NSError * error))failure{
@@ -25,9 +24,7 @@
 }
 
 + (void)postWithUrl:(NSString *)url params:(id)param decryptResponse:(BOOL)isDecrypt showHud:(BOOL)isShowHud success:(void (^)(id responseDict))success failure:(void (^)(NSError *error))failure{
-    
-    NSDictionary *params = [param mj_keyValues];
-    [HttpTool POST:url parameters:params decryptResponse:isDecrypt showHud:isShowHud success:^(id responseObj) {
+    [HttpTool POST:url parameters:param decryptResponse:isDecrypt showHud:isShowHud success:^(id responseObj) {
         if (success) {
             success(responseObj);
         }
@@ -38,8 +35,7 @@
     }];
 }
 + (void)postWithUrl:(NSString *)url params:(id)param data:(NSData *)data paramName:(NSString *)paramName fileName:(NSString *)fileName mimeType:(NSString *)mimeType success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    NSDictionary *params = [param mj_keyValues];
-    [HttpTool POST:url params:params data:data paramName:paramName fileName:fileName mimeType:mimeType success:^(id responseObj) {
+    [HttpTool POST:url params:param data:data paramName:paramName fileName:fileName mimeType:mimeType success:^(id responseObj) {
         if (success) {
             success(responseObj);
         }

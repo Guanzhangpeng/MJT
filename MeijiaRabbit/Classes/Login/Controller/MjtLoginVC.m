@@ -16,7 +16,6 @@
 #import "RegularHelp.h"
 #import "MjtFogetPassword.h"
 #import "GSProxy.h"
-#import "MJExtension.h"
 @interface MjtLoginVC ()<UITextViewDelegate>{
     NSTimer *_timer;
     int _leftTime;

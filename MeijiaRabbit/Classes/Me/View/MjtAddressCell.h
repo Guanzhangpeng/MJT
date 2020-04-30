@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class YWAddressInfoModel;
 @interface MjtAddressCell : UITableViewCell
 @property (nonatomic, strong) YWAddressInfoModel *model;
-@property (nonatomic, strong) void(^editAddressAction)();
+@property (nonatomic, strong) void(^editAddressAction)(void);
+@property (nonatomic, strong) void(^defaultAddressBlock)();
 @end
 
 NS_ASSUME_NONNULL_END

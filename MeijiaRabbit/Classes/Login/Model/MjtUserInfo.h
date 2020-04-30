@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 */
 + (void)saveDataToKeyChian;
 
+/*
+    删除User对象
+*/
++ (void)destroyUser;
 @end
 
 NS_ASSUME_NONNULL_END

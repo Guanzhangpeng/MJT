@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, MJTServiceOrderType) {
-
+//获取类型(1:全部，2：待付款，3：待开工，4：待验收，5：待评价)
     MJTServiceOrderTypeAll = 1,
     /** 待付款 */
     MJTServiceOrderTypePaying = 2,

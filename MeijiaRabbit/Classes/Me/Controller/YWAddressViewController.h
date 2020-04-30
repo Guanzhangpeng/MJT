@@ -12,12 +12,14 @@
 
 typedef void(^AddressBlock)(YWAddressInfoModel *model);
 
-@interface YWAddressViewController : MjtBaseViewController
-
+@interface YWAddressViewController : UIViewController
 /** 如果为编辑地址则需传入model **/
 @property (nonatomic, strong) YWAddressInfoModel         * model;
 
 /** 保存收货地址信息后的地址信息回调 **/
-@property (nonatomic, copy) AddressBlock                   addressBlock;
+@property (nonatomic, strong) AddressBlock                   addressBlock;
 
+@property (nonatomic, assign) BOOL isEditing;//是否是编辑地址;
+
+@property(nonatomic,strong) NSMutableArray *titleIDMarr;
 @end
