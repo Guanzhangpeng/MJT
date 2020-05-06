@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MjtServiceRecommendCell">
+            <rect key="frame" x="0.0" y="0.0" width="158" height="128"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="158" height="128"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="floor" translatesAutoresizingMaskIntoConstraints="NO" id="Hdi-Ug-Xc2">
+                        <rect key="frame" x="0.0" y="0.0" width="158" height="71"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILW-FM-9xT">
+                        <rect key="frame" x="5" y="103" width="25" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="yg1-Yz-8NQ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnY-SH-kaN">
+                        <rect key="frame" x="83" y="103" width="75" height="20"/>
+                        <color key="backgroundColor" red="0.87450980389999999" green="0.42745098040000001" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="40s-YL-hcV"/>
+                            <constraint firstAttribute="height" constant="20" id="f3c-te-kTa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="加入购物车">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木纹地板" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ia-db-3ZU">
+                        <rect key="frame" x="5" y="79" width="45" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="sqK-cR-Vlv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="6ia-db-3ZU" firstAttribute="top" secondItem="Hdi-Ug-Xc2" secondAttribute="bottom" constant="8" id="1SG-wB-qxk"/>
+                <constraint firstItem="ILW-FM-9xT" firstAttribute="top" secondItem="6ia-db-3ZU" secondAttribute="bottom" constant="4" id="4qH-wC-IRb"/>
+                <constraint firstItem="6ia-db-3ZU" firstAttribute="leading" secondItem="ILW-FM-9xT" secondAttribute="leading" id="6JV-ea-PqI"/>
+                <constraint firstAttribute="trailing" secondItem="Hdi-Ug-Xc2" secondAttribute="trailing" id="HkI-h1-5yx"/>
+                <constraint firstItem="Hdi-Ug-Xc2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="PAU-wY-itR"/>
+                <constraint firstItem="ILW-FM-9xT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="dnO-to-ICe"/>
+                <constraint firstAttribute="bottom" secondItem="ILW-FM-9xT" secondAttribute="bottom" constant="5" id="e88-ra-5Cr"/>
+                <constraint firstItem="Hdi-Ug-Xc2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="iht-St-oHX"/>
+                <constraint firstAttribute="trailing" secondItem="hnY-SH-kaN" secondAttribute="trailing" id="pHm-A0-yUw"/>
+                <constraint firstItem="hnY-SH-kaN" firstAttribute="centerY" secondItem="ILW-FM-9xT" secondAttribute="centerY" id="pOx-og-xSX"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="158" height="128"/>
+            <connections>
+                <outlet property="cartButton" destination="hnY-SH-kaN" id="SFB-C9-Cu7"/>
+                <outlet property="iconImg" destination="Hdi-Ug-Xc2" id="z4m-U0-YmO"/>
+                <outlet property="priceLbl" destination="ILW-FM-9xT" id="dep-5q-uDV"/>
+                <outlet property="titleLbl" destination="6ia-db-3ZU" id="Iym-63-Dhd"/>
+            </connections>
+            <point key="canvasLocation" x="-75.362318840579718" y="135.26785714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="floor" width="214" height="162"/>
+    </resources>
+</document>

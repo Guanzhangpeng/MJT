@@ -9,13 +9,19 @@
 #import "MjtPublishServiceVC.h"
 #import "MjtBaseButton.h"
 #import "Masonry.h"
-@interface MjtPublishServiceVC ()
+#import "ImagePickerView.h"
+#import "MjtServiceRecommendCell.h"
+#define HWStatusPhotoWH  (([UIScreen mainScreen].bounds.size.width - HWStatusPhotoMargin * 4) / 3)
+#define HWStatusPhotoMargin (15)
+#define HWStatusPhotoMaxCol(count) ((count==4)?2:3)
+@interface MjtPublishServiceVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
-
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UILabel *recommendLbl;
 @end
 
 @implementation MjtPublishServiceVC
-
+static NSString *CellID = @"MjtServiceRecommendCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self _setup];
@@ -141,10 +147,96 @@
            make.height.mas_equalTo(21);
            make.top.mas_equalTo(descTxt.mas_bottom).with.offset(margin);
        }];
+    
+    ImagePickerView *imgPickerVC = [[ ImagePickerView alloc] init];
+    //图片选择器 最大数量
+      NSInteger maxImagesCount = 9;
+    __weak typeof(imgPickerVC) weakPickerVC = imgPickerVC;
+    imgPickerVC.didFinishPickingPhotos = ^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        
+        NSInteger imgCount = (photos.count == maxImagesCount ? maxImagesCount : photos.count + 1);
+        CGSize imgViewSize = [self sizeWithCount:imgCount];
+        [weakPickerVC.view mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(imgViewSize.height);
+        }];
+    };
+    imgPickerVC.maxImagesCount = maxImagesCount;
+    imgPickerVC.columnNumber = 4;
+    [self addChildViewController:imgPickerVC];
+    [self.scrollView addSubview:imgPickerVC.view];
+    [imgPickerVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(titleLbl4.mas_bottom).with.offset(margin);
+        make.left.and.right.mas_equalTo(self.view);
+        make.height.mas_equalTo(HWStatusPhotoWH + margin);
+    }];
+    
+    //推荐
+    UILabel *titleLbl5 = [[UILabel alloc] init];
+   titleLbl5.text = @"根据您的需要，为您精心推荐以下产品：";
+   titleLbl5.font = [UIFont systemFontOfSize:14];
+   [self.scrollView addSubview:titleLbl5];
+   [titleLbl5 mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.left.mas_equalTo(titleLbl1.mas_left);
+       make.right.mas_equalTo(self.view.mas_right).with.offset(-margin);
+       make.height.mas_equalTo(21);
+       make.top.mas_equalTo(imgPickerVC.view.mas_bottom).with.offset(margin);
+   }];
+    self.recommendLbl = titleLbl5;
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    margin = 25;
+    CGFloat itemW = (ScreenWidth - margin *2 - 30)/2;
+    layout.itemSize = CGSizeMake(itemW, 120);
+    layout.minimumLineSpacing = 10;
+    layout.minimumInteritemSpacing = 30;
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200) collectionViewLayout:layout];
+    collectionView.dataSource = self;
+    collectionView.delegate = self;
+    collectionView.contentInset = UIEdgeInsetsMake(0, margin, 0, margin);
+    [collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([MjtServiceRecommendCell class]) bundle:nil] forCellWithReuseIdentifier:CellID];
+    collectionView.backgroundColor = [UIColor clearColor];
+    [self.scrollView addSubview:collectionView];
+    self.collectionView = collectionView;
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.mas_equalTo(self.view).offset(0);
+        make.top.mas_equalTo(titleLbl5.mas_bottom).with.offset(margin);
+        make.height.mas_equalTo(280);
+    }];
+    
+    //提交需求
+    MjtBaseButton *submitBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    [submitBtn setTitle:@"提交需求" forState:0];
+    [submitBtn setTitleColor:[UIColor blackColor] forState:0];
+    submitBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    submitBtn.backgroundColor = MJTGlobalMainColor;
+    submitBtn.layer.cornerRadius = 8;
+    [submitBtn addTarget:self action:@selector(_submitButton_Click) forControlEvents:UIControlEventTouchUpOutside];
+    [self.scrollView addSubview:submitBtn];
+    [submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(25);
+        make.right.mas_equalTo(self.view.mas_right).offset(-25);
+        make.height.mas_equalTo(45);
+        make.top.mas_equalTo(self.collectionView.mas_bottom).with.offset(margin);
+        
+    }];
      [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
-         make.bottom.mas_equalTo(addressLbl.mas_bottom);
+         make.bottom.mas_equalTo(submitBtn.mas_bottom).with.offset(50);
      }];
+}
+#pragma mark -- UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return  4;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    MjtServiceRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
+    
+    return cell;
+}
+#pragma mark -- UICollectionViewDelegate
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 #pragma mark -- 点击事件
 - (void)_addressChose_Click{
@@ -152,5 +244,24 @@
 }
 - (void)_serviceChose_Click{
     
+}
+- (void)_submitButton_Click{
+    
+}
+- (CGSize)sizeWithCount:(NSUInteger)count
+{
+    // 最大列数（一行最多有多少列）
+    int maxCols = HWStatusPhotoMaxCol(count);
+    
+//    NSUInteger cols = (count >= maxCols)? maxCols : count;
+    
+    CGFloat photosW = [UIScreen mainScreen].bounds.size.width;
+    
+    // 行数
+    NSUInteger rows = (count + maxCols - 1) / maxCols;
+    
+    CGFloat photosH = rows * HWStatusPhotoWH + (rows + 1) * HWStatusPhotoMargin;
+    
+    return CGSizeMake(photosW, photosH);
 }
 @end
