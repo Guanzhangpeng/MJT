@@ -29,6 +29,9 @@
 		191D59ED2411197A005632D0 /* UIButton+Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D59D62411197A005632D0 /* UIButton+Delay.m */; };
 		191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D59DA2411197A005632D0 /* NSString+Extension.m */; };
 		191D59F02411197A005632D0 /* UILabel+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D59E02411197A005632D0 /* UILabel+Utility.m */; };
+		1920C4AC24625ECD00796983 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920C4A624625ECD00796983 /* TZTestCell.m */; };
+		1920C4AD24625ECD00796983 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920C4AA24625ECD00796983 /* LxGridViewFlowLayout.m */; };
+		1920C4AE24625ECD00796983 /* ImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920C4AB24625ECD00796983 /* ImagePickerView.m */; };
 		19341B512428835D00CB82E0 /* me_home.json in Resources */ = {isa = PBXBuildFile; fileRef = 19341B502428835D00CB82E0 /* me_home.json */; };
 		193F275524122EC90000EB3B /* MJTConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275424122EC80000EB3B /* MJTConstant.m */; };
 		193F275824125CE80000EB3B /* MjtView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275724125CE80000EB3B /* MjtView.m */; };
@@ -99,6 +102,11 @@
 		19B3EDD42452D62000251AFD /* MjtSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDD32452D62000251AFD /* MjtSigner.m */; };
 		19C8927D245ABC960052813B /* SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C8927C245ABC960052813B /* SPAlertController.m */; };
 		19C89281245ABF4D0052813B /* MjtServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C89280245ABF4D0052813B /* MjtServiceModel.m */; };
+		19C89285245ADEBD0052813B /* MjtFindServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C89284245ADEBD0052813B /* MjtFindServiceVC.m */; };
+		19C89287245FD1ED0052813B /* part.json in Resources */ = {isa = PBXBuildFile; fileRef = 19C89286245FD1ED0052813B /* part.json */; };
+		19C89291245FDC0C0052813B /* MjtFindServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C8928E245FDC0C0052813B /* MjtFindServiceCell.xib */; };
+		19C89292245FDC0C0052813B /* MjtFindServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C8928F245FDC0C0052813B /* MjtFindServiceCell.m */; };
+		19C89298245FEBCF0052813B /* MjtPublishServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C89296245FEBCF0052813B /* MjtPublishServiceVC.m */; };
 		19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609DE2422282600DE37B8 /* MjtAddressListVC.m */; };
 		19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D609E02422298A00DE37B8 /* YWAddressTableViewCell2.xib */; };
 		19D609EA2422298B00DE37B8 /* YWAddressTableViewCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D609E12422298B00DE37B8 /* YWAddressTableViewCell3.m */; };
@@ -167,6 +175,12 @@
 		191D59DF2411197A005632D0 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		191D59E02411197A005632D0 /* UILabel+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Utility.m"; sourceTree = "<group>"; };
 		191D59E12411197A005632D0 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		1920C4A624625ECD00796983 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		1920C4A724625ECD00796983 /* ImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerView.h; sourceTree = "<group>"; };
+		1920C4A824625ECD00796983 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
+		1920C4A924625ECD00796983 /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
+		1920C4AA24625ECD00796983 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
+		1920C4AB24625ECD00796983 /* ImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerView.m; sourceTree = "<group>"; };
 		19341B502428835D00CB82E0 /* me_home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me_home.json; sourceTree = "<group>"; };
 		193F275224122B290000EB3B /* MeijiaRabbit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeijiaRabbit.pch; sourceTree = "<group>"; };
 		193F275324122EC80000EB3B /* MJTConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJTConstant.h; sourceTree = "<group>"; };
@@ -303,6 +317,14 @@
 		19C8927C245ABC960052813B /* SPAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAlertController.m; sourceTree = "<group>"; };
 		19C8927F245ABF4D0052813B /* MjtServiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceModel.h; sourceTree = "<group>"; };
 		19C89280245ABF4D0052813B /* MjtServiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceModel.m; sourceTree = "<group>"; };
+		19C89283245ADEBD0052813B /* MjtFindServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtFindServiceVC.h; sourceTree = "<group>"; };
+		19C89284245ADEBD0052813B /* MjtFindServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtFindServiceVC.m; sourceTree = "<group>"; };
+		19C89286245FD1ED0052813B /* part.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = part.json; sourceTree = "<group>"; };
+		19C8928E245FDC0C0052813B /* MjtFindServiceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MjtFindServiceCell.xib; sourceTree = "<group>"; };
+		19C8928F245FDC0C0052813B /* MjtFindServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MjtFindServiceCell.m; sourceTree = "<group>"; };
+		19C89290245FDC0C0052813B /* MjtFindServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjtFindServiceCell.h; sourceTree = "<group>"; };
+		19C89296245FEBCF0052813B /* MjtPublishServiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MjtPublishServiceVC.m; sourceTree = "<group>"; };
+		19C89297245FEBCF0052813B /* MjtPublishServiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjtPublishServiceVC.h; sourceTree = "<group>"; };
 		19D609DD2422282600DE37B8 /* MjtAddressListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtAddressListVC.h; sourceTree = "<group>"; };
 		19D609DE2422282600DE37B8 /* MjtAddressListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtAddressListVC.m; sourceTree = "<group>"; };
 		19D609E02422298A00DE37B8 /* YWAddressTableViewCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YWAddressTableViewCell2.xib; sourceTree = "<group>"; };
@@ -429,6 +451,7 @@
 		191D599C24111154005632D0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				19C89282245ADE990052813B /* 找服务 */,
 				1959A9612448651100C6C090 /* 每日特价 */,
 				191D59B624111327005632D0 /* HomeViewController.h */,
 				191D59B724111327005632D0 /* HomeViewController.m */,
@@ -447,6 +470,7 @@
 		191D599D24111154005632D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				19C89286245FD1ED0052813B /* part.json */,
 				193F276224128D0B0000EB3B /* guide.json */,
 			);
 			path = Model;
@@ -455,6 +479,7 @@
 		191D599E24111154005632D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				19C8928D245FDC0C0052813B /* 找服务 */,
 				1959A9652448664600C6C090 /* 每日特价 */,
 				193F27672413A9EA0000EB3B /* MjtSpecialPriceCell.h */,
 				193F27682413A9EA0000EB3B /* MjtSpecialPriceCell.m */,
@@ -592,6 +617,7 @@
 		191D59A724111154005632D0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1920C4A524625ECD00796983 /* ImagePicker */,
 				19C8927B245ABC960052813B /* SPAlertController.h */,
 				19C8927C245ABC960052813B /* SPAlertController.m */,
 				1980FF482455A9E200652AAD /* MBProgressHud+Extension */,
@@ -696,6 +722,19 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1920C4A524625ECD00796983 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				1920C4A924625ECD00796983 /* TZTestCell.h */,
+				1920C4A624625ECD00796983 /* TZTestCell.m */,
+				1920C4A824625ECD00796983 /* LxGridViewFlowLayout.h */,
+				1920C4AA24625ECD00796983 /* LxGridViewFlowLayout.m */,
+				1920C4A724625ECD00796983 /* ImagePickerView.h */,
+				1920C4AB24625ECD00796983 /* ImagePickerView.m */,
+			);
+			path = ImagePicker;
 			sourceTree = "<group>";
 		};
 		193F277024152D3B0000EB3B /* JFCitySelect */ = {
@@ -922,6 +961,27 @@
 			path = "服务";
 			sourceTree = "<group>";
 		};
+		19C89282245ADE990052813B /* 找服务 */ = {
+			isa = PBXGroup;
+			children = (
+				19C89297245FEBCF0052813B /* MjtPublishServiceVC.h */,
+				19C89296245FEBCF0052813B /* MjtPublishServiceVC.m */,
+				19C89283245ADEBD0052813B /* MjtFindServiceVC.h */,
+				19C89284245ADEBD0052813B /* MjtFindServiceVC.m */,
+			);
+			path = "找服务";
+			sourceTree = "<group>";
+		};
+		19C8928D245FDC0C0052813B /* 找服务 */ = {
+			isa = PBXGroup;
+			children = (
+				19C89290245FDC0C0052813B /* MjtFindServiceCell.h */,
+				19C8928F245FDC0C0052813B /* MjtFindServiceCell.m */,
+				19C8928E245FDC0C0052813B /* MjtFindServiceCell.xib */,
+			);
+			path = "找服务";
+			sourceTree = "<group>";
+		};
 		19D609F524222D9C00DE37B8 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,6 +1082,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
+				19C89291245FDC0C0052813B /* MjtFindServiceCell.xib in Resources */,
 				193F27A3241765FA0000EB3B /* me_order.json in Resources */,
 				19D60A35242494A700DE37B8 /* MjtDesignCell.xib in Resources */,
 				193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */,
@@ -1035,6 +1096,7 @@
 				19341B512428835D00CB82E0 /* me_home.json in Resources */,
 				19D60A0C242233A200DE37B8 /* Cities.json in Resources */,
 				1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */,
+				19C89287245FD1ED0052813B /* part.json in Resources */,
 				1911AD27240E20BC006FB7A3 /* Main.storyboard in Resources */,
 				19D609E92422298B00DE37B8 /* YWAddressTableViewCell2.xib in Resources */,
 				1980FF592456A84E00652AAD /* MjtFogetPassword.xib in Resources */,
@@ -1108,6 +1170,7 @@
 				1980FF722457F9B700652AAD /* MjtBaseViewController.m in Sources */,
 				193F27D12418CE320000EB3B /* GSProxy.m in Sources */,
 				193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */,
+				1920C4AD24625ECD00796983 /* LxGridViewFlowLayout.m in Sources */,
 				193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */,
 				193F27C32417998C0000EB3B /* MjtLoginVC.m in Sources */,
 				193F275B2412653B0000EB3B /* MjtTipView.m in Sources */,
@@ -1134,6 +1197,7 @@
 				19B3EDCA2451C38B00251AFD /* RSAUtil.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
 				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
+				1920C4AC24625ECD00796983 /* TZTestCell.m in Sources */,
 				1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */,
 				1980FF5F2456C67E00652AAD /* MjtUserInfoEditVC.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
@@ -1156,6 +1220,7 @@
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
 				193F275824125CE80000EB3B /* MjtView.m in Sources */,
 				193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */,
+				19C89285245ADEBD0052813B /* MjtFindServiceVC.m in Sources */,
 				19B3EDCB2451C38B00251AFD /* NSString+NSReplace.m in Sources */,
 				1980FF47245596C800652AAD /* RegularHelp.m in Sources */,
 				1911AD2F240E20BE006FB7A3 /* main.m in Sources */,
@@ -1178,10 +1243,13 @@
 				19D60A222423172A00DE37B8 /* ProvinceModel.m in Sources */,
 				19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
+				19C89298245FEBCF0052813B /* MjtPublishServiceVC.m in Sources */,
+				19C89292245FDC0C0052813B /* MjtFindServiceCell.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
 				19D609EB2422298B00DE37B8 /* YWAddressTableViewCell2.m in Sources */,
 				193F27DA241A265C0000EB3B /* MjtSettingItemModel.m in Sources */,
 				19D609F1242229A300DE37B8 /* YWAddressInfoModel.m in Sources */,
+				1920C4AE24625ECD00796983 /* ImagePickerView.m in Sources */,
 				1980FF4E2455AA1500652AAD /* WJSuccessView.m in Sources */,
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,

@@ -1,0 +1,44 @@
+[
+       {
+             "title": "水电改造",
+             "icon": "sdgz",
+       },
+  
+       {
+             "title": "铺贴瓷砖",
+             "icon": "ptcz",
+       },
+  
+      {
+  
+              "title": "房屋拆除",
+              "icon": "fwcc",
+  
+      },
+  
+       {
+             "title": "墙面粉刷",
+             "icon": "qmfs",
+       },
+           {
+                  "title": "水电改造",
+                  "icon": "sdgz",
+            },
+       
+            {
+                  "title": "铺贴瓷砖",
+                  "icon": "ptcz",
+            },
+       
+           {
+       
+                   "title": "房屋拆除",
+                   "icon": "fwcc",
+       
+           },
+       
+            {
+                  "title": "墙面粉刷",
+                  "icon": "qmfs",
+            }
+ ]

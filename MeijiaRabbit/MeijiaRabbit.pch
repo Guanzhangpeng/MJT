@@ -18,7 +18,8 @@
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
 /// 手机类型相关
-
+/*** 当前系统版本判断 ***/
+#define iOS(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
 #define MJT_IS_IPHONE_4_OR_LESS  (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH  < 568.0)
 #define MJT_IS_IPHONE_5          (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH == 568.0)
 #define MJT_IS_IPHONE_6          (MJT_IS_IPHONE && MJT_SCREEN_MAX_LENGTH == 667.0)

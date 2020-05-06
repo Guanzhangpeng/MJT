@@ -21,7 +21,7 @@
 #import "MjtDiscountListVC.h"
 #import "NSDictionary+YYAdd.h"
 
-
+#import "MjtFindServiceVC.h"
 
 #define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
 
@@ -149,6 +149,7 @@
 }
 ///主入口
 - (void)_setupMainFunView{
+    WeakSelf;
     UIView *mainfunView;
     [self.scrollView addSubview:({
          mainfunView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScrollAdView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 140.f)];
@@ -197,6 +198,7 @@
     }];
     serviceView.clickBlock = ^{
         MJTLog(@"找服务点击");
+        [weakSelf.navigationController pushViewController:[MjtFindServiceVC new] animated:YES];
     };
     
     
