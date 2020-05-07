@@ -80,6 +80,7 @@
 		1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC852462B203005B60CD /* MjtRangeModel.m */; };
 		1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */; };
 		1964CCB424640F16005B60CD /* ContentBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCB324640F16005B60CD /* ContentBaseViewController.m */; };
+		1964CCB724643436005B60CD /* MjtCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCB624643436005B60CD /* MjtCategoryView.m */; };
 		1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DF9F244D523800C1D65C /* OttoFPSButton.m */; };
 		1980FF47245596C800652AAD /* RegularHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF45245596C700652AAD /* RegularHelp.m */; };
 		1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */; };
@@ -275,6 +276,8 @@
 		1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDetailRangeModel.m; sourceTree = "<group>"; };
 		1964CCB224640F16005B60CD /* ContentBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentBaseViewController.h; sourceTree = "<group>"; };
 		1964CCB324640F16005B60CD /* ContentBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBaseViewController.m; sourceTree = "<group>"; };
+		1964CCB524643436005B60CD /* MjtCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtCategoryView.h; sourceTree = "<group>"; };
+		1964CCB624643436005B60CD /* MjtCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtCategoryView.m; sourceTree = "<group>"; };
 		1974DF9E244D523800C1D65C /* OttoFPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoFPSButton.h; sourceTree = "<group>"; };
 		1974DF9F244D523800C1D65C /* OttoFPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoFPSButton.m; sourceTree = "<group>"; };
 		1980FF45245596C700652AAD /* RegularHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularHelp.m; sourceTree = "<group>"; };
@@ -991,6 +994,8 @@
 				1920C4B82462927200796983 /* MjtServiceRecommendCell.h */,
 				1920C4B92462927200796983 /* MjtServiceRecommendCell.m */,
 				1920C4BA2462927200796983 /* MjtServiceRecommendCell.xib */,
+				1964CCB524643436005B60CD /* MjtCategoryView.h */,
+				1964CCB624643436005B60CD /* MjtCategoryView.m */,
 			);
 			path = "找服务";
 			sourceTree = "<group>";
@@ -1231,6 +1236,7 @@
 				1911AD1E240E20BC006FB7A3 /* AppDelegate.m in Sources */,
 				19D60A212423172A00DE37B8 /* AddressCell.m in Sources */,
 				1920C4BB2462927200796983 /* MjtServiceRecommendCell.m in Sources */,
+				1964CCB724643436005B60CD /* MjtCategoryView.m in Sources */,
 				191D59EA2411197A005632D0 /* UIView+Extension.m in Sources */,
 				19D60A34242494A700DE37B8 /* MjtDesignCell.m in Sources */,
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
