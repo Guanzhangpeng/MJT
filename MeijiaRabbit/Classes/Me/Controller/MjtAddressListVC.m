@@ -125,11 +125,17 @@ static NSString *cellID = @"addressID";
         };
         [self.navigationController pushViewController:addressVC animated:YES];
     };
-//    cell.backgroundColor = MJTRandomColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 #pragma mark - TableView代理方法
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YWAddressInfoModel *addressModel = self.dataSource[indexPath.row];
+    if (self.choseAction) {
+        self.choseAction(addressModel);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 -(NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewRowAction * action = [UITableViewRowAction rowActionWithStyle:0 title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {

@@ -57,7 +57,7 @@
     navBar.backIndicatorImage = backImg;
     navBar.backIndicatorTransitionMaskImage = backImg;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-100, 0) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, 0) forBarMetrics:UIBarMetricsDefault];
 //   navBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
    NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
                             NSFontAttributeName: [UIFont systemFontOfSize:17],

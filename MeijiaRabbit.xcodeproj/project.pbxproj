@@ -79,6 +79,8 @@
 		1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9632448653B00C6C090 /* MjtDiscountListVC.m */; };
 		1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9672448669200C6C090 /* MjtDiscountCell.m */; };
 		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
+		1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC852462B203005B60CD /* MjtRangeModel.m */; };
+		1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */; };
 		1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DF9F244D523800C1D65C /* OttoFPSButton.m */; };
 		1980FF47245596C800652AAD /* RegularHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF45245596C700652AAD /* RegularHelp.m */; };
 		1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */; };
@@ -272,6 +274,10 @@
 		1959A9662448669200C6C090 /* MjtDiscountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountCell.h; sourceTree = "<group>"; };
 		1959A9672448669200C6C090 /* MjtDiscountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountCell.m; sourceTree = "<group>"; };
 		1959A9682448669200C6C090 /* MjtDiscountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtDiscountCell.xib; sourceTree = "<group>"; };
+		1964CC842462B203005B60CD /* MjtRangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtRangeModel.h; sourceTree = "<group>"; };
+		1964CC852462B203005B60CD /* MjtRangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtRangeModel.m; sourceTree = "<group>"; };
+		1964CC872462B21C005B60CD /* MjtDetailRangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDetailRangeModel.h; sourceTree = "<group>"; };
+		1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDetailRangeModel.m; sourceTree = "<group>"; };
 		1974DF9E244D523800C1D65C /* OttoFPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoFPSButton.h; sourceTree = "<group>"; };
 		1974DF9F244D523800C1D65C /* OttoFPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoFPSButton.m; sourceTree = "<group>"; };
 		1980FF45245596C700652AAD /* RegularHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularHelp.m; sourceTree = "<group>"; };
@@ -615,6 +621,10 @@
 				19B3EDD32452D62000251AFD /* MjtSigner.m */,
 				1980FF702457F9B700652AAD /* MjtBaseViewController.h */,
 				1980FF712457F9B700652AAD /* MjtBaseViewController.m */,
+				1964CC842462B203005B60CD /* MjtRangeModel.h */,
+				1964CC852462B203005B60CD /* MjtRangeModel.m */,
+				1964CC872462B21C005B60CD /* MjtDetailRangeModel.h */,
+				1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1146,6 +1156,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit-resources.sh",
+				"${PODS_ROOT}/BRPickerView/BRPickerView/Base/BRPickerView.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
@@ -1154,6 +1165,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
@@ -1208,6 +1220,7 @@
 				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
 				1920C4AC24625ECD00796983 /* TZTestCell.m in Sources */,
 				1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */,
+				1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */,
 				1980FF5F2456C67E00652AAD /* MjtUserInfoEditVC.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
@@ -1267,6 +1280,7 @@
 				193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */,
 				19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */,
 				1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */,
+				1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,

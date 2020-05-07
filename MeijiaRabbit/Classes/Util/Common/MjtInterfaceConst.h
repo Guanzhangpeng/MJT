@@ -46,5 +46,11 @@
 //服务订单列表
 #define MJT_SERVICEORDER_LIST_PATH @"/userapi/userserviceorderlist.php"
 
+//获取服务分类
+#define MJT_SERVICEGET_PATH @"/userapi/getserviceclass.php"
+
+//新增服务单
+#define MJT_ADD_SERVICE_PATH @"/userapi/useraddorders.php"
+
 
 #endif /* MjtInterfaceConst_h */

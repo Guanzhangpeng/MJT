@@ -155,9 +155,12 @@
     if (parameters == nil){
            parameters = [[NSMutableDictionary alloc] init];
        }
-   NSString *des_Key = [self randomString];
+    NSString *des_Key = [self randomString];
    parameters[@"sign"] = [MjtSignHelper signWithPath:url];
-   parameters[@"mobile"] = [MjtUserInfo sharedUser].mobile;
+   if ([[MjtUserInfo sharedUser].mobile isEqualToString:@""] || [MjtUserInfo sharedUser].mobile != nil) {
+       parameters[@"mobile"] = [MjtUserInfo sharedUser].mobile;
+   }
+   
    
    //对参数进行加密
    NSString * public_key= [MjtSigner sharedSigner].publickey;
@@ -170,6 +173,7 @@
    NSMutableDictionary *param = [NSMutableDictionary dictionary];
    param[@"encrytoken"] = RSA_Key;
    param[@"param"] = securitString;
+    
     NSString *urlStr = [KURL(url)  stringByRemovingPercentEncoding];
     
     // 设置超时时间
@@ -184,9 +188,10 @@
     
     //如果报接受类型不一致请替换一致text/html或别的
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
-    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
     // 2.发送请求
-    [manager POST:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [manager POST:urlStr parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         // 在发送请求之前会自动调用这个block，需要在这个block中添加文件参数到formData中
         /**
@@ -205,15 +210,15 @@
         if(formDataArray==nil){
             return;
         }
-        NSDate *date = [NSDate date];
-       NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-
-       //利用日历对象从当前时间中获取到年月日。
-       NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-       NSDateComponents *dateComponents = [calendar components:unit fromDate:date];
+//        NSDate *date = [NSDate date];
+//       NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+//
+//       //利用日历对象从当前时间中获取到年月日。
+//       NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+//       NSDateComponents *dateComponents = [calendar components:unit fromDate:date];
        NSString *random = [[[[NSUUID UUID] UUIDString] substringToIndex:8] md5String];
 
-       NSString *imgPath = [NSString stringWithFormat:@"/image/%ld/%ld%ld/%ld/%@.jpg", dateComponents.year, dateComponents.month, dateComponents.day, dateComponents.hour, random];
+       NSString *imgPath = [NSString stringWithFormat:@"%@.jpg", random];
         
         NSArray *dataArray = formDataArray[@"file"];
         for (UIImage *image in dataArray) {
@@ -222,10 +227,22 @@
         }
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
-            success(responseObject);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
+            NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+             NSString *responseString = [DES3Util decryptUseDES:desString key:des_Key];
+             NSDictionary *responseDic = [responseString jsonValueDecoded];
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [MBProgressHUD wj_showPlainText:responseDic[@"msg"] view:window];
+                 });
+            success(responseDic);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
             failure(error);
         }
     }];

@@ -9,6 +9,9 @@
 #import "MjtFindServiceVC.h"
 #import "MjtFindServiceCell.h"
 #import "MjtPublishServiceVC.h"
+#import "MJExtension.h"
+#import "MjtRangeModel.h"
+#import "BRAddressModel.h"
 @interface MjtFindServiceVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIImageView *adImgView;
@@ -24,6 +27,7 @@ static NSString *serviceID = @"MjtFindServiceCell";
     [self _setup];
     [self _setupSubviews];
 }
+
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"找服务";
