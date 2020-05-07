@@ -26,6 +26,14 @@ static NSString *cellID = @"ServiceID";
     [super viewDidLoad];
     [self _setup];
     [self _setupSubviews];
+}
+
+#pragma mark - JXCategoryListContentViewDelegate
+- (UIView *)listView {
+    return self.view;
+}
+-(void)setOrderType:(MJTServiceOrderType)orderType{
+    _orderType = orderType;
     [self _loadData];
 }
 
@@ -43,14 +51,14 @@ static NSString *cellID = @"ServiceID";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"userid"] = [MjtUserInfo sharedUser].ID;
     param[@"get_type"] = [NSString stringWithFormat:@"%lu",(unsigned long)self.orderType];//获取类型(1:全部，2：待付款，3：待开工，4：待验收，5：待评价)
-    
+    MJTLog(@"==================%ld",self.orderType);
     [NetBaseTool postWithUrl:MJT_SERVICEORDER_LIST_PATH params:param decryptResponse:NO showHud:NO success:^(id responseDict) {
         if ([responseDict[@"status"] intValue] == 200) {
             self.dataSource = [MjtServiceModel mj_objectArrayWithKeyValuesArray:responseDict[@"data"]];
             [self.tableview reloadData];
         }
     } failure:^(NSError *error) {
-        
+
     }];
 }
 - (void)_loadNewData{
@@ -84,50 +92,5 @@ static NSString *cellID = @"ServiceID";
 //        [_tableview.mj_header beginRefreshing];
     }
     return _tableview;
-}
-@end
-
-@implementation MjtServiceAllVC
--(MJTServiceOrderType)orderType{
-    return MJTServiceOrderTypeAll;
-}
--(void)viewDidLoad{
-    [super viewDidLoad];
-}
-@end
-
-@implementation MjtServicePayingVC
--(MJTServiceOrderType)orderType{
-    return MJTServiceOrderTypePaying;
-}
--(void)viewDidLoad{
-    [super viewDidLoad];
-}
-@end
-
-@implementation MjtServiceWorkingVC
--(MJTServiceOrderType)orderType{
-    return MJTServiceOrderTypeWorking;
-}
--(void)viewDidLoad{
-    [super viewDidLoad];
-}
-@end
-
-@implementation MjtServiceCheckingVC
--(MJTServiceOrderType)orderType{
-    return MJTServiceOrderTypeChecking;
-}
--(void)viewDidLoad{
-    [super viewDidLoad];
-}
-@end
-
-@implementation MjtServicePricingVC
--(MJTServiceOrderType)orderType{
-    return MJTServiceOrderTypePricing;
-}
--(void)viewDidLoad{
-    [super viewDidLoad];
 }
 @end

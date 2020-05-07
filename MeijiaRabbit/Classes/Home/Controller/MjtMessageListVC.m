@@ -21,7 +21,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.frame = CGRectMake(0.f, 0.f, ScreenWidth, ScreenHeight - 70.f - 64.f - 20.f);
+    self.tableView.frame = CGRectMake(0.f, 0.f, ScreenWidth, ScreenHeight);
     self.tableView.estimatedRowHeight = 165;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight=UITableViewAutomaticDimension;
@@ -35,7 +35,10 @@
 {
     return nil;
 }
-
+#pragma mark - JXCategoryListContentViewDelegate
+- (UIView *)listView {
+    return self.view;
+}
 #pragma mark -- 懒加载
 -(NSMutableArray *)messageArray{
     if (!_messageArray) {

@@ -7,56 +7,51 @@
 //
 
 #import "MjtMessageBaseVC.h"
-#import "ZPSegmentView.h"
-#import "MjtSysMessageVC.h"
-#import "MjtOrderMessageVC.h"
-@interface MjtMessageBaseVC ()
-@property (nonatomic, strong) ZPSegmentBarStyle *style;
-@property (nonatomic, strong) ZPSegmentView *segmentView;
+#import "MjtMessageListVC.h"
+#import "JXCategoryView.h"
+@interface MjtMessageBaseVC ()<JXCategoryListContainerViewDelegate>
+@property (nonatomic, strong) JXCategoryTitleView *myCategoryView;
 @end
 
 @implementation MjtMessageBaseVC
 
 - (void)viewDidLoad {
+    if (self.titles == nil) {
+        self.titles = @[@"系统消息",@"服务消息"];
+    }
     [super viewDidLoad];
     [self _setup];
-    [self _setupHeadView];
+    self.myCategoryView.titles = self.titles;
+    //    self.myCategoryView.titleSelectedColor = MJTGlobalMainColor;
+    self.myCategoryView.backgroundColor = [UIColor whiteColor];
+    self.myCategoryView.titleColorGradientEnabled = YES;
+    
+    JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
+    lineView.indicatorWidth = 20;//JXCategoryViewAutomaticDimension;
+//    lineView.lineStyle = JXCategoryIndicatorLineStyle_Lengthen;
+    self.myCategoryView.indicators = @[lineView];
 }
 
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"消息中心";
 }
-#pragma mark -- setup headView
-- (void)_setupHeadView{
-    ZPSegmentBarStyle * style=[[ZPSegmentBarStyle alloc] init];
-    style.titleViewBG=[UIColor whiteColor];//导航条背景颜色,默认为紫色;
-    style.normalColor = [UIColor blackColor];
-    style.selecteColor = MJTGlobalMainColor;
-    style.isScrollEnabled = NO;
-    style.isShowBottomLine = YES;
-    style.bottomLineColor = MJTGlobalMainColor;
-//    style.isShowImage = YES;
-//    style.imageNames = @[@"message_sys",@"message_tz"];
-//    style.selectedImageNames = @[@"message_sys_h",@"message_tz_h"];
-//    style.imageSize = CGSizeMake(40.f, 40.f);
-    style.segmentBarHeight = 44.f;
-    style.isNeedScale = NO;
-    style.isShowDot = YES;
-    style.titleHeight = 44.f;
-    style.isShowCover = NO;
-    style.titleFont = [UIFont systemFontOfSize:16];
-    style.dotStates = @[@NO,@NO];
-    
-    NSArray *titleArray = @[@"系统消息",@"服务消息"];
-    NSArray *childVCArray = @[[[MjtSysMessageVC alloc] init],[[MjtOrderMessageVC alloc] init]];
-    
-    ZPSegmentView * segmentView=[[ZPSegmentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [segmentView setupWithtitles:titleArray style:style childVcs:childVCArray parentVc:self];
-    [self.view addSubview:segmentView];
-    
-    self.style = style;
-    self.segmentView = segmentView;
-    
+
+- (JXCategoryTitleView *)myCategoryView {
+    return (JXCategoryTitleView *)self.categoryView;
+}
+
+- (JXCategoryBaseView *)preferredCategoryView {
+    return [[JXCategoryTitleView alloc] init];
+}
+#pragma mark - JXCategoryListContainerViewDelegate
+- (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
+    MjtMessageListVC *list = [[MjtMessageListVC alloc] init];
+//    list.orderType = index;
+    return list;
+}
+
+- (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
+    return self.titles.count;
 }
 @end

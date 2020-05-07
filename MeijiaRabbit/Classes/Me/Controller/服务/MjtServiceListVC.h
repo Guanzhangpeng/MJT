@@ -7,10 +7,10 @@
 // 服务列表
 
 #import <UIKit/UIKit.h>
-
+#import "ContentBaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MjtServiceListVC : MjtBaseViewController
+@interface MjtServiceListVC : ContentBaseViewController
 
 @end
 

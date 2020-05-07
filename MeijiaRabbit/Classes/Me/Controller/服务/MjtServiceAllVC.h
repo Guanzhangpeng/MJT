@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JXCategoryListContainerView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, MJTServiceOrderType) {
@@ -23,36 +23,7 @@ typedef NS_ENUM(NSUInteger, MJTServiceOrderType) {
     MJTServiceOrderTypePricing = 5
     
 };
-@interface MjtServiceBaseVC : MjtBaseViewController
-- (MJTServiceOrderType)orderType;
+@interface MjtServiceBaseVC : MjtBaseViewController<JXCategoryListContentViewDelegate>
+@property (nonatomic, assign) MJTServiceOrderType orderType;
 @end
-
-///全部
-@interface MjtServiceAllVC : MjtServiceBaseVC
-
-@end
-
-///代付款
-@interface MjtServicePayingVC : MjtServiceBaseVC
-
-@end
-
-///待开工
-@interface MjtServiceWorkingVC : MjtServiceBaseVC
-
-@end
-
-///待验收
-@interface MjtServiceCheckingVC : MjtServiceBaseVC
-
-@end
-
-///待评价
-@interface MjtServicePricingVC : MjtServiceBaseVC
-
-@end
-
-
-
-
 NS_ASSUME_NONNULL_END

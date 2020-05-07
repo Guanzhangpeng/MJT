@@ -62,8 +62,6 @@
 		193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */; };
 		193F27A3241765FA0000EB3B /* me_order.json in Resources */ = {isa = PBXBuildFile; fileRef = 193F27A2241765FA0000EB3B /* me_order.json */; };
 		193F27A924177C9D0000EB3B /* MjtMessageBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */; };
-		193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27AB24177E640000EB3B /* MjtSysMessageVC.m */; };
-		193F27AF24177E940000EB3B /* MjtOrderMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27AE24177E940000EB3B /* MjtOrderMessageVC.m */; };
 		193F27B2241786CC0000EB3B /* MjtMessageListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B1241786CC0000EB3B /* MjtMessageListVC.m */; };
 		193F27B82417877A0000EB3B /* XLBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B42417877A0000EB3B /* XLBaseTableController.m */; };
 		193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27B52417877A0000EB3B /* UIScrollView+EmptyDataSet.m */; };
@@ -81,6 +79,7 @@
 		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
 		1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC852462B203005B60CD /* MjtRangeModel.m */; };
 		1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */; };
+		1964CCB424640F16005B60CD /* ContentBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCB324640F16005B60CD /* ContentBaseViewController.m */; };
 		1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DF9F244D523800C1D65C /* OttoFPSButton.m */; };
 		1980FF47245596C800652AAD /* RegularHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF45245596C700652AAD /* RegularHelp.m */; };
 		1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */; };
@@ -241,10 +240,6 @@
 		193F27A2241765FA0000EB3B /* me_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me_order.json; sourceTree = "<group>"; };
 		193F27A724177C9D0000EB3B /* MjtMessageBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageBaseVC.h; sourceTree = "<group>"; };
 		193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageBaseVC.m; sourceTree = "<group>"; };
-		193F27AA24177E640000EB3B /* MjtSysMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSysMessageVC.h; sourceTree = "<group>"; };
-		193F27AB24177E640000EB3B /* MjtSysMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSysMessageVC.m; sourceTree = "<group>"; };
-		193F27AD24177E940000EB3B /* MjtOrderMessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtOrderMessageVC.h; sourceTree = "<group>"; };
-		193F27AE24177E940000EB3B /* MjtOrderMessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtOrderMessageVC.m; sourceTree = "<group>"; };
 		193F27B0241786CC0000EB3B /* MjtMessageListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageListVC.h; sourceTree = "<group>"; };
 		193F27B1241786CC0000EB3B /* MjtMessageListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageListVC.m; sourceTree = "<group>"; };
 		193F27B42417877A0000EB3B /* XLBaseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLBaseTableController.m; sourceTree = "<group>"; };
@@ -278,6 +273,8 @@
 		1964CC852462B203005B60CD /* MjtRangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtRangeModel.m; sourceTree = "<group>"; };
 		1964CC872462B21C005B60CD /* MjtDetailRangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDetailRangeModel.h; sourceTree = "<group>"; };
 		1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDetailRangeModel.m; sourceTree = "<group>"; };
+		1964CCB224640F16005B60CD /* ContentBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentBaseViewController.h; sourceTree = "<group>"; };
+		1964CCB324640F16005B60CD /* ContentBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBaseViewController.m; sourceTree = "<group>"; };
 		1974DF9E244D523800C1D65C /* OttoFPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoFPSButton.h; sourceTree = "<group>"; };
 		1974DF9F244D523800C1D65C /* OttoFPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoFPSButton.m; sourceTree = "<group>"; };
 		1980FF45245596C700652AAD /* RegularHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularHelp.m; sourceTree = "<group>"; };
@@ -468,10 +465,6 @@
 				191D59B724111327005632D0 /* HomeViewController.m */,
 				193F27A724177C9D0000EB3B /* MjtMessageBaseVC.h */,
 				193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */,
-				193F27AA24177E640000EB3B /* MjtSysMessageVC.h */,
-				193F27AB24177E640000EB3B /* MjtSysMessageVC.m */,
-				193F27AD24177E940000EB3B /* MjtOrderMessageVC.h */,
-				193F27AE24177E940000EB3B /* MjtOrderMessageVC.m */,
 				193F27B0241786CC0000EB3B /* MjtMessageListVC.h */,
 				193F27B1241786CC0000EB3B /* MjtMessageListVC.m */,
 			);
@@ -933,6 +926,8 @@
 		1980FF602456E89800652AAD /* 服务 */ = {
 			isa = PBXGroup;
 			children = (
+				1964CCB224640F16005B60CD /* ContentBaseViewController.h */,
+				1964CCB324640F16005B60CD /* ContentBaseViewController.m */,
 				1980FF622456E89800652AAD /* MjtServiceListVC.h */,
 				1980FF632456E89800652AAD /* MjtServiceListVC.m */,
 				1980FF612456E89800652AAD /* MjtServiceAllVC.h */,
@@ -1217,14 +1212,12 @@
 				193F279824152D3B0000EB3B /* JFCSConfiguration.m in Sources */,
 				19B3EDCA2451C38B00251AFD /* RSAUtil.m in Sources */,
 				193F2766241298B80000EB3B /* MjtBaseButton.m in Sources */,
-				193F27AC24177E640000EB3B /* MjtSysMessageVC.m in Sources */,
 				1920C4AC24625ECD00796983 /* TZTestCell.m in Sources */,
 				1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */,
 				1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */,
 				1980FF5F2456C67E00652AAD /* MjtUserInfoEditVC.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
-				193F27AF24177E940000EB3B /* MjtOrderMessageVC.m in Sources */,
 				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,
 				191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */,
 				193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */,
@@ -1277,6 +1270,7 @@
 				191D59E82411197A005632D0 /* UITabBar+Extension.m in Sources */,
 				191D59B824111327005632D0 /* HomeViewController.m in Sources */,
 				191D59E42411197A005632D0 /* UIButton+touch.m in Sources */,
+				1964CCB424640F16005B60CD /* ContentBaseViewController.m in Sources */,
 				193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */,
 				19D609DF2422282600DE37B8 /* MjtAddressListVC.m in Sources */,
 				1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */,
