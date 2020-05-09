@@ -53,4 +53,8 @@
 #define MJT_ADD_SERVICE_PATH @"/userapi/useraddorders.php"
 
 
+// 找服务列表
+#define MJT_Find_SERVICE_List_PATH @"/userapi/findserviceclass.php"
+
+
 #endif /* MjtInterfaceConst_h */

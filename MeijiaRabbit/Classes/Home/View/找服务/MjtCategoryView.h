@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JXCategoryListContainerView.h"
 NS_ASSUME_NONNULL_BEGIN
-
-@interface MjtCategoryView : UIView
-
+@class MjtFindServiceModel;
+@interface MjtCategoryView : UIView<JXCategoryListContentViewDelegate>
+@property (nonatomic, strong) MjtFindServiceModel *model;
+@property (nonatomic, strong) void(^tapAction)();
 @end
 
 NS_ASSUME_NONNULL_END

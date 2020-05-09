@@ -327,7 +327,7 @@
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
     if([[URL scheme] isEqualToString:@"Lience"]){
         MjtWebView *webView = [[MjtWebView alloc] init];
-        webView.url = @"https://www.baidu.com";
+        webView.urlString = @"https://www.baidu.com";
         [self.navigationController pushViewController:webView animated:YES];
         return NO;
     }

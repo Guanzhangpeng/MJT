@@ -7,17 +7,18 @@
 //
 
 #import "MjtFindServiceCell.h"
-
+#import "MjtFindServiceModel.h"
+#import "UIImageView+WebCache.h"
 @interface MjtFindServiceCell()
 @property (weak, nonatomic) IBOutlet UIImageView *iconImg;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 
 @end
 @implementation MjtFindServiceCell
--(void)setDict:(NSDictionary *)dict{
-    _dict = dict;
-    self.titleLbl.text = dict[@"title"];
-    self.iconImg.image = [UIImage imageNamed:dict[@"icon"]];
+-(void)setModel:(MjtFindServiceModel *)model{
+    _model = model;
+    self.titleLbl.text = model.name;
+    [self.iconImg sd_setImageWithURL: [NSURL URLWithString:model.icon]];
 }
 
 @end

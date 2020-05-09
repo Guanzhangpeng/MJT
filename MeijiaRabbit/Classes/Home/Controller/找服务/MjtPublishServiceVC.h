@@ -9,9 +9,9 @@
 #import "MjtBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class MjtFindServiceModel;
 @interface MjtPublishServiceVC : MjtBaseViewController
-
+@property (nonatomic, strong) MjtFindServiceModel *serviceModel;
 @end
 
 NS_ASSUME_NONNULL_END

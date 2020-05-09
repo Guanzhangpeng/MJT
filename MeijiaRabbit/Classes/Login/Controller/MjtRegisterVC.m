@@ -239,7 +239,6 @@
     param[@"vcode"] = self.codeTxt.text;
     param[@"input_password"] = self.pwdTxt.text;
     param[@"confirm_password"] = self.pwdAgainTxt.text;
-    param[@"phone_type"] = @"2";//手机类型(1:安卓，2:苹果)
     WeakSelf;
    [NetBaseTool postWithUrl:MJT_REGISTER_PATH params:param decryptResponse:YES showHud:YES  success:^(id responseDict) {
        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -302,7 +301,7 @@
 -(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
     if([[URL scheme] isEqualToString:@"Lience"]){
         MjtWebView *webView = [[MjtWebView alloc] init];
-        webView.url = @"https://www.baidu.com";
+        webView.urlString = @"https://www.baidu.com";
         [self.navigationController pushViewController:webView animated:YES];
         return NO;
     }else     if([[URL scheme] isEqualToString:@"baidu"]){

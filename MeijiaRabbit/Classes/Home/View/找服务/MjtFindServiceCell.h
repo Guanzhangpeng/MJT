@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MjtFindServiceModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtFindServiceCell : UICollectionViewCell
-@property (nonatomic, strong) NSDictionary *dict;
+@property (nonatomic, strong) MjtFindServiceModel *model;
 @end
 
 NS_ASSUME_NONNULL_END

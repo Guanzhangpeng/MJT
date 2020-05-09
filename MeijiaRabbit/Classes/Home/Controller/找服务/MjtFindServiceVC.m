@@ -16,16 +16,20 @@
 #import "Masonry.h"
 #import "MjtCategoryView.h"
 #import "MjtBaseButton.h"
+#import "MjtFindServiceModel.h"
+#import "MJExtension.h"
 #define Margin (20)
 #define ItemH (60)
 @interface MjtFindServiceVC ()<UICollectionViewDelegate,UICollectionViewDataSource,JXCategoryListContainerViewDelegate,JXCategoryViewDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIImageView *adImgView;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray<MjtFindServiceModel *> *dataArray;
+@property (nonatomic, strong) NSMutableArray<MjtFindServiceModel *> *dataArray2;
+@property (nonatomic, strong) NSMutableArray *titles;
+@property (nonatomic, strong) NSString *topTitle;
+@property (nonatomic, strong) NSString *bottomTitle;
 @property (nonatomic, strong) UIView *middleView;
-
-@property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, strong) JXCategoryTitleView *categoryView;
 @property (nonatomic, strong) JXCategoryListContainerView *listContainerView;
 
@@ -35,12 +39,30 @@
 static NSString *serviceID = @"MjtFindServiceCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titles = @[@"新房装修",@"旧房改造",@"阳台",@"卫生间",@"沙发",@"厨房"];
     [self _setup];
-    [self _setupSubviews];
-    
+    [self _loadData];
 }
 
+- (void)_loadData{
+    WeakSelf;
+    [NetBaseTool postWithUrl:MJT_Find_SERVICE_List_PATH params:nil decryptResponse:NO showHud:NO success:^(NSArray *responseArray) {
+        if (responseArray.count == 2) {
+            self.topTitle =  responseArray[0][@"title"];
+            self.bottomTitle = responseArray[1][@"title"];
+            weakSelf.dataArray = [MjtFindServiceModel mj_objectArrayWithKeyValuesArray:responseArray[0][@"cates"]];
+            weakSelf.dataArray2 = [MjtFindServiceModel mj_objectArrayWithKeyValuesArray:responseArray[1][@"cates"]];
+            weakSelf.titles = [NSMutableArray array];
+            for (MjtFindServiceModel *model in weakSelf.dataArray2) {
+                [weakSelf.titles addObject:model.name];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [self _setupSubviews];
+        });
+    } failure:^(NSError *error) {
+        
+    }];
+}
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"找服务";
@@ -175,38 +197,37 @@ static NSString *serviceID = @"MjtFindServiceCell";
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MjtFindServiceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:serviceID forIndexPath:indexPath];
     cell.backgroundColor = MJTRandomColor;
-    cell.dict = self.dataArray[indexPath.item];
+    cell.model = self.dataArray[indexPath.item];
     
     return cell;
 }
 #pragma mark -- UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = self.dataArray[indexPath.item];
-    MJTLog(dict[@"title"]);
-    
-    [self.navigationController pushViewController:[MjtPublishServiceVC new] animated:YES];
+    MjtFindServiceModel *model = self.dataArray[indexPath.item];
+    MJTLog(@"%@",model.name);
+    MjtPublishServiceVC *publishVC = [[MjtPublishServiceVC alloc] init];
+    publishVC.serviceModel = model;
+    [self.navigationController pushViewController:publishVC animated:YES];
 }
 
 #pragma mark - JXCategoryListContainerViewDelegate
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
+    MjtFindServiceModel *model = self.dataArray2[index];
     MjtCategoryView *categoryView = [[MjtCategoryView alloc] init];
+    categoryView.model = model;
+    WeakSelf;
+    categoryView.tapAction = ^{
+        MjtPublishServiceVC *publishVC = [[MjtPublishServiceVC alloc] init];
+        publishVC.serviceModel = model;
+        [self.navigationController pushViewController:publishVC animated:YES];
+    };
     return categoryView;
 }
 
 - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
     return self.titles.count;
 }
-#pragma mark - JXCategoryViewDelegate
 
-- (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index {
-    //侧滑手势处理
-    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
-//    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
-
-- (void)categoryView:(JXCategoryBaseView *)categoryView didScrollSelectedItemAtIndex:(NSInteger)index {
-//    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
 #pragma mark -- 懒加载
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
@@ -234,11 +255,15 @@ static NSString *serviceID = @"MjtFindServiceCell";
 {
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
-        NSString *fileName = [[NSBundle mainBundle] pathForResource:@"part.json" ofType:nil];
-        NSData *data =  [NSData dataWithContentsOfFile:fileName];
-        _dataArray =  [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     }
     return _dataArray;
+}
+- (NSMutableArray *)dataArray2
+{
+    if (!_dataArray2) {
+        _dataArray2 = [NSMutableArray array];
+    }
+    return _dataArray2;
 }
 
 - (JXCategoryTitleView *)categoryView {

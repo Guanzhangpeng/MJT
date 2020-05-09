@@ -81,6 +81,7 @@
 		1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */; };
 		1964CCB424640F16005B60CD /* ContentBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCB324640F16005B60CD /* ContentBaseViewController.m */; };
 		1964CCB724643436005B60CD /* MjtCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCB624643436005B60CD /* MjtCategoryView.m */; };
+		1964CCBD246507F9005B60CD /* MjtFindServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCBC246507F9005B60CD /* MjtFindServiceModel.m */; };
 		1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1974DF9F244D523800C1D65C /* OttoFPSButton.m */; };
 		1980FF47245596C800652AAD /* RegularHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF45245596C700652AAD /* RegularHelp.m */; };
 		1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980FF492455A9E200652AAD /* MBProgressHUD+WJExtension.m */; };
@@ -278,6 +279,8 @@
 		1964CCB324640F16005B60CD /* ContentBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBaseViewController.m; sourceTree = "<group>"; };
 		1964CCB524643436005B60CD /* MjtCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtCategoryView.h; sourceTree = "<group>"; };
 		1964CCB624643436005B60CD /* MjtCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtCategoryView.m; sourceTree = "<group>"; };
+		1964CCBB246507F9005B60CD /* MjtFindServiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtFindServiceModel.h; sourceTree = "<group>"; };
+		1964CCBC246507F9005B60CD /* MjtFindServiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtFindServiceModel.m; sourceTree = "<group>"; };
 		1974DF9E244D523800C1D65C /* OttoFPSButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OttoFPSButton.h; sourceTree = "<group>"; };
 		1974DF9F244D523800C1D65C /* OttoFPSButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OttoFPSButton.m; sourceTree = "<group>"; };
 		1980FF45245596C700652AAD /* RegularHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularHelp.m; sourceTree = "<group>"; };
@@ -479,6 +482,8 @@
 			children = (
 				19C89286245FD1ED0052813B /* part.json */,
 				193F276224128D0B0000EB3B /* guide.json */,
+				1964CCBB246507F9005B60CD /* MjtFindServiceModel.h */,
+				1964CCBC246507F9005B60CD /* MjtFindServiceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1224,6 +1229,7 @@
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
 				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,
+				1964CCBD246507F9005B60CD /* MjtFindServiceModel.m in Sources */,
 				191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */,
 				193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */,
 				19B3EDB92450277C00251AFD /* HttpTool.m in Sources */,

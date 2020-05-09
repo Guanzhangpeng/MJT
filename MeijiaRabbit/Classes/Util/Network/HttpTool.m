@@ -31,7 +31,7 @@
     if ([[MjtUserInfo sharedUser].mobile isEqualToString:@""] || [MjtUserInfo sharedUser].mobile != nil) {
         parameters[@"mobile"] = [MjtUserInfo sharedUser].mobile;
     }
-    
+    parameters[@"phone_type"] = @"2";//手机类型(1:安卓，2:苹果)
     
     //对参数进行加密
     NSString * public_key= [MjtSigner sharedSigner].publickey;

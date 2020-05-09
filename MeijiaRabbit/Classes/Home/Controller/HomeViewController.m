@@ -21,7 +21,7 @@
 #import "MjtDiscountListVC.h"
 #import "NSDictionary+YYAdd.h"
 #import "MjtFindServiceVC.h"
-
+#import "MjtWebView.h"
 #define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
 
 @interface HomeViewController ()<JFCSTableViewControllerDelegate>
@@ -59,7 +59,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // 初始化
     [self _setup];
     
@@ -230,8 +230,12 @@
 - (void)_setupFitmentFlowView{
     MjtGuideView *guidView = [[MjtGuideView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.mainFunView.frame) + 2*MJTGlobalViewLeftInset, ScreenWidth, 100)];
 //    guidView.backgroundColor = MJTRandomColor;
+    WeakSelf;
     guidView.detailBlock = ^{
         MJTLog(@"装修流程");
+        MjtWebView *webView = [[MjtWebView alloc] init];
+       webView.urlString = @"https://www.baidu.com";
+       [self.navigationController pushViewController:webView animated:YES];
     };
     [self.scrollView addSubview:guidView];
     self.guideView = guidView;

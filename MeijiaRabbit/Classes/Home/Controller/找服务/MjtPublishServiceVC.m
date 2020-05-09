@@ -14,6 +14,7 @@
 #import "BRPickerView.h"
 #import "MjtAddressListVC.h"
 #import "YWAddressInfoModel.h"
+#import "MjtFindServiceModel.h"
 #define HWStatusPhotoWH  (([UIScreen mainScreen].bounds.size.width - HWStatusPhotoMargin * 4) / 3)
 #define HWStatusPhotoMargin (15)
 #define HWStatusPhotoMaxCol(count) ((count==4)?2:3)
@@ -38,6 +39,11 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     [self _setup];
     [self _setupSubviews];
     [self _loadData];
+}
+-(void)setServiceModel:(MjtFindServiceModel *)serviceModel{
+    _serviceModel = serviceModel;
+    self.service_id = serviceModel.pid;
+    self.service_sub_id = serviceModel.ID;
 }
 - (void)_loadData{
     [NetBaseTool postWithUrl:MJT_SERVICEGET_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {
@@ -142,6 +148,7 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     }];
     
     UILabel *serviceLbl = [[UILabel alloc] init];
+    serviceLbl.text = self.serviceModel.name;
     serviceLbl.numberOfLines = 0;
     serviceLbl.textColor = MJTColorFromHexString(@"#999999");
     serviceLbl.font = [UIFont systemFontOfSize:12];
