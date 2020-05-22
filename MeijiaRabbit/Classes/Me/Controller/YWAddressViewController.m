@@ -7,7 +7,7 @@
 //
 
 #import "YWAddressViewController.h"
-
+#import "UIViewController+BackButtonHandler.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import <ContactsUI/ContactsUI.h>
 #import "YWTool.h"
@@ -44,15 +44,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initUserDataSource];
     [self initUserInterface];
     
+}
+-(BOOL)navigationShouldPopOnBackButton{
+    return YES;
 }
 -(void)setUI{
     self.addTitleAddressView = [[ZHFAddTitleAddressView alloc]init];
     self.addTitleAddressView.title = @"选择地址";
     self.addTitleAddressView.delegate1 = self;
-    self.addTitleAddressView.defaultHeight = 350;
+    self.addTitleAddressView.defaultHeight = ScreenWidth;
     self.addTitleAddressView.titleScrollViewH = 37;
     if (self.isEditing) {
         self.addTitleAddressView.isChangeAddress = true;
@@ -82,7 +86,6 @@
     [self setUI];
 }
 
-
 - (void)initUserDataSource {
     
     _dataSource = @[@[@"收货人", @"联系电话", @"所在地区"],
@@ -104,6 +107,7 @@
 }
 //*** 导航栏右上角 - 保存按钮 ***
 - (void)navRightItem {
+    [self.view endEditing:YES];
     YWAddressTableViewCell1 *nameCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     YWAddressTableViewCell1 *phoneCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     YWAddressTableViewCell3 *defaultCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
@@ -114,19 +118,19 @@
     _model.default_address = defaultCell.rightSwitch.isOn ? @"1" : @"2";
 
     if (_model.name.length == 0) {
-        [YWTool showAlterWithViewController:self Message:@"请填写收货人姓名！"];
+        [MBProgressHUD wj_showPlainText:@"请填写收货人姓名！" view:self.view];
         return;
     } else if (_model.phone.length == 0) {
-        [YWTool showAlterWithViewController:self Message:@"请填写收货人电话！"];
+        [MBProgressHUD wj_showPlainText:@"请填写收货人电话！" view:self.view];
         return;
     } else if (_model.phone.length != 11) {
-        [YWTool showAlterWithViewController:self Message:@"手机号为11位，如果为座机请加上区号"];
+        [MBProgressHUD wj_showPlainText:@"请输入合法的手机号" view:self.view];
         return;
     } else if ([_model.address isEqualToString:@"请选择"]) {
-        [YWTool showAlterWithViewController:self Message:@"请选择所在地区"];
+         [MBProgressHUD wj_showPlainText:@"请选择所在地区" view:self.view];
         return;
     } else if (_model.house_number.length == 0 || _model.house_number.length < 5) {
-        [YWTool showAlterWithViewController:self Message:@"请填写详细地址，不少与5字"];
+         [MBProgressHUD wj_showPlainText:@"请填写详细地址，不少与5字" view:self.view];
         return;
     }
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
@@ -228,10 +232,10 @@
 #pragma mark *** UITableViewDataSource & UITableViewDelegate ***
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    if ([_model.default_address isEqualToString:@"1"]) {
-        // 如果该地址已经是默认地址，则无需再显示 "设为默认" 这个按钮，即隐藏
-        return 1;
-    }
+//    if ([_model.default_address isEqualToString:@"1"]) {
+//        // 如果该地址已经是默认地址，则无需再显示 "设为默认" 这个按钮，即隐藏
+//        return 1;
+//    }
     return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -283,6 +287,11 @@
         YWAddressTableViewCell3 *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER3 forIndexPath:indexPath];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.leftStr = _dataSource[indexPath.section][indexPath.row];
+
+        if ([_model.default_address isEqualToString:@"1"]) {
+            [cell.rightSwitch setOn:YES];
+        }
+        
         return cell;
     }
 }
@@ -326,6 +335,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.tableFooterView = [UIView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         // 注册cell

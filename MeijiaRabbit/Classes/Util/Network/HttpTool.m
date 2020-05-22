@@ -27,7 +27,7 @@
         parameters = [[NSMutableDictionary alloc] init];
     }
     NSString *des_Key = [self randomString];
-    parameters[@"sign"] = [MjtSignHelper signWithPath:URLString];
+//    parameters[@"sign"] = [MjtSignHelper signWithPath:URLString];
     if ([[MjtUserInfo sharedUser].mobile isEqualToString:@""] || [MjtUserInfo sharedUser].mobile != nil) {
         parameters[@"mobile"] = [MjtUserInfo sharedUser].mobile;
     }

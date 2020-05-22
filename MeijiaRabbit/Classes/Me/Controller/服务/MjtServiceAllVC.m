@@ -8,7 +8,6 @@
 
 #import "MjtServiceAllVC.h"
 #import "MjtServiceCell.h"
-#import "MjtServiceCell.h"
 #import "MJRefresh.h"
 #import "MjtServiceModel.h"
 #import "MJExtension.h"

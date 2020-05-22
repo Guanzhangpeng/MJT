@@ -52,7 +52,7 @@ static NSString *cellID = @"addressID";
 - (void)_loadData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"userid"] = [MjtUserInfo sharedUser].ID;
-    [NetBaseTool postWithUrl:MJT_ADDRESSLIST_PATH params:param decryptResponse:NO showHud:YES success:^(id responseDict) {
+    [NetBaseTool postWithUrl:MJT_ADDRESSLIST_PATH params:param decryptResponse:NO showHud:NO success:^(id responseDict) {
         if ([responseDict[@"status"] intValue] == 200) {
             self.dataSource = [YWAddressInfoModel mj_objectArrayWithKeyValuesArray:responseDict[@"data"]];
             [self.tableView reloadData];
@@ -116,7 +116,7 @@ static NSString *cellID = @"addressID";
     };
     cell.editAddressAction = ^{
         YWAddressViewController *addressVC = [[YWAddressViewController alloc] init];
-        addressVC.model = addressModel;
+        addressVC.model = [addressModel copy];
         addressVC.isEditing = YES;
         addressVC.titleIDMarr = [[NSMutableArray alloc] initWithObjects:addressModel.province_code,addressModel.city_code,addressModel.area_code,addressModel.street_code, nil];
         // 保存后的地址回调

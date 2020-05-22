@@ -35,6 +35,7 @@
 		1920C4BB2462927200796983 /* MjtServiceRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920C4B92462927200796983 /* MjtServiceRecommendCell.m */; };
 		1920C4BC2462927200796983 /* MjtServiceRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1920C4BA2462927200796983 /* MjtServiceRecommendCell.xib */; };
 		19341B512428835D00CB82E0 /* me_home.json in Resources */ = {isa = PBXBuildFile; fileRef = 19341B502428835D00CB82E0 /* me_home.json */; };
+		193BC095246E99220014F63B /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 193BC094246E99220014F63B /* UIViewController+BackButtonHandler.m */; };
 		193F275524122EC90000EB3B /* MJTConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275424122EC80000EB3B /* MJTConstant.m */; };
 		193F275824125CE80000EB3B /* MjtView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275724125CE80000EB3B /* MjtView.m */; };
 		193F275B2412653B0000EB3B /* MjtTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F275A2412653B0000EB3B /* MjtTipView.m */; };
@@ -190,6 +191,8 @@
 		1920C4B92462927200796983 /* MjtServiceRecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceRecommendCell.m; sourceTree = "<group>"; };
 		1920C4BA2462927200796983 /* MjtServiceRecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtServiceRecommendCell.xib; sourceTree = "<group>"; };
 		19341B502428835D00CB82E0 /* me_home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = me_home.json; sourceTree = "<group>"; };
+		193BC093246E99220014F63B /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
+		193BC094246E99220014F63B /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		193F275224122B290000EB3B /* MeijiaRabbit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeijiaRabbit.pch; sourceTree = "<group>"; };
 		193F275324122EC80000EB3B /* MJTConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJTConstant.h; sourceTree = "<group>"; };
 		193F275424122EC80000EB3B /* MJTConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJTConstant.m; sourceTree = "<group>"; };
@@ -558,6 +561,8 @@
 		191D59A424111154005632D0 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				193BC093246E99220014F63B /* UIViewController+BackButtonHandler.h */,
+				193BC094246E99220014F63B /* UIViewController+BackButtonHandler.m */,
 				193F279F24152EF70000EB3B /* UIViewController+LL_Utils.h */,
 				193F27A024152EF70000EB3B /* UIViewController+LL_Utils.m */,
 				191D59DF2411197A005632D0 /* NSString+Extension.h */,
@@ -1226,6 +1231,7 @@
 				1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */,
 				1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */,
 				1980FF5F2456C67E00652AAD /* MjtUserInfoEditVC.m in Sources */,
+				193BC095246E99220014F63B /* UIViewController+BackButtonHandler.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
 				193F279124152D3B0000EB3B /* JFCSCityModel.m in Sources */,

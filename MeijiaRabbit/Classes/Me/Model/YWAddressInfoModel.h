@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface YWAddressInfoModel : NSObject
+@interface YWAddressInfoModel : NSObject<NSCopying>
 
 @property (nonatomic, copy) NSString * phone;            // 电话
 @property (nonatomic, copy) NSString * name;             // 姓名

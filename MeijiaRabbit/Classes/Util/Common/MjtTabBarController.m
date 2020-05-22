@@ -72,10 +72,6 @@
             [nav pushViewController:loginVc animated:YES];
             return false;
         }
-        
-        
-        
-        
     }
     return true;
 }

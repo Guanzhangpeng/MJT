@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *pid;
 @property (nonatomic, strong) NSString *icon;
-@property (nonatomic, strong) NSArray *imsges;
+@property (nonatomic, strong) NSArray *images;
 @end
 
 NS_ASSUME_NONNULL_END

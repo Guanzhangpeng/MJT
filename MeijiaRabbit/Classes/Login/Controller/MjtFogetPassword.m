@@ -83,6 +83,7 @@
       param[@"mobile"] = self.phoneTxt.text;
       param[@"code"] = self.codeTxt.text;
       param[@"password"] = self.passwordTxt.text;
+    
       
       WeakSelf;
      [NetBaseTool postWithUrl:MJT_PORGETPWD_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {

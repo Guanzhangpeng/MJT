@@ -191,11 +191,11 @@
 }
 - (void)_setupOrderView{
     
-    //我的订单
+    //姓名
    UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 100, 20)];
     titleLbl.font = [UIFont boldSystemFontOfSize:14];
     titleLbl.textColor = MJTColorFromHexString(@"#2A2000");
-   titleLbl.text = @"我的订单";
+   titleLbl.text = @"姓名";
    [self.headerView addSubview:titleLbl];
     
     //查看全部订单

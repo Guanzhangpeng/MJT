@@ -157,9 +157,10 @@
     MjtView *diyView = [[MjtView alloc] init];
     [mainfunView addSubview:diyView];
     [diyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.and.bottom.mas_equalTo(mainfunView);
+        make.top.mas_equalTo(mainfunView);
         make.left.mas_equalTo(2*MJTGlobalViewTopInset);
         make.right.mas_equalTo(mainfunView.mas_centerX).offset(-MJTGlobalViewLeftInset *0.5);
+        make.height.mas_equalTo(65);
     }];
     diyView.bgView.image = [UIImage imageNamed:@"home_diy_bg"];
     diyView.textLabel.text = @"DIY家装设计";
@@ -167,13 +168,36 @@
     diyView.detailtextLabel.textColor = MJTColorFromHexString(@"#5272C6");
     diyView.iconView.image = [UIImage imageNamed:@"home_diy"];
     [diyView.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(diyView).offset(-5);
-        make.right.mas_equalTo(diyView).offset(-5);
-        make.width.mas_equalTo(47);
-        make.height.mas_equalTo(51);
+       make.bottom.mas_equalTo(diyView).offset(-3);
+       make.right.mas_equalTo(diyView).offset(-3);
+       make.width.mas_equalTo(49);
+       make.height.mas_equalTo(47);
     }];
     diyView.clickBlock = ^{
         MJTLog(@"DIY点击");
+    };
+    
+    /// 人脸智能推荐
+    MjtView *recommendView = [[MjtView alloc] init];
+    [mainfunView addSubview:recommendView];
+    [recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+     make.bottom.mas_equalTo(mainfunView);
+       make.height.mas_equalTo(65);
+    make.right.mas_equalTo(mainfunView.mas_centerX).offset(-MJTGlobalViewLeftInset *0.5);
+       make.left.mas_equalTo(diyView.mas_left);
+    }];
+    recommendView.bgView.image = [UIImage imageNamed:@"home_recommend_bg"];
+    recommendView.textLabel.text = @"人脸智能推荐";
+    recommendView.detailtextLabel.textColor = MJTColorFromHexString(@"#5272C6");
+    recommendView.iconView.image = [UIImage imageNamed:@"home_recommend"];
+    [recommendView.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.bottom.mas_equalTo(recommendView).offset(-3);
+       make.right.mas_equalTo(recommendView).offset(-3);
+       make.width.mas_equalTo(49);
+       make.height.mas_equalTo(47);
+    }];
+    recommendView.clickBlock = ^{
+        MJTLog(@"智能推荐点击");
     };
     /// 找服务
      MjtView *serviceView = [[MjtView alloc] init];

@@ -59,9 +59,9 @@
 }
 -(void)setModel:(MjtFindServiceModel *)model{
     _model = model;
-    if (model.imsges.count == 2) {
-        [self.oldImg sd_setImageWithURL:[NSURL URLWithString:model.imsges[0]]];
-        [self.newdImg sd_setImageWithURL:[NSURL URLWithString:model.imsges[1]]];
+    if (model.images.count == 2) {
+        [self.oldImg sd_setImageWithURL:[NSURL URLWithString:model.images[0]]];
+        [self.newdImg sd_setImageWithURL:[NSURL URLWithString:model.images[1]]];
     }
 }
 - (void)tapClick{
