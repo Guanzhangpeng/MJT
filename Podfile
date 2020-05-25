@@ -22,4 +22,5 @@ target 'MeijiaRabbit' do
 #---------------图片 视频 选择器,支持多选
   pod 'TZImagePickerController'
   pod 'BRPickerView'
+  pod 'JPush'
 end

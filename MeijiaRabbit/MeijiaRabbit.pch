@@ -11,6 +11,8 @@
 
 #import "MJTConstant.h"
 
+#define APP_KEY_JPUSH @"74257ee43c8928e14c6d9599"
+#define CHANNEL_JPUSH @"Debug"
 #define DESKEY @"BJMJT88662020041"
 
 /// 屏幕尺寸相关

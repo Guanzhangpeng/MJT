@@ -22,6 +22,8 @@
 #import "NSDictionary+YYAdd.h"
 #import "MjtFindServiceVC.h"
 #import "MjtWebView.h"
+#import "MJTRecommendVC.h"
+#import "DDYCamera.h"
 #define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
 
 @interface HomeViewController ()<JFCSTableViewControllerDelegate>
@@ -116,11 +118,10 @@
 }
 
 - (void)_setupTopScrollAdView{
-  
   WMZBannerParam *param =  BannerParam()
-  .wFrameSet(CGRectMake(MJTGlobalViewLeftInset, 0, ScreenWidth - MJTGlobalViewLeftInset *2, 160))
+  .wFrameSet(CGRectMake(18, 0, ScreenWidth - 18 *2, 160))
   //传入数据
-  .wDataSet([self getData])
+  .wDataSet([self _getTopAdData])
     .wBannerControlImageSet(@"control_normal")
     .wBannerControlSelectImageSet(@"control_selected")
     .wBannerControlImageSizeSet(CGSizeMake(8, 8))
@@ -144,12 +145,31 @@
   ;
   self.topScrollAdView =  [[WMZBannerView alloc] initConfigureWithModel:param withView:self.scrollView];
 }
+- (void)recommendActon{
+     __weak __typeof (self)weakSelf = self;
+        [DDYCameraManager ddy_CameraAuthSuccess:^{
+            [DDYCameraManager ddy_MicrophoneAuthSuccess:^{
+                DDYCameraController *cameraVC = [[DDYCameraController alloc] init];
+                [cameraVC setTakePhotoBlock:^(UIImage *image, UIViewController *vc) {
+                    __strong __typeof (weakSelf)strongSelf = weakSelf;
+    //                strongSelf.imageView.image = image;
+                    [vc dismissViewControllerAnimated:YES completion:^{ }];
+                }];
+                [cameraVC setRecordVideoBlock:^(NSURL *videoURL, UIViewController *vc) {
+                    __strong __typeof (weakSelf)strongSelf = weakSelf;
+    //                [strongSelf.player playWithPath:videoURL.absoluteString];
+                    [vc dismissViewControllerAnimated:YES completion:^{ }];
+                }];
+                [self presentViewController:cameraVC animated:YES completion:^{ }];
+            } fail:^{NSLog(@"麦克风权限未开启");}];
+        } fail:^{NSLog(@"相机权限未开启");}];
+}
 ///主入口
 - (void)_setupMainFunView{
     WeakSelf;
     UIView *mainfunView;
     [self.scrollView addSubview:({
-         mainfunView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topScrollAdView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 140.f)];
+         mainfunView = [[UIView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.topScrollAdView.frame) + 20, ScreenWidth - 20, 145.f)];
         mainfunView;
     })];
     self.mainFunView = mainfunView;
@@ -170,8 +190,8 @@
     [diyView.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
        make.bottom.mas_equalTo(diyView).offset(-3);
        make.right.mas_equalTo(diyView).offset(-3);
-       make.width.mas_equalTo(49);
-       make.height.mas_equalTo(47);
+       make.width.mas_equalTo(40);
+       make.height.mas_equalTo(38);
     }];
     diyView.clickBlock = ^{
         MJTLog(@"DIY点击");
@@ -193,11 +213,12 @@
     [recommendView.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
        make.bottom.mas_equalTo(recommendView).offset(-3);
        make.right.mas_equalTo(recommendView).offset(-3);
-       make.width.mas_equalTo(49);
-       make.height.mas_equalTo(47);
+       make.width.mas_equalTo(40);
+       make.height.mas_equalTo(38);
     }];
     recommendView.clickBlock = ^{
-        MJTLog(@"智能推荐点击");
+        [weakSelf recommendActon];
+//        [weakSelf.navigationController pushViewController:[MJTRecommendVC new] animated:YES];
     };
     /// 找服务
      MjtView *serviceView = [[MjtView alloc] init];
@@ -214,8 +235,8 @@
     [serviceView.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(serviceView).offset(-3);
         make.right.mas_equalTo(serviceView).offset(-3);
-        make.width.mas_equalTo(49);
-        make.height.mas_equalTo(47);
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(38);
     }];
     serviceView.clickBlock = ^{
         MJTLog(@"找服务点击");
@@ -240,8 +261,8 @@
     [guaranteeView.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(guaranteeView).offset(-3);
         make.right.mas_equalTo(guaranteeView).offset(-3);
-        make.width.mas_equalTo(47);
-        make.height.mas_equalTo(47);
+        make.width.mas_equalTo(40);
+        make.height.mas_equalTo(40);
     }];
     guaranteeView.clickBlock = ^{
         MJTLog(@"施工保障点击");
@@ -258,7 +279,7 @@
     guidView.detailBlock = ^{
         MJTLog(@"装修流程");
         MjtWebView *webView = [[MjtWebView alloc] init];
-       webView.urlString = @"https://www.baidu.com";
+       webView.urlString = @"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47809&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#s_97377";
        [self.navigationController pushViewController:webView animated:YES];
     };
     [self.scrollView addSubview:guidView];
@@ -368,6 +389,11 @@
     
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(recommendView.frame) + 20);
     
+}
+- (NSArray *)_getTopAdData{
+    return @[@{@"icon":@"banner1"},
+    @{@"icon":@"banner2"},
+    @{@"icon":@"banner3"}];
 }
 - (NSArray*)getData{
     return @[

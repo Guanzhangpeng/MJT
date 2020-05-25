@@ -75,6 +75,12 @@
 		193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DC241A27610000EB3B /* MjtSettingSectionModel.m */; };
 		193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DF241A27AE0000EB3B /* MjtSettingCell.m */; };
 		193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27E2241A29A30000EB3B /* MjtSettingVC.m */; };
+		1946C8FA2477C33000A8F3CA /* DDYCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F32477C33000A8F3CA /* DDYCameraView.m */; };
+		1946C8FB2477C33000A8F3CA /* DDYCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1946C8F52477C33000A8F3CA /* DDYCamera.bundle */; };
+		1946C8FC2477C33000A8F3CA /* NSBundle+DDYCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F62477C33000A8F3CA /* NSBundle+DDYCamera.m */; };
+		1946C8FD2477C33000A8F3CA /* DDYCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F72477C33000A8F3CA /* DDYCameraManager.m */; };
+		1946C8FE2477C33000A8F3CA /* DDYCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F82477C33000A8F3CA /* DDYCameraController.m */; };
+		1946C9012477C36200A8F3CA /* MJTRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C9002477C36200A8F3CA /* MJTRecommendVC.m */; };
 		1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9632448653B00C6C090 /* MjtDiscountListVC.m */; };
 		1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9672448669200C6C090 /* MjtDiscountCell.m */; };
 		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
@@ -269,6 +275,20 @@
 		193F27DF241A27AE0000EB3B /* MjtSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingCell.m; sourceTree = "<group>"; };
 		193F27E1241A29A30000EB3B /* MjtSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingVC.h; sourceTree = "<group>"; };
 		193F27E2241A29A30000EB3B /* MjtSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingVC.m; sourceTree = "<group>"; };
+		1946C8F02477C33000A8F3CA /* DDYCameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraManager.h; sourceTree = "<group>"; };
+		1946C8F12477C33000A8F3CA /* NSBundle+DDYCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+DDYCamera.h"; sourceTree = "<group>"; };
+		1946C8F22477C33000A8F3CA /* DDYCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCamera.h; sourceTree = "<group>"; };
+		1946C8F32477C33000A8F3CA /* DDYCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYCameraView.m; sourceTree = "<group>"; };
+		1946C8F42477C33000A8F3CA /* DDYCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraController.h; sourceTree = "<group>"; };
+		1946C8F52477C33000A8F3CA /* DDYCamera.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DDYCamera.bundle; sourceTree = "<group>"; };
+		1946C8F62477C33000A8F3CA /* NSBundle+DDYCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+DDYCamera.m"; sourceTree = "<group>"; };
+		1946C8F72477C33000A8F3CA /* DDYCameraManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYCameraManager.m; sourceTree = "<group>"; };
+		1946C8F82477C33000A8F3CA /* DDYCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDYCameraController.m; sourceTree = "<group>"; };
+		1946C8F92477C33000A8F3CA /* DDYCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraView.h; sourceTree = "<group>"; };
+		1946C8FF2477C36200A8F3CA /* MJTRecommendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MJTRecommendVC.h; sourceTree = "<group>"; };
+		1946C9002477C36200A8F3CA /* MJTRecommendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJTRecommendVC.m; sourceTree = "<group>"; };
+		1946C91E247BCA5600A8F3CA /* 美嘉兔Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "美嘉兔Debug.entitlements"; sourceTree = "<group>"; };
+		1946C91F247BCAD200A8F3CA /* 美嘉兔.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "美嘉兔.entitlements"; sourceTree = "<group>"; };
 		1959A9622448653B00C6C090 /* MjtDiscountListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountListVC.h; sourceTree = "<group>"; };
 		1959A9632448653B00C6C090 /* MjtDiscountListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountListVC.m; sourceTree = "<group>"; };
 		1959A9662448669200C6C090 /* MjtDiscountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountCell.h; sourceTree = "<group>"; };
@@ -429,6 +449,8 @@
 		1911AD1B240E20BC006FB7A3 /* MeijiaRabbit */ = {
 			isa = PBXGroup;
 			children = (
+				1946C91F247BCAD200A8F3CA /* 美嘉兔.entitlements */,
+				1946C91E247BCA5600A8F3CA /* 美嘉兔Debug.entitlements */,
 				191D599A24111154005632D0 /* Classes */,
 				1911AD1C240E20BC006FB7A3 /* AppDelegate.h */,
 				1911AD1D240E20BC006FB7A3 /* AppDelegate.m */,
@@ -476,6 +498,8 @@
 				193F27A824177C9D0000EB3B /* MjtMessageBaseVC.m */,
 				193F27B0241786CC0000EB3B /* MjtMessageListVC.h */,
 				193F27B1241786CC0000EB3B /* MjtMessageListVC.m */,
+				1946C8FF2477C36200A8F3CA /* MJTRecommendVC.h */,
+				1946C9002477C36200A8F3CA /* MJTRecommendVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -866,6 +890,7 @@
 		193F27CE2418CE270000EB3B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1946C8EF2477C33000A8F3CA /* DDYCamera */,
 				19B3EDC02451C38B00251AFD /* Encrypttion */,
 				1974DF9E244D523800C1D65C /* OttoFPSButton.h */,
 				1974DF9F244D523800C1D65C /* OttoFPSButton.m */,
@@ -902,6 +927,23 @@
 				193F27DF241A27AE0000EB3B /* MjtSettingCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1946C8EF2477C33000A8F3CA /* DDYCamera */ = {
+			isa = PBXGroup;
+			children = (
+				1946C8F02477C33000A8F3CA /* DDYCameraManager.h */,
+				1946C8F12477C33000A8F3CA /* NSBundle+DDYCamera.h */,
+				1946C8F22477C33000A8F3CA /* DDYCamera.h */,
+				1946C8F32477C33000A8F3CA /* DDYCameraView.m */,
+				1946C8F42477C33000A8F3CA /* DDYCameraController.h */,
+				1946C8F52477C33000A8F3CA /* DDYCamera.bundle */,
+				1946C8F62477C33000A8F3CA /* NSBundle+DDYCamera.m */,
+				1946C8F72477C33000A8F3CA /* DDYCameraManager.m */,
+				1946C8F82477C33000A8F3CA /* DDYCameraController.m */,
+				1946C8F92477C33000A8F3CA /* DDYCameraView.h */,
+			);
+			path = DDYCamera;
 			sourceTree = "<group>";
 		};
 		1959A9612448651100C6C090 /* 每日特价 */ = {
@@ -1110,6 +1152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
+				1946C8FB2477C33000A8F3CA /* DDYCamera.bundle in Resources */,
 				19C89291245FDC0C0052813B /* MjtFindServiceCell.xib in Resources */,
 				193F27A3241765FA0000EB3B /* me_order.json in Resources */,
 				19D60A35242494A700DE37B8 /* MjtDesignCell.xib in Resources */,
@@ -1210,6 +1253,8 @@
 				193F279424152D3B0000EB3B /* JFCSTopToolsTableViewCell.m in Sources */,
 				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
 				19B3EDD42452D62000251AFD /* MjtSigner.m in Sources */,
+				1946C8FD2477C33000A8F3CA /* DDYCameraManager.m in Sources */,
+				1946C9012477C36200A8F3CA /* MJTRecommendVC.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
 				193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */,
 				193F27A124152EF70000EB3B /* UIViewController+LL_Utils.m in Sources */,
@@ -1231,6 +1276,7 @@
 				1980FF5C2456BF7200652AAD /* MjtUserInfo.m in Sources */,
 				1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */,
 				1980FF5F2456C67E00652AAD /* MjtUserInfoEditVC.m in Sources */,
+				1946C8FE2477C33000A8F3CA /* DDYCameraController.m in Sources */,
 				193BC095246E99220014F63B /* UIViewController+BackButtonHandler.m in Sources */,
 				19D60A2D2423723300DE37B8 /* MjtLocationManager.m in Sources */,
 				193F275E24128ABE0000EB3B /* MjtGuideView.m in Sources */,
@@ -1239,6 +1285,7 @@
 				191D59EF2411197A005632D0 /* NSString+Extension.m in Sources */,
 				193F27B92417877A0000EB3B /* UIScrollView+EmptyDataSet.m in Sources */,
 				19B3EDB92450277C00251AFD /* HttpTool.m in Sources */,
+				1946C8FA2477C33000A8F3CA /* DDYCameraView.m in Sources */,
 				19D609F4242229BC00DE37B8 /* YWAddressViewController.m in Sources */,
 				193F279B24152D3B0000EB3B /* JFCSSearchTableViewController.m in Sources */,
 				193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */,
@@ -1297,6 +1344,7 @@
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,
 				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
+				1946C8FC2477C33000A8F3CA /* NSBundle+DDYCamera.m in Sources */,
 				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,
 				19B3EDCC2451C38B00251AFD /* GTMBase64.m in Sources */,
 				191D59BB2411134F005632D0 /* MineViewController.m in Sources */,
@@ -1441,6 +1489,7 @@
 			baseConfigurationReference = 7255A99E89965AFFC179CF81 /* Pods-MeijiaRabbit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MeijiaRabbit/美嘉兔Debug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92LUBU67XF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1450,7 +1499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stw.mjt.MeijiaRabbit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meijiatu.decoration;
 				PRODUCT_NAME = "美嘉兔";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1461,6 +1510,7 @@
 			baseConfigurationReference = 806116D83EB142983DBD7E40 /* Pods-MeijiaRabbit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MeijiaRabbit/美嘉兔.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92LUBU67XF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1470,7 +1520,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stw.mjt.MeijiaRabbit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meijiatu.decoration;
 				PRODUCT_NAME = "美嘉兔";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
