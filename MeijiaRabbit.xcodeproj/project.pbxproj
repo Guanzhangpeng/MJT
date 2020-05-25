@@ -81,6 +81,8 @@
 		1946C8FD2477C33000A8F3CA /* DDYCameraManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F72477C33000A8F3CA /* DDYCameraManager.m */; };
 		1946C8FE2477C33000A8F3CA /* DDYCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F82477C33000A8F3CA /* DDYCameraController.m */; };
 		1946C9012477C36200A8F3CA /* MJTRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C9002477C36200A8F3CA /* MJTRecommendVC.m */; };
+		1946C922247BDF4F00A8F3CA /* SGQRCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C921247BDF4F00A8F3CA /* SGQRCodeScanView.m */; };
+		1946C924247BE11300A8F3CA /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1946C923247BE11300A8F3CA /* SGQRCode.bundle */; };
 		1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9632448653B00C6C090 /* MjtDiscountListVC.m */; };
 		1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9672448669200C6C090 /* MjtDiscountCell.m */; };
 		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
@@ -289,6 +291,9 @@
 		1946C9002477C36200A8F3CA /* MJTRecommendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJTRecommendVC.m; sourceTree = "<group>"; };
 		1946C91E247BCA5600A8F3CA /* 美嘉兔Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "美嘉兔Debug.entitlements"; sourceTree = "<group>"; };
 		1946C91F247BCAD200A8F3CA /* 美嘉兔.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "美嘉兔.entitlements"; sourceTree = "<group>"; };
+		1946C920247BDF4F00A8F3CA /* SGQRCodeScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanView.h; sourceTree = "<group>"; };
+		1946C921247BDF4F00A8F3CA /* SGQRCodeScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanView.m; sourceTree = "<group>"; };
+		1946C923247BE11300A8F3CA /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
 		1959A9622448653B00C6C090 /* MjtDiscountListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountListVC.h; sourceTree = "<group>"; };
 		1959A9632448653B00C6C090 /* MjtDiscountListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountListVC.m; sourceTree = "<group>"; };
 		1959A9662448669200C6C090 /* MjtDiscountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountCell.h; sourceTree = "<group>"; };
@@ -1029,6 +1034,9 @@
 		19C89282245ADE990052813B /* 找服务 */ = {
 			isa = PBXGroup;
 			children = (
+				1946C923247BE11300A8F3CA /* SGQRCode.bundle */,
+				1946C920247BDF4F00A8F3CA /* SGQRCodeScanView.h */,
+				1946C921247BDF4F00A8F3CA /* SGQRCodeScanView.m */,
 				19C89297245FEBCF0052813B /* MjtPublishServiceVC.h */,
 				19C89296245FEBCF0052813B /* MjtPublishServiceVC.m */,
 				19C89283245ADEBD0052813B /* MjtFindServiceVC.h */,
@@ -1158,6 +1166,7 @@
 				19D60A35242494A700DE37B8 /* MjtDesignCell.xib in Resources */,
 				193F279E24152D3B0000EB3B /* JFCitySelector.bundle in Resources */,
 				19D60A242423172A00DE37B8 /* location.txt in Resources */,
+				1946C924247BE11300A8F3CA /* SGQRCode.bundle in Resources */,
 				1911AD2C240E20BE006FB7A3 /* LaunchScreen.storyboard in Resources */,
 				193F279324152D3B0000EB3B /* .gitkeep in Resources */,
 				1911AD29240E20BE006FB7A3 /* Assets.xcassets in Resources */,
@@ -1291,6 +1300,7 @@
 				193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */,
 				193F275524122EC90000EB3B /* MJTConstant.m in Sources */,
 				19D60A092422302200DE37B8 /* YWTool.m in Sources */,
+				1946C922247BDF4F00A8F3CA /* SGQRCodeScanView.m in Sources */,
 				1980FF6F2457F8BC00652AAD /* MjtEditVC.m in Sources */,
 				1911AD1E240E20BC006FB7A3 /* AppDelegate.m in Sources */,
 				19D60A212423172A00DE37B8 /* AddressCell.m in Sources */,

@@ -9,7 +9,11 @@
 #import "DDYCameraManager.h"
 #import "DDYCameraView.h"
 
-@interface DDYCameraController ()
+#import "GSProxy.h"
+#import "SGQRCodeScanView.h"
+@interface DDYCameraController (){
+    int count;
+}
 /// 相机管理器实例
 @property (nonatomic, strong) DDYCameraManager *cameraManager;
 /// 相机预览视图
@@ -17,13 +21,47 @@
 /// 状态栏是否隐藏控制
 @property (nonatomic, assign) BOOL statusBarHidden;
 
+@property (nonatomic, strong) SGQRCodeScanView *scanView;
+
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation DDYCameraController
 
+- (SGQRCodeScanView *)scanView {
+    if (!_scanView) {
+        _scanView = [[SGQRCodeScanView alloc] initWithFrame:self.view.bounds];
+    }
+    return _scanView;
+}
+
 ///MARK: - 生命周期
+- (void)dealloc {
+    NSLog(@"WCQRCodeVC - dealloc");
+    [self removeScanningView];
+}
+- (void)removeScanningView {
+    [self.scanView removeTimer];
+    [self.scanView removeFromSuperview];
+    self.scanView = nil;
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.scanView addTimer];
+}
+- (void)_leftTime{
+    if (count > 3) {
+       if (self.recordVideoBlock) {
+           self.recordVideoBlock(nil, self);
+           return;
+       }
+    }
+    count++;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.timer = [NSTimer timerWithTimeInterval:1.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_leftTime) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self->_timer forMode:NSRunLoopCommonModes];
     [self.view setBackgroundColor:[UIColor blackColor]];
     
     __weak __typeof__ (self)weakSelf = self;
@@ -46,6 +84,7 @@
     [_cameraView setRecordBlock:^(BOOL isStart) {[weakSelf handleRecord:isStart];}];
     [_cameraView setFocusBlock:^(CGPoint point) {[weakSelf handleFocus:point];}];
     [self.view addSubview:_cameraView];
+    [self.view addSubview:self.scanView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -57,6 +96,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.cameraManager ddy_StopCaptureSession];
     [self hiddenStatusBar:NO];
+    [self.scanView removeTimer];
 }
 
 // MARK: - UI事件响应

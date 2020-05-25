@@ -150,14 +150,18 @@
         [DDYCameraManager ddy_CameraAuthSuccess:^{
             [DDYCameraManager ddy_MicrophoneAuthSuccess:^{
                 DDYCameraController *cameraVC = [[DDYCameraController alloc] init];
-                [cameraVC setTakePhotoBlock:^(UIImage *image, UIViewController *vc) {
-                    __strong __typeof (weakSelf)strongSelf = weakSelf;
-    //                strongSelf.imageView.image = image;
-                    [vc dismissViewControllerAnimated:YES completion:^{ }];
-                }];
+                
                 [cameraVC setRecordVideoBlock:^(NSURL *videoURL, UIViewController *vc) {
                     __strong __typeof (weakSelf)strongSelf = weakSelf;
-    //                [strongSelf.player playWithPath:videoURL.absoluteString];
+                    
+                    NSArray *urls = @[                        @"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47809&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#s_97377",@"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47847&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#null",@"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47848&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#null",@"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47849&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#null",@"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47852&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#null",@"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47854&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#null"
+                    ];
+                    //获取一个随机整数范围在：[0,100)包括0，不包括100
+                    int x = arc4random() % 7;
+                    MjtWebView *webView = [[MjtWebView alloc] init];
+                    webView.urlString = urls[x];
+                    
+                    [strongSelf.navigationController pushViewController:webView animated:YES];
                     [vc dismissViewControllerAnimated:YES completion:^{ }];
                 }];
                 [self presentViewController:cameraVC animated:YES completion:^{ }];
