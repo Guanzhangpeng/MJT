@@ -10,9 +10,9 @@
 #import "HttpTool.h"
 @implementation NetBaseTool
 
-+ (void)getWithUrl:(NSString *)url params:(id)param success:(void (^)(id responeseObject))success failure:(void (^)(NSError * error))failure{
++ (void)getWithUrl:(NSString *)url params:(id)param decryptResponse:(BOOL)isDecrypt success:(void (^)(id responeseObject))success failure:(void (^)(NSError * error))failure{
     
-    [HttpTool GET:url parameters:nil success:^(id responseObj) {
+    [HttpTool GET:url parameters:nil decryptResponse:isDecrypt success:^(id responseObj) {
         if (success) {
             success(responseObj);
         }

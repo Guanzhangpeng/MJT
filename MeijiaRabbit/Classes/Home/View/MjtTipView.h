@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtTipView : UIView
+@property (nonatomic, strong) void(^tapAction)();
 @property (nonatomic, weak) UILabel *tipLabel;
 @end
 

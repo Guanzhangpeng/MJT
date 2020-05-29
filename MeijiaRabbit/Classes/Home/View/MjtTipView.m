@@ -14,10 +14,16 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self _setupSubviews];
+        
     }
     return self;
 }
 - (void)_setupSubviews{
+    self.userInteractionEnabled = YES;
+    [self addGestureRecognizer:({
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+        tapGes;
+    })];
     //tipLabel
     UILabel *tipLabel;
     [self addSubview:({
@@ -53,5 +59,9 @@
         make.centerY.mas_equalTo(self);
         make.left.mas_equalTo(tipLabel.mas_right).offset(15);
     }];
+}
+#pragma mark -- 点击事件
+- (void)tapClick{
+    !_tapAction ? :_tapAction();
 }
 @end

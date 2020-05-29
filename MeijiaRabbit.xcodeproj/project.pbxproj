@@ -83,6 +83,12 @@
 		1946C9012477C36200A8F3CA /* MJTRecommendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C9002477C36200A8F3CA /* MJTRecommendVC.m */; };
 		1946C922247BDF4F00A8F3CA /* SGQRCodeScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C921247BDF4F00A8F3CA /* SGQRCodeScanView.m */; };
 		1946C924247BE11300A8F3CA /* SGQRCode.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1946C923247BE11300A8F3CA /* SGQRCode.bundle */; };
+		194ADAE0248110A300099BF1 /* MjtMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 194ADADF248110A300099BF1 /* MjtMessageModel.m */; };
+		194ADAE42481134D00099BF1 /* MjtMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 194ADAE22481134D00099BF1 /* MjtMessageCell.m */; };
+		194ADAE52481134D00099BF1 /* MjtMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 194ADAE32481134D00099BF1 /* MjtMessageCell.xib */; };
+		194ADAEB248131EA00099BF1 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 194ADAE9248131EA00099BF1 /* NSDate+Extension.m */; };
+		194ADAEC248131EA00099BF1 /* NSDateFormatter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 194ADAEA248131EA00099BF1 /* NSDateFormatter+Extension.m */; };
+		194E7D6A247F5F760052FA57 /* MjtGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 194E7D69247F5F760052FA57 /* MjtGoodsModel.m */; };
 		1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9632448653B00C6C090 /* MjtDiscountListVC.m */; };
 		1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9672448669200C6C090 /* MjtDiscountCell.m */; };
 		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
@@ -294,6 +300,17 @@
 		1946C920247BDF4F00A8F3CA /* SGQRCodeScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGQRCodeScanView.h; sourceTree = "<group>"; };
 		1946C921247BDF4F00A8F3CA /* SGQRCodeScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGQRCodeScanView.m; sourceTree = "<group>"; };
 		1946C923247BE11300A8F3CA /* SGQRCode.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SGQRCode.bundle; sourceTree = "<group>"; };
+		194ADADE248110A300099BF1 /* MjtMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageModel.h; sourceTree = "<group>"; };
+		194ADADF248110A300099BF1 /* MjtMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageModel.m; sourceTree = "<group>"; };
+		194ADAE12481134D00099BF1 /* MjtMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageCell.h; sourceTree = "<group>"; };
+		194ADAE22481134D00099BF1 /* MjtMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageCell.m; sourceTree = "<group>"; };
+		194ADAE32481134D00099BF1 /* MjtMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtMessageCell.xib; sourceTree = "<group>"; };
+		194ADAE7248131EA00099BF1 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		194ADAE8248131EA00099BF1 /* NSDateFormatter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Extension.h"; sourceTree = "<group>"; };
+		194ADAE9248131EA00099BF1 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		194ADAEA248131EA00099BF1 /* NSDateFormatter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Extension.m"; sourceTree = "<group>"; };
+		194E7D68247F5F760052FA57 /* MjtGoodsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtGoodsModel.h; sourceTree = "<group>"; };
+		194E7D69247F5F760052FA57 /* MjtGoodsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtGoodsModel.m; sourceTree = "<group>"; };
 		1959A9622448653B00C6C090 /* MjtDiscountListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountListVC.h; sourceTree = "<group>"; };
 		1959A9632448653B00C6C090 /* MjtDiscountListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountListVC.m; sourceTree = "<group>"; };
 		1959A9662448669200C6C090 /* MjtDiscountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountCell.h; sourceTree = "<group>"; };
@@ -516,6 +533,10 @@
 				193F276224128D0B0000EB3B /* guide.json */,
 				1964CCBB246507F9005B60CD /* MjtFindServiceModel.h */,
 				1964CCBC246507F9005B60CD /* MjtFindServiceModel.m */,
+				194E7D68247F5F760052FA57 /* MjtGoodsModel.h */,
+				194E7D69247F5F760052FA57 /* MjtGoodsModel.m */,
+				194ADADE248110A300099BF1 /* MjtMessageModel.h */,
+				194ADADF248110A300099BF1 /* MjtMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -535,6 +556,9 @@
 				193F275A2412653B0000EB3B /* MjtTipView.m */,
 				193F276A2413D05A0000EB3B /* MjtRecommendView.h */,
 				193F276B2413D05A0000EB3B /* MjtRecommendView.m */,
+				194ADAE12481134D00099BF1 /* MjtMessageCell.h */,
+				194ADAE22481134D00099BF1 /* MjtMessageCell.m */,
+				194ADAE32481134D00099BF1 /* MjtMessageCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,6 +614,7 @@
 		191D59A424111154005632D0 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				194ADAE6248131EA00099BF1 /* NSDate */,
 				193BC093246E99220014F63B /* UIViewController+BackButtonHandler.h */,
 				193BC094246E99220014F63B /* UIViewController+BackButtonHandler.m */,
 				193F279F24152EF70000EB3B /* UIViewController+LL_Utils.h */,
@@ -951,6 +976,17 @@
 			path = DDYCamera;
 			sourceTree = "<group>";
 		};
+		194ADAE6248131EA00099BF1 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				194ADAE7248131EA00099BF1 /* NSDate+Extension.h */,
+				194ADAE8248131EA00099BF1 /* NSDateFormatter+Extension.h */,
+				194ADAE9248131EA00099BF1 /* NSDate+Extension.m */,
+				194ADAEA248131EA00099BF1 /* NSDateFormatter+Extension.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
 		1959A9612448651100C6C090 /* 每日特价 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1159,6 +1195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				194ADAE52481134D00099BF1 /* MjtMessageCell.xib in Resources */,
 				193F276324128D0B0000EB3B /* guide.json in Resources */,
 				1946C8FB2477C33000A8F3CA /* DDYCamera.bundle in Resources */,
 				19C89291245FDC0C0052813B /* MjtFindServiceCell.xib in Resources */,
@@ -1263,6 +1300,7 @@
 				193F279A24152D3B0000EB3B /* JFCSAreaModel.m in Sources */,
 				19B3EDD42452D62000251AFD /* MjtSigner.m in Sources */,
 				1946C8FD2477C33000A8F3CA /* DDYCameraManager.m in Sources */,
+				194ADAE0248110A300099BF1 /* MjtMessageModel.m in Sources */,
 				1946C9012477C36200A8F3CA /* MJTRecommendVC.m in Sources */,
 				191D59B5241112E1005632D0 /* MjtNavigationController.m in Sources */,
 				193F27D4241A0DB10000EB3B /* MjtWebView.m in Sources */,
@@ -1300,12 +1338,14 @@
 				193F279224152D3B0000EB3B /* JFCSFileManager.m in Sources */,
 				193F275524122EC90000EB3B /* MJTConstant.m in Sources */,
 				19D60A092422302200DE37B8 /* YWTool.m in Sources */,
+				194ADAEC248131EA00099BF1 /* NSDateFormatter+Extension.m in Sources */,
 				1946C922247BDF4F00A8F3CA /* SGQRCodeScanView.m in Sources */,
 				1980FF6F2457F8BC00652AAD /* MjtEditVC.m in Sources */,
 				1911AD1E240E20BC006FB7A3 /* AppDelegate.m in Sources */,
 				19D60A212423172A00DE37B8 /* AddressCell.m in Sources */,
 				1920C4BB2462927200796983 /* MjtServiceRecommendCell.m in Sources */,
 				1964CCB724643436005B60CD /* MjtCategoryView.m in Sources */,
+				194E7D6A247F5F760052FA57 /* MjtGoodsModel.m in Sources */,
 				191D59EA2411197A005632D0 /* UIView+Extension.m in Sources */,
 				19D60A34242494A700DE37B8 /* MjtDesignCell.m in Sources */,
 				191D59EB2411197A005632D0 /* UIColor+Extension.m in Sources */,
@@ -1335,6 +1375,7 @@
 				19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
 				19C89298245FEBCF0052813B /* MjtPublishServiceVC.m in Sources */,
+				194ADAE42481134D00099BF1 /* MjtMessageCell.m in Sources */,
 				19C89292245FDC0C0052813B /* MjtFindServiceCell.m in Sources */,
 				193F276C2413D05A0000EB3B /* MjtRecommendView.m in Sources */,
 				19D609EB2422298B00DE37B8 /* YWAddressTableViewCell2.m in Sources */,
@@ -1353,6 +1394,7 @@
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,
+				194ADAEB248131EA00099BF1 /* NSDate+Extension.m in Sources */,
 				193F279724152D3B0000EB3B /* JFCSPopularCitiesModel.m in Sources */,
 				1946C8FC2477C33000A8F3CA /* NSBundle+DDYCamera.m in Sources */,
 				193F279624152D3B0000EB3B /* JFCSTableViewController.m in Sources */,

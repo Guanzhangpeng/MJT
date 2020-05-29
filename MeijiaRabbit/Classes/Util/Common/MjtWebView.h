@@ -13,7 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtWebView : MjtBaseViewController
 
+@property (nonatomic, strong) NSString *hideNav;
+
 @property (nonatomic, strong) NSString *urlString;
+
 @end
 
 NS_ASSUME_NONNULL_END

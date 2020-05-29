@@ -18,7 +18,7 @@
  *  @param success     成功的block
  *  @param failure     失败的block
  */
-+ (void)getWithUrl:(NSString *)url params:(id)param success:(void (^)(id responeseObject))success failure:(void (^)(NSError * error))failure;
++ (void)getWithUrl:(NSString *)url params:(id)param decryptResponse:(BOOL)isDecrypt success:(void (^)(id responeseObject))success failure:(void (^)(NSError * error))failure;
 /**
  *  普通的Post请求
  *

@@ -66,7 +66,7 @@
 }
 
 - (void)_loadPublickey{
-    [NetBaseTool getWithUrl:KURL(MJT_PUBLICKEY_PATH) params:nil success:^(id responeseObject) {
+    [NetBaseTool getWithUrl:KURL(MJT_PUBLICKEY_PATH) params:nil decryptResponse:YES success:^(id responeseObject) {
         [MjtSigner signerWithDict:responeseObject];
         [MjtSigner saveDataToKeyChian];
     } failure:nil];

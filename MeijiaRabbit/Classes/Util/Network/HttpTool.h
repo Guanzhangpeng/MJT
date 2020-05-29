@@ -13,7 +13,7 @@
 + (void)POST:(NSString *)URLString parameters:(id)parameters decryptResponse:(BOOL)isDecrypt showHud:(BOOL)isShowHud success:(void (^)(id))success failure:(void (^)(NSError *error))failure;
 
 /** 用于一般Get请求 */
-+ (void)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *error))failure;
++ (void)GET:(NSString *)URLString parameters:(id)parameters decryptResponse:(BOOL)isDecrypt success:(void (^)(id))success failure:(void (^)(NSError *error))failure;
 
 /** 用于postJson请求 */
 + (void)POSTJson:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *error))failure;

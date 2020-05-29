@@ -14,7 +14,10 @@
 #import "MineViewController.h"
 #import "MjtNavigationController.h"
 #import "MjtLoginVC.h"
-@interface MjtTabBarController ()<UITabBarControllerDelegate>
+#import "MjtWebView.h"
+@interface MjtTabBarController ()<UITabBarControllerDelegate,UITabBarDelegate>{
+    NSInteger tabTag;
+}
 
 @end
 
@@ -60,10 +63,16 @@
     MjtNavigationController *nav = [[MjtNavigationController alloc] initWithRootViewController:childVc];
     [self addChildViewController:nav];
 }
-
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-    if ([viewController.title isEqualToString:@"商城"] || [viewController.title isEqualToString:@"我的"]) {
-        
+    if ([viewController.title isEqualToString:@"商城"]) {
+       MjtWebView *webView = [[MjtWebView alloc] init];
+//              webView.hideNav = @"YES";
+             webView.urlString = @"http://39.102.63.135:8080";
+       MjtNavigationController *nav = self.selectedViewController;
+       [nav pushViewController:webView animated:YES];
+       return NO;
+    }
+    else if([viewController.title isEqualToString:@"我的"]){
         //判断用户是否登录过,如果没有登录则跳转到登录界面
         if(![MjtUserInfo sharedUser].isLogin){
             MjtLoginVC *loginVc = [[MjtLoginVC alloc] init];
@@ -73,6 +82,6 @@
             return false;
         }
     }
-    return true;
+    return YES;
 }
 @end

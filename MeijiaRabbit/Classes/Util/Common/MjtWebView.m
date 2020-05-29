@@ -8,6 +8,7 @@
 
 #import "MjtWebView.h"
 #import <WebKit/WebKit.h>
+#import "UIImage+Extension.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
 
@@ -48,11 +49,10 @@
 - (void)dealloc{
     //移除注册的js方法
     
-    //取消修机
-    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"feedbackOrder"];
+    //浏览器返回
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsCallAPPFinish"];
     
-    //购买宽带下单
-    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"sureOrders"];
+  
     
     //移除观察者
     [_webView removeObserver:self
@@ -60,6 +60,56 @@
     [_webView removeObserver:self
                   forKeyPath:NSStringFromSelector(@selector(title))];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([self.hideNav isEqualToString:@"YES"]) {
+       [self.navigationController setNavigationBarHidden:YES animated:animated];
+    }
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+//    if ([self.hideNav isEqualToString:@"YES"]) {
+//          self.navigationController.navigationBarHidden = NO;
+//          [self setStatusBarBackgroundColor:[UIColor clearColor]];
+//      }
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+
+    if(@available(iOS 13.0, *)) {
+
+        static UIView* statusBar =nil;
+
+        if(!statusBar) {
+
+  UIWindow*keyWindow = [UIApplication sharedApplication].windows[0];
+
+            statusBar = [[UIView alloc]initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
+
+            [keyWindow addSubview:statusBar];
+
+            [statusBar setBackgroundColor:color];
+
+        }else{
+
+          [statusBar setBackgroundColor:color];
+
+        }
+
+    }else{
+
+        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+
+        if([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+
+          [statusBar setBackgroundColor:color];
+
+        }
+
+    }
+
+}
+// GDP目标的问题 疫情病毒源头的问题  台湾问题
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self _setup];
@@ -74,6 +124,13 @@
                    forKeyPath:@"title"
                       options:NSKeyValueObservingOptionNew
                       context:nil];
+    
+//    if ([self.hideNav isEqualToString:@"YES"]) {
+//
+//          [self setStatusBarBackgroundColor:[UIColor whiteColor]];
+//      }
+    
+
 }
 
 - (void)_setup{
@@ -93,12 +150,12 @@
 
     __weak typeof(self) weakSelf = self;
     //JS调用OC
-    if([message.name isEqualToString:@"feedbackOrder"]){
-        
-
-        
-    }else if([message.name isEqualToString:@"sureOrders"]){
-
+    if([message.name isEqualToString:@"jsCallAPPFinish"]){
+        if(weakSelf.webView.canGoBack){
+            [weakSelf.webView goBack];
+        }else{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -242,7 +299,7 @@
 #pragma mark --- 懒加载
 - (UIProgressView *)progressView {
     if (!_progressView){
-        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 2)];
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 22, self.view.frame.size.width, 2)];
         _progressView.tintColor = MJTGlobalMainColor;
         _progressView.trackTintColor = [UIColor clearColor];
     }
@@ -254,44 +311,25 @@
         
         //创建网页配置对象
        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-       
-       // 创建设置对象
-       WKPreferences *preference = [[WKPreferences alloc] init];
-       //最小字体大小 当将javaScriptEnabled属性设置为NO时，可以看到明显的效果
-       preference.minimumFontSize = 0;
-       //设置是否支持javaScript 默认是支持的
-       preference.javaScriptEnabled = YES;
-       // 在iOS上默认为NO，表示是否允许不经过用户交互由javaScript自动打开窗口
-       preference.javaScriptCanOpenWindowsAutomatically = YES;
-       config.preferences = preference;
-       
-       // 是使用h5的视频播放器在线播放, 还是使用原生播放器全屏播放
-       config.allowsInlineMediaPlayback = YES;
-       //设置视频是否需要用户手动播放  设置为NO则会允许自动播放
-       config.requiresUserActionForMediaPlayback = YES;
-       //设置是否允许画中画技术 在特定设备上有效
-       config.allowsPictureInPictureMediaPlayback = YES;
-       //设置请求的User-Agent信息中应用程序名称 iOS9后可用
-       config.applicationNameForUserAgent = @"ChinaDailyForiPad";
         
         //自定义的WKScriptMessageHandler 是为了解决内存不释放的问题
        WeakWebViewScriptMessageDelegate *weakScriptMessageDelegate = [[WeakWebViewScriptMessageDelegate alloc] initWithDelegate:self];
         
        //这个类主要用来做native与JavaScript的交互管理
        WKUserContentController * wkUController = [[WKUserContentController alloc] init];
-       //注册一个name为jsToOcNoPrams的js方法 设置处理接收JS方法的对象
-       [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"feedbackOrder"];
-       [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"sureOrders"];
+        
+       //注册一个name为jsCallAPPFinish的js方法 设置处理接收JS方法的对象
+       [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsCallAPPFinish"];
        
        config.userContentController = wkUController;
-        
-        //以下代码适配文本大小
-       NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
-       //用于进行JavaScript注入
-       WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-       [config.userContentController addUserScript:wkUScript];
+
        
-       _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) configuration:config];
+        if ([self.hideNav isEqualToString:@"YES"]) {
+             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenHeight) configuration:config];
+        }else{
+             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) configuration:config];
+        }
+      
          // UI代理
         _webView.UIDelegate = self;
         // 导航代理
@@ -301,5 +339,13 @@
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]]];
     }
     return _webView;
+}
+#pragma mark -- 点击事件
+- (void)_backClick{
+    if (!self.webView.canGoBack) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self.webView goBack];
+    }
 }
 @end

@@ -56,5 +56,11 @@
 // 找服务列表
 #define MJT_Find_SERVICE_List_PATH @"/userapi/findserviceclass.php"
 
+// 消息
+#define MJT_MESSAGE_PATH @"/userapi/usermessage.php"
+
+// 消息未读状态
+#define MJT_MESSAGEUNREAD_PATH @"/userapi/usernewmessagecount.php"
+
 
 #endif /* MjtInterfaceConst_h */

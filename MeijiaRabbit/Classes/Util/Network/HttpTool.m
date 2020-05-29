@@ -92,7 +92,6 @@
                     }
                   success(responseDic);
                 }
-                
             }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -110,7 +109,7 @@
     }];
 }
 
-+ (void)GET:(NSString *)URLString parameters:(id)parameters success:(void (^)(id))success failure:(void (^)(NSError *))failure{
++ (void)GET:(NSString *)URLString parameters:(id)parameters decryptResponse:(BOOL)isDecrypt success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -135,10 +134,23 @@
    
     [manager GET:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
-           NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-           NSString *responseString = [DES3Util decryptUseDES:desString key:DESKEY];
-           NSDictionary *responseDic = [responseString jsonValueDecoded];
-            success(responseDic);
+            NSDictionary *responseDic;
+            if (isDecrypt) {
+                NSString *desString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                NSString *responseString = [DES3Util decryptUseDES:desString key:DESKEY];
+                responseDic = [responseString jsonValueDecoded];
+                success(responseDic);
+            }else{
+                 NSError *err;
+                 NSDictionary *responseDic = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                       options:NSJSONReadingMutableContainers
+                                                                         error:&err];
+                if(!err)
+                {
+                  success(responseDic);
+                }
+                
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {

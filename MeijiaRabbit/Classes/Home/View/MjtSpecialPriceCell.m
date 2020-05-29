@@ -36,6 +36,7 @@
     ///标题
     UILabel *titleLbl = [[UILabel alloc] init];
     titleLbl.font = [UIFont boldSystemFontOfSize:14];
+    titleLbl.numberOfLines = 2;
     titleLbl.textColor = MJTColorFromHexString(@"#333333");
     [self.contentView addSubview:titleLbl];
     self.titleLbl = titleLbl;
@@ -71,18 +72,20 @@
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self);
         make.top.mas_equalTo(self.iconImg.mas_bottom);
-        make.height.mas_equalTo(20);
+        make.right.mas_equalTo(self.originalPriceLbl.mas_left).with.offset(0);
     }];
     
     [self.currentPricelLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self);
         make.top.mas_equalTo(self.iconImg.mas_bottom);
+        make.width.mas_equalTo(60);
         make.height.mas_equalTo(20);
     }];
     
     [self.originalPriceLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.currentPricelLbl.mas_left).offset(-5);
+        make.right.mas_equalTo(self.currentPricelLbl.mas_left).offset(-2);
         make.top.mas_equalTo(self.iconImg.mas_bottom);
+        make.width.mas_equalTo(50);
         make.height.mas_equalTo(20);
     }];
     

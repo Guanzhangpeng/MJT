@@ -24,6 +24,9 @@
 #import "MjtWebView.h"
 #import "MJTRecommendVC.h"
 #import "DDYCamera.h"
+#import "MjtGoodsModel.h"
+#import "MJExtension.h"
+#import "MjtLoginVC.h"
 #define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
 
 @interface HomeViewController ()<JFCSTableViewControllerDelegate>
@@ -32,6 +35,7 @@
 @property (nonatomic, weak) UIView *mainFunView;///主功能
 @property (nonatomic, weak) MjtGuideView *guideView;///装修流程
 @property (nonatomic, weak) UIView *specialPriceView;///每日特价
+@property (nonatomic, weak) UIView *dotView;
 
 @property (nonatomic, strong) MjtBaseButton *locationBtn;
 @end
@@ -70,6 +74,20 @@
     
     // 设置子控件
     [self _setupSubViews];
+    
+    // 请求接口
+    [self _requestData];
+}
+- (void)_requestData{
+    [NetBaseTool postWithUrl:MJT_MESSAGEUNREAD_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {
+        if ([responseDict[@"status"] intValue] == 200) {
+            NSInteger serviceCount = [responseDict[@"serviceMessageLen"] integerValue];
+            NSInteger systemCount = [responseDict[@"systemMessageLen"] integerValue];
+            self.dotView.hidden = (serviceCount + systemCount) == 0;
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
@@ -96,7 +114,24 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addressBtn];
     self.locationBtn = addressBtn;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 19, 23)];
+    rightView.userInteractionEnabled = YES;
+    [rightView addGestureRecognizer:({
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_messageClick)];
+        tapGes;
+    })];
+    UIImageView *ringImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 19, 23)];
+    ringImg.contentMode = UIViewContentModeScaleAspectFit;
+    ringImg.image = [UIImage imageNamed:@"nav_message"];
+    [rightView addSubview:ringImg];
+    UIView *dotView = [[UIView alloc] initWithFrame:CGRectMake(14, 0, 6, 6)];
+    dotView.layer.cornerRadius = 3;
+    dotView.hidden = NO;
+    dotView.backgroundColor = [UIColor redColor];
+    [rightView addSubview:dotView];
+    self.dotView = dotView;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];//[[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
     
 
     //处理导航栏有条线的问题
@@ -283,7 +318,8 @@
     guidView.detailBlock = ^{
         MJTLog(@"装修流程");
         MjtWebView *webView = [[MjtWebView alloc] init];
-       webView.urlString = @"https://vr.shinewonder.com/pano/page/publik/panocheck?vivi=47809&amp;sssaaa=86f34deefc1d49c78afc772a33a80839#s_97377";
+//        webView.hideNav = @"YES";
+       webView.urlString = @"http://39.102.63.135:8080/";
        [self.navigationController pushViewController:webView animated:YES];
     };
     [self.scrollView addSubview:guidView];
@@ -292,69 +328,90 @@
 
 ///每日特价
 - (void)_setupSpecialPrice{
+    WeakSelf;
     UIView *specialPriceView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.guideView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 230)];
     [self.scrollView addSubview:specialPriceView];
     MjtTipView *tipView = [[MjtTipView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 18)];
     tipView.tipLabel.text = @"每日特价";
+    tipView.tapAction = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+       webView.hideNav = @"YES";
+        webView.urlString = @"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html";
+        [weakSelf.navigationController pushViewController:webView animated:YES];
+    };
     [specialPriceView addSubview:tipView];
 //    specialPriceView.backgroundColor = MJTRandomColor;
     self.specialPriceView = specialPriceView;
     
-    WMZBannerParam *param =
-       BannerParam()
-       //自定义视图必传
-       .wMyCellClassNameSet(@"MjtSpecialPriceCell")
-       .wMyCellSet(^UICollectionViewCell *(NSIndexPath *indexPath, UICollectionView *collectionView, id model, UIImageView *bgImageView,NSArray*dataArr) {
-                  //自定义视图
-           MjtSpecialPriceCell *cell = (MjtSpecialPriceCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MjtSpecialPriceCell class]) forIndexPath:indexPath];
-           cell.titleLbl.text = model[@"title"];
-           cell.currentPricelLbl.text = model[@"currentPricel"];
-//           cell.originalPriceLbl.text = model[@"originalPrice"];
-           cell.tagLabel.text = model[@"tag"];
-           
-           NSAttributedString *attrStr =
-              [[NSAttributedString alloc] initWithString:model[@"originalPrice"]
-                                            attributes:
-              @{
-                NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
-                NSStrikethroughColorAttributeName:MJTColorFromHexString(@"#333333")}];
-                  
-              cell.originalPriceLbl.attributedText = attrStr;
-           
-           
-           [cell.iconImg sd_setImageWithURL:[NSURL URLWithString:model[@"icon"]] placeholderImage:nil];
-           return cell;
-       })
-       .wFrameSet(CGRectMake(0, 20, BannerWitdh,200))
-       .wDataSet([self getData])
-       //关闭pageControl
-       .wHideBannerControlSet(YES)
-       //开启缩放
-       .wScaleSet(YES)
-       //自定义item的大小
-       .wItemSizeSet(CGSizeMake(BannerWitdh*0.8, 160))
-       //固定移动的距离
-       .wContentOffsetXSet(0.5)
-       //循环
-       .wRepeatSet(YES)
-       //中间cell层级最上面
-       .wZindexSet(YES)
-       //整体左右间距  设置为size.width的一半 让最后一个可以居中
-       .wSectionInsetSet(UIEdgeInsetsMake(0,10, 0, BannerWitdh*0.55*0.3))
-       //间距
-       .wLineSpacingSet(10)
-       //开启背景毛玻璃
-       .wEffectSet(NO)
-    .wEventCenterClickSet(^(id anyID, NSInteger index,BOOL isCenter,UICollectionViewCell *cell) {
-        [self.navigationController pushViewController:[MjtDiscountListVC new] animated:YES];
-    })
-//       点击左右居中
-//       .wEventCenterClickSet(YES)
-       ;
-       WMZBannerView *bannerView = [[WMZBannerView alloc] initConfigureWithModel:param];
-       [specialPriceView addSubview:bannerView];
+    
+    //获取特价数据
+    [NetBaseTool getWithUrl:@"http://39.102.63.135:8080/index.php/mobile/api/getHotshop" params:nil decryptResponse:NO  success:^(id responeseObject) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSMutableArray *goods = [MjtGoodsModel mj_objectArrayWithKeyValuesArray:responeseObject[@"data"]];
+            [weakSelf specialPriceView:goods];
+        });
+        
+       
+    } failure:^(NSError *error) {
+        MJTLog(@"...");
+    }];
 }
-
+- (void)specialPriceView:(NSMutableArray *)goods{
+    WMZBannerParam *param =
+           BannerParam()
+           //自定义视图必传
+           .wMyCellClassNameSet(@"MjtSpecialPriceCell")
+           .wMyCellSet(^UICollectionViewCell *(NSIndexPath *indexPath, UICollectionView *collectionView, MjtGoodsModel *model, UIImageView *bgImageView,NSArray*dataArr) {
+                      //自定义视图
+               MjtSpecialPriceCell *cell = (MjtSpecialPriceCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MjtSpecialPriceCell class]) forIndexPath:indexPath];
+               cell.titleLbl.text = model.goods_name;
+               cell.currentPricelLbl.text = [NSString stringWithFormat:@"¥%@",model.shop_price];
+//               cell.originalPriceLbl.text = model.market_price;
+               [cell.iconImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://39.102.63.135:8080/%@",model.original_img]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+               
+               NSAttributedString *attrStr =
+                  [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%@",model.market_price]
+                                                attributes:
+                  @{
+                    NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+                    NSStrikethroughColorAttributeName:MJTColorFromHexString(@"#333333")}];
+                      
+                  cell.originalPriceLbl.attributedText = attrStr;
+               return cell;
+           })
+           .wFrameSet(CGRectMake(0, 20, BannerWitdh,200))
+           .wDataSet(goods)
+           //关闭pageControl
+           .wHideBannerControlSet(YES)
+           //开启缩放
+           .wScaleSet(YES)
+           //自定义item的大小
+           .wItemSizeSet(CGSizeMake(BannerWitdh*0.8, 160))
+           //固定移动的距离
+           .wContentOffsetXSet(0.5)
+           //循环
+           .wRepeatSet(YES)
+           //中间cell层级最上面
+           .wZindexSet(YES)
+           //整体左右间距  设置为size.width的一半 让最后一个可以居中
+           .wSectionInsetSet(UIEdgeInsetsMake(0,10, 0, BannerWitdh*0.55*0.3))
+           //间距
+           .wLineSpacingSet(10)
+           //开启背景毛玻璃
+           .wEffectSet(NO)
+        .wEventCenterClickSet(^(id anyID, NSInteger index,BOOL isCenter,UICollectionViewCell *cell) {
+            MjtGoodsModel *model = goods[index];
+            MjtWebView *webView = [[MjtWebView alloc] init];
+            webView.urlString = model.url;
+            [self.navigationController pushViewController:webView animated:YES];
+        })
+    //       点击左右居中
+    //       .wEventCenterClickSet(YES)
+           ;
+           WMZBannerView *bannerView = [[WMZBannerView alloc] initConfigureWithModel:param];
+           [self.specialPriceView addSubview:bannerView];
+}
 ///案例推荐
 - (void)_setupRecommendView{
     UIView *recommendView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.specialPriceView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 18+12+98+12+98)];
@@ -400,6 +457,9 @@
     @{@"icon":@"banner3"}];
 }
 - (NSArray*)getData{
+
+    
+
     return @[
         @{@"title":@"超值特价双人沙发",@"icon":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744105022&di=f4aadd0b85f93309a4629c998773ae83&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1206%2F07%2Fc0%2F11909864_1339034191111.jpg",@"originalPrice":@"¥2990",@"currentPricel":@"¥1990",@"tag":@"皮制·鹅绒"},
       @{@"title":@"超值特价双人沙发",@"icon":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744105022&di=f06819b43c8032d203642874d1893f3d&imgtype=0&src=http%3A%2F%2Fi2.sinaimg.cn%2Fent%2Fs%2Fm%2Fp%2F2009-06-25%2FU1326P28T3D2580888F326DT20090625072056.jpg",@"originalPrice":@"¥2990",@"currentPricel":@"¥1990",@"tag":@"皮制·鹅绒"},
@@ -416,6 +476,10 @@
 }
 
 - (void)_messageClick{
+    if(![MjtUserInfo sharedUser].isLogin){
+        [self.navigationController pushViewController:[MjtLoginVC new] animated:YES];
+        return;
+    }
     MjtMessageBaseVC *vc = [[MjtMessageBaseVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }

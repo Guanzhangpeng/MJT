@@ -47,7 +47,7 @@
 #pragma mark - JXCategoryListContainerViewDelegate
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
     MjtMessageListVC *list = [[MjtMessageListVC alloc] init];
-//    list.orderType = index;
+    list.messageType = index + 1;
     return list;
 }
 
