@@ -11,6 +11,15 @@
 #import "MJRefresh.h"
 #import "MjtServiceModel.h"
 #import "MJExtension.h"
+#import "MjtWebView.h"
+#import "DES3Util.h"
+#import "RSAUtil.h"
+#import "NSDictionary+YYAdd.h"
+#import "NSString+Extension.h"
+#import "NSString+YYAdd.h"
+#import "MjtSignHelper.h"
+#import "MjtSigner.h"
+#import "NSString+YYAdd.h"
 @interface MjtServiceBaseVC ()<UITableViewDataSource,UITableViewDelegate>{
     int page;
     int count;
@@ -75,6 +84,35 @@ static NSString *cellID = @"ServiceID";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataSource[indexPath.row];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MjtWebView *webView = [[MjtWebView alloc] init];
+    MjtServiceModel * model = self.dataSource[indexPath.row];
+    webView.urlString = [NSString stringWithFormat:@"http://192.168.8.174/userapipage/handleorder.php?service_order_id=%@&userid=%@&mobile=%@",model.orderid,[MjtUserInfo sharedUser].ID,[MjtUserInfo sharedUser].mobile];
+    webView.title = @"详情";
+    [self.navigationController pushViewController:webView animated:YES];
+}
+//生成八位随机字符串
+- (NSString *)randomString {
+    NSString *alphabet = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    // Get the characters into a C array for efficient shuffling
+    NSUInteger numberOfCharacters = [alphabet length];
+    unichar *characters = calloc(numberOfCharacters, sizeof(unichar));
+    [alphabet getCharacters:characters range:NSMakeRange(0, numberOfCharacters)];
+    
+    // Perform a Fisher-Yates shuffle
+    for (NSUInteger i = 0; i < numberOfCharacters; ++i) {
+        NSUInteger j = (arc4random_uniform((float)numberOfCharacters - i) + i);
+        unichar c = characters[i];
+        characters[i] = characters[j];
+        characters[j] = c;
+    }
+    
+    // Turn the result back into a string
+    NSString *result = [NSString stringWithCharacters:characters length:8];
+    free(characters);
+    return result;
 }
 #pragma mark -- 懒加载
 -(UITableView *)tableview{

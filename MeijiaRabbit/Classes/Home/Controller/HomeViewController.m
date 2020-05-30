@@ -414,16 +414,14 @@
 }
 ///案例推荐
 - (void)_setupRecommendView{
-    UIView *recommendView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.specialPriceView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 18+12+98+12+98)];
+    UIView *recommendView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.specialPriceView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 18+12+98 * 5 +12 * 5)];
        [self.scrollView addSubview:recommendView];
        MjtTipView *tipView = [[MjtTipView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 18)];
        tipView.tipLabel.text = @"案例推荐";
        [recommendView addSubview:tipView];
     
     MjtRecommendView *recommendView1 = [[MjtRecommendView alloc] init];
-    recommendView1.backgroundColor = MJTRandomColor;
-//    recommendView1.bgImgView.image = [UIImage imageNamed:@""];
-    [recommendView1.bgImgView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744105022&di=f4aadd0b85f93309a4629c998773ae83&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1206%2F07%2Fc0%2F11909864_1339034191111.jpg"] placeholderImage:nil];
+    recommendView1.bgImgView.image = [UIImage imageNamed:@"recommend1"];
     recommendView1.titleLbl.text = @"水电";
     recommendView1.detailLbl.text = @"水电改造·管道封闭";
     [recommendView addSubview:recommendView1];
@@ -435,9 +433,7 @@
     }];
     
     MjtRecommendView *recommendView2 = [[MjtRecommendView alloc] init];
-        recommendView2.backgroundColor = MJTRandomColor;
-    //    recommendView2.bgImgView.image = [UIImage imageNamed:@""];
-        [recommendView2.bgImgView sd_setImageWithURL:[NSURL URLWithString:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744105022&di=f4aadd0b85f93309a4629c998773ae83&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1206%2F07%2Fc0%2F11909864_1339034191111.jpg"] placeholderImage:nil];
+        recommendView2.bgImgView.image = [UIImage imageNamed:@"recommend2"];
         recommendView2.titleLbl.text = @"铺贴瓷砖";
         recommendView2.detailLbl.text = @"铺墙砖·贴地砖";
         [recommendView addSubview:recommendView2];
@@ -447,6 +443,38 @@
             make.height.mas_equalTo(98);
             make.top.mas_equalTo(recommendView1.mas_bottom).with.offset(MJTGlobalViewTopInset);
         }];
+    MjtRecommendView *recommendView3 = [[MjtRecommendView alloc] init];
+        recommendView3.bgImgView.image = [UIImage imageNamed:@"recommend3"];
+    recommendView3.titleLbl.text = @"墙面刷漆";
+        [recommendView addSubview:recommendView3];
+        [recommendView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(MJTGlobalViewLeftInset);
+            make.right.mas_equalTo(-MJTGlobalViewLeftInset);
+            make.height.mas_equalTo(98);
+            make.top.mas_equalTo(recommendView2.mas_bottom).with.offset(MJTGlobalViewTopInset);
+        }];
+    
+    MjtRecommendView *recommendView4 = [[MjtRecommendView alloc] init];
+    recommendView4.bgImgView.image = [UIImage imageNamed:@"recommend4"];
+    recommendView4.titleLbl.text = @"木工吊顶";
+    [recommendView addSubview:recommendView4];
+    [recommendView4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(MJTGlobalViewLeftInset);
+        make.right.mas_equalTo(-MJTGlobalViewLeftInset);
+        make.height.mas_equalTo(98);
+        make.top.mas_equalTo(recommendView3.mas_bottom).with.offset(MJTGlobalViewTopInset);
+    }];
+    
+    MjtRecommendView *recommendView5 = [[MjtRecommendView alloc] init];
+    recommendView5.bgImgView.image = [UIImage imageNamed:@"recommend5"];
+    recommendView5.titleLbl.text = @"厨卫防水";
+    [recommendView addSubview:recommendView5];
+    [recommendView5 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(MJTGlobalViewLeftInset);
+        make.right.mas_equalTo(-MJTGlobalViewLeftInset);
+        make.height.mas_equalTo(98);
+        make.top.mas_equalTo(recommendView4.mas_bottom).with.offset(MJTGlobalViewTopInset);
+    }];
     
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(recommendView.frame) + 20);
     
@@ -456,17 +484,7 @@
     @{@"icon":@"banner2"},
     @{@"icon":@"banner3"}];
 }
-- (NSArray*)getData{
 
-    
-
-    return @[
-        @{@"title":@"超值特价双人沙发",@"icon":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744105022&di=f4aadd0b85f93309a4629c998773ae83&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1206%2F07%2Fc0%2F11909864_1339034191111.jpg",@"originalPrice":@"¥2990",@"currentPricel":@"¥1990",@"tag":@"皮制·鹅绒"},
-      @{@"title":@"超值特价双人沙发",@"icon":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744105022&di=f06819b43c8032d203642874d1893f3d&imgtype=0&src=http%3A%2F%2Fi2.sinaimg.cn%2Fent%2Fs%2Fm%2Fp%2F2009-06-25%2FU1326P28T3D2580888F326DT20090625072056.jpg",@"originalPrice":@"¥2990",@"currentPricel":@"¥1990",@"tag":@"皮制·鹅绒"},
-      @{@"title":@"超值特价双人沙发",@"icon":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577338893&di=189401ebacb9704d18f6ab02b7336923&imgtype=jpg&er=1&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201308%2F05%2F20130805105309_5E2zE.jpeg",@"originalPrice":@"¥2990",@"currentPricel":@"¥1990",@"tag":@"皮制·鹅绒"},
-      @{@"title":@"超值特价双人沙发",@"icon":@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576744174216&di=36ffb42bf8757df08455b34c6b7d66c5&imgtype=0&src=http%3A%2F%2Fwww.7dapei.com%2Fimages%2F201203c%2F119.3.jpg",@"originalPrice":@"¥2990",@"currentPricel":@"¥1990",@"tag":@"皮制·鹅绒"}
-      ];
-}
 #pragma mark -- 点击事件
 - (void)_addressClick{
     JFCSTableViewController *vc = [[JFCSTableViewController alloc] initWithConfiguration:[[JFCSConfiguration alloc] init] delegate:self];

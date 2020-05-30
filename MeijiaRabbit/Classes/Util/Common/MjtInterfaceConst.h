@@ -65,5 +65,17 @@
 // 装修流程
 #define MJT_DECORATIONFLOW_PATH @"/case/process.html"
 
+/// 服务订单-- 代付款
+#define MJT_ORDER_PAYING_PATH @"/userapipage/orderpaystay.php"
+
+/// 服务订单-- 代开工
+#define MJT_ORDER_PAYING_PATH @"/userapipage/orderstay.php"
+
+/// 服务订单-- 代付款
+#define MJT_ORDER_PAYING_PATH @"/userapipage/orderstay.php"
+
+/// 服务订单-- 代付款
+#define MJT_ORDER_PAYING_PATH @"/userapipage/orderpaystay.php"
+
 
 #endif /* MjtInterfaceConst_h */

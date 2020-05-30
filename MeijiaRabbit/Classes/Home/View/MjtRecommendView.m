@@ -19,7 +19,7 @@
     return self;
 }
 - (void)_setupSubviews{
-    UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.bounds];
+    UIImageView *bgImgView = [[UIImageView alloc] init];
     bgImgView.layer.cornerRadius = 8.f;
     bgImgView.layer.masksToBounds = YES;
     [self addSubview:bgImgView];
@@ -39,6 +39,9 @@
     
 }
 - (void)_makeSubviewsConstraints{
+    [self.bgImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self);
+    }];
     [self.detailLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.centerY).with.offset(MJTGlobalViewTopInset);
         make.centerX.mas_equalTo(self.centerX);

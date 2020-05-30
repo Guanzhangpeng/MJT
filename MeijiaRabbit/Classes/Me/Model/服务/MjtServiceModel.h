@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *service_name;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSString *create_time;
-@property (nonatomic, strong) NSString *service_order_status;//1
+@property (nonatomic, assign) NSInteger service_order_status;//1
 @property (nonatomic, strong) NSString *service_order_status_name;//"待处理"
 //"orderid": "7",
 //"service_name": "局部装修-美缝",

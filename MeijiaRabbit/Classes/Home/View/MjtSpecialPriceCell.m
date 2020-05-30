@@ -36,7 +36,7 @@
     ///标题
     UILabel *titleLbl = [[UILabel alloc] init];
     titleLbl.font = [UIFont boldSystemFontOfSize:14];
-    titleLbl.numberOfLines = 2;
+    titleLbl.numberOfLines = 1;
     titleLbl.textColor = MJTColorFromHexString(@"#333333");
     [self.contentView addSubview:titleLbl];
     self.titleLbl = titleLbl;
