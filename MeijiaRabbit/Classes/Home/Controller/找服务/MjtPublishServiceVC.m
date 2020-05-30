@@ -15,6 +15,7 @@
 #import "MjtAddressListVC.h"
 #import "YWAddressInfoModel.h"
 #import "MjtFindServiceModel.h"
+#import "MjtServiceAlertView.h"
 #define HWStatusPhotoWH  (([UIScreen mainScreen].bounds.size.width - HWStatusPhotoMargin * 4) / 3)
 #define HWStatusPhotoMargin (15)
 #define HWStatusPhotoMaxCol(count) ((count==4)?2:3)
@@ -322,6 +323,8 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     [addressPickerView show];
 }
 - (void)_submitButton_Click{
+
+    
     if ([self.addressLbl.text isEqualToString:@""] ) {
         [MBProgressHUD wj_showPlainText:@"请选择您的服务地址" view:self.view];
         return;
@@ -336,6 +339,15 @@ static NSString *CellID = @"MjtServiceRecommendCell";
         [MBProgressHUD wj_showPlainText:@"请输入您的详细具体需求" view:self.view];
         return;
     }
+    WeakSelf;
+    MjtServiceAlertView *aletView = [[MjtServiceAlertView alloc] init];
+    aletView.dismissAction = ^{
+        [weakSelf submitRequest];
+    };
+    [aletView show];
+    
+}
+- (void)submitRequest{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"userid"] = [MjtUserInfo sharedUser].ID;
     param[@"addressid"] = self.addressModel.ID;

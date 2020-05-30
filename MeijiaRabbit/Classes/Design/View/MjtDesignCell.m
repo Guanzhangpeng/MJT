@@ -24,5 +24,12 @@
     self.thumbBtn.selected = !_thumbBtn.selected;
     !_thumbAction ?  :_thumbAction();
 }
-
+-(void)setDict:(NSMutableDictionary *)dict{
+    _dict = dict;
+    self.coverImg.image = [UIImage imageNamed:dict[@"corverImg"]];
+    self.priceLbl.text = dict[@"price"];
+    self.styleLbl.text = dict[@"style"];
+    self.priceLbl.text = dict[@"price"];
+    self.titleLbl.text = dict[@"title"];
+}
 @end

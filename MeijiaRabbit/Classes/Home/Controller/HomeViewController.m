@@ -81,8 +81,8 @@
 - (void)_requestData{
     [NetBaseTool postWithUrl:MJT_MESSAGEUNREAD_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {
         if ([responseDict[@"status"] intValue] == 200) {
-            NSInteger serviceCount = [responseDict[@"serviceMessageLen"] integerValue];
-            NSInteger systemCount = [responseDict[@"systemMessageLen"] integerValue];
+            NSInteger serviceCount = [responseDict[@"data"][@"serviceMessageLen"] integerValue];
+            NSInteger systemCount = [responseDict[@"data"][@"systemMessageLen"] integerValue];
             self.dotView.hidden = (serviceCount + systemCount) == 0;
         }
     } failure:^(NSError *error) {
@@ -318,8 +318,8 @@
     guidView.detailBlock = ^{
         MJTLog(@"装修流程");
         MjtWebView *webView = [[MjtWebView alloc] init];
-//        webView.hideNav = @"YES";
-       webView.urlString = @"http://39.102.63.135:8080/";
+        webView.title = @"装修流程";
+        webView.urlString = KURL(MJT_DECORATIONFLOW_PATH);
        [self.navigationController pushViewController:webView animated:YES];
     };
     [self.scrollView addSubview:guidView];

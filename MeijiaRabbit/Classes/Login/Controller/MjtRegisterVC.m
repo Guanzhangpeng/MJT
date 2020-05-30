@@ -182,7 +182,7 @@
     
     
 //    协议
-        NSMutableAttributedString *attributtedString = [[NSMutableAttributedString alloc] initWithString:@"登录即表示同意美嘉兔用户协议条款  百度"];
+        NSMutableAttributedString *attributtedString = [[NSMutableAttributedString alloc] initWithString:@"登录即表示同意美嘉兔用户协议条款"];
         [attributtedString addAttribute:NSLinkAttributeName value:@"Lience://" range:[[attributtedString string] rangeOfString:@"美嘉兔用户协议条款"]];
     [attributtedString addAttribute:NSLinkAttributeName value:@"baidu://" range:[[attributtedString string] rangeOfString:@"百度"]];
         [attributtedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, attributtedString.length)];

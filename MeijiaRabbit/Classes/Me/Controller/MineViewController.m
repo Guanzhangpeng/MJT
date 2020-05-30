@@ -156,10 +156,15 @@
 }
 
 - (void)_setupData{
+    WeakSelf;
     MjtSettingItemModel *item1 = [[MjtSettingItemModel alloc] init];
     item1.funcName = @"服务订单";
     item1.img = [UIImage imageNamed:@"me_serviceOrder"];
     item1.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
+    item1.executeCode = ^{
+        MjtServiceListVC *listVC = [[MjtServiceListVC alloc] init];
+        [weakSelf.navigationController pushViewController:listVC animated:YES];
+    };
    
     MjtSettingItemModel *item2 = [[MjtSettingItemModel alloc] init];
     item2.funcName = @"我的客服";
@@ -174,7 +179,6 @@
     item3.funcName = @"地址管理";
     item3.img = [UIImage imageNamed:@"me_address"];
     item3.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
-    __weak typeof(self) weakSelf = self;
     item3.executeCode = ^{
         MjtAddressListVC *addressVC = [[MjtAddressListVC alloc] init];
         [weakSelf.navigationController pushViewController:addressVC animated:YES];

@@ -78,7 +78,7 @@
     [self.currentPricelLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self);
         make.top.mas_equalTo(self.iconImg.mas_bottom);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(70);
         make.height.mas_equalTo(20);
     }];
     

@@ -62,5 +62,8 @@
 // 消息未读状态
 #define MJT_MESSAGEUNREAD_PATH @"/userapi/usernewmessagecount.php"
 
+// 装修流程
+#define MJT_DECORATIONFLOW_PATH @"/case/process.html"
+
 
 #endif /* MjtInterfaceConst_h */

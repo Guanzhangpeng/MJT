@@ -299,7 +299,7 @@
 #pragma mark --- 懒加载
 - (UIProgressView *)progressView {
     if (!_progressView){
-        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 22, self.view.frame.size.width, 2)];
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, 2)];
         _progressView.tintColor = MJTGlobalMainColor;
         _progressView.trackTintColor = [UIColor clearColor];
     }
