@@ -306,8 +306,6 @@
     guaranteeView.clickBlock = ^{
         MJTLog(@"施工保障点击");
     };
-    
-    
 }
 
 ///装修流程

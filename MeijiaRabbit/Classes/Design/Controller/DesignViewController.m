@@ -134,7 +134,59 @@ static NSString *cellID = @"DesignCellID";
         dic9[@"price"] = @"30万";
         dic9[@"corverImg"] = @"design9";
         dic9[@"urlString"] = @"http://192.168.8.174/case/case9.html";
-        [_dataSource addObjectsFromArray:@[dic1,dic2,dic3,dic4,dic5,dic6,dic7,dic8,dic9]];
+        
+        NSMutableDictionary *dic10 = [NSMutableDictionary dictionary];
+        dic10[@"title"] = @"简中式-北京设计";
+        dic10[@"rooms"] = @"三居";
+        dic10[@"style"] = @"中式";
+        dic10[@"price"] = @"20-30万";
+        dic10[@"corverImg"] = @"design10";
+        dic10[@"urlString"] = @"http://192.168.8.174/case/case10.html";
+        
+        NSMutableDictionary *dic11 = [NSMutableDictionary dictionary];
+        dic11[@"title"] = @"高级灰住宅里的一抹暖意";
+        dic11[@"rooms"] = @"四居";
+        dic11[@"style"] = @"现代";
+        dic11[@"price"] = @"30万以上";
+        dic11[@"corverImg"] = @"design11";
+        dic11[@"urlString"] = @"http://192.168.8.174/case/case11.html";
+        
+        NSMutableDictionary *dic12 = [NSMutableDictionary dictionary];
+        dic12[@"title"] = @"蔓延的中式暖意";
+        dic12[@"rooms"] = @"三居";
+        dic12[@"style"] = @"中式";
+        dic12[@"price"] = @"30万以上";
+        dic12[@"corverImg"] = @"design12";
+        dic12[@"urlString"] = @"http://192.168.8.174/case/case12.html";
+        
+        NSMutableDictionary *dic13 = [NSMutableDictionary dictionary];
+        dic13[@"title"] = @"混搭——都市重金属";
+        dic13[@"rooms"] = @"四居";
+        dic13[@"style"] = @"现代";
+        dic13[@"price"] = @"30万以上";
+        dic13[@"corverImg"] = @"design13";
+        dic13[@"urlString"] = @"http://192.168.8.174/case/case13.html";
+        
+        NSMutableDictionary *dic14 = [NSMutableDictionary dictionary];
+        dic14[@"title"] = @"新竹猫屋";
+        dic14[@"rooms"] = @"四居";
+        dic14[@"style"] = @"现代";
+        dic14[@"price"] = @"30万以上";
+        dic14[@"corverImg"] = @"design14";
+        dic14[@"urlString"] = @"http://192.168.8.174/case/case14.html";
+        
+        NSMutableDictionary *dic15 = [NSMutableDictionary dictionary];
+        dic15[@"title"] = @"拥有众多花园的办公空间";
+        dic15[@"rooms"] = @"办公室";
+        dic15[@"style"] = @"现代";
+        dic15[@"price"] = @"3万以上";
+        dic15[@"corverImg"] = @"design15";
+        dic15[@"urlString"] = @"http://192.168.8.174/case/case15.html";
+        
+        
+        
+        [_dataSource addObjectsFromArray:@[dic1,dic2,dic3,dic4,dic5,dic6,dic7,dic8,dic9,dic10,dic11,dic12,dic13,dic14,dic15]];
+        
     }
     return _dataSource;
 }
