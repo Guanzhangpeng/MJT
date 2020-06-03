@@ -11,7 +11,11 @@
 
 
 #define MJT_ROOT_PATH @"http://192.168.8.174"
+#define MJT_HTMLSHOPROOT_PATH @"http://39.102.63.135:8080"
+
 #define KURL(url) ([NSString stringWithFormat:@"%@%@",MJT_ROOT_PATH,url])
+#define KShopUrl(url) ([NSString stringWithFormat:@"%@%@",MJT_HTMLSHOPROOT_PATH,url])
+
 
 // 获取公钥
 #define MJT_PUBLICKEY_PATH @"/userapi/getuserpublickey.php"
@@ -76,6 +80,14 @@
 
 /// 服务订单-- 代付款
 #define MJT_ORDER_PAYING_PATH @"/userapipage/orderpaystay.php"
+
+
+/// 特价商品
+#define MJT_HOTSHOP_PATH @"/index.php/mobile/api/getHotshop"
+
+/// 特价列表商品
+#define MJT_HOTSHOP_LIST_PATH @"/mobile/Goods/goodsList/id/1.html"
+
 
 
 #endif /* MjtInterfaceConst_h */

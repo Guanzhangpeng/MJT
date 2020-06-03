@@ -334,9 +334,9 @@
     tipView.moreAction = ^{
       MjtWebView *webView = [[MjtWebView alloc] init];
        if([MjtUserInfo sharedUser].isLogin){
-           webView.urlString = [NSString stringWithFormat:@"http://39.102.63.135:8080/mobile/api/do_login?mobile=%@&url=%@",[MjtUserInfo sharedUser].mobile,@"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html"];
+           webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_HOTSHOP_LIST_PATH)];
        }else{
-           webView.urlString = @"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html";
+           webView.urlString = KShopUrl(MJT_HOTSHOP_LIST_PATH);
        }
        [weakSelf.navigationController pushViewController:webView animated:YES];
     };
@@ -345,7 +345,7 @@
     
     
     //获取特价数据
-    [NetBaseTool getWithUrl:@"http://39.102.63.135:8080/index.php/mobile/api/getHotshop" params:nil decryptResponse:NO  success:^(id responeseObject) {
+    [NetBaseTool getWithUrl:KShopUrl(MJT_HOTSHOP_PATH) params:nil decryptResponse:NO  success:^(id responeseObject) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSMutableArray *goods = [MjtGoodsModel mj_objectArrayWithKeyValuesArray:responeseObject[@"data"]];
@@ -367,8 +367,7 @@
                MjtSpecialPriceCell *cell = (MjtSpecialPriceCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MjtSpecialPriceCell class]) forIndexPath:indexPath];
                cell.titleLbl.text = model.goods_name;
                cell.currentPricelLbl.text = [NSString stringWithFormat:@"¥%@",model.shop_price];
-//               cell.originalPriceLbl.text = model.market_price;
-               [cell.iconImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://39.102.63.135:8080/%@",model.original_img]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+               [cell.iconImg sd_setImageWithURL:[NSURL URLWithString:KShopUrl(model.original_img)] placeholderImage:[UIImage imageNamed:@"placeholder"]];
                
                NSAttributedString *attrStr =
                   [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%@",model.market_price]

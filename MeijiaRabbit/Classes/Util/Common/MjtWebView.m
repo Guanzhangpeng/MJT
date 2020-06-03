@@ -97,6 +97,10 @@
                    forKeyPath:@"canGoBack"
                       options:NSKeyValueObservingOptionNew
                       context:nil];
+    [self.webView addObserver:self
+                   forKeyPath:@"loading"
+                      options:NSKeyValueObservingOptionNew
+                      context:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ALPayResultCallBack:) name:NOTI_SERVICEORDER_PAYFINISH object:nil];
 }
@@ -323,7 +327,15 @@
         }else{
             self.closeBtn.hidden = YES;
         }
-    }else{
+    } else if([keyPath isEqualToString:@"loading"]
+    && object == _webView){
+        if(self.webView.isLoading){
+            
+        }else{
+            
+        }
+    }
+    else{
         [super observeValueForKeyPath:keyPath
         ofObject:object
           change:change

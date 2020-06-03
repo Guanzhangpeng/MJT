@@ -67,7 +67,7 @@
     if ([viewController.title isEqualToString:@"商城"]) {
        MjtWebView *webView = [[MjtWebView alloc] init];
 //              webView.hideNav = @"YES";
-             webView.urlString = @"http://39.102.63.135:8080";
+             webView.urlString = MJT_HTMLSHOPROOT_PATH;
        MjtNavigationController *nav = self.selectedViewController;
        [nav pushViewController:webView animated:YES];
        return NO;
