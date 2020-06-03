@@ -23,4 +23,6 @@ target 'MeijiaRabbit' do
   pod 'TZImagePickerController'
   pod 'BRPickerView'
   pod 'JPush'
+  pod 'SPAlertController'
+  pod 'AlipaySDK-iOS'
 end

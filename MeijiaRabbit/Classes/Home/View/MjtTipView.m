@@ -8,7 +8,12 @@
 
 #import "MjtTipView.h"
 #import "Masonry.h"
+#import "MjtBaseButton.h"
+@interface MjtTipView()
 
+@property (nonatomic, weak) MjtBaseButton *moreBtn;
+
+@end
 @implementation MjtTipView
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -59,9 +64,31 @@
         make.centerY.mas_equalTo(self);
         make.left.mas_equalTo(tipLabel.mas_right).offset(15);
     }];
+    
+    MjtBaseButton *moreBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    [moreBtn setTitleColor: MJTColorFromHexString(@"#333333") forState:0];
+    moreBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+
+    [moreBtn addTarget:self action:@selector(more_Click) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:moreBtn];
+    self.moreBtn = moreBtn;
+    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).with.offset(-20);
+        make.width.mas_equalTo(50);
+        make.centerY.mas_equalTo(self.tipLabel.mas_centerY);
+        make.height.mas_equalTo(self.tipLabel.mas_height);
+    }];
 }
 #pragma mark -- 点击事件
 - (void)tapClick{
     !_tapAction ? :_tapAction();
+}
+- (void)more_Click{
+    !_moreAction ? :_moreAction();
+}
+-(void)setDetailStr:(NSString *)detailStr{
+    self.moreBtn.backgroundColor = MJTGlobalMainColor;    
+    self.moreBtn.layer.cornerRadius = 8;
+    [self.moreBtn setTitle:detailStr forState:0];
 }
 @end

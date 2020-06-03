@@ -34,7 +34,7 @@
     parameters[@"phone_type"] = @"2";//手机类型(1:安卓，2:苹果)
     
     //对参数进行加密
-    NSString * public_key= [MjtSigner sharedSigner].publickey;
+    NSString * public_key= RSA_PUBKEY;//[MjtSigner sharedSigner].publickey;
     
     NSString *jsonString = [NSString DataTOjsonString:parameters];
     
@@ -175,7 +175,7 @@
    
    
    //对参数进行加密
-   NSString * public_key= [MjtSigner sharedSigner].publickey;
+    NSString * public_key= RSA_PUBKEY;//[MjtSigner sharedSigner].publickey;
    
    NSString *jsonString = [NSString DataTOjsonString:parameters];
    
@@ -271,7 +271,7 @@
     parameters[@"mobile"] = [MjtUserInfo sharedUser].mobile;
     
     //对参数进行加密
-    NSString * public_key= [MjtSigner sharedSigner].publickey;
+    NSString * public_key= RSA_PUBKEY;//[MjtSigner sharedSigner].publickey;
     
     NSString *jsonString = [NSString DataTOjsonString:parameters];
     
@@ -316,7 +316,7 @@
 #pragma mark - 字典加密
 + (NSString *)securitStringWithDict:(NSDictionary *)dict
 {
-    NSString *RSA_Public_key =  [MjtSigner sharedSigner].publickey;
+    NSString *RSA_Public_key = RSA_PUBKEY;// [MjtSigner sharedSigner].publickey;
     NSString *value = [NSString DataTOjsonString:dict];
     NSString *signString = [RSAUtil encryptString:value publicKey:RSA_Public_key];
     return signString;

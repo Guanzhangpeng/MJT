@@ -8,13 +8,13 @@
 
 #import "AppDelegate.h"
 #import "OttoFPSButton.h"
-#import "MjtSigner.h"
 #import "DES3Util.h"
 #import "RSAUtil.h"
 #import "MjtTabBarController.h"
 #import "UIImage+Extension.h"
 #import "NSString+YYAdd.h"
 #import <CoreLocation/CoreLocation.h>
+#import <AlipaySDK/AlipaySDK.h>
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
 // iOS10 注册 APNs 所需头文件
@@ -30,8 +30,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    [self _loadPublickey];
     [NSThread sleepForTimeInterval:2.f];
     [self setupJPushWithOptions:launchOptions];//集成极光推送
     ///导航栏样式
@@ -64,14 +62,6 @@
     [center addObserver:self selector:@selector(localNotiJPushRegister:) name:kJPFNetworkDidLoginNotification object:nil];
     [center addObserver:self selector:@selector(localNotiJPushNewMsg:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
 }
-
-- (void)_loadPublickey{
-    [NetBaseTool getWithUrl:KURL(MJT_PUBLICKEY_PATH) params:nil decryptResponse:YES success:^(id responeseObject) {
-        [MjtSigner signerWithDict:responeseObject];
-        [MjtSigner saveDataToKeyChian];
-    } failure:nil];
-}
-
 - (void)_setupNavigationBar{
     UINavigationBar *navBar = [UINavigationBar appearance];
     [navBar setBackgroundImage:[UIImage imageWithColor:MJTColorFromHexString(@"#FFCE00")] forBarMetrics:UIBarMetricsDefault];
@@ -134,19 +124,6 @@
              [[NSUserDefaults standardUserDefaults] setObject:@"City" forKey:currCity];
              [[NSUserDefaults standardUserDefaults] synchronize];
              [[NSNotificationCenter defaultCenter] postNotificationName:@"LOCATION_CITY" object:nil userInfo:@{@"CurrentCity":currCity}];
-             MJTLog(currCity);
-//             if (!currCity) {
-//                 //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-//                 currCity = placemark.administrativeArea;
-//             }
-//             if (self.localCityData.count <= 0) {
-//                 GYZCity *city = [[GYZCity alloc] init];
-//                 city.cityName = currCity;
-//                 city.shortName = currCity;
-//                 [self.localCityData addObject:city];
-//
-//                 [self.tableView reloadData];
-//             }
              
          } else if (error ==nil && [array count] == 0)
          {
@@ -166,7 +143,17 @@
     }
     
 }
-
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+             [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SERVICEORDER_PAYFINISH object:nil userInfo:resultDic];
+        }];
+    }
+    return   YES;
+}
 #pragma mark --NOTIFICATION
 - (void)localNotiJPushRegister:(NSNotification *)noti {
     

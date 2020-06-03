@@ -18,7 +18,6 @@
 #import "NSString+Extension.h"
 #import "NSString+YYAdd.h"
 #import "MjtSignHelper.h"
-#import "MjtSigner.h"
 #import "NSString+YYAdd.h"
 @interface MjtServiceBaseVC ()<UITableViewDataSource,UITableViewDelegate>{
     int page;
@@ -42,7 +41,6 @@ static NSString *cellID = @"ServiceID";
 }
 -(void)setOrderType:(MJTServiceOrderType)orderType{
     _orderType = orderType;
-    [self _loadData];
 }
 
 - (void)_setup{
@@ -61,16 +59,17 @@ static NSString *cellID = @"ServiceID";
     param[@"get_type"] = [NSString stringWithFormat:@"%lu",(unsigned long)self.orderType];//获取类型(1:全部，2：待付款，3：待开工，4：待验收，5：待评价)
     MJTLog(@"==================%ld",self.orderType);
     [NetBaseTool postWithUrl:MJT_SERVICEORDER_LIST_PATH params:param decryptResponse:NO showHud:NO success:^(id responseDict) {
+        [self.tableview.mj_header endRefreshing];
         if ([responseDict[@"status"] intValue] == 200) {
             self.dataSource = [MjtServiceModel mj_objectArrayWithKeyValuesArray:responseDict[@"data"]];
             [self.tableview reloadData];
         }
     } failure:^(NSError *error) {
-
+        [self.tableview.mj_header endRefreshing];
     }];
 }
 - (void)_loadNewData{
-    
+    [self _loadData];
 }
 - (void)_loadMoreData{
     
@@ -118,15 +117,15 @@ static NSString *cellID = @"ServiceID";
 -(UITableView *)tableview{
     if (!_tableview) {
         _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT - 44) style:UITableViewStylePlain];
-        _tableview.contentInset = UIEdgeInsetsMake(15, 0, 0, 0);
+        _tableview.contentInset = UIEdgeInsetsMake(5, 0, 0, 0);
         _tableview.delegate = self;
         _tableview.dataSource = self;
         _tableview.rowHeight = 135;
         _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableview registerNib:[UINib nibWithNibName:NSStringFromClass([MjtServiceCell class]) bundle:nil] forCellReuseIdentifier:cellID];
-//        _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(_loadNewData)];
+        _tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(_loadNewData)];
 //        _tableview.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(_loadMoreData)];
-//        [_tableview.mj_header beginRefreshing];
+        [_tableview.mj_header beginRefreshing];
     }
     return _tableview;
 }

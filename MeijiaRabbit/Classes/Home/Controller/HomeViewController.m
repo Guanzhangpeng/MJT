@@ -331,14 +331,18 @@
     [self.scrollView addSubview:specialPriceView];
     MjtTipView *tipView = [[MjtTipView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 18)];
     tipView.tipLabel.text = @"每日特价";
-    tipView.tapAction = ^{
-        MjtWebView *webView = [[MjtWebView alloc] init];
-       webView.hideNav = @"YES";
-        webView.urlString = @"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html";
-        [weakSelf.navigationController pushViewController:webView animated:YES];
+    tipView.detailStr = @"更多";
+    tipView.moreAction = ^{
+      MjtWebView *webView = [[MjtWebView alloc] init];
+      webView.hideNav = @"YES";
+       if([MjtUserInfo sharedUser].isLogin){
+           webView.urlString = [NSString stringWithFormat:@"http://39.102.63.135:8080/mobile/api/do_login?mobile=%@&url=%@",[MjtUserInfo sharedUser].mobile,@"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html"];
+       }else{
+           webView.urlString = @"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html";
+       }
+       [weakSelf.navigationController pushViewController:webView animated:YES];
     };
     [specialPriceView addSubview:tipView];
-//    specialPriceView.backgroundColor = MJTRandomColor;
     self.specialPriceView = specialPriceView;
     
     

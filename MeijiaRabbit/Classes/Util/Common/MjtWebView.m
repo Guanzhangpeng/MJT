@@ -9,6 +9,9 @@
 #import "MjtWebView.h"
 #import <WebKit/WebKit.h>
 #import "UIImage+Extension.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "SPAlertController.h"
+#import "GSProxy.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
 
@@ -43,16 +46,15 @@
 @interface MjtWebView ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (nonatomic ,strong) WKWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation MjtWebView
 - (void)dealloc{
-    //移除注册的js方法
     
     //浏览器返回
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsCallAPPFinish"];
-    
-  
+     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"serviceOrderPay"];
     
     //移除观察者
     [_webView removeObserver:self
@@ -68,47 +70,12 @@
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    if ([self.hideNav isEqualToString:@"YES"]) {
-//          self.navigationController.navigationBarHidden = NO;
-//          [self setStatusBarBackgroundColor:[UIColor clearColor]];
-//      }
+    if ([self.hideNav isEqualToString:@"YES"]) {
+          self.navigationController.navigationBarHidden = NO;
+      }
 }
 
-- (void)setStatusBarBackgroundColor:(UIColor *)color {
 
-    if(@available(iOS 13.0, *)) {
-
-        static UIView* statusBar =nil;
-
-        if(!statusBar) {
-
-  UIWindow*keyWindow = [UIApplication sharedApplication].windows[0];
-
-            statusBar = [[UIView alloc]initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
-
-            [keyWindow addSubview:statusBar];
-
-            [statusBar setBackgroundColor:color];
-
-        }else{
-
-          [statusBar setBackgroundColor:color];
-
-        }
-
-    }else{
-
-        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-
-        if([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-
-          [statusBar setBackgroundColor:color];
-
-        }
-
-    }
-
-}
 // GDP目标的问题 疫情病毒源头的问题  台湾问题
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -125,16 +92,15 @@
                       options:NSKeyValueObservingOptionNew
                       context:nil];
     
-//    if ([self.hideNav isEqualToString:@"YES"]) {
-//
-//          [self setStatusBarBackgroundColor:[UIColor whiteColor]];
-//      }
-    
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ALPayResultCallBack:) name:NOTI_SERVICEORDER_PAYFINISH object:nil];
 }
 
 - (void)_setup{
-   
+    if (@available(iOS 11.0, *)) {
+        self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
 - (void)_setupSubviews{
     [self.view addSubview:self.webView];
@@ -149,17 +115,49 @@
     NSDictionary * parameter = message.body;
 
     __weak typeof(self) weakSelf = self;
-    //JS调用OC
+    //导航栏返回
     if([message.name isEqualToString:@"jsCallAPPFinish"]){
         if(weakSelf.webView.canGoBack){
             [weakSelf.webView goBack];
         }else{
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
+    } else if ([message.name isEqualToString:@"serviceOrderPay"]){
+        //服务订单支付
+        MJTLog(@"%@",parameter[@"params"]);
+        NSString *appScheme =@"com.meijiatu.decoration";
+        [[AlipaySDK defaultService] payOrder:parameter[@"params"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+               NSLog(@"reslut = %@",resultDic);
+               [self ALPayResultHandle:resultDic];
+           }];
     }
 }
 
-
+#pragma mark - 获取支付宝支付回调
+- (void)ALPayResultCallBack:(NSNotification *) json{
+    NSDictionary *resultDic = json.userInfo;
+    [self ALPayResultHandle:resultDic];
+}
+- (void)ALPayResultHandle:(NSDictionary *)resultDic{
+    if ([resultDic[@"resultStatus"] intValue]==9000)
+    {
+        [MBProgressHUD wj_showPlainText:@"支付成功" view:self.view];
+        [self.navigationController popViewControllerAnimated:YES];
+#warning todo 支付完成后调用后台回调
+//        self.timer=[NSTimer timerWithTimeInterval:1.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_checkPayResult) userInfo:nil repeats:YES];
+//        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }else{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付说明" message:@"用户支付失败或取消支付" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:([UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }])];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+#pragma mark -- 支付完成后调用后台回调
+- (void)_checkPayResult{
+    MJTLog(@"支付完成.....");
+}
 #pragma mark -- WKNavigationDelegate
     // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -299,7 +297,7 @@
 #pragma mark --- 懒加载
 - (UIProgressView *)progressView {
     if (!_progressView){
-        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, 2)];
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 2)];
         _progressView.tintColor = MJTGlobalMainColor;
         _progressView.trackTintColor = [UIColor clearColor];
     }
@@ -320,16 +318,10 @@
         
        //注册一个name为jsCallAPPFinish的js方法 设置处理接收JS方法的对象
        [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsCallAPPFinish"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"serviceOrderPay"];
        
        config.userContentController = wkUController;
-
-       
-        if ([self.hideNav isEqualToString:@"YES"]) {
-             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, ScreenHeight) configuration:config];
-        }else{
-             _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) configuration:config];
-        }
-      
+      _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-TOP_BAR_HEIGHT) configuration:config];
          // UI代理
         _webView.UIDelegate = self;
         // 导航代理
@@ -347,5 +339,41 @@
     }else{
         [self.webView goBack];
     }
+}
+
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+
+    if(@available(iOS 13.0, *)) {
+
+        static UIView* statusBar =nil;
+
+        if(!statusBar) {
+
+  UIWindow*keyWindow = [UIApplication sharedApplication].windows[0];
+
+            statusBar = [[UIView alloc]initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
+
+            [keyWindow addSubview:statusBar];
+
+            [statusBar setBackgroundColor:color];
+
+        }else{
+
+          [statusBar setBackgroundColor:color];
+
+        }
+
+    }else{
+
+        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+
+        if([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+
+          [statusBar setBackgroundColor:color];
+
+        }
+
+    }
+
 }
 @end

@@ -121,7 +121,6 @@
 		19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDC82451C38B00251AFD /* DES3Util.m */; };
 		19B3EDD0245290D700251AFD /* MjtSignHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDCF245290D700251AFD /* MjtSignHelper.m */; };
 		19B3EDD42452D62000251AFD /* MjtSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B3EDD32452D62000251AFD /* MjtSigner.m */; };
-		19C8927D245ABC960052813B /* SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C8927C245ABC960052813B /* SPAlertController.m */; };
 		19C89281245ABF4D0052813B /* MjtServiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C89280245ABF4D0052813B /* MjtServiceModel.m */; };
 		19C89285245ADEBD0052813B /* MjtFindServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C89284245ADEBD0052813B /* MjtFindServiceVC.m */; };
 		19C89287245FD1ED0052813B /* part.json in Resources */ = {isa = PBXBuildFile; fileRef = 19C89286245FD1ED0052813B /* part.json */; };
@@ -375,8 +374,6 @@
 		19B3EDD12452C62500251AFD /* MjtInterfaceConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtInterfaceConst.h; sourceTree = "<group>"; };
 		19B3EDD22452D62000251AFD /* MjtSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSigner.h; sourceTree = "<group>"; };
 		19B3EDD32452D62000251AFD /* MjtSigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSigner.m; sourceTree = "<group>"; };
-		19C8927B245ABC960052813B /* SPAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAlertController.h; sourceTree = "<group>"; };
-		19C8927C245ABC960052813B /* SPAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAlertController.m; sourceTree = "<group>"; };
 		19C8927F245ABF4D0052813B /* MjtServiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceModel.h; sourceTree = "<group>"; };
 		19C89280245ABF4D0052813B /* MjtServiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceModel.m; sourceTree = "<group>"; };
 		19C89283245ADEBD0052813B /* MjtFindServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtFindServiceVC.h; sourceTree = "<group>"; };
@@ -696,8 +693,6 @@
 			isa = PBXGroup;
 			children = (
 				1920C4A524625ECD00796983 /* ImagePicker */,
-				19C8927B245ABC960052813B /* SPAlertController.h */,
-				19C8927C245ABC960052813B /* SPAlertController.m */,
 				1980FF482455A9E200652AAD /* MBProgressHud+Extension */,
 				193F27D5241A26110000EB3B /* Setting */,
 				193F27B32417877A0000EB3B /* EmptyView */,
@@ -1260,6 +1255,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MeijiaRabbit/Pods-MeijiaRabbit-resources.sh",
+				"${PODS_ROOT}/AlipaySDK-iOS/AlipaySDK.bundle",
 				"${PODS_ROOT}/BRPickerView/BRPickerView/Base/BRPickerView.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManager/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -1269,6 +1265,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BRPickerView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
@@ -1371,7 +1368,6 @@
 				191D59C4241113AB005632D0 /* MallViewController.m in Sources */,
 				1980FF512455AA3400652AAD /* WJColouredRibbonAnimation.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,
-				19C8927D245ABC960052813B /* SPAlertController.m in Sources */,
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
 				19D60A1D2423172A00DE37B8 /* ZHFAddTitleAddressView.m in Sources */,
 				1980FF6C2456E8B700652AAD /* MjtServiceCell.m in Sources */,
