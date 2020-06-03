@@ -240,17 +240,27 @@
     param[@"input_password"] = self.pwdTxt.text;
     param[@"confirm_password"] = self.pwdAgainTxt.text;
     WeakSelf;
-   [NetBaseTool postWithUrl:MJT_REGISTER_PATH params:param decryptResponse:YES showHud:YES  success:^(id responseDict) {
-       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-           [weakSelf.navigationController popViewControllerAnimated:YES];
-       });
+   [NetBaseTool postWithUrl:MJT_REGISTER_PATH params:param decryptResponse:YES showHud:NO  success:^(id responseDict) {
        
+       if ([responseDict[@"status"] intValue] == 200) {
+           [weakSelf registerSHOP:self.phoneTxt.text];
+       }
    } failure:^(NSError *error) {
 
    }];
-    
 }
-
+- (void)registerSHOP:(NSString *)phone{
+    WeakSelf;
+   NSString *url =  [NSString stringWithFormat:@"%@/mobile/api/app_reg?mobile=%@",MJT_HTMLSHOPROOT_PATH,phone];
+    [NetBaseTool getWithUrl:url params:nil decryptResponse:NO success:^(id responeseObject) {
+        if ([responeseObject[@"status"] intValue] == 200) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
+        }
+    } failure:^(NSError *error) {
+    }];
+}
 ///获取验证码
 - (void)_codeAction{
     if (![RegularHelp validateUserPhone:self.phoneTxt.text] ) {

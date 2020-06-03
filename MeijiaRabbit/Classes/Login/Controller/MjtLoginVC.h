@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtLoginVC : MjtBaseViewController
-
+@property (nonatomic, strong) void(^popAction)();
 @end
 
 NS_ASSUME_NONNULL_END

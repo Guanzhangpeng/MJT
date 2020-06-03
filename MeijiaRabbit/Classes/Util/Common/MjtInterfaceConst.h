@@ -88,6 +88,4 @@
 /// 特价列表商品
 #define MJT_HOTSHOP_LIST_PATH @"/mobile/Goods/goodsList/id/1.html"
 
-
-
 #endif /* MjtInterfaceConst_h */

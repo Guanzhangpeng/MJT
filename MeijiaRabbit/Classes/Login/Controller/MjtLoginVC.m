@@ -245,10 +245,16 @@
         param[@"user_pwd"] = self.pwdTxt.text;
         param[@"type"] = @"2";
     }
+    WeakSelf;
     [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
         MjtUserInfo *userInfo = [MjtUserInfo userWithDict:responseDict[@"data"]];
         [MjtUserInfo saveDataToKeyChian];
-        [self.navigationController popViewControllerAnimated:YES];
+        !weakSelf.popAction ? :weakSelf.popAction();
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+
     } failure:^(NSError *error) {
     }];
     

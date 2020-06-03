@@ -84,6 +84,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 // 销毁打印
 #define MJTDealloc MJTLog(@"\n =========+++ %@  销毁了 +++======== \n",[self class])
+// 是否为空对象
+#define MJTObjectIsNil(__object)  ((nil == __object) || [__object isKindOfClass:[NSNull class]])
 
 // 字符串为空
 #define MJTStringIsEmpty(__string) ((__string.length == 0) || MJTObjectIsNil(__string))

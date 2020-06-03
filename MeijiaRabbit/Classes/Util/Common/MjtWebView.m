@@ -13,6 +13,7 @@
 #import "SPAlertController.h"
 #import "GSProxy.h"
 #import "MjtBaseButton.h"
+#import "MjtLoginVC.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
 
@@ -57,6 +58,7 @@
     //浏览器返回
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsCallAPPFinish"];
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"serviceOrderPay"];
+     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"loginAction"];
     
     //移除观察者
     [_webView removeObserver:self
@@ -164,6 +166,14 @@
                NSLog(@"reslut = %@",resultDic);
                [self ALPayResultHandle:resultDic];
            }];
+    }else if([message.name isEqualToString:@"loginAction"]){
+        NSString *urlString = parameter[@"params"];
+        MjtLoginVC *loginVC = [[MjtLoginVC alloc] init];
+        loginVC.popAction = ^{
+           NSString *url = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,urlString];
+            [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+        };
+        [self.navigationController pushViewController:loginVC animated:YES];
     }
 }
 
@@ -364,8 +374,9 @@
        WKUserContentController * wkUController = [[WKUserContentController alloc] init];
         
        //注册一个name为jsCallAPPFinish的js方法 设置处理接收JS方法的对象
-       [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsCallAPPFinish"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsCallAPPFinish"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"serviceOrderPay"];
+        [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"loginAction"];
        
        config.userContentController = wkUController;
       _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-TOP_BAR_HEIGHT) configuration:config];
