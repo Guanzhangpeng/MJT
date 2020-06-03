@@ -129,9 +129,8 @@
     dotView.hidden = NO;
     dotView.backgroundColor = [UIColor redColor];
     [rightView addSubview:dotView];
-    self.dotView = dotView;
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];//[[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"nav_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(_messageClick)];
+    self.dotView = dotView;    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];
     
 
     //处理导航栏有条线的问题
@@ -334,7 +333,6 @@
     tipView.detailStr = @"更多";
     tipView.moreAction = ^{
       MjtWebView *webView = [[MjtWebView alloc] init];
-      webView.hideNav = @"YES";
        if([MjtUserInfo sharedUser].isLogin){
            webView.urlString = [NSString stringWithFormat:@"http://39.102.63.135:8080/mobile/api/do_login?mobile=%@&url=%@",[MjtUserInfo sharedUser].mobile,@"http://39.102.63.135:8080/mobile/Goods/goodsList/id/1.html"];
        }else{

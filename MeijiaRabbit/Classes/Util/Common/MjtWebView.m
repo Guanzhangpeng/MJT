@@ -12,6 +12,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "SPAlertController.h"
 #import "GSProxy.h"
+#import "MjtBaseButton.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
 
@@ -44,9 +45,10 @@
 @end
 
 @interface MjtWebView ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
-@property (nonatomic ,strong) WKWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) MjtBaseButton *closeBtn;
 @end
 
 @implementation MjtWebView
@@ -91,6 +93,10 @@
                    forKeyPath:@"title"
                       options:NSKeyValueObservingOptionNew
                       context:nil];
+    [self.webView addObserver:self
+                   forKeyPath:@"canGoBack"
+                      options:NSKeyValueObservingOptionNew
+                      context:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ALPayResultCallBack:) name:NOTI_SERVICEORDER_PAYFINISH object:nil];
 }
@@ -103,6 +109,30 @@
     }
 }
 - (void)_setupSubviews{
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 36)];
+    leftView.userInteractionEnabled = YES;
+    UIImageView *backImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 7, 22, 22)];
+    backImg.contentMode = UIViewContentModeScaleAspectFit;
+    backImg.image = [UIImage imageNamed:@"nav_back"];
+    backImg.userInteractionEnabled = YES;
+    [backImg addGestureRecognizer:({
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_backClick)];
+        
+        tapGes;
+    })];
+    [leftView addSubview:backImg];
+    
+    MjtBaseButton *closeBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+    [closeBtn setTitle:@"关闭" forState:0];
+    [closeBtn setTitleColor:MJTColorFromHexString(@"333333") forState:0];
+    closeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [closeBtn addTarget:self action:@selector(_close_Click) forControlEvents:UIControlEventTouchUpInside];
+    closeBtn.frame = CGRectMake(35, 0, 50, 36);
+    closeBtn.hidden = YES;
+    [leftView addSubview:closeBtn];
+    self.closeBtn = closeBtn;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftView];
+    
     [self.view addSubview:self.webView];
     [self.view addSubview:self.progressView];
 }
@@ -275,8 +305,6 @@
     
     if ([keyPath isEqualToString:NSStringFromSelector(@selector(estimatedProgress))]
         && object == _webView) {
-        
-        NSLog(@"网页加载进度 = %f",_webView.estimatedProgress);
         self.progressView.progress = _webView.estimatedProgress;
         if (_webView.estimatedProgress >= 1.0f) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -286,12 +314,20 @@
         
     }else if([keyPath isEqualToString:@"title"]
              && object == _webView){
-        self.navigationItem.title = _webView.title;
+        NSString *title = [_webView.title componentsSeparatedByString:@"-"][0];
+        self.navigationItem.title = title;
+    }else if([keyPath isEqualToString:@"canGoBack"]
+    && object == _webView){
+        if(_webView.canGoBack){
+            self.closeBtn.hidden = NO;
+        }else{
+            self.closeBtn.hidden = YES;
+        }
     }else{
         [super observeValueForKeyPath:keyPath
-                             ofObject:object
-                               change:change
-                              context:context];
+        ofObject:object
+          change:change
+         context:context];
     }
 }
 #pragma mark --- 懒加载
@@ -303,8 +339,7 @@
     }
     return _progressView;
 }
--(WKWebView *)webView
-{
+-(WKWebView *)webView{
     if (!_webView) {
         
         //创建网页配置对象
@@ -340,7 +375,9 @@
         [self.webView goBack];
     }
 }
-
+- (void)_close_Click{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
 
     if(@available(iOS 13.0, *)) {
