@@ -9,9 +9,9 @@
 #import "SGQRCodeScanView.h"
 
 /** 扫描内容的 W 值 */
-#define scanBorderW 0.7 * self.frame.size.width
+#define scanBorderW 0.85 * self.frame.size.width
 /** 扫描内容的 x 值 */
-#define scanBorderX 0.5 * (1 - 0.7) * self.frame.size.width
+#define scanBorderX 0.5 * (1 - 0.85) * self.frame.size.width
 /** 扫描内容的 Y 值 */
 #define scanBorderY 0.5 * (self.frame.size.height - scanBorderW)
 
@@ -37,6 +37,8 @@
 }
 
 - (void)initialization {
+    
+    
     _scanAnimationStyle = ScanAnimationStyleDefault;
     _borderColor = [UIColor whiteColor];
     _cornerLocation = CornerLoactionDefault;

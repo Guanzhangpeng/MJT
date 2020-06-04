@@ -22,12 +22,28 @@
 @property (nonatomic, assign) BOOL statusBarHidden;
 
 @property (nonatomic, strong) SGQRCodeScanView *scanView;
-
+@property (nonatomic, strong) UILabel *promptLabel;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation DDYCameraController
-
+- (UILabel *)promptLabel {
+    if (!_promptLabel) {
+        _promptLabel = [[UILabel alloc] init];
+        _promptLabel.backgroundColor = [UIColor clearColor];
+        CGFloat promptLabelX = 0;
+        CGFloat promptLabelY = 0.8 * self.view.frame.size.height;
+        CGFloat promptLabelW = self.view.frame.size.width;
+        CGFloat promptLabelH = 25;
+        _promptLabel.frame = CGRectMake(promptLabelX, promptLabelY, promptLabelW, promptLabelH);
+        _promptLabel.textAlignment = NSTextAlignmentCenter;
+        _promptLabel.font = [UIFont boldSystemFontOfSize:13.0];
+        _promptLabel.numberOfLines = 0;
+        _promptLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
+        _promptLabel.text = @"将面部自动对准框内, 即可得到您想要的装修风格";
+    }
+    return _promptLabel;
+}
 - (SGQRCodeScanView *)scanView {
     if (!_scanView) {
         _scanView = [[SGQRCodeScanView alloc] initWithFrame:self.view.bounds];
@@ -85,6 +101,7 @@
     [_cameraView setFocusBlock:^(CGPoint point) {[weakSelf handleFocus:point];}];
     [self.view addSubview:_cameraView];
     [self.view addSubview:self.scanView];
+    [self.view addSubview:self.promptLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
