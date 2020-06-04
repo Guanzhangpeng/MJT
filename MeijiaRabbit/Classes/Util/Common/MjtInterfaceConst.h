@@ -69,23 +69,31 @@
 // 装修流程
 #define MJT_DECORATIONFLOW_PATH @"/case/process.html"
 
-/// 服务订单-- 代付款
-#define MJT_ORDER_PAYING_PATH @"/userapipage/orderpaystay.php"
-
-/// 服务订单-- 代开工
-#define MJT_ORDER_PAYING_PATH @"/userapipage/orderstay.php"
-
-/// 服务订单-- 代付款
-#define MJT_ORDER_PAYING_PATH @"/userapipage/orderstay.php"
-
-/// 服务订单-- 代付款
-#define MJT_ORDER_PAYING_PATH @"/userapipage/orderpaystay.php"
-
 
 /// 特价商品
 #define MJT_HOTSHOP_PATH @"/index.php/mobile/api/getHotshop"
 
 /// 特价列表商品
 #define MJT_HOTSHOP_LIST_PATH @"/mobile/Goods/goodsList/id/1.html"
+
+/// 校验支付结果
+#define MJT_CHECKPAY_PATH @"/userapi/checkpay.php"
+
+/// 代付款
+#define MJT_WAITPAY_PATH @"/Mobile/Order/order_list/type/WAITPAY.html"
+
+/// 代收货
+#define MJT_WAITRECEIVE_PATH @"/Mobile/Order/wait_receive/type/WAITRECEIVE.html"
+
+/// 代评价
+#define MJT_WAITCOMMENT_PATH @"/Mobile/Order/comment/status/0"
+
+/// 售后服务
+#define MJT_AFTERSELL_PATH @"/Mobile/Order/return_goods_list/type/1.html"
+
+/// 全部订单
+#define MJT_ORDERLIST_PATH @"/Mobile/Order/order_list"
+
+
 
 #endif /* MjtInterfaceConst_h */

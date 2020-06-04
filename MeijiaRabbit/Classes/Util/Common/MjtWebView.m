@@ -45,11 +45,14 @@
 
 @end
 
-@interface MjtWebView ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
+@interface MjtWebView ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>{
+    NSInteger count;
+}
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MjtBaseButton *closeBtn;
+@property (nonatomic, strong) NSString *trade_no;
 @end
 
 @implementation MjtWebView
@@ -185,11 +188,9 @@
 - (void)ALPayResultHandle:(NSDictionary *)resultDic{
     if ([resultDic[@"resultStatus"] intValue]==9000)
     {
-        [MBProgressHUD wj_showPlainText:@"支付成功" view:self.view];
-        [self.navigationController popViewControllerAnimated:YES];
-#warning todo 支付完成后调用后台回调
-//        self.timer=[NSTimer timerWithTimeInterval:1.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_checkPayResult) userInfo:nil repeats:YES];
-//        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+       self.trade_no =  resultDic[@"result"][@"alipay_trade_app_pay_response"][@"trade_no"];
+        self.timer=[NSTimer timerWithTimeInterval:1.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_checkPayResult) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }else{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付说明" message:@"用户支付失败或取消支付" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:([UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -200,6 +201,33 @@
 }
 #pragma mark -- 支付完成后调用后台回调
 - (void)_checkPayResult{
+    count++;
+    if (count==5) {
+        self.timer = nil;
+        [self.timer invalidate];
+    }else{
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"trade_no"] = self.trade_no;
+        param[@"type"] = @"1"; //1:支付宝，2：微信
+        [NetBaseTool postWithUrl:MJT_CHECKPAY_PATH params:param decryptResponse:YES showHud:NO  success:^(id responseDict) {
+            if ([responseDict[@"status"] intValue] == 200) {
+                self.timer = nil;
+                [self.timer invalidate];
+                [MBProgressHUD wj_showPlainText:@"支付成功" view:self.view];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                if (self->count ==4) {
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付说明" message:@"用户支付失败或取消支付" preferredStyle:UIAlertControllerStyleAlert];
+                                          [alertController addAction:([UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                              
+                                          }])];
+                  [self presentViewController:alertController animated:YES completion:nil];
+                }
+            }
+        } failure:^(NSError *error) {
+
+        }];
+    }
     MJTLog(@"支付完成.....");
 }
 #pragma mark -- WKNavigationDelegate

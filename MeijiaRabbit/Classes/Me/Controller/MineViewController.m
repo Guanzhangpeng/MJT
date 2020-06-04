@@ -24,6 +24,7 @@
 #import "MjtUserInfoEditVC.h"
 #import "MjtServiceListVC.h"
 #import "UIImageView+WebCache.h"
+#import "MjtWebView.h"
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -199,7 +200,7 @@
    UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 100, 100, 20)];
     titleLbl.font = [UIFont boldSystemFontOfSize:14];
     titleLbl.textColor = MJTColorFromHexString(@"#2A2000");
-   titleLbl.text = @"姓名";
+   titleLbl.text = @"我的订单";
    [self.headerView addSubview:titleLbl];
     
     //查看全部订单
@@ -253,14 +254,31 @@
     [self.navigationController pushViewController:settingVC animated:YES];
 }
 - (void)_buttonClick:(MjtButton *)button{
-    MJTLog(button.titleLabel.text);
+    NSString *title = button.titleLabel.text;
+    MjtWebView *webView = [[MjtWebView alloc] init];
+
+    if ([title isEqualToString:@"待付款"]) {
+    webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_WAITPAY_PATH)];
+    } else if ([title isEqualToString:@"待发货"]) {
+        
+    }else if ([title isEqualToString:@"待收货"]) {
+        webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_WAITRECEIVE_PATH)];
+    }else if ([title isEqualToString:@"评价"]) {
+        webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_WAITCOMMENT_PATH)];
+    }else if ([title isEqualToString:@"售后"]) {
+        webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_AFTERSELL_PATH)];
+    }
+     if (![title isEqualToString:@"待发货"]) {
+         [self.navigationController pushViewController:webView animated:YES];
+    }
 }
 - (void)_homeBtnClick:(MjtBaseButton *)button{
     MJTLog(button.titleLabel.text);
 }
 - (void)_orderButton_Click{
-    MjtServiceListVC *listVC = [[MjtServiceListVC alloc] init];
-    [self.navigationController pushViewController:listVC animated:YES];
+    MjtWebView *webView = [[MjtWebView alloc] init];
+    webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_ORDERLIST_PATH)];
+    [self.navigationController pushViewController:webView animated:YES];
 }
 ///个人信息 --修改
 - (void)userInfo_editClick{

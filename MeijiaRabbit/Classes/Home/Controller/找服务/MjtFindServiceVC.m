@@ -18,6 +18,7 @@
 #import "MjtBaseButton.h"
 #import "MjtFindServiceModel.h"
 #import "MJExtension.h"
+#import "MjtLoginVC.h"
 #define Margin (20)
 #define ItemH (60)
 @interface MjtFindServiceVC ()<UICollectionViewDelegate,UICollectionViewDataSource,JXCategoryListContainerViewDelegate,JXCategoryViewDelegate>
@@ -88,7 +89,7 @@ static NSString *serviceID = @"MjtFindServiceCell";
     //局部装修
     UIView *middleView = [[UIView alloc] init];
     
-    middleView.backgroundColor = MJTRandomColor;//MJTColorFromHexString(@"#F7FDFF");
+    middleView.backgroundColor =MJTColorFromHexString(@"#F7FDFF");
     middleView.layer.cornerRadius = 8;
     [self.scrollView addSubview:middleView];
     
@@ -124,9 +125,10 @@ static NSString *serviceID = @"MjtFindServiceCell";
     [showButton setImage:[UIImage imageNamed:@"down"] forState:0];
     [showButton setImage:[UIImage imageNamed:@"up"] forState:UIControlStateSelected];
     [showButton addTarget:self action:@selector(_showButton_Click:) forControlEvents:UIControlEventTouchUpInside];
+    [showButton setTitleColor:MJTColorFromHexString(@"666666") forState:0];
+    showButton.titleLabel.font = [UIFont systemFontOfSize:13];
     [showButton setTitle:@"展开" forState:0];
     [showButton setTitle:@"折叠" forState:UIControlStateSelected];
-    showButton.backgroundColor = MJTRandomColor;
     [middleView addSubview:showButton];
     [showButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(middleView.mas_bottom);
@@ -196,13 +198,17 @@ static NSString *serviceID = @"MjtFindServiceCell";
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MjtFindServiceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:serviceID forIndexPath:indexPath];
-    cell.backgroundColor = MJTRandomColor;
     cell.model = self.dataArray[indexPath.item];
     
     return cell;
 }
 #pragma mark -- UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (![MjtUserInfo sharedUser].isLogin) {
+        MjtLoginVC *loginVC = [[MjtLoginVC alloc] init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
     MjtFindServiceModel *model = self.dataArray[indexPath.item];
     MJTLog(@"%@",model.name);
     MjtPublishServiceVC *publishVC = [[MjtPublishServiceVC alloc] init];
@@ -217,9 +223,14 @@ static NSString *serviceID = @"MjtFindServiceCell";
     categoryView.model = model;
     WeakSelf;
     categoryView.tapAction = ^{
+        if (![MjtUserInfo sharedUser].isLogin) {
+            MjtLoginVC *loginVC = [[MjtLoginVC alloc] init];
+            [weakSelf.navigationController pushViewController:loginVC animated:YES];
+            return;
+        }
         MjtPublishServiceVC *publishVC = [[MjtPublishServiceVC alloc] init];
         publishVC.serviceModel = model;
-        [self.navigationController pushViewController:publishVC animated:YES];
+        [weakSelf.navigationController pushViewController:publishVC animated:YES];
     };
     return categoryView;
 }

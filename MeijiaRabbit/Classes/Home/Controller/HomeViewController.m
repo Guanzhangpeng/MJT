@@ -232,7 +232,7 @@
        make.height.mas_equalTo(38);
     }];
     diyView.clickBlock = ^{
-        MJTLog(@"DIY点击");
+        [MBProgressHUD wj_showPlainText:@"建设中..." view:self.view];
     };
     
     /// 人脸智能推荐
