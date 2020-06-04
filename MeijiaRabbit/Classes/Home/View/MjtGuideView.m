@@ -79,12 +79,13 @@
         }
     }
     MjtBaseButton *detailBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
-    [detailBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    detailBtn.titleLabel.font = [UIFont systemFontOfSize:11];
-    [detailBtn setTitle:@"查看详情" forState:UIControlStateNormal];
-    detailBtn.backgroundColor = MJTGlobalMainColor;
-    detailBtn.layer.cornerRadius = 10;
+//    [detailBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    detailBtn.titleLabel.font = [UIFont systemFontOfSize:11];
+//    [detailBtn setTitle:@"查看详情" forState:UIControlStateNormal];
+//    detailBtn.backgroundColor = MJTGlobalMainColor;
+//    detailBtn.layer.cornerRadius = 10;
 //    [detailBtn setBackgroundImage:[UIImage imageNamed:@"home_guide_bg"] forState:UIControlStateNormal];
+    [detailBtn setImage:[UIImage imageNamed:@"home_more"] forState:0];
     [detailBtn addTarget:self action:@selector(detailClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:detailBtn];
 

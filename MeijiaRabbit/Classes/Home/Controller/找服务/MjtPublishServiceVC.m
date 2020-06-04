@@ -19,9 +19,8 @@
 #define HWStatusPhotoWH  (([UIScreen mainScreen].bounds.size.width - HWStatusPhotoMargin * 4) / 3)
 #define HWStatusPhotoMargin (15)
 #define HWStatusPhotoMaxCol(count) ((count==4)?2:3)
-@interface MjtPublishServiceVC ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface MjtPublishServiceVC ()
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UILabel *addressLbl;
 @property (nonatomic, strong) UILabel *serviceLbl;
 @property (nonatomic, strong) UITextView *descTxt;//需求描述
@@ -182,7 +181,7 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     [descTxt mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(titleLbl1.mas_left);
         make.right.mas_equalTo(choseAddressBtn.mas_right).with.offset(-margin);
-        make.height.mas_equalTo(85);
+        make.height.mas_equalTo(120);
         make.top.mas_equalTo(titleLbl3.mas_bottom).with.offset(margin);
     }];
     self.descTxt = descTxt;
@@ -196,7 +195,7 @@ static NSString *CellID = @"MjtServiceRecommendCell";
            make.left.mas_equalTo(titleLbl1.mas_left);
            make.width.mas_equalTo(140);
            make.height.mas_equalTo(21);
-           make.top.mas_equalTo(descTxt.mas_bottom).with.offset(margin/2);
+           make.top.mas_equalTo(descTxt.mas_bottom).with.offset(margin*3);
        }];
     
     ImagePickerView *imgPickerVC = [[ ImagePickerView alloc] init];
@@ -222,39 +221,6 @@ static NSString *CellID = @"MjtServiceRecommendCell";
         make.height.mas_equalTo(HWStatusPhotoWH + margin);
     }];
     
-    //推荐
-   UILabel *titleLbl5 = [[UILabel alloc] init];
-   titleLbl5.text = @"根据您的需要，为您精心推荐以下产品：";
-   titleLbl5.font = [UIFont systemFontOfSize:14];
-   [self.scrollView addSubview:titleLbl5];
-   [titleLbl5 mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.left.mas_equalTo(titleLbl1.mas_left);
-       make.right.mas_equalTo(self.view.mas_right).with.offset(-margin);
-       make.height.mas_equalTo(21);
-       make.top.mas_equalTo(imgPickerVC.view.mas_bottom).with.offset(margin);
-   }];
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    margin = 25;
-    CGFloat itemW = (ScreenWidth - margin *2 - 30)/2;
-    layout.itemSize = CGSizeMake(itemW, 120);
-    layout.minimumLineSpacing = 10;
-    layout.minimumInteritemSpacing = 30;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 200) collectionViewLayout:layout];
-    collectionView.dataSource = self;
-    collectionView.delegate = self;
-    collectionView.contentInset = UIEdgeInsetsMake(0, margin, 0, margin);
-    [collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([MjtServiceRecommendCell class]) bundle:nil] forCellWithReuseIdentifier:CellID];
-    collectionView.backgroundColor = [UIColor clearColor];
-    [self.scrollView addSubview:collectionView];
-    self.collectionView = collectionView;
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.and.right.mas_equalTo(self.view).offset(0);
-        make.top.mas_equalTo(titleLbl5.mas_bottom).with.offset(margin);
-        make.height.mas_equalTo(280);
-    }];
-    
     //提交需求
     MjtBaseButton *submitBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
     [submitBtn setTitle:@"提交需求" forState:0];
@@ -269,7 +235,7 @@ static NSString *CellID = @"MjtServiceRecommendCell";
         make.left.mas_equalTo(self.view.mas_left).offset(25);
         make.right.mas_equalTo(self.view.mas_right).offset(-25);
         make.height.mas_equalTo(45);
-        make.top.mas_equalTo(self.collectionView.mas_bottom).with.offset(margin);
+        make.top.mas_equalTo(imgPickerVC.view.mas_bottom).with.offset(85);
         
     }];
      [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -283,19 +249,7 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 1)];
     label.attributedText = attrStr;
 }
-#pragma mark -- UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return  4;
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    MjtServiceRecommendCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellID forIndexPath:indexPath];
-    
-    return cell;
-}
-#pragma mark -- UICollectionViewDelegate
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
+
 #pragma mark -- 点击事件
 - (void)_addressChose_Click{
     WeakSelf;

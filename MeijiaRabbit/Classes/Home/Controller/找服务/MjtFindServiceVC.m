@@ -131,7 +131,7 @@ static NSString *serviceID = @"MjtFindServiceCell";
     [showButton setTitle:@"折叠" forState:UIControlStateSelected];
     [middleView addSubview:showButton];
     [showButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(middleView.mas_bottom);
+        make.bottom.mas_equalTo(middleView.mas_bottom).with.offset(-5);
         make.height.mas_equalTo(20);
         make.right.mas_equalTo(middleView.mas_right);
         make.width.mas_equalTo(120);
@@ -156,7 +156,7 @@ static NSString *serviceID = @"MjtFindServiceCell";
    line.backgroundColor = MJTColorFromHexString(@"#1160B7");
    [self.scrollView addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(5);
+        make.height.mas_equalTo(8);
         make.width.mas_equalTo(70);
         make.top.mas_equalTo(titleLbl2.mas_bottom).offset(-3);
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -167,15 +167,18 @@ static NSString *serviceID = @"MjtFindServiceCell";
    self.categoryView.listContainer = self.listContainerView;
    self.categoryView.delegate = self;
     self.categoryView.titleColorGradientEnabled = YES;
+    self.categoryView.titleLabelZoomEnabled = YES;
+    self.categoryView.titleSelectedColor = MJTColorFromHexString(@"#2C2C2C");
      JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        lineView.indicatorWidth = 20;//JXCategoryViewAutomaticDimension;
-    //    lineView.lineStyle = JXCategoryIndicatorLineStyle_Lengthen;
+        lineView.indicatorWidth = 20;
+        lineView.verticalMargin = 4;
+        lineView.indicatorColor = MJTColorFromHexString(@"#115FB7");
         self.categoryView.indicators = @[lineView];
     
     [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(self.view);
         make.height.mas_equalTo(50);
-        make.top.mas_equalTo(line.mas_bottom);
+        make.top.mas_equalTo(line.mas_bottom).with.offset(12);
     }];
     
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {

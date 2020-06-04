@@ -27,7 +27,7 @@
 }
 - (void)_setupSubviews{
     self.bgView.layer.borderWidth = 0.5;
-    self.bgView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.bgView.layer.borderColor = MJTColorFromHexString(@"#F0F0F0").CGColor;
 }
 -(void)setModel:(MjtServiceModel *)model{
     _model = model;

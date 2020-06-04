@@ -76,7 +76,7 @@
     [self _setupSubViews];
     
     // 请求接口
-    [self _requestData];
+//    [self _requestData];
 }
 - (void)_requestData{
     [NetBaseTool postWithUrl:MJT_MESSAGEUNREAD_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {
@@ -313,11 +313,10 @@
 //    guidView.backgroundColor = MJTRandomColor;
     WeakSelf;
     guidView.detailBlock = ^{
-        MJTLog(@"装修流程");
         MjtWebView *webView = [[MjtWebView alloc] init];
         webView.title = @"装修流程";
         webView.urlString = KURL(MJT_DECORATIONFLOW_PATH);
-       [self.navigationController pushViewController:webView animated:YES];
+       [weakSelf.navigationController pushViewController:webView animated:YES];
     };
     [self.scrollView addSubview:guidView];
     self.guideView = guidView;
@@ -326,7 +325,7 @@
 ///每日特价
 - (void)_setupSpecialPrice{
     WeakSelf;
-    UIView *specialPriceView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.guideView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 230)];
+    UIView *specialPriceView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.guideView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 200)];
     [self.scrollView addSubview:specialPriceView];
     MjtTipView *tipView = [[MjtTipView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 18)];
     tipView.tipLabel.text = @"每日特价";
@@ -413,7 +412,8 @@
 }
 ///案例推荐
 - (void)_setupRecommendView{
-    UIView *recommendView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.specialPriceView.frame) + MJTGlobalViewLeftInset, ScreenWidth, 18+12+98 * 5 +12 * 5)];
+    CGFloat topMargin = 18;
+    UIView *recommendView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.specialPriceView.frame), ScreenWidth, 18+12+98 * 5 +topMargin * 5)];
        [self.scrollView addSubview:recommendView];
        MjtTipView *tipView = [[MjtTipView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 18)];
        tipView.tipLabel.text = @"案例推荐";
@@ -428,7 +428,7 @@
         make.left.mas_equalTo(MJTGlobalViewLeftInset);
         make.right.mas_equalTo(-MJTGlobalViewLeftInset);
         make.height.mas_equalTo(98);
-        make.top.mas_equalTo(tipView.mas_bottom).with.offset(MJTGlobalViewTopInset);
+        make.top.mas_equalTo(tipView.mas_bottom).with.offset(topMargin);
     }];
     
     MjtRecommendView *recommendView2 = [[MjtRecommendView alloc] init];
@@ -440,7 +440,7 @@
             make.left.mas_equalTo(MJTGlobalViewLeftInset);
             make.right.mas_equalTo(-MJTGlobalViewLeftInset);
             make.height.mas_equalTo(98);
-            make.top.mas_equalTo(recommendView1.mas_bottom).with.offset(MJTGlobalViewTopInset);
+            make.top.mas_equalTo(recommendView1.mas_bottom).with.offset(topMargin);
         }];
     MjtRecommendView *recommendView3 = [[MjtRecommendView alloc] init];
         recommendView3.bgImgView.image = [UIImage imageNamed:@"recommend3"];
@@ -450,7 +450,7 @@
             make.left.mas_equalTo(MJTGlobalViewLeftInset);
             make.right.mas_equalTo(-MJTGlobalViewLeftInset);
             make.height.mas_equalTo(98);
-            make.top.mas_equalTo(recommendView2.mas_bottom).with.offset(MJTGlobalViewTopInset);
+            make.top.mas_equalTo(recommendView2.mas_bottom).with.offset(topMargin);
         }];
     
     MjtRecommendView *recommendView4 = [[MjtRecommendView alloc] init];
@@ -461,7 +461,7 @@
         make.left.mas_equalTo(MJTGlobalViewLeftInset);
         make.right.mas_equalTo(-MJTGlobalViewLeftInset);
         make.height.mas_equalTo(98);
-        make.top.mas_equalTo(recommendView3.mas_bottom).with.offset(MJTGlobalViewTopInset);
+        make.top.mas_equalTo(recommendView3.mas_bottom).with.offset(topMargin);
     }];
     
     MjtRecommendView *recommendView5 = [[MjtRecommendView alloc] init];
@@ -472,7 +472,7 @@
         make.left.mas_equalTo(MJTGlobalViewLeftInset);
         make.right.mas_equalTo(-MJTGlobalViewLeftInset);
         make.height.mas_equalTo(98);
-        make.top.mas_equalTo(recommendView4.mas_bottom).with.offset(MJTGlobalViewTopInset);
+        make.top.mas_equalTo(recommendView4.mas_bottom).with.offset(topMargin);
     }];
     
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(recommendView.frame) + 20);

@@ -233,6 +233,7 @@
 #pragma mark -- WKNavigationDelegate
     // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    MJTLog(@"开始加载页面了............");
 }
     // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
@@ -240,9 +241,12 @@
 }
     // 当内容开始返回时调用
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+     MJTLog(@"收到回调了............");
+
 }
     // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+     MJTLog(@"页面加载完成............");
    
 }
     //提交发生错误时调用
@@ -257,21 +261,7 @@
     
     NSString * urlStr = navigationAction.request.URL.absoluteString;
     NSLog(@"发送跳转请求：%@",urlStr);
-    //自己定义的协议头
-    NSString *htmlHeadString = @"github://";
-    if([urlStr hasPrefix:htmlHeadString]){
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"通过截取URL调用OC" message:@"你想前往我的Github主页?" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        }])];
-        [alertController addAction:([UIAlertAction actionWithTitle:@"打开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSURL * url = [NSURL URLWithString:[urlStr stringByReplacingOccurrencesOfString:@"github://callName_?" withString:@""]];
-            [[UIApplication sharedApplication] openURL:url];
-        }])];
-        [self presentViewController:alertController animated:YES completion:nil];
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }else{
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
     
 // 根据客户端受到的服务器响应头以及response相关信息来决定是否可以跳转
@@ -280,64 +270,8 @@
     NSLog(@"当前跳转地址：%@",urlStr);
     //允许跳转
     decisionHandler(WKNavigationResponsePolicyAllow);
-    //不允许跳转
-    //decisionHandler(WKNavigationResponsePolicyCancel);
-}
-    //需要响应身份验证时调用 同样在block中需要传入用户身份凭证
-- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
-    //用户身份信息
-    NSURLCredential * newCred = [[NSURLCredential alloc] initWithUser:@"user123" password:@"123" persistence:NSURLCredentialPersistenceNone];
-    //为 challenge 的发送方提供 credential
-    [challenge.sender useCredential:newCred forAuthenticationChallenge:challenge];
-    completionHandler(NSURLSessionAuthChallengeUseCredential,newCred);
-}
-    //进程被终止时调用
-- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView{
 }
 
-#pragma mark ---- WKUIDelegate
-
-/**
- *  web界面中有弹出警告框时调用
- *
- *  @param webView           实现该代理的webview
- *  @param message           警告框中的内容
- *  @param completionHandler 警告框消失调用
- */
-//- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-//     [OMGToast showWithText:message];
-//}
-// 确认框
-//JavaScript调用confirm方法后回调的方法 confirm是js中的确定框，需要在block中把用户选择的情况传递进去
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(NO);
-    }])];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(YES);
-    }])];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-// 输入框
-//JavaScript调用prompt方法后回调的方法 prompt是js中的输入框 需要在block中把用户输入的信息传入
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//        textField.text = defaultText;
-//    }];
-//    [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        completionHandler(alertController.textFields[0].text?:@"");
-//    }])];
-//    [self presentViewController:alertController animated:YES completion:nil];
-}
-// 页面是弹出窗口 _blank 处理
-- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
-    if (!navigationAction.targetFrame.isMainFrame) {
-        [webView loadRequest:navigationAction.request];
-    }
-    return nil;
-}
 #pragma mark - KVO
 //kvo 监听进度 必须实现此方法
 -(void)observeValueForKeyPath:(NSString *)keyPath
@@ -367,11 +301,6 @@
         }
     } else if([keyPath isEqualToString:@"loading"]
     && object == _webView){
-        if(self.webView.isLoading){
-            
-        }else{
-            
-        }
     }
     else{
         [super observeValueForKeyPath:keyPath
@@ -428,40 +357,5 @@
 }
 - (void)_close_Click{
     [self.navigationController popViewControllerAnimated:YES];
-}
-- (void)setStatusBarBackgroundColor:(UIColor *)color {
-
-    if(@available(iOS 13.0, *)) {
-
-        static UIView* statusBar =nil;
-
-        if(!statusBar) {
-
-  UIWindow*keyWindow = [UIApplication sharedApplication].windows[0];
-
-            statusBar = [[UIView alloc]initWithFrame:keyWindow.windowScene.statusBarManager.statusBarFrame];
-
-            [keyWindow addSubview:statusBar];
-
-            [statusBar setBackgroundColor:color];
-
-        }else{
-
-          [statusBar setBackgroundColor:color];
-
-        }
-
-    }else{
-
-        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-
-        if([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
-
-          [statusBar setBackgroundColor:color];
-
-        }
-
-    }
-
 }
 @end

@@ -66,17 +66,16 @@
     }];
     
     MjtBaseButton *moreBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
-    [moreBtn setTitleColor: MJTColorFromHexString(@"#333333") forState:0];
+    [moreBtn setTitleColor: MJTGlobalMainColor forState:0];
     moreBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-
     [moreBtn addTarget:self action:@selector(more_Click) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:moreBtn];
     self.moreBtn = moreBtn;
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.mas_right).with.offset(-20);
         make.width.mas_equalTo(50);
-        make.centerY.mas_equalTo(self.tipLabel.mas_centerY);
-        make.height.mas_equalTo(self.tipLabel.mas_height);
+        make.bottom.mas_equalTo(self.tipLabel.bottom).with.offset(8);
+        
     }];
 }
 #pragma mark -- 点击事件
@@ -87,8 +86,8 @@
     !_moreAction ? :_moreAction();
 }
 -(void)setDetailStr:(NSString *)detailStr{
-    self.moreBtn.backgroundColor = MJTGlobalMainColor;    
-    self.moreBtn.layer.cornerRadius = 8;
+//    self.moreBtn.backgroundColor = MJTGlobalMainColor;
+//    self.moreBtn.layer.cornerRadius = 8;
     [self.moreBtn setTitle:detailStr forState:0];
 }
 @end

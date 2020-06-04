@@ -24,13 +24,15 @@
     [super viewDidLoad];
     [self _setup];
     self.myCategoryView.titles = self.titles;
-//    self.myCategoryView.titleSelectedColor = MJTGlobalMainColor;
+    self.myCategoryView.titleLabelZoomEnabled = YES;
+    self.myCategoryView.titleSelectedColor = MJTColorFromHexString(@"#22354B");
     self.myCategoryView.backgroundColor = [UIColor whiteColor];
     self.myCategoryView.titleColorGradientEnabled = YES;
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-    lineView.indicatorWidth = 20;//JXCategoryViewAutomaticDimension;
-//    lineView.lineStyle = JXCategoryIndicatorLineStyle_Lengthen;
+    lineView.indicatorWidth = 20;
+    lineView.verticalMargin = 4;
+    lineView.indicatorColor = MJTColorFromHexString(@"#22354B");
     self.myCategoryView.indicators = @[lineView];
 }
 - (void)_setup{
@@ -48,7 +50,7 @@
 #pragma mark - JXCategoryListContainerViewDelegate
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
     MjtServiceBaseVC *list = [[MjtServiceBaseVC alloc] init];
-    list.orderType = index;
+    list.orderType = index + 1;
     return list;
 }
 

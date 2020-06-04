@@ -21,46 +21,46 @@
                         <rect key="frame" x="8" y="0.0" width="314" height="120"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务需求发布时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-ib-nOe">
-                                <rect key="frame" x="8" y="8" width="110.5" height="14.5"/>
+                                <rect key="frame" x="10" y="10" width="110.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020.4.20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOK-oC-J38">
-                                <rect key="frame" x="118.5" y="8" width="58" height="15"/>
+                                <rect key="frame" x="120.5" y="10" width="58" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_status" translatesAutoresizingMaskIntoConstraints="NO" id="BZy-gr-r4R">
-                                <rect key="frame" x="253" y="3.5" width="61" height="24"/>
+                                <rect key="frame" x="253" y="5.5" width="61" height="24"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um7-1H-7vK" userLabel="orderType">
-                                <rect key="frame" x="253" y="8" width="61" height="15"/>
+                                <rect key="frame" x="253" y="10" width="61" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务类别：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="291-5B-lib">
-                                <rect key="frame" x="8" y="37.5" width="61.5" height="14.5"/>
+                                <rect key="frame" x="10" y="39.5" width="61.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="局部改造-水电改造" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xnq-pd-9Xp">
-                                <rect key="frame" x="69.5" y="37.5" width="104" height="15"/>
+                                <rect key="frame" x="71.5" y="39.5" width="104" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详细需求：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s72-wk-gmJ">
-                                <rect key="frame" x="8" y="67" width="61.5" height="14.5"/>
+                                <rect key="frame" x="10" y="69" width="61.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="厨房管道更换" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyj-1a-et5">
-                                <rect key="frame" x="69.5" y="67" width="74" height="15"/>
+                                <rect key="frame" x="71.5" y="69" width="74" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -86,11 +86,11 @@
                             <constraint firstItem="pOK-oC-J38" firstAttribute="leading" secondItem="wz0-ib-nOe" secondAttribute="trailing" id="PAP-CX-ryf"/>
                             <constraint firstItem="s72-wk-gmJ" firstAttribute="leading" secondItem="wz0-ib-nOe" secondAttribute="leading" id="R88-Kl-mZ3"/>
                             <constraint firstAttribute="trailing" secondItem="BZy-gr-r4R" secondAttribute="trailing" id="SUj-2d-V0r"/>
-                            <constraint firstItem="wz0-ib-nOe" firstAttribute="top" secondItem="5oB-2m-3lY" secondAttribute="top" constant="8" id="eHC-m3-JXt"/>
+                            <constraint firstItem="wz0-ib-nOe" firstAttribute="top" secondItem="5oB-2m-3lY" secondAttribute="top" constant="10" id="eHC-m3-JXt"/>
                             <constraint firstItem="s72-wk-gmJ" firstAttribute="top" secondItem="291-5B-lib" secondAttribute="bottom" constant="15" id="koe-Do-eXv"/>
-                            <constraint firstItem="wz0-ib-nOe" firstAttribute="leading" secondItem="5oB-2m-3lY" secondAttribute="leading" constant="8" id="q2i-vF-yb7"/>
+                            <constraint firstItem="wz0-ib-nOe" firstAttribute="leading" secondItem="5oB-2m-3lY" secondAttribute="leading" constant="10" id="q2i-vF-yb7"/>
                             <constraint firstItem="291-5B-lib" firstAttribute="top" secondItem="wz0-ib-nOe" secondAttribute="bottom" constant="15" id="qKA-gF-J4d"/>
-                            <constraint firstItem="xqf-5v-ubj" firstAttribute="top" secondItem="Cyj-1a-et5" secondAttribute="bottom" constant="10" id="rJV-9r-489"/>
+                            <constraint firstItem="xqf-5v-ubj" firstAttribute="top" secondItem="Cyj-1a-et5" secondAttribute="bottom" constant="8" id="rJV-9r-489"/>
                             <constraint firstAttribute="trailing" secondItem="xqf-5v-ubj" secondAttribute="trailing" constant="20" id="vpS-bS-sCO"/>
                             <constraint firstItem="pOK-oC-J38" firstAttribute="top" secondItem="wz0-ib-nOe" secondAttribute="top" id="wEZ-BO-afc"/>
                             <constraint firstItem="Cyj-1a-et5" firstAttribute="top" secondItem="s72-wk-gmJ" secondAttribute="top" id="yrJ-3P-5zu"/>
