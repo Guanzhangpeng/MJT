@@ -76,7 +76,7 @@
     [self _setupSubViews];
     
     // 请求接口
-//    [self _requestData];
+    [self _requestData];
 }
 - (void)_requestData{
     [NetBaseTool postWithUrl:MJT_MESSAGEUNREAD_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {

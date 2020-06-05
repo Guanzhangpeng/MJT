@@ -10,7 +10,7 @@
 #define MjtInterfaceConst_h
 
 
-#define MJT_ROOT_PATH @"http://192.168.8.174"
+#define MJT_ROOT_PATH @"http://39.102.63.135"//@"http://192.168.8.174"
 #define MJT_HTMLSHOPROOT_PATH @"http://39.102.63.135:8080"
 
 #define KURL(url) ([NSString stringWithFormat:@"%@%@",MJT_ROOT_PATH,url])

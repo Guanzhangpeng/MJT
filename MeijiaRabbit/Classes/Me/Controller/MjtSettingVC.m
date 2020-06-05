@@ -70,12 +70,18 @@
     item2.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
     
     MjtSettingItemModel *item3 = [[MjtSettingItemModel alloc] init];
-    item3.funcName = @"清除缓存";
-    item3.accessoryType = MJTSettingAccessoryTypeNone;
-    item3.detailText = @"120M";
+    item3.funcName = @"当前版本";
+    /**获取程序的版本号*/
+     NSString *version = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    item3.detailText = [NSString stringWithFormat:@"V%@",version];
+    
+    MjtSettingItemModel *item4 = [[MjtSettingItemModel alloc] init];
+    item4.funcName = @"清除缓存";
+    item4.accessoryType = MJTSettingAccessoryTypeNone;
+    item4.detailText = @"120M";
     
     MjtSettingSectionModel *sectionItem = [[MjtSettingSectionModel alloc] init];
-    sectionItem.itemArray = @[item1,item2,item3];
+    sectionItem.itemArray = @[item1,item2,item3,item4];
     self.sectionArray = @[sectionItem];
 }
 

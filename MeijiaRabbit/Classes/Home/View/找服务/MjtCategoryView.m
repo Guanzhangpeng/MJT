@@ -44,12 +44,12 @@
     
     [oldImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.and.bottom.mas_equalTo(self);
-        make.right.mas_equalTo(self.mas_centerX).with.offset(-8);
+        make.width.mas_equalTo(self.mas_width).with.multipliedBy(0.35).with.offset(-10);
     }];
     
     [newdImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.top.and.bottom.mas_equalTo(self);
-        make.width.mas_equalTo(self.mas_width).with.multipliedBy(0.5);
+        make.width.mas_equalTo(self.mas_width).with.multipliedBy(0.65);
     }];
 }
 #pragma mark - JXCategoryListContentViewDelegate
