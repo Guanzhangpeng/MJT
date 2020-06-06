@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "MjtMessageModel.h"
 #import "MjtMessageCell.h"
+#import "MjtMessageDetailVC.h"
 @interface MjtMessageListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray<MjtMessageModel *> *dataSource;
 @property (nonatomic, strong) NSIndexPath *deleteIndexpath;
@@ -97,6 +98,19 @@ static NSString *CellID = @"MjtMessageCell";
     UILongPressGestureRecognizer * longPressGesture = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longTap:)];
     [cell addGestureRecognizer:longPressGesture];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    WeakSelf;
+    MjtMessageModel *messageModel =  self.dataSource[indexPath.row];
+    MjtMessageDetailVC *detailVC = [[MjtMessageDetailVC alloc] init];
+    detailVC.message = messageModel;
+    detailVC.readAction = ^{
+        messageModel.isread = 1;
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RELOADMESSAGE" object:nil];
+//        !weakSelf.messageReadAction ?  : weakSelf.messageReadAction();
+    };
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - JXCategoryListContentViewDelegate
 - (UIView *)listView {

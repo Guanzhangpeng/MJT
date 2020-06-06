@@ -20,7 +20,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的订单处于待验收状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dM-fS-kIM">
                         <rect key="frame" x="15" y="15" width="169" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05.03  13：06" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSu-Qk-M8o">
@@ -42,6 +42,19 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZfS-f8-b5e" userLabel="dotView">
+                        <rect key="frame" x="6" y="21" width="6" height="6"/>
+                        <color key="backgroundColor" red="1" green="0.050946302816901406" blue="0.04272117077464789" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="6" id="4jX-de-YRn"/>
+                            <constraint firstAttribute="width" constant="6" id="nBj-HM-FWJ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="SSu-Qk-M8o" secondAttribute="trailing" constant="8" id="3gD-1C-eTt"/>
@@ -50,6 +63,8 @@
                     <constraint firstItem="j31-TW-2Gx" firstAttribute="top" secondItem="8he-NN-Reu" secondAttribute="bottom" constant="15" id="Tph-5U-tHR"/>
                     <constraint firstItem="j31-TW-2Gx" firstAttribute="leading" secondItem="6dM-fS-kIM" secondAttribute="leading" id="a0M-cG-bXy"/>
                     <constraint firstAttribute="trailing" secondItem="j31-TW-2Gx" secondAttribute="trailing" constant="15" id="ggs-6I-13e"/>
+                    <constraint firstItem="ZfS-f8-b5e" firstAttribute="centerY" secondItem="6dM-fS-kIM" secondAttribute="centerY" id="qLG-n8-Jfb"/>
+                    <constraint firstItem="ZfS-f8-b5e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="rYt-yQ-Twb"/>
                     <constraint firstItem="8he-NN-Reu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="vNh-5W-Mws"/>
                     <constraint firstItem="SSu-Qk-M8o" firstAttribute="centerY" secondItem="6dM-fS-kIM" secondAttribute="centerY" id="wMT-WB-qhu"/>
                     <constraint firstItem="8he-NN-Reu" firstAttribute="top" secondItem="6dM-fS-kIM" secondAttribute="bottom" constant="15" id="y07-9M-gt5"/>
@@ -59,6 +74,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="addressLbl" destination="j31-TW-2Gx" id="Pp7-ce-UX8"/>
+                <outlet property="dotView" destination="ZfS-f8-b5e" id="PMX-wQ-QNF"/>
                 <outlet property="timeLbl" destination="SSu-Qk-M8o" id="sLM-AK-LDy"/>
                 <outlet property="titleLbl" destination="6dM-fS-kIM" id="Yzj-w3-DET"/>
             </connections>

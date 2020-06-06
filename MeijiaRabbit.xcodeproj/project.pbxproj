@@ -75,6 +75,7 @@
 		193F27DD241A27610000EB3B /* MjtSettingSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DC241A27610000EB3B /* MjtSettingSectionModel.m */; };
 		193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DF241A27AE0000EB3B /* MjtSettingCell.m */; };
 		193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27E2241A29A30000EB3B /* MjtSettingVC.m */; };
+		1941EEEC248B6E5A00D98273 /* MjtMessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941EEEB248B6E5A00D98273 /* MjtMessageDetailVC.m */; };
 		19436C8124820C4600155DD6 /* MjtServiceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19436C8024820C4600155DD6 /* MjtServiceAlertView.m */; };
 		1946C8FA2477C33000A8F3CA /* DDYCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F32477C33000A8F3CA /* DDYCameraView.m */; };
 		1946C8FB2477C33000A8F3CA /* DDYCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1946C8F52477C33000A8F3CA /* DDYCamera.bundle */; };
@@ -283,6 +284,8 @@
 		193F27DF241A27AE0000EB3B /* MjtSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingCell.m; sourceTree = "<group>"; };
 		193F27E1241A29A30000EB3B /* MjtSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtSettingVC.h; sourceTree = "<group>"; };
 		193F27E2241A29A30000EB3B /* MjtSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingVC.m; sourceTree = "<group>"; };
+		1941EEEA248B6E5A00D98273 /* MjtMessageDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageDetailVC.h; sourceTree = "<group>"; };
+		1941EEEB248B6E5A00D98273 /* MjtMessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageDetailVC.m; sourceTree = "<group>"; };
 		19436C7F24820C4600155DD6 /* MjtServiceAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceAlertView.h; sourceTree = "<group>"; };
 		19436C8024820C4600155DD6 /* MjtServiceAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceAlertView.m; sourceTree = "<group>"; };
 		1946C8F02477C33000A8F3CA /* DDYCameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraManager.h; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				193F27B1241786CC0000EB3B /* MjtMessageListVC.m */,
 				1946C8FF2477C36200A8F3CA /* MJTRecommendVC.h */,
 				1946C9002477C36200A8F3CA /* MJTRecommendVC.m */,
+				1941EEEA248B6E5A00D98273 /* MjtMessageDetailVC.h */,
+				1941EEEB248B6E5A00D98273 /* MjtMessageDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1394,6 +1399,7 @@
 				1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */,
 				1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
+				1941EEEC248B6E5A00D98273 /* MjtMessageDetailVC.m in Sources */,
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,
 				194ADAEB248131EA00099BF1 /* NSDate+Extension.m in Sources */,

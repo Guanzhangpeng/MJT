@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, MJTMessageType) {
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *create_time;
 @property (nonatomic, strong) NSString *ID;
+///1:已读，2：未读
 @property (nonatomic, assign) NSInteger isread;
 @property (nonatomic, strong) NSString *message_title;
 @end

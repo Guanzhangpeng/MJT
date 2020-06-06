@@ -22,13 +22,15 @@
     [super viewDidLoad];
     [self _setup];
     self.myCategoryView.titles = self.titles;
-    //    self.myCategoryView.titleSelectedColor = MJTGlobalMainColor;
     self.myCategoryView.backgroundColor = [UIColor whiteColor];
     self.myCategoryView.titleColorGradientEnabled = YES;
+     self.myCategoryView.titleLabelZoomEnabled = YES;
+       self.myCategoryView.titleSelectedColor = MJTColorFromHexString(@"#22354B");
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-    lineView.indicatorWidth = 20;//JXCategoryViewAutomaticDimension;
-//    lineView.lineStyle = JXCategoryIndicatorLineStyle_Lengthen;
+    lineView.indicatorWidth = 20;
+    lineView.verticalMargin = 4;
+    lineView.indicatorColor = MJTColorFromHexString(@"#22354B");
     self.myCategoryView.indicators = @[lineView];
 }
 

@@ -82,6 +82,8 @@
     
     // 请求接口
     [self _requestData];
+    
+    
 }
 - (void)_requestData{
     
@@ -100,6 +102,7 @@
     self.navigationItem.title  = @"美嘉兔";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LocationCity:) name:@"LOCATION_CITY" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_requestData) name:@"RELOADMESSAGE" object:nil];
 }
 - (void)LocationCity:(NSNotification *)noti{
     NSString *city = noti.userInfo[@"CurrentCity"];

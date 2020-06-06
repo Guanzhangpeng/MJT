@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;
+@property (weak, nonatomic) IBOutlet UIView *dotView;
 
 
 @end
@@ -23,6 +24,8 @@
     [super awakeFromNib];
     // Initialization code
     self.layer.cornerRadius = 8;
+    self.dotView.backgroundColor = [UIColor redColor];
+    
 }
 
 -(void)setFrame:(CGRect)frame{
@@ -37,5 +40,6 @@
     self.titleLbl.text = model.message_title;
     self.timeLbl.text = model.create_time;
     self.addressLbl.text = model.address;
+    self.dotView.hidden =  (model.isread == 1) ;
 }
 @end
