@@ -76,6 +76,8 @@
 		193F27E0241A27AE0000EB3B /* MjtSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27DF241A27AE0000EB3B /* MjtSettingCell.m */; };
 		193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F27E2241A29A30000EB3B /* MjtSettingVC.m */; };
 		1941EEEC248B6E5A00D98273 /* MjtMessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941EEEB248B6E5A00D98273 /* MjtMessageDetailVC.m */; };
+		1941EEEF248B7D8500D98273 /* D3Generator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941EEEE248B7D8500D98273 /* D3Generator.m */; };
+		1941EEF2248B7DF700D98273 /* NSObject+D3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941EEF0248B7DF700D98273 /* NSObject+D3.m */; };
 		19436C8124820C4600155DD6 /* MjtServiceAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19436C8024820C4600155DD6 /* MjtServiceAlertView.m */; };
 		1946C8FA2477C33000A8F3CA /* DDYCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946C8F32477C33000A8F3CA /* DDYCameraView.m */; };
 		1946C8FB2477C33000A8F3CA /* DDYCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1946C8F52477C33000A8F3CA /* DDYCamera.bundle */; };
@@ -286,6 +288,10 @@
 		193F27E2241A29A30000EB3B /* MjtSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtSettingVC.m; sourceTree = "<group>"; };
 		1941EEEA248B6E5A00D98273 /* MjtMessageDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtMessageDetailVC.h; sourceTree = "<group>"; };
 		1941EEEB248B6E5A00D98273 /* MjtMessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtMessageDetailVC.m; sourceTree = "<group>"; };
+		1941EEED248B7D8500D98273 /* D3Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = D3Generator.h; sourceTree = "<group>"; };
+		1941EEEE248B7D8500D98273 /* D3Generator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = D3Generator.m; sourceTree = "<group>"; };
+		1941EEF0248B7DF700D98273 /* NSObject+D3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+D3.m"; sourceTree = "<group>"; };
+		1941EEF1248B7DF700D98273 /* NSObject+D3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+D3.h"; sourceTree = "<group>"; };
 		19436C7F24820C4600155DD6 /* MjtServiceAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtServiceAlertView.h; sourceTree = "<group>"; };
 		19436C8024820C4600155DD6 /* MjtServiceAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtServiceAlertView.m; sourceTree = "<group>"; };
 		1946C8F02477C33000A8F3CA /* DDYCameraManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDYCameraManager.h; sourceTree = "<group>"; };
@@ -923,6 +929,10 @@
 		193F27CE2418CE270000EB3B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				1941EEF1248B7DF700D98273 /* NSObject+D3.h */,
+				1941EEF0248B7DF700D98273 /* NSObject+D3.m */,
+				1941EEED248B7D8500D98273 /* D3Generator.h */,
+				1941EEEE248B7D8500D98273 /* D3Generator.m */,
 				1946C8EF2477C33000A8F3CA /* DDYCamera */,
 				19B3EDC02451C38B00251AFD /* Encrypttion */,
 				1974DF9E244D523800C1D65C /* OttoFPSButton.h */,
@@ -1316,6 +1326,7 @@
 				19C89281245ABF4D0052813B /* MjtServiceModel.m in Sources */,
 				19D609EC2422298B00DE37B8 /* YWAddressTableViewCell1.m in Sources */,
 				191D59E22411197A005632D0 /* UITextView+Extension.m in Sources */,
+				1941EEF2248B7DF700D98273 /* NSObject+D3.m in Sources */,
 				19B3EDD0245290D700251AFD /* MjtSignHelper.m in Sources */,
 				193F279524152D3B0000EB3B /* JFCSTableViewHeaderView.m in Sources */,
 				193F27CD2418C38F0000EB3B /* MjtTextField.m in Sources */,
@@ -1370,6 +1381,7 @@
 				1980FF4B2455A9E200652AAD /* MBProgressHUD+WJExtension.m in Sources */,
 				191D59ED2411197A005632D0 /* UIButton+Delay.m in Sources */,
 				193F279924152D3B0000EB3B /* JFCSProvinceModel.m in Sources */,
+				1941EEEF248B7D8500D98273 /* D3Generator.m in Sources */,
 				191D59C4241113AB005632D0 /* MallViewController.m in Sources */,
 				1980FF512455AA3400652AAD /* WJColouredRibbonAnimation.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,

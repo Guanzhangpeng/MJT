@@ -14,6 +14,7 @@
 #import "UIImage+Extension.h"
 #import "NSString+YYAdd.h"
 #import <CoreLocation/CoreLocation.h>
+#import "D3Generator.h"
 #import <AlipaySDK/AlipaySDK.h>
 // 引入 JPush 功能所需头文件
 #import "JPUSHService.h"
@@ -25,12 +26,14 @@
 #import <AdSupport/AdSupport.h>
 @interface AppDelegate ()<CLLocationManagerDelegate,JPUSHRegisterDelegate>
 @property(nonatomic,retain)CLLocationManager *locationManager;
+@property (nonatomic, strong)  UIApplication  *application;
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [NSThread sleepForTimeInterval:2.f];
+    self.application=application;
     [self setupJPushWithOptions:launchOptions];//集成极光推送
     ///导航栏样式
     [self _setupNavigationBar];
@@ -61,6 +64,13 @@
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(localNotiJPushRegister:) name:kJPFNetworkDidLoginNotification object:nil];
     [center addObserver:self selector:@selector(localNotiJPushNewMsg:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    
+        NSDictionary *userInfo = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+    if(userInfo)
+    {
+//        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        [self presentViewControllerWithUserInfo:userInfo];
+    }
 }
 - (void)_setupNavigationBar{
     UINavigationBar *navBar = [UINavigationBar appearance];
@@ -208,8 +218,14 @@
   NSDictionary * userInfo = notification.request.content.userInfo;
   if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
     [JPUSHService handleRemoteNotification:userInfo];
+      MJTLog(@"iOS 10 在前台收到通知");
+      if (self.application.applicationState != UIApplicationStateActive) {
+           [self presentViewControllerWithUserInfo:userInfo];
+      }
   }
   completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有 Badge、Sound、Alert 三种类型可以选择设置
+    
+
 }
 
 // iOS 10 Support
@@ -218,8 +234,12 @@
   NSDictionary * userInfo = response.notification.request.content.userInfo;
   if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
     [JPUSHService handleRemoteNotification:userInfo];
+      
+      MJTLog(@"iOS 10 点击通知栏收到通知");
+     [self presentViewControllerWithUserInfo:userInfo];
   }
   completionHandler();  // 系统要求执行这个方法
+   
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -227,11 +247,21 @@
   // Required, iOS 7 Support
   [JPUSHService handleRemoteNotification:userInfo];
   completionHandler(UIBackgroundFetchResultNewData);
+    
+    if (self.application.applicationState != UIApplicationStateActive) {
+        [self presentViewControllerWithUserInfo:userInfo];
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
   // Required, For systems with less than or equal to iOS 6
   [JPUSHService handleRemoteNotification:userInfo];
+}
+#pragma mark 点击推送消息跳转
+- (void)presentViewControllerWithUserInfo:(NSDictionary *)userInfo
+{
+    NSMutableDictionary * dic =[NSMutableDictionary dictionaryWithDictionary:userInfo];
+    [D3Generator createViewControllerWithDictAndPush:dic];
 }
 @end

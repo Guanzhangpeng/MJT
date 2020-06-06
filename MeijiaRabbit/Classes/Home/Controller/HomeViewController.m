@@ -94,7 +94,6 @@
             self.dotView.hidden = (serviceCount + systemCount) == 0;
         }
     } failure:^(NSError *error) {
-        
     }];
 }
 - (void)_setup{
@@ -106,10 +105,7 @@
 }
 - (void)LocationCity:(NSNotification *)noti{
     NSString *city = noti.userInfo[@"CurrentCity"];
-   
-    
      JFCSBaseInfoModel *model = [JFCSBaseInfoModel yy_modelWithJSON:[[NSUserDefaults standardUserDefaults] objectForKey:kCurrentCity]];
-    
     if (model != nil && ![model.name isEqualToString:city]) {
         NSDate *time = [[NSUserDefaults standardUserDefaults] objectForKey:@"LOCATIONALERT"];
         
