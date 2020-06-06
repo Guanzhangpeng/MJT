@@ -13,7 +13,15 @@
 @implementation NSString (Extension)
 
 
-
++ (NSString *)transformToPinyin:(NSString *)chinese {
+    if (MJTStringIsEmpty(chinese)) {
+        return @"";
+    }
+    NSMutableString *mutableString = [NSMutableString stringWithString:chinese];
+    CFStringTransform((CFMutableStringRef)mutableString, NULL, kCFStringTransformToLatin, false);
+    mutableString = (NSMutableString *)[mutableString stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
+    return [mutableString stringByReplacingOccurrencesOfString:@"'" withString:@""];
+}
 +(NSString*)DataTOjsonString:(id)object
 {
     NSString *jsonString = nil;

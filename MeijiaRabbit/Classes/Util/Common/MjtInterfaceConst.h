@@ -95,5 +95,9 @@
 #define MJT_ORDERLIST_PATH @"/Mobile/Order/order_list"
 
 
+/// 用户城市定位信息
+#define MJT_LOCATION_PATH @"/userapi/uservisitcity.php"
+
+
 
 #endif /* MjtInterfaceConst_h */

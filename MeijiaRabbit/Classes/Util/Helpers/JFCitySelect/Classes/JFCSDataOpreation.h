@@ -19,6 +19,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JFCSDataOpreation : NSObject
+@property (nonatomic, strong) JFCSConfiguration *configuration;
 
 /**
  初始化 需传入JFCSConfiguration的对象

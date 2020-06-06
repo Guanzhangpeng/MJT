@@ -35,7 +35,6 @@
         self.currentCityLabel.font = font;
         self.currentCityLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         [self addSubview:self.currentCityLabel];
-        [self updateCurrentCity:@""];
     }
     return self;
 }

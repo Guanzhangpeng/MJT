@@ -79,7 +79,7 @@
     if ((count % 3) > 0) {
         tempCount += 1;
     }
-    return tempCount * 48;
+    return tempCount * 48 + 8;
 }
 
 @end

@@ -42,7 +42,7 @@
 @property (nonatomic, strong) JFCSTopToolsTableViewCell *headerCitiesCell;
 @property (nonatomic, strong) JFCSTableViewHeaderView *headerView;
 
-@property (nonatomic, strong) JFCSDataOpreation *dataOpreation;
+
 @property (nonatomic, strong) JFCSConfiguration *config;
 @property (nonatomic, weak) id<JFCSTableViewControllerDelegate> delegate;
 @property (nonatomic, strong) JFCSBaseInfoModel *currentCityModel;
@@ -223,7 +223,7 @@
     self.historyRecordMutableArray = [NSMutableArray new];
     self.historyRecordNameMutableArray = [NSMutableArray new];
     self.headerCitiesNameMutableArray = [NSMutableArray new];
-    self.dataOpreation = [[JFCSDataOpreation alloc] initWithConfiguration:_config];
+    self.dataOpreation =  [[JFCSDataOpreation alloc] initWithConfiguration:_config];
     self.currentCityModel =  [self.dataOpreation currentCity];
     self.historyRecordMutableArray = [[self.dataOpreation historyRecordCities] mutableCopy];
     [self.historyRecordMutableArray enumerateObjectsUsingBlock:^(JFCSBaseInfoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -237,7 +237,22 @@
         JFStrongSelf(self);
         [self configData:data];
     }];
-    [self.headerView updateCurrentCity:self.currentCityModel.name];
+    NSString *area = [[NSUserDefaults standardUserDefaults] objectForKey:@"AREA"];
+    NSString *currentCity = self.currentCityModel.name;
+    
+    if(MJTStringIsEmpty(currentCity)){
+        NSString *city = [[NSUserDefaults standardUserDefaults] objectForKey:@"City"];
+        JFCSBaseInfoModel *model = [[JFCSBaseInfoModel alloc] init];
+        model.name = city;
+        [self.dataOpreation cacheCurrentCity:model];
+        self.currentCityModel = model;
+        currentCity =city;
+    }
+
+    if (!MJTStringIsEmpty(area)) {
+        currentCity = [NSString stringWithFormat:@"%@%@",self.currentCityModel.name,area];
+    }
+    [self.headerView updateCurrentCity:currentCity];
 }
 
 - (void)configData:(NSMutableArray *)dataArr {
@@ -275,7 +290,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT) style:UITableViewStylePlain];
         _tableView.sectionIndexColor = _config.sectionIndexColor;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_tableView registerClass:[JFCSTopToolsTableViewCell class] forCellReuseIdentifier:@"JFCSTopToolsTableViewCell"];
@@ -319,12 +334,22 @@
 #pragma mark - Action
 
 - (void)selectCityCallBack:(JFCSBaseInfoModel *)model {
-    self.currentCityModel = model;
-    [self.dataOpreation cacheCurrentCity:model];
-    [self.headerView updateCurrentCity:model.name];
-    if (!_config.hiddenHistoricalRecord) {
-        [self.dataOpreation insertHistoryRecordCityModel:model];
+    if (model.isArea) {
+        [self.headerView updateCurrentCity:[NSString stringWithFormat:@"%@%@",self.currentCityModel.name,model.name]];
+        [[NSUserDefaults standardUserDefaults] setObject:model.name forKey:@"AREA"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"AREA"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.currentCityModel = model;
+        [self.dataOpreation cacheCurrentCity:model];
+        [self.headerView updateCurrentCity:model.name];
+        if (!_config.hiddenHistoricalRecord) {
+            [self.dataOpreation insertHistoryRecordCityModel:model];
+        }
     }
+
     if (self.delegate && [self.delegate respondsToSelector:@selector(viewController:didSelectCity:)]) {
         [self.delegate viewController:self didSelectCity:model];
     }
@@ -376,21 +401,21 @@
 - (void)showOtherCityCell {
     JFWeakSelf(self);
     [self.dataOpreation otherCitiesWithCityModel:self.currentCityModel
-                                     resultArray:^(NSArray<JFCSBaseInfoModel *> * _Nonnull dataArray) {
-                                         JFStrongSelf(self);
-                                         if (dataArray.count > 0) {
-                                             [self insertHeaderCitiesCellData];
-                                             self.headerCitiesMutableArray = [dataArray mutableCopy];
-                                             [self.headerCitiesNameMutableArray removeAllObjects];
-                                             [dataArray enumerateObjectsUsingBlock:^(JFCSBaseInfoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                                 [self.headerCitiesNameMutableArray addObject:obj.name];
-                                             }];
-                                             
-                                             [self.tableView beginUpdates];
-                                             [self.tableView insertSections:[[NSIndexSet alloc] initWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-                                             [self.tableView endUpdates];
-                                         }
-                                     }];
+     resultArray:^(NSArray<JFCSBaseInfoModel *> * _Nonnull dataArray) {
+         JFStrongSelf(self);
+         if (dataArray.count > 0) {
+             [self insertHeaderCitiesCellData];
+             self.headerCitiesMutableArray = [dataArray mutableCopy];
+             [self.headerCitiesNameMutableArray removeAllObjects];
+             [dataArray enumerateObjectsUsingBlock:^(JFCSBaseInfoModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                 [self.headerCitiesNameMutableArray addObject:obj.name];
+             }];
+             
+             [self.tableView beginUpdates];
+             [self.tableView insertSections:[[NSIndexSet alloc] initWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+             [self.tableView endUpdates];
+         }
+     }];
 }
 
 - (void)hiddenOtherCityCell {

@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *pinyin;
 @property (nonatomic, copy) NSString *firstLetter;
 
+@property (nonatomic, assign) BOOL isArea;//是否是区县
+
 /**
  重复的城市名称，用此区别
  */

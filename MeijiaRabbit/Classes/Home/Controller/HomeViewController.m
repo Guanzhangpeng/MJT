@@ -27,6 +27,10 @@
 #import "MjtGoodsModel.h"
 #import "MJExtension.h"
 #import "MjtLoginVC.h"
+#import "NSDate+Extension.h"
+
+
+#import "NSString+Extension.h"
 #define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
 
 @interface HomeViewController ()<JFCSTableViewControllerDelegate>
@@ -63,6 +67,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:attrs];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -79,6 +84,7 @@
     [self _requestData];
 }
 - (void)_requestData{
+    
     [NetBaseTool postWithUrl:MJT_MESSAGEUNREAD_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {
         if ([responseDict[@"status"] intValue] == 200) {
             NSInteger serviceCount = [responseDict[@"data"][@"serviceMessageLen"] integerValue];
@@ -97,15 +103,49 @@
 }
 - (void)LocationCity:(NSNotification *)noti{
     NSString *city = noti.userInfo[@"CurrentCity"];
-    [self.locationBtn setTitle:city forState:0];
+   
+    
+     JFCSBaseInfoModel *model = [JFCSBaseInfoModel yy_modelWithJSON:[[NSUserDefaults standardUserDefaults] objectForKey:kCurrentCity]];
+    
+    if (model != nil && ![model.name isEqualToString:city]) {
+        NSDate *time = [[NSUserDefaults standardUserDefaults] objectForKey:@"LOCATIONALERT"];
+        
+        //同一天只提醒用户一次
+        if ([time mh_isToday]) {
+            return;
+        }
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"定位显示你在\" %@ \"，是否切换到该城市？",city] preferredStyle:UIAlertControllerStyleAlert];
+        [alertVC addAction:({
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            cancelAction;
+        })];
+        [alertVC addAction:({
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                JFCSBaseInfoModel *model = [[JFCSBaseInfoModel alloc] init];
+                model.name = city;
+                [[NSUserDefaults standardUserDefaults] setObject:[model yy_modelToJSONString] forKey:kCurrentCity];
+                [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"AREA"];
+                 [self.locationBtn setTitle:city forState:0];
+            }];
+            okAction;
+        })];
+        [self presentViewController:alertVC animated:YES completion:nil];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"LOCATIONALERT"];
+    }else{
+        if(MJTStringIsEmpty([self currentCity])){
+            [self.locationBtn setTitle:city forState:0];
+        }else{
+            [self.locationBtn setTitle:[self currentCity] forState:0];
+        }
+    }
 }
 - (void)_setupNavigationItem{
-    
-    NSString *city = [[NSUserDefaults standardUserDefaults] objectForKey:@"City"];
+
     MjtBaseButton *addressBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
     addressBtn.frame = CGRectMake(0, 0, 85, 22);
     [addressBtn setImage:[UIImage imageNamed:@"nav_location"] forState:UIControlStateNormal];
-    [addressBtn setTitle:city forState:UIControlStateNormal];
+    [addressBtn setTitle:[self currentCity] forState:0];
+    
     addressBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
     addressBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
     [addressBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -136,7 +176,15 @@
     //处理导航栏有条线的问题
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
-
+- (NSString *)currentCity{
+    JFCSBaseInfoModel *model = [JFCSBaseInfoModel yy_modelWithJSON:[[NSUserDefaults standardUserDefaults] objectForKey:kCurrentCity]];
+    NSString *area = [[NSUserDefaults standardUserDefaults] objectForKey:@"AREA"];
+    NSString *cityName = model.name;
+    if (!MJTStringIsEmpty(area)) {
+        cityName = area;
+    }
+    return cityName;
+}
 - (void)_setupSubViews{
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.showsVerticalScrollIndicator = NO;
@@ -486,10 +534,44 @@
 
 #pragma mark -- 点击事件
 - (void)_addressClick{
-    JFCSTableViewController *vc = [[JFCSTableViewController alloc] initWithConfiguration:[[JFCSConfiguration alloc] init] delegate:self];
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"type"] = @"1";//类型(1：获取城市，2：获取区县，3：添加最近访问城市)
+        [NetBaseTool postWithUrl:MJT_LOCATION_PATH params:param decryptResponse:NO showHud:NO
+                         success:^(id responseDict) {
+            if ([responseDict[@"status"] intValue] == 200) {
+                NSMutableArray *cities = [NSMutableArray array];
+                for (NSMutableDictionary *dic in responseDict[@"data"][@"citys"]) {
+                    NSString *pinyin = [NSString transformToPinyin:dic[@"name"]];
+                    dic[@"pinyin"] = pinyin;
+                    dic[@"firstLetter"] = [[pinyin substringToIndex:1] uppercaseString];
+                    [cities addObject:dic];
+                }
+                NSMutableDictionary *cityDic = [NSMutableDictionary dictionary];
+                cityDic[@"cities"] = cities;
+                
+                [[NSUserDefaults standardUserDefaults] setObject:cityDic forKey:@"LOCATION"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                NSMutableArray<JFCSPopularCitiesModel *> * popularArray = [NSMutableArray array];
+                for (NSMutableDictionary *dic in responseDict[@"data"][@"hots_citys"]) {
+                    JFCSPopularCitiesModel *model = [[JFCSPopularCitiesModel alloc] init];
+                    model.name = dic[@"name"];
+                    model.code = dic[@"code"];
+                    model.type = JFCSPopularCitiesTypeCity;
+                    [popularArray addObject:model];
+                }
+                
+                
+                JFCSConfiguration *config =  [[JFCSConfiguration alloc] init];
+                config.popularCitiesMutableArray =  popularArray;
+                JFCSTableViewController *vc = [[JFCSTableViewController alloc] initWithConfiguration:config delegate:self];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        } failure:^(NSError *error) {
     
-    [self.navigationController pushViewController:vc animated:YES];
-//    [self.navigationController pushViewController:[MjtLocationViewController new] animated:YES];
+        }];
+
+
 }
 
 - (void)_messageClick{

@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, JFCSPopularCitiesType) {
 @interface JFCSPopularCitiesModel : NSObject
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *code;
 @property (nonatomic, assign) JFCSPopularCitiesType type;
 
 - (instancetype)initWithName:(NSString *)name type:(JFCSPopularCitiesType)type;

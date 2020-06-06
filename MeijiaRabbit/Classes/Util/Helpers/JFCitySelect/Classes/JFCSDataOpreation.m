@@ -14,7 +14,8 @@
 #import "JFCSData.h"
 #import "JFCSConfiguration.h"
 #import <YYModel/YYModel.h>
-
+#import "NSString+Extension.h"
+#import "MJExtension.h"
 //  弱引用
 #define JFWeakSelf(type)  __weak typeof(type) weak##type = type;
 //  强引用
@@ -22,7 +23,7 @@
 
 @interface JFCSDataOpreation ()
 
-@property (nonatomic, strong) JFCSConfiguration *configuration;
+
 @property (nonatomic, strong) NSMutableArray <JFCSBaseInfoModel *> *arrayOfCityAndAreaModel;
 @property (nonatomic, strong) NSMutableArray *arrayOfCityAndArea;
 
@@ -277,7 +278,7 @@
 #pragma mark -- 最近访问的城市 最多存储三个
 
 #define kHistoryRecordCities @"historyRecordCities"
-#define kCurrentCity @"currentCity"
+
 
 - (void)cacheCurrentCity:(JFCSBaseInfoModel *)model {
     [[NSUserDefaults standardUserDefaults] setObject:[model yy_modelToJSONString] forKey:kCurrentCity];
@@ -322,19 +323,43 @@
 #pragma mark -- 处理切换区县所需的数据
 
 - (void)otherCitiesWithCityModel:(JFCSBaseInfoModel *)model resultArray:(void (^)(NSArray<JFCSBaseInfoModel *> * _Nonnull))block {
-    if (model.code > 999 && model.code < 10000) {//市级
-        if (block) {
-            block([self otherAreasWithCode:model.code]);
-        }
-    }else if (model.code > 99999 && model.code < 1000000) {//县级
-        if (block) {
-            block([self otherAreasWithCode:model.code / 100]);
-        }
-    }else if (model.code > 0 && model.code < 100) {//省级
-        if (block) {
-            block([self otherCitiesWithCode:model.code]);
-        }
-    }
+//    if (model.code > 999 && model.code < 10000) {//市级
+//        if (block) {
+//            block([self otherAreasWithCode:model.code]);
+//        }
+//    }else if (model.code > 99999 && model.code < 1000000) {//县级
+//        if (block) {
+//            block([self otherAreasWithCode:model.code / 100]);
+//        }
+//    }else if (model.code > 0 && model.code < 100) {//省级
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+           param[@"type"] = @"2";//类型(1：获取城市，2：获取区县，3：添加最近访问城市)
+        param[@"city_name"] = model.name;
+           [NetBaseTool postWithUrl:MJT_LOCATION_PATH params:param decryptResponse:NO showHud:NO
+                            success:^(id responseDict) {
+               if ([responseDict[@"status"] intValue] == 200) {
+                   
+                    NSMutableArray <JFCSBaseInfoModel *>*areas = [NSMutableArray array];
+                   for (NSMutableDictionary *dic in responseDict[@"data"]) {
+                       NSString *pinyin = [NSString transformToPinyin:dic[@"name"]];
+                       JFCSBaseInfoModel *model = [[JFCSBaseInfoModel alloc] init];
+                       model.name = dic[@"name"];
+                       model.pinyin = pinyin;
+                       model.code = [dic[@"code"] integerValue];
+                       model.isArea = YES;
+                       model.firstLetter = [[pinyin substringToIndex:1] uppercaseString];
+                       [areas addObject:model];
+                   }
+                   if (block) {
+                       block(areas);                       
+                   }
+               }
+           } failure:^(NSError *error) {
+       
+           }];
+
+//    }
 }
 
 - (NSArray *)otherCitiesWithCode:(NSInteger)code {

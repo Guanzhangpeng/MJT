@@ -121,7 +121,7 @@
              CLPlacemark *placemark = [array objectAtIndex:0];
              //获取城市
              NSString *currCity = placemark.locality;
-             [[NSUserDefaults standardUserDefaults] setObject:@"City" forKey:currCity];
+             [[NSUserDefaults standardUserDefaults] setObject:currCity forKey:@"City"];
              [[NSUserDefaults standardUserDefaults] synchronize];
              [[NSNotificationCenter defaultCenter] postNotificationName:@"LOCATION_CITY" object:nil userInfo:@{@"CurrentCity":currCity}];
              

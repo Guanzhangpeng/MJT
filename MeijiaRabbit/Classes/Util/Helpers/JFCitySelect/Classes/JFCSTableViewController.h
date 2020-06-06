@@ -12,9 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class JFCSConfiguration;
 @class JFCSBaseInfoModel;
+@class JFCSDataOpreation;
+
 @protocol JFCSTableViewControllerDelegate;
 
 @interface JFCSTableViewController : UIViewController
+
+@property (nonatomic, strong) JFCSDataOpreation *dataOpreation;
 
 - (instancetype)initWithConfiguration:(JFCSConfiguration *)config delegate:(id<JFCSTableViewControllerDelegate>)delegate;
 

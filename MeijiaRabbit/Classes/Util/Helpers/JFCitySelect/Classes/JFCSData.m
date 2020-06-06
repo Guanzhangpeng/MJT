@@ -10,7 +10,7 @@
 
 #import "JFCSFileManager.h"
 #import <YYModel/YYModel.h>
-
+#import "NSString+Extension.h"
 #define JF_SINGLETON_IMP(_type_) + (_type_ *)shareInstance{\
 static _type_ *theshareInstance = nil;\
 static dispatch_once_t onceToken;\
@@ -41,15 +41,20 @@ JF_SINGLETON_IMP(JFCSData);
 }
 
 - (void)initData {
-    NSString *provincePlistPath = [[JFCSFileManager jFCitySelectorBundle] pathForResource:@"provinces" ofType:@"plist"];
-    NSString *cityPlistPath = [[JFCSFileManager jFCitySelectorBundle] pathForResource:@"cities" ofType:@"plist"];
-    NSString *areaPlistPath = [[JFCSFileManager jFCitySelectorBundle] pathForResource:@"areas" ofType:@"plist"];
-    NSDictionary *provinceDic = [[NSDictionary alloc] initWithContentsOfFile:provincePlistPath];
-    NSDictionary *cityDic = [[NSDictionary alloc] initWithContentsOfFile:cityPlistPath];
-    NSDictionary *areaDic = [[NSDictionary alloc] initWithContentsOfFile:areaPlistPath];
-    self.provincemodel = [JFCSProvinceModel yy_modelWithJSON:provinceDic];
-    self.citymodel = [JFCSCityModel yy_modelWithJSON:cityDic];
-    self.areaModel = [JFCSAreaModel yy_modelWithJSON:areaDic];
+//    NSString *provincePlistPath = [[JFCSFileManager jFCitySelectorBundle] pathForResource:@"provinces" ofType:@"plist"];
+//    NSString *cityPlistPath = [[JFCSFileManager jFCitySelectorBundle] pathForResource:@"cities" ofType:@"plist"];
+//    NSString *areaPlistPath = [[JFCSFileManager jFCitySelectorBundle] pathForResource:@"areas" ofType:@"plist"];
+//    NSDictionary *provinceDic = [[NSDictionary alloc] initWithContentsOfFile:provincePlistPath];
+//    NSDictionary *cityDic = [[NSDictionary alloc] initWithContentsOfFile:cityPlistPath];
+//    NSDictionary *areaDic = [[NSDictionary alloc] initWithContentsOfFile:areaPlistPath];
+//    self.provincemodel = [JFCSProvinceModel yy_modelWithJSON:provinceDic];
+//    self.citymodel = [JFCSCityModel yy_modelWithJSON:cityDic];
+//    self.areaModel = [JFCSAreaModel yy_modelWithJSON:areaDic];
+    
+    NSMutableDictionary *cityDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"LOCATION"];
+    MJTLog(@"...");
+     self.citymodel = [JFCSCityModel yy_modelWithJSON:cityDic];
+
 }
 
 #pragma mark -- Get
