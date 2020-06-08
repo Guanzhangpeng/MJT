@@ -69,7 +69,7 @@ static NSString *cellID = @"DesignCellID";
         dic1[@"style"] = @"现代";
         dic1[@"price"] = @"30万";
         dic1[@"corverImg"] = @"design1";
-        dic1[@"urlString"] = @"http://192.168.8.174/case/case1.html";
+        dic1[@"urlString"] = @"http://39.102.63.135/case/case1.html";
         
         NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
         dic2[@"title"] = @"隐世雅居 | 轻奢";
@@ -77,7 +77,7 @@ static NSString *cellID = @"DesignCellID";
         dic2[@"style"] = @"轻奢";
         dic2[@"price"] = @"30万";
         dic2[@"corverImg"] = @"design2";
-        dic2[@"urlString"] = @"http://192.168.8.174/case/case2.html";
+        dic2[@"urlString"] = @"http://39.102.63.135/case/case2.html";
         
         NSMutableDictionary *dic3 = [NSMutableDictionary dictionary];
         dic3[@"title"] = @"套内80平米改造小三房！";
@@ -85,7 +85,7 @@ static NSString *cellID = @"DesignCellID";
         dic3[@"style"] = @"现代";
         dic3[@"price"] = @"20万";
         dic3[@"corverImg"] = @"design3";
-        dic3[@"urlString"] = @"http://192.168.8.174/case/case3.html";
+        dic3[@"urlString"] = @"http://39.102.63.135/case/case3.html";
         
         NSMutableDictionary *dic4 = [NSMutableDictionary dictionary];
         dic4[@"title"] = @"北欧风格";
@@ -93,7 +93,7 @@ static NSString *cellID = @"DesignCellID";
         dic4[@"style"] = @"现代";
         dic4[@"price"] = @"未知";
         dic4[@"corverImg"] = @"design4";
-        dic4[@"urlString"] = @"http://192.168.8.174/case/case4.html";
+        dic4[@"urlString"] = @"http://39.102.63.135/case/case4.html";
         
         NSMutableDictionary *dic5 = [NSMutableDictionary dictionary];
         dic5[@"title"] = @"远山";
@@ -101,7 +101,7 @@ static NSString *cellID = @"DesignCellID";
         dic5[@"style"] = @"现代";
         dic5[@"price"] = @"30万以上";
         dic5[@"corverImg"] = @"design5";
-        dic5[@"urlString"] = @"http://192.168.8.174/case/case5.html";
+        dic5[@"urlString"] = @"http://39.102.63.135/case/case5.html";
         
         NSMutableDictionary *dic6 = [NSMutableDictionary dictionary];
         dic6[@"title"] = @"橘色物语";
@@ -109,7 +109,7 @@ static NSString *cellID = @"DesignCellID";
         dic6[@"style"] = @"现代";
         dic6[@"price"] = @"5-10万";
         dic6[@"corverImg"] = @"design6";
-        dic6[@"urlString"] = @"http://192.168.8.174/case/case6.html";
+        dic6[@"urlString"] = @"http://39.102.63.135/case/case6.html";
         
         NSMutableDictionary *dic7 = [NSMutableDictionary dictionary];
         dic7[@"title"] = @"简约风，保质期的新鲜~";
@@ -117,7 +117,7 @@ static NSString *cellID = @"DesignCellID";
         dic7[@"style"] = @"现代";
         dic7[@"price"] = @"20-30万";
         dic7[@"corverImg"] = @"design7";
-        dic7[@"urlString"] = @"http://192.168.8.174/case/case7.html";
+        dic7[@"urlString"] = @"http://39.102.63.135/case/case7.html";
         
         NSMutableDictionary *dic8 = [NSMutableDictionary dictionary];
         dic8[@"title"] = @"纯水岸东湖中式风格";
@@ -125,7 +125,7 @@ static NSString *cellID = @"DesignCellID";
         dic8[@"style"] = @"现代";
         dic8[@"price"] = @"未知";
         dic8[@"corverImg"] = @"design8";
-        dic8[@"urlString"] = @"http://192.168.8.174/case/case8.html";
+        dic8[@"urlString"] = @"http://39.102.63.135/case/case8.html";
         
         NSMutableDictionary *dic9 = [NSMutableDictionary dictionary];
         dic9[@"title"] = @"蜜 雅 糯 粉";
@@ -133,7 +133,7 @@ static NSString *cellID = @"DesignCellID";
         dic9[@"style"] = @"现代";
         dic9[@"price"] = @"30万";
         dic9[@"corverImg"] = @"design9";
-        dic9[@"urlString"] = @"http://192.168.8.174/case/case9.html";
+        dic9[@"urlString"] = @"http://39.102.63.135/case/case9.html";
         
         NSMutableDictionary *dic10 = [NSMutableDictionary dictionary];
         dic10[@"title"] = @"简中式-北京设计";
@@ -141,7 +141,7 @@ static NSString *cellID = @"DesignCellID";
         dic10[@"style"] = @"中式";
         dic10[@"price"] = @"20-30万";
         dic10[@"corverImg"] = @"design10";
-        dic10[@"urlString"] = @"http://192.168.8.174/case/case10.html";
+        dic10[@"urlString"] = @"http://39.102.63.135/case/case10.html";
         
         NSMutableDictionary *dic11 = [NSMutableDictionary dictionary];
         dic11[@"title"] = @"高级灰住宅里的一抹暖意";
@@ -149,7 +149,7 @@ static NSString *cellID = @"DesignCellID";
         dic11[@"style"] = @"现代";
         dic11[@"price"] = @"30万以上";
         dic11[@"corverImg"] = @"design11";
-        dic11[@"urlString"] = @"http://192.168.8.174/case/case11.html";
+        dic11[@"urlString"] = @"http://39.102.63.135/case/case11.html";
         
         NSMutableDictionary *dic12 = [NSMutableDictionary dictionary];
         dic12[@"title"] = @"蔓延的中式暖意";
@@ -157,7 +157,7 @@ static NSString *cellID = @"DesignCellID";
         dic12[@"style"] = @"中式";
         dic12[@"price"] = @"30万以上";
         dic12[@"corverImg"] = @"design12";
-        dic12[@"urlString"] = @"http://192.168.8.174/case/case12.html";
+        dic12[@"urlString"] = @"http://39.102.63.135/case/case12.html";
         
         NSMutableDictionary *dic13 = [NSMutableDictionary dictionary];
         dic13[@"title"] = @"混搭——都市重金属";
@@ -165,7 +165,7 @@ static NSString *cellID = @"DesignCellID";
         dic13[@"style"] = @"现代";
         dic13[@"price"] = @"30万以上";
         dic13[@"corverImg"] = @"design13";
-        dic13[@"urlString"] = @"http://192.168.8.174/case/case13.html";
+        dic13[@"urlString"] = @"http://39.102.63.135/case/case13.html";
         
         NSMutableDictionary *dic14 = [NSMutableDictionary dictionary];
         dic14[@"title"] = @"新竹猫屋";
@@ -173,7 +173,7 @@ static NSString *cellID = @"DesignCellID";
         dic14[@"style"] = @"现代";
         dic14[@"price"] = @"30万以上";
         dic14[@"corverImg"] = @"design14";
-        dic14[@"urlString"] = @"http://192.168.8.174/case/case14.html";
+        dic14[@"urlString"] = @"http://39.102.63.135/case/case14.html";
         
         NSMutableDictionary *dic15 = [NSMutableDictionary dictionary];
         dic15[@"title"] = @"拥有众多花园的办公空间";
@@ -181,7 +181,7 @@ static NSString *cellID = @"DesignCellID";
         dic15[@"style"] = @"现代";
         dic15[@"price"] = @"3万以上";
         dic15[@"corverImg"] = @"design15";
-        dic15[@"urlString"] = @"http://192.168.8.174/case/case15.html";
+        dic15[@"urlString"] = @"http://39.102.63.135/case/case15.html";
         
         
         

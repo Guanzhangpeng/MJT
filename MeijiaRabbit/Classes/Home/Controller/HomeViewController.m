@@ -350,7 +350,12 @@
         make.height.mas_equalTo(40);
     }];
     guaranteeView.clickBlock = ^{
-        MJTLog(@"施工保障点击");
+//        http://39.102.63.135/userapipage/sgensure.php
+        
+        MjtWebView *webView = [[MjtWebView alloc] init];
+         webView.title = @"施工保障";
+         webView.urlString = KURL(MJT_WORKSURE_PATH);
+        [weakSelf.navigationController pushViewController:webView animated:YES];
     };
 }
 
@@ -535,7 +540,7 @@
 - (void)_addressClick{
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"type"] = @"1";//类型(1：获取城市，2：获取区县，3：添加最近访问城市)
-        [NetBaseTool postWithUrl:MJT_LOCATION_PATH params:param decryptResponse:NO showHud:NO
+        [NetBaseTool postWithUrl:MJT_LOCATE_PATH params:param decryptResponse:NO showHud:NO
                          success:^(id responseDict) {
             if ([responseDict[@"status"] intValue] == 200) {
                 NSMutableArray *cities = [NSMutableArray array];

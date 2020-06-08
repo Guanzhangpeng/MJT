@@ -222,21 +222,33 @@
         if(formDataArray==nil){
             return;
         }
-//        NSDate *date = [NSDate date];
-//       NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-//
-//       //利用日历对象从当前时间中获取到年月日。
-//       NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-//       NSDateComponents *dateComponents = [calendar components:unit fromDate:date];
-       NSString *random = [[[[NSUUID UUID] UUIDString] substringToIndex:8] md5String];
-
-       NSString *imgPath = [NSString stringWithFormat:@"%@.jpg", random];
-        
-        NSArray *dataArray = formDataArray[@"file"];
-        for (UIImage *image in dataArray) {
-            NSData *imageData = UIImagePNGRepresentation(image);
-            [formData appendPartWithFileData:imageData name:@"file"  fileName:imgPath mimeType:@"image/jpeg"];
-        }
+       NSEnumerator * enumeratorKey = [formDataArray keyEnumerator];
+               
+       for (NSString *fileName in enumeratorKey) {
+//            人脸识别视频
+           if ([fileName isEqualToString:@"face_recognition"]) {
+               NSURL *filePath = [formDataArray objectForKey:fileName];
+               [formData appendPartWithFileURL:filePath name:@"face_recognition" error:nil];
+           }else{
+               id fileType = [formDataArray objectForKey:fileName];
+               if ([fileType isKindOfClass:[NSArray class]]) {
+                   for (UIImage *image in fileType) {
+                       NSData *imageData = UIImageJPEGRepresentation(image, 0.001);
+                       NSString *random = [[[[NSUUID UUID] UUIDString] substringToIndex:8] md5String];
+                       NSString *imgPath = [NSString stringWithFormat:@"%@.jpg", random];
+                       [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"%@[]",fileName]  fileName:imgPath mimeType:@"image/jpeg"];
+                   }
+               }else{
+                   UIImage *image =  [formDataArray objectForKey:fileName];
+                  NSData *imageData = UIImageJPEGRepresentation(image, 0.001);
+                  NSString *random = [[[[NSUUID UUID] UUIDString] substringToIndex:8] md5String];
+                  NSString *imgPath = [NSString stringWithFormat:@"%@.jpg", random];
+                  [formData appendPartWithFileData:imageData name:fileName  fileName:imgPath mimeType:@"image/jpeg"];
+               }
+             
+           }
+           
+       }
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             dispatch_async(dispatch_get_main_queue(), ^{

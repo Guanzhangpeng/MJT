@@ -16,6 +16,7 @@
 #import "RegularHelp.h"
 #import "MjtFogetPassword.h"
 #import "GSProxy.h"
+#import "JPUSHService.h"
 @interface MjtLoginVC ()<UITextViewDelegate>{
     NSTimer *_timer;
     int _leftTime;
@@ -235,8 +236,11 @@
             return;
         }
     }
+    NSString* jPushRegistID = [JPUSHService registrationID];
+    if (jPushRegistID == nil) jPushRegistID = @"";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"mobile"] = self.phoneTxt.text;
+     param[@"aurora_id"] = jPushRegistID;//极光ID
     if (self.loginType.selected) {
         param[@"mobilecode"] = self.pwdTxt.text;
         //    1：验证码登录，2：账号密码登录，3：获取验证码

@@ -41,7 +41,7 @@
                dispatch_async(dispatch_get_main_queue(), ^{
                    [weakSelf _setupSubviews];
                    weakSelf.timeLbl.text = responseDict[@"data"][0][@"create_time"];
-                   weakSelf.titleLbl.text = responseDict[@"data"][0][@"message_title"];
+                   weakSelf.titleLbl.text = responseDict[@"data"][0][@"message"];
                    weakSelf.addressLbl.text = responseDict[@"data"][0][@"address"];
                    weakSelf.categoryLbl.text = responseDict[@"data"][0][@"service_name"];
                    weakSelf.serviceNumLbl.text = responseDict[@"data"][0][@"service_order_number"];
@@ -57,6 +57,7 @@
 
 - (void)_setupSubviews{
     
+    CGFloat margin = 12;
     //时间
     UILabel *timeLbl = [[UILabel alloc] init];
     timeLbl.font = [UIFont systemFontOfSize:12];
@@ -75,15 +76,11 @@
     contentView.backgroundColor = [UIColor whiteColor];
     contentView.layer.cornerRadius = 8;
     [self.view addSubview:contentView];
-    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(timeLbl.mas_bottom).with.offset(10);
-        make.left.mas_equalTo(12);
-        make.right.mas_equalTo(-12);
-        make.height.mas_equalTo(150);
-    }];
+
     
     //标题
     UILabel *titleLbl = [[UILabel alloc] init];
+    titleLbl.numberOfLines = 0;
     titleLbl.font = [UIFont boldSystemFontOfSize:14];
     titleLbl.textColor = MJTColorFromHexString(@"#333333");
     [contentView addSubview:titleLbl];
@@ -91,9 +88,8 @@
     
     [titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);
-        make.top.mas_equalTo(18);
+        make.top.mas_equalTo(15);
         make.right.mas_equalTo(contentView.mas_right);
-        make.height.mas_equalTo(22);
     }];
     
     UIView *line1 = [[UIView alloc] init];
@@ -115,9 +111,8 @@
      [contentView addSubview:titleLbl0];
      [titleLbl0 mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.mas_equalTo(titleLbl.mas_left).with.offset(3);
-         make.top.mas_equalTo(line1.mas_bottom).with.offset(8);
+         make.top.mas_equalTo(line1.mas_bottom).with.offset(margin);
          make.width.mas_equalTo(65);
-         make.height.mas_equalTo(25);
      }];
      
      UILabel *serviceNumLbl = [[UILabel alloc] init];
@@ -128,7 +123,6 @@
          make.left.mas_equalTo(titleLbl0.mas_right);
          make.top.mas_equalTo(titleLbl0.mas_top);
          make.right.mas_equalTo(contentView.mas_right);
-         make.height.mas_equalTo(25);
      }];
      self.serviceNumLbl = serviceNumLbl;
     
@@ -140,12 +134,13 @@
     [contentView addSubview:titleLbl1];
     [titleLbl1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(titleLbl.mas_left).with.offset(3);
-        make.top.mas_equalTo(titleLbl0.mas_bottom).with.offset(8);
+        make.top.mas_equalTo(titleLbl0.mas_bottom).with.offset(margin);
         make.width.mas_equalTo(40);
-        make.height.mas_equalTo(25);
+
     }];
     
     UILabel *addressLbl = [[UILabel alloc] init];
+    addressLbl.numberOfLines = 0;
     addressLbl.font = [UIFont systemFontOfSize:12];
     addressLbl.textColor = MJTColorFromHexString(@"#666666");
     [contentView addSubview:addressLbl];
@@ -153,7 +148,6 @@
         make.left.mas_equalTo(titleLbl1.mas_right);
         make.top.mas_equalTo(titleLbl1.mas_top);
         make.right.mas_equalTo(contentView.mas_right);
-        make.height.mas_equalTo(25);
     }];
     self.addressLbl = addressLbl;
     
@@ -165,9 +159,8 @@
     [contentView addSubview:titleLbl2];
     [titleLbl2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(titleLbl.mas_left).with.offset(3);
-        make.top.mas_equalTo(titleLbl1.mas_bottom).with.offset(8);
+        make.top.mas_equalTo(titleLbl1.mas_bottom).with.offset(margin);
         make.width.mas_equalTo(60);
-        make.height.mas_equalTo(25);
     }];
     
     UILabel *categoryLbl = [[UILabel alloc] init];
@@ -178,10 +171,15 @@
         make.left.mas_equalTo(titleLbl2.mas_right);
         make.top.mas_equalTo(titleLbl2.mas_top);
         make.right.mas_equalTo(contentView.mas_right);
-        make.height.mas_equalTo(25);
     }];
     self.categoryLbl = categoryLbl;
     
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(timeLbl.mas_bottom).with.offset(10);
+        make.left.mas_equalTo(12);
+        make.right.mas_equalTo(-12);
+        make.bottom.mas_equalTo(categoryLbl.mas_bottom).with.offset(20);
+    }];
 }
 
 @end

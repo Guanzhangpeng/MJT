@@ -14,6 +14,7 @@
 #import "GSProxy.h"
 #import "RegularHelp.h"
 #import "MjtWebView.h"
+#import "JPUSHService.h"
 @interface MjtRegisterVC ()<UITextViewDelegate>{
     NSTimer *_timer;
     int _leftTime;
@@ -234,11 +235,14 @@
         [MBProgressHUD wj_showPlainText:@"密码不一致" view:self.view];
         return;
     }
+    NSString* jPushRegistID = [JPUSHService registrationID];
+    if (jPushRegistID == nil) jPushRegistID = @"";
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"mobile"] = self.phoneTxt.text;
     param[@"vcode"] = self.codeTxt.text;
     param[@"input_password"] = self.pwdTxt.text;
     param[@"confirm_password"] = self.pwdAgainTxt.text;
+    param[@"aurora_id"] = jPushRegistID;//极光ID
     WeakSelf;
    [NetBaseTool postWithUrl:MJT_REGISTER_PATH params:param decryptResponse:YES showHud:NO  success:^(id responseDict) {
        

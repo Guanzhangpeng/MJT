@@ -14,6 +14,7 @@
 #import "GSProxy.h"
 #import "MjtBaseButton.h"
 #import "MjtLoginVC.h"
+#import "NSString+YYAdd.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
 
@@ -188,8 +189,10 @@
 - (void)ALPayResultHandle:(NSDictionary *)resultDic{
     if ([resultDic[@"resultStatus"] intValue]==9000)
     {
-       self.trade_no =  resultDic[@"result"][@"alipay_trade_app_pay_response"][@"trade_no"];
-        self.timer=[NSTimer timerWithTimeInterval:1.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_checkPayResult) userInfo:nil repeats:YES];
+        NSDictionary *result  =  [resultDic[@"result"] jsonValueDecoded];//[@"alipay_trade_app_pay_response"][@"trade_no"];
+        NSDictionary *response = result[@"alipay_trade_app_pay_response"];
+        self.trade_no = response[@"trade_no"];
+        self.timer=[NSTimer timerWithTimeInterval:2.0f target:[GSProxy proxyWithTarget:self] selector:@selector(_checkPayResult) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }else{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付说明" message:@"用户支付失败或取消支付" preferredStyle:UIAlertControllerStyleAlert];
@@ -201,6 +204,7 @@
 }
 #pragma mark -- 支付完成后调用后台回调
 - (void)_checkPayResult{
+    WeakSelf;
     count++;
     if (count==5) {
         self.timer = nil;
@@ -211,17 +215,18 @@
         param[@"type"] = @"1"; //1:支付宝，2：微信
         [NetBaseTool postWithUrl:MJT_CHECKPAY_PATH params:param decryptResponse:YES showHud:NO  success:^(id responseDict) {
             if ([responseDict[@"status"] intValue] == 200) {
-                self.timer = nil;
-                [self.timer invalidate];
+                weakSelf.timer = nil;
+                [weakSelf.timer invalidate];
                 [MBProgressHUD wj_showPlainText:@"支付成功" view:self.view];
-                [self.navigationController popViewControllerAnimated:YES];
+                !weakSelf.payAction ?  :weakSelf.payAction();
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             }else{
                 if (self->count ==4) {
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付说明" message:@"用户支付失败或取消支付" preferredStyle:UIAlertControllerStyleAlert];
                                           [alertController addAction:([UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                               
                                           }])];
-                  [self presentViewController:alertController animated:YES completion:nil];
+                  [weakSelf presentViewController:alertController animated:YES completion:nil];
                 }
             }
         } failure:^(NSError *error) {

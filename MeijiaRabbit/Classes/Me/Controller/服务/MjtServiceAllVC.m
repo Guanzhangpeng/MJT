@@ -85,10 +85,14 @@ static NSString *cellID = @"ServiceID";
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    WeakSelf;
     MjtWebView *webView = [[MjtWebView alloc] init];
     MjtServiceModel * model = self.dataSource[indexPath.row];
-    webView.urlString = [NSString stringWithFormat:@"http://192.168.8.174/userapipage/handleorder.php?service_order_id=%@&userid=%@&mobile=%@",model.orderid,[MjtUserInfo sharedUser].ID,[MjtUserInfo sharedUser].mobile];
+    webView.urlString = [NSString stringWithFormat:@"%@?service_order_id=%@&userid=%@&mobile=%@",KURL(MJT_ORDERHANDLE_PATH),model.orderid,[MjtUserInfo sharedUser].ID,[MjtUserInfo sharedUser].mobile];
     webView.title = @"详情";
+    webView.payAction = ^{
+        [weakSelf _loadData];
+    };
     [self.navigationController pushViewController:webView animated:YES];
 }
 //生成八位随机字符串

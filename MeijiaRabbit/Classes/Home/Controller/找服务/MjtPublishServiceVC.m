@@ -293,15 +293,12 @@ static NSString *CellID = @"MjtServiceRecommendCell";
         [MBProgressHUD wj_showPlainText:@"请输入您的详细具体需求" view:self.view];
         return;
     }
-    WeakSelf;
-    MjtServiceAlertView *aletView = [[MjtServiceAlertView alloc] init];
-    aletView.dismissAction = ^{
-        [weakSelf submitRequest];
-    };
-    [aletView show];
+    
+    [self submitRequest];
     
 }
 - (void)submitRequest{
+    WeakSelf;
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"userid"] = [MjtUserInfo sharedUser].ID;
     param[@"addressid"] = self.addressModel.ID;
@@ -313,8 +310,14 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     NSMutableDictionary *formData = [NSMutableDictionary dictionary];
     formData[@"file"] = self.photos;
     [NetBaseTool postWithURL:MJT_ADD_SERVICE_PATH params:param formDataArray:formData success:^(id responseObjc) {
+        
         if ([responseObjc[@"status"] intValue] == 200) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            MjtServiceAlertView *aletView = [[MjtServiceAlertView alloc] init];
+            aletView.dismissAction = ^{
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            };
+            [aletView show];
+            
         }
     } failure:^(NSError *error) {
         

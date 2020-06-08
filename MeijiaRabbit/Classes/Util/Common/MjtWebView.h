@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *hideNav;
 
 @property (nonatomic, strong) NSString *urlString;
+@property (nonatomic, strong) void(^payAction)();
 
 @end
 

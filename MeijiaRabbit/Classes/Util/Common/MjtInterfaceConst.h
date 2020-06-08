@@ -69,6 +69,9 @@
 // 装修流程
 #define MJT_DECORATIONFLOW_PATH @"/case/process.html"
 
+// 施工保障
+#define MJT_WORKSURE_PATH @"/userapipage/sgensure.php"
+
 
 /// 特价商品
 #define MJT_HOTSHOP_PATH @"/index.php/mobile/api/getHotshop"
@@ -96,7 +99,10 @@
 
 
 /// 用户城市定位信息
-#define MJT_LOCATION_PATH @"/userapi/uservisitcity.php"
+#define MJT_LOCATE_PATH @"/userapi/uservisitcity.php"
+
+/// 处理服务订单
+#define MJT_ORDERHANDLE_PATH @"/userapipage/handleorder.php"
 
 
 
