@@ -13,6 +13,9 @@
 @property (nonatomic, weak) UILabel *titleLbl;
 @property (nonatomic, weak) UILabel *addressLbl;
 @property (nonatomic, weak) UILabel *categoryLbl;
+@property (nonatomic, weak) UILabel *serviceNumLbl;
+
+
 @end
 
 
@@ -41,6 +44,7 @@
                    weakSelf.titleLbl.text = responseDict[@"data"][0][@"message_title"];
                    weakSelf.addressLbl.text = responseDict[@"data"][0][@"address"];
                    weakSelf.categoryLbl.text = responseDict[@"data"][0][@"service_name"];
+                   weakSelf.serviceNumLbl.text = responseDict[@"data"][0][@"service_order_number"];
                    if (self.message.isread == 2) {
                        !weakSelf.readAction ? :weakSelf.readAction();
                    }
@@ -75,7 +79,7 @@
         make.top.mas_equalTo(timeLbl.mas_bottom).with.offset(10);
         make.left.mas_equalTo(12);
         make.right.mas_equalTo(-12);
-        make.height.mas_equalTo(120);
+        make.height.mas_equalTo(150);
     }];
     
     //标题
@@ -103,6 +107,31 @@
         make.height.mas_equalTo(1);
     }];
     
+       //服务单号
+     UILabel *titleLbl0 = [[UILabel alloc] init];
+     titleLbl0.text = @"服务单号：";
+     titleLbl0.font = [UIFont systemFontOfSize:12];
+     titleLbl0.textColor = MJTColorFromHexString(@"#333333");
+     [contentView addSubview:titleLbl0];
+     [titleLbl0 mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.left.mas_equalTo(titleLbl.mas_left).with.offset(3);
+         make.top.mas_equalTo(line1.mas_bottom).with.offset(8);
+         make.width.mas_equalTo(65);
+         make.height.mas_equalTo(25);
+     }];
+     
+     UILabel *serviceNumLbl = [[UILabel alloc] init];
+     serviceNumLbl.font = [UIFont systemFontOfSize:12];
+     serviceNumLbl.textColor = MJTColorFromHexString(@"#666666");
+     [contentView addSubview:serviceNumLbl];
+     [serviceNumLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.left.mas_equalTo(titleLbl0.mas_right);
+         make.top.mas_equalTo(titleLbl0.mas_top);
+         make.right.mas_equalTo(contentView.mas_right);
+         make.height.mas_equalTo(25);
+     }];
+     self.serviceNumLbl = serviceNumLbl;
+    
     //地址
     UILabel *titleLbl1 = [[UILabel alloc] init];
     titleLbl1.text = @"地址：";
@@ -111,7 +140,7 @@
     [contentView addSubview:titleLbl1];
     [titleLbl1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(titleLbl.mas_left).with.offset(3);
-        make.top.mas_equalTo(line1.mas_bottom).with.offset(8);
+        make.top.mas_equalTo(titleLbl0.mas_bottom).with.offset(8);
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(25);
     }];

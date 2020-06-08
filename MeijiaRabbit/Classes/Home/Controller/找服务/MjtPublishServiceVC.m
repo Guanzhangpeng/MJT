@@ -308,6 +308,7 @@ static NSString *CellID = @"MjtServiceRecommendCell";
     param[@"service_id"] = self.service_id;
     param[@"service_sub_id"] = self.service_sub_id;
     param[@"description"] = self.descTxt.text;
+    param[@"service_order_source"] = @"1";//工单来源(1:找服务,2:DIY家装设计)
     
     NSMutableDictionary *formData = [NSMutableDictionary dictionary];
     formData[@"file"] = self.photos;
