@@ -279,7 +279,7 @@
        make.height.mas_equalTo(38);
     }];
     diyView.clickBlock = ^{
-        [MBProgressHUD wj_showPlainText:@"建设中..." view:self.view];
+        [MBProgressHUD wj_showPlainText:@"待开放..." view:self.view];
     };
     
     /// 人脸智能推荐
@@ -350,8 +350,6 @@
         make.height.mas_equalTo(40);
     }];
     guaranteeView.clickBlock = ^{
-//        http://39.102.63.135/userapipage/sgensure.php
-        
         MjtWebView *webView = [[MjtWebView alloc] init];
          webView.title = @"施工保障";
          webView.urlString = KURL(MJT_WORKSURE_PATH);
@@ -362,7 +360,6 @@
 ///装修流程
 - (void)_setupFitmentFlowView{
     MjtGuideView *guidView = [[MjtGuideView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.mainFunView.frame) + 2*MJTGlobalViewLeftInset, ScreenWidth, 100)];
-//    guidView.backgroundColor = MJTRandomColor;
     WeakSelf;
     guidView.detailBlock = ^{
         MjtWebView *webView = [[MjtWebView alloc] init];
@@ -464,6 +461,9 @@
 }
 ///案例推荐
 - (void)_setupRecommendView{
+
+    
+    
     CGFloat topMargin = 18;
     UIView *recommendView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.specialPriceView.frame), ScreenWidth, 18+12+98 * 5 +topMargin * 5)];
        [self.scrollView addSubview:recommendView];
@@ -475,6 +475,12 @@
     recommendView1.bgImgView.image = [UIImage imageNamed:@"recommend1"];
     recommendView1.titleLbl.text = @"水电";
     recommendView1.detailLbl.text = @"水电改造·管道封闭";
+    recommendView1.clickBlock = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.urlString = KURL(MJT_HYDROPOWER_PATH);
+        webView.title = @"水电改造";
+        [self.navigationController pushViewController:webView animated:YES];
+    };
     [recommendView addSubview:recommendView1];
     [recommendView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(MJTGlobalViewLeftInset);
@@ -487,6 +493,12 @@
         recommendView2.bgImgView.image = [UIImage imageNamed:@"recommend2"];
         recommendView2.titleLbl.text = @"铺贴瓷砖";
         recommendView2.detailLbl.text = @"铺墙砖·贴地砖";
+    recommendView2.clickBlock = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.urlString = KURL(MJT_CERAMIC_PATH);
+        webView.title = @"铺贴瓷砖";
+        [self.navigationController pushViewController:webView animated:YES];
+    };
         [recommendView addSubview:recommendView2];
         [recommendView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(MJTGlobalViewLeftInset);
@@ -497,6 +509,12 @@
     MjtRecommendView *recommendView3 = [[MjtRecommendView alloc] init];
         recommendView3.bgImgView.image = [UIImage imageNamed:@"recommend3"];
     recommendView3.titleLbl.text = @"墙面刷漆";
+    recommendView3.clickBlock = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.urlString = KURL(MJT_PAINTING_PATH);
+        webView.title = @"墙面刷漆";
+        [self.navigationController pushViewController:webView animated:YES];
+    };
         [recommendView addSubview:recommendView3];
         [recommendView3 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(MJTGlobalViewLeftInset);
@@ -508,6 +526,12 @@
     MjtRecommendView *recommendView4 = [[MjtRecommendView alloc] init];
     recommendView4.bgImgView.image = [UIImage imageNamed:@"recommend4"];
     recommendView4.titleLbl.text = @"木工吊顶";
+    recommendView4.clickBlock = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.urlString = KURL(MJT_CARPENTRY_PATH);
+        webView.title = @"木工吊顶";
+        [self.navigationController pushViewController:webView animated:YES];
+    };
     [recommendView addSubview:recommendView4];
     [recommendView4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(MJTGlobalViewLeftInset);
@@ -519,6 +543,12 @@
     MjtRecommendView *recommendView5 = [[MjtRecommendView alloc] init];
     recommendView5.bgImgView.image = [UIImage imageNamed:@"recommend5"];
     recommendView5.titleLbl.text = @"厨卫防水";
+    recommendView5.clickBlock = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.urlString = KURL(MJT_TOILET_PATH);
+        webView.title = @"厨卫防水";
+        [self.navigationController pushViewController:webView animated:YES];
+    };
     [recommendView addSubview:recommendView5];
     [recommendView5 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(MJTGlobalViewLeftInset);
@@ -528,6 +558,7 @@
     }];
     
     self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(recommendView.frame) + 20);
+    
     
 }
 - (NSArray *)_getTopAdData{

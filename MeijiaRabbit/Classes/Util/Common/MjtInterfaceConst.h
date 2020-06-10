@@ -104,6 +104,19 @@
 /// 处理服务订单
 #define MJT_ORDERHANDLE_PATH @"/userapipage/handleorder.php"
 
+/// 墙面刷漆
+#define MJT_PAINTING_PATH @"/userapipage/painting.php"
 
+/// 铺贴瓷砖
+#define MJT_CERAMIC_PATH @"/userapipage/ceramic.php"
+
+/// 木工吊顶
+#define MJT_CARPENTRY_PATH @"/userapipage/carpentry.php"
+
+/// 水电改造
+#define MJT_HYDROPOWER_PATH @"/userapipage/hydropower.php"
+
+/// 厨卫防水
+#define MJT_TOILET_PATH @"/userapipage/toilet.php"
 
 #endif /* MjtInterfaceConst_h */

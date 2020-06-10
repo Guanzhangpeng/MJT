@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MjtRecommendView : UIView
+@property (nonatomic, strong) void(^clickBlock)();
 @property (nonatomic, weak) UIImageView *bgImgView;
 @property (nonatomic, weak) UILabel *titleLbl;
 @property (nonatomic, weak) UILabel *detailLbl;

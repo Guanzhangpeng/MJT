@@ -19,6 +19,10 @@
     return self;
 }
 - (void)_setupSubviews{
+    [self addGestureRecognizer:({
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+        tapGes;
+    })];
     UIImageView *bgImgView = [[UIImageView alloc] init];
     bgImgView.layer.cornerRadius = 8.f;
     bgImgView.layer.masksToBounds = YES;
@@ -51,5 +55,8 @@
         make.bottom.mas_equalTo(self.detailLbl.mas_top).with.offset(-8);
         make.centerX.mas_equalTo(self.centerX);
     }];
+}
+- (void)tapAction{
+    !_clickBlock ?  :_clickBlock();
 }
 @end
