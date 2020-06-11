@@ -102,8 +102,8 @@
     }];
     
     MjtBaseButton *loginType = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
-    [loginType setTitle:@"用验证码登录" forState:UIControlStateNormal];
-    [loginType setTitle:@"用账号密码登录" forState:UIControlStateSelected];
+    [loginType setTitle:@"用验证码登录" forState:UIControlStateSelected];
+    [loginType setTitle:@"用账号密码登录" forState:UIControlStateNormal];
     [loginType setTitleColor:MJTGlobalMainColor forState:UIControlStateNormal];
     loginType.titleLabel.font = [UIFont systemFontOfSize:12];
     [loginType addTarget:self action:@selector(_typeAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -131,7 +131,7 @@
     self.phoneTxt = unameTxt;
     
     MjtTextField *passWordTxt = [[MjtTextField alloc] init];
-    passWordTxt.placeholder = @"请输入密码";
+    passWordTxt.placeholder = @"请输入验证码";
     passWordTxt.secureTextEntry = YES;
     [contentView addSubview:passWordTxt];
     [passWordTxt mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,7 +155,7 @@
         make.width.mas_equalTo(90);
         make.centerY.mas_equalTo(self.pwdTxt.mas_centerY);
     }];
-    codeButton.hidden = YES;
+    codeButton.hidden = NO;
     self.codeButton = codeButton;
     
     //忘记密码
@@ -225,7 +225,7 @@
         [MBProgressHUD wj_showPlainText:@"请输入合法的手机号" view:self.view];
         return;
     }
-    if (self.loginType.selected) {
+    if (!self.loginType.selected) {
         if ([self.pwdTxt.text isEqualToString:@""] ) {
             [MBProgressHUD wj_showPlainText:@"请输入验证码" view:self.view];
             return;
@@ -241,27 +241,46 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"mobile"] = self.phoneTxt.text;
      param[@"aurora_id"] = jPushRegistID;//极光ID
-    if (self.loginType.selected) {
+    if (!self.loginType.selected) {
         param[@"mobilecode"] = self.pwdTxt.text;
         //    1：验证码登录，2：账号密码登录，3：获取验证码
         param[@"type"] = @"1";
+        
     }else{
         param[@"user_pwd"] = self.pwdTxt.text;
         param[@"type"] = @"2";
     }
     WeakSelf;
     [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
-        MjtUserInfo *userInfo = [MjtUserInfo userWithDict:responseDict[@"data"]];
-        [MjtUserInfo saveDataToKeyChian];
-        !weakSelf.popAction ? :weakSelf.popAction();
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
-        });
+        if([responseDict[@"status"] intValue] == 200){
+            //如果是验证码登录的,此时需要将用户信息同步到商城中,表示该用户已注册
+            if(!self.loginType.selected){
+                 [weakSelf registerSHOP:self.phoneTxt.text];
+            }
+            MjtUserInfo *userInfo = [MjtUserInfo userWithDict:responseDict[@"data"]];
+            [MjtUserInfo saveDataToKeyChian];
+            !weakSelf.popAction ? :weakSelf.popAction();
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }
         
 
     } failure:^(NSError *error) {
     }];
     
+}
+- (void)registerSHOP:(NSString *)phone{
+    WeakSelf;
+   NSString *url =  [NSString stringWithFormat:@"%@/mobile/api/app_reg?mobile=%@",MJT_HTMLSHOPROOT_PATH,phone];
+    [NetBaseTool getWithUrl:url params:nil decryptResponse:NO success:^(id responeseObject) {
+        if ([responeseObject[@"status"] intValue] == 200) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            });
+        }
+    } failure:^(NSError *error) {
+    }];
 }
 - (void)_registerAction{
     [self.navigationController pushViewController:[MjtRegisterVC new] animated:YES];
@@ -296,7 +315,7 @@
 - (void)_typeAction:(MjtBaseButton *)button{
     button.selected = !button.selected;
     
-    if (button.selected) {
+    if (!button.selected) {
         self.pwdTxt.placeholder = @"输入验证码";
         self.codeButton.hidden = NO;
         self.fogetBtn.hidden = YES;
