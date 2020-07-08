@@ -65,9 +65,14 @@
 }
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     if ([viewController.title isEqualToString:@"商城"]) {
+
        MjtWebView *webView = [[MjtWebView alloc] init];
-//              webView.hideNav = @"YES";
-             webView.urlString = MJT_HTMLSHOPROOT_PATH;
+
+        NSString *urlString = MJT_HTMLSHOPROOT_PATH;
+        if([MjtUserInfo sharedUser].isLogin){
+            urlString  = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,MJT_HTMLSHOPROOT_PATH];
+        }
+       webView.urlString = urlString;
        MjtNavigationController *nav = self.selectedViewController;
        [nav pushViewController:webView animated:YES];
        return NO;

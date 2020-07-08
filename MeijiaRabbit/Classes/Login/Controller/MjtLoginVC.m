@@ -253,6 +253,7 @@
     WeakSelf;
     [NetBaseTool postWithUrl:MJT_LOGIN_PATH params:param decryptResponse:YES showHud:YES success:^(id responseDict) {
         if([responseDict[@"status"] intValue] == 200){
+            
             //如果是验证码登录的,此时需要将用户信息同步到商城中,表示该用户已注册
             if(!self.loginType.selected){
                  [weakSelf registerSHOP:self.phoneTxt.text];
