@@ -450,7 +450,11 @@
         .wEventCenterClickSet(^(id anyID, NSInteger index,BOOL isCenter,UICollectionViewCell *cell) {
             MjtGoodsModel *model = goods[index];
             MjtWebView *webView = [[MjtWebView alloc] init];
-            webView.urlString = model.url;
+            if([MjtUserInfo sharedUser].isLogin){
+                webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,model.url];
+            }else{
+                webView.urlString = model.url;
+            }
             [self.navigationController pushViewController:webView animated:YES];
         })
     //       点击左右居中
