@@ -35,7 +35,7 @@ static NSString *CellID = @"MjtMessageCell";
 - (void)_setupSubviews{
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.frame = CGRectMake(0.f, 0.f, ScreenWidth, ScreenHeight);
+    self.tableView.frame = CGRectMake(0.f, 0.f, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT - 40);
     self.tableView.rowHeight = 120;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.tableView.estimatedRowHeight = 165;
