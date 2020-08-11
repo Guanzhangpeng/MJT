@@ -81,7 +81,7 @@
     item4.detailText = @"120M";
     
     MjtSettingSectionModel *sectionItem = [[MjtSettingSectionModel alloc] init];
-    sectionItem.itemArray = @[item1,item2,item3,item4];
+    sectionItem.itemArray = @[item2,item3,item4];
     self.sectionArray = @[sectionItem];
 }
 

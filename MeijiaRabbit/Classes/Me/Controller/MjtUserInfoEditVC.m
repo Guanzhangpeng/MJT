@@ -84,18 +84,19 @@
         [weakSelf presentViewController:nav animated:YES completion:nil];
     };
 
-    MjtSettingItemModel *item3 = [[MjtSettingItemModel alloc] init];
-    item3.funcName = @"性别";
-    item3.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
-    item3.detailText = ([userInfo.sex isEqualToString:@""]||userInfo.sex == nil) ? @"未设置" : userInfo.sex;
-    
-    MjtSettingItemModel *item4 = [[MjtSettingItemModel alloc] init];
-    item4.funcName = @"个性签名";
-    item4.accessoryType = MJTSettingAccessoryTypeNone;
-    item4.detailText = @"您的房子我来装";
+//    MjtSettingItemModel *item3 = [[MjtSettingItemModel alloc] init];
+//    item3.funcName = @"性别";
+//    item3.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
+//    item3.detailText = ([userInfo.sex isEqualToString:@""]||userInfo.sex == nil) ? @"未设置" : userInfo.sex;
+//
+//    MjtSettingItemModel *item4 = [[MjtSettingItemModel alloc] init];
+//    item4.funcName = @"个性签名";
+//    item4.accessoryType = MJTSettingAccessoryTypeNone;
+//    item4.detailText = @"您的房子我来装";
 
     MjtSettingSectionModel *sectionItem = [[MjtSettingSectionModel alloc] init];
-    sectionItem.itemArray = @[item1,item2,item3,item4];
+//    sectionItem.itemArray = @[item1,item2,item3,item4];
+    sectionItem.itemArray = @[item1,item2];
     self.sectionArray = @[sectionItem];
     [self.tableView reloadData];
 }

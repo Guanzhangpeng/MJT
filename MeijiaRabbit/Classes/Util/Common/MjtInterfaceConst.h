@@ -85,6 +85,9 @@
 /// 代付款
 #define MJT_WAITPAY_PATH @"/Mobile/Order/order_list/type/WAITPAY.html"
 
+/// 代发货
+#define MJT_WAITDELIVER_PATH @"/mobile/order/order_list/type/WAITSEND.html"
+
 /// 代收货
 #define MJT_WAITRECEIVE_PATH @"/Mobile/Order/wait_receive/type/WAITRECEIVE.html"
 

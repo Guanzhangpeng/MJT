@@ -260,7 +260,7 @@
     if ([title isEqualToString:@"待付款"]) {
     webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_WAITPAY_PATH)];
     } else if ([title isEqualToString:@"待发货"]) {
-        
+        webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_WAITDELIVER_PATH)];
     }else if ([title isEqualToString:@"待收货"]) {
         webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_WAITRECEIVE_PATH)];
     }else if ([title isEqualToString:@"评价"]) {
@@ -268,9 +268,9 @@
     }else if ([title isEqualToString:@"售后"]) {
         webView.urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_AFTERSELL_PATH)];
     }
-     if (![title isEqualToString:@"待发货"]) {
+//     if (![title isEqualToString:@"待发货"]) {
          [self.navigationController pushViewController:webView animated:YES];
-    }
+//    }
 }
 - (void)_homeBtnClick:(MjtBaseButton *)button{
     MJTLog(button.titleLabel.text);

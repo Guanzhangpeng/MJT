@@ -336,7 +336,7 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
            param[@"type"] = @"2";//类型(1：获取城市，2：获取区县，3：添加最近访问城市)
         param[@"city_name"] = model.name;
-           [NetBaseTool postWithUrl:MJT_LOCATION_PATH params:param decryptResponse:NO showHud:NO
+           [NetBaseTool postWithUrl:MJT_LOCATE_PATH params:param decryptResponse:NO showHud:NO
                             success:^(id responseDict) {
                if ([responseDict[@"status"] intValue] == 200) {
                    
