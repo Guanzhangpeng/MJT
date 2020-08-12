@@ -15,6 +15,7 @@
 #import "MjtBaseButton.h"
 #import "MjtLoginVC.h"
 #import "NSString+YYAdd.h"
+#import "YBImageBrowser.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
 
@@ -50,6 +51,7 @@
     NSInteger count;
 }
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) NSMutableArray *imgsArray;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MjtBaseButton *closeBtn;
@@ -251,8 +253,38 @@
 }
     // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    self.imgsArray = [NSMutableArray array];
+    
+    if (![self.showPhotoBrowser isEqualToString:@"YES"]) {
+        return;
+    }
      MJTLog(@"页面加载完成............");
-   
+      //注入js 遍历img标签添加点击事件：跳转至自定义链接（包含图片src）
+    //由于需求没有点击某个图片 侧滑查看所有图片（如有for循环结束时return objs.length;）
+    static  NSString * const jsGetImages =
+    @"function getImages(){\
+    var objs = document.getElementsByTagName(\"img\");\
+    var imgScr = '';\
+    for(var i=0;i<objs.length;i++){\
+    objs[i].onclick=function(){\
+    document.location=\"myweb:imageClick:\" + this.src;\
+    };\
+    imgScr = imgScr + objs[i].src + '+';\
+    };\
+    return imgScr;\
+    };";
+    
+    [webView evaluateJavaScript:jsGetImages completionHandler:nil];
+    [webView evaluateJavaScript:@"getImages()" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        
+        NSMutableArray *urlArray = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"+"]];
+        //urlResurlt 就是获取到得所有图片的url的拼接；mUrlArray就是所有Url的数组
+        NSLog(@"--%@",urlArray);
+        [urlArray removeLastObject];
+        
+        [self.imgsArray addObjectsFromArray:urlArray];
+        
+    }];
 }
     //提交发生错误时调用
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
@@ -263,10 +295,43 @@
 }
     // 根据WebView对于即将跳转的HTTP请求头信息和相关信息来决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+
+
     
-    NSString * urlStr = navigationAction.request.URL.absoluteString;
-    NSLog(@"发送跳转请求：%@",urlStr);
-    decisionHandler(WKNavigationActionPolicyAllow);
+            //捕获跳转链接
+            NSURL *URL = navigationAction.request.URL;
+            NSString *str = [NSString stringWithFormat:@"%@",URL];
+            if ([str containsString:@"myweb:imageClick:"]) {
+                //查看大图
+                decisionHandler(WKNavigationActionPolicyCancel); // 必须实现 不加载
+                int index = 0;
+                NSString *currentUrl = [str componentsSeparatedByString:@"myweb:imageClick:"][1];
+                NSMutableArray *datas = [NSMutableArray array];
+                
+                for (int i = 0; i < self.imgsArray.count; i++) {
+                    
+                    if ([self.imgsArray[i] isEqualToString:currentUrl]) {
+                        index = i;
+                    }
+                    
+                     // 网络图片
+                    YBIBImageData *data = [YBIBImageData new];
+                    data.imageURL = [NSURL URLWithString:self.imgsArray[i]];
+        //            data.projectiveView = [self viewAtIndex:idx];
+                    [datas addObject:data];
+
+                }
+
+                YBImageBrowser *browser = [YBImageBrowser new];
+                browser.dataSourceArray = datas;
+                browser.currentPage = index;
+                // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+                browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+                [browser show];
+        
+    }else {
+        decisionHandler(WKNavigationActionPolicyAllow);  // 必须实现 加载
+    }
 }
     
 // 根据客户端受到的服务器响应头以及response相关信息来决定是否可以跳转

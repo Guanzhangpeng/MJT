@@ -25,4 +25,5 @@ target 'MeijiaRabbit' do
   pod 'JPush'
   pod 'SPAlertController'
   pod 'AlipaySDK-iOS'
+  pod 'YBImageBrowser'
 end

@@ -88,6 +88,7 @@ static NSString *cellID = @"ServiceID";
     WeakSelf;
     MjtWebView *webView = [[MjtWebView alloc] init];
     MjtServiceModel * model = self.dataSource[indexPath.row];
+    webView.showPhotoBrowser = @"YES";
     webView.urlString = [NSString stringWithFormat:@"%@?service_order_id=%@&userid=%@&mobile=%@",KURL(MJT_ORDERHANDLE_PATH),model.orderid,[MjtUserInfo sharedUser].ID,[MjtUserInfo sharedUser].mobile];
     webView.title = @"详情";
     webView.payAction = ^{

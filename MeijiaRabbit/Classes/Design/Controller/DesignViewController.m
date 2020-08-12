@@ -54,6 +54,9 @@ static NSString *cellID = @"DesignCellID";
 {
     MjtWebView *webView = [[MjtWebView alloc] init];
     NSMutableDictionary *dict = self.dataSource[indexPath.row];
+    
+    //点击图片可以浏览放大
+    webView.showPhotoBrowser = @"YES";
     webView.urlString = dict[@"urlString"];
     webView.title = dict[@"title"];
      [self.navigationController pushViewController:webView animated:YES];
