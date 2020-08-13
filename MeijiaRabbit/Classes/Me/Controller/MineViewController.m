@@ -103,6 +103,7 @@
     
     //头像
     UIImageView *avatar = [[UIImageView alloc] init];
+    avatar.contentMode = UIViewContentModeScaleAspectFill;
     [avatar sd_setImageWithURL:[NSURL URLWithString:userInfo.avatar] placeholderImage:[UIImage imageNamed:@"me_avatar"]];
     [userView addSubview:avatar];
     self.avatar = avatar;
@@ -285,7 +286,7 @@
     MjtUserInfoEditVC *userInfoVC = [[MjtUserInfoEditVC alloc] init];
     WeakSelf;
     userInfoVC.avatarAction = ^(NSString * _Nonnull avatarPath) {
-        [weakSelf.avatar sd_setImageWithURL:[NSURL URLWithString:avatarPath]];
+        [weakSelf.avatar sd_setImageWithURL:[NSURL URLWithString:avatarPath] placeholderImage:[UIImage imageNamed:@"me_avatar"]];
     };
     userInfoVC.nickNameAction = ^(NSString * _Nonnull nickName) {
         weakSelf.nickNameLbl.text = nickName;

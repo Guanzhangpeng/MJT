@@ -79,8 +79,11 @@
 /// 特价列表商品
 #define MJT_HOTSHOP_LIST_PATH @"/mobile/Goods/goodsList/id/1.html"
 
-/// 校验支付结果
+/// 校验服务订单支付结果
 #define MJT_CHECKPAY_PATH @"/userapi/checkpay.php"
+
+/// 校验商城支付结果
+#define MJT_CHECK_SHOPPAY_PATH @"/mobile/api/callback"
 
 /// 代付款
 #define MJT_WAITPAY_PATH @"/Mobile/Order/order_list/type/WAITPAY.html"

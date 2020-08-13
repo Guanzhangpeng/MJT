@@ -42,8 +42,16 @@
     NSString *RSA_Key = [RSAUtil encryptString:des_Key publicKey:public_key];
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    param[@"encrytoken"] = RSA_Key;
-    param[@"param"] = securitString;
+    NSString *urlStr = [KURL(URLString)  stringByRemovingPercentEncoding];
+    
+    if ([parameters[@"isDecrypt"] isEqualToString:@"NO"]) {
+        param = parameters;
+        urlStr = [KShopUrl(URLString)  stringByRemovingPercentEncoding];
+    }else{
+        param[@"encrytoken"] = RSA_Key;
+           param[@"param"] = securitString;
+    }
+   
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -58,7 +66,7 @@
     manager.responseSerializer= serializer;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",@"text/html",@"application/json",nil];
     
-    NSString *urlStr = [KURL(URLString)  stringByRemovingPercentEncoding];
+    
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
 

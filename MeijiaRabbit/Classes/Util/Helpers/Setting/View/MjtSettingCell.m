@@ -91,7 +91,7 @@
 -(void)setupDetailImage
 {
     self.detailImageView = [[UIImageView alloc] initWithImage:self.item.detailImage];
-
+    self.detailImageView.contentMode = UIViewContentModeScaleAspectFill;
     switch (self.item.accessoryType) {
         case MJTSettingAccessoryTypeNone:
             self.detailImageView.x = ScreenWidth - self.detailImageView.width - XBDetailViewToIndicatorGap - 2;

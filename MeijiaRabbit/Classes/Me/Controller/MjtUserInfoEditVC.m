@@ -185,7 +185,7 @@
             !weakSelf.avatarAction ? :weakSelf.avatarAction(file_path);
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0 ];
             MjtSettingCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            [cell.detailImageView sd_setImageWithURL:[NSURL URLWithString:file_path]];
+            cell.detailImageView.image = avatarImg;
         }
     } failure:^(NSError *error) {
 

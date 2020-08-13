@@ -168,6 +168,11 @@
         //服务订单支付
         MJTLog(@"%@",parameter[@"params"]);
         NSString *appScheme =@"com.meijiatu.decoration";
+        
+        NSString *from = parameter[@"type"];
+        [[NSUserDefaults standardUserDefaults] setObject:from forKey:@"PayFrom"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         [[AlipaySDK defaultService] payOrder:parameter[@"params"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                NSLog(@"reslut = %@",resultDic);
                [self ALPayResultHandle:resultDic];
@@ -186,8 +191,9 @@
 #pragma mark - 获取支付宝支付回调
 - (void)ALPayResultCallBack:(NSNotification *) json{
     NSDictionary *resultDic = json.userInfo;
-    [self ALPayResultHandle:resultDic];
+    [self  ALPayResultHandle:resultDic];
 }
+
 - (void)ALPayResultHandle:(NSDictionary *)resultDic{
     if ([resultDic[@"resultStatus"] intValue]==9000)
     {
@@ -208,20 +214,40 @@
 - (void)_checkPayResult{
     WeakSelf;
     count++;
-    if (count==5) {
+    if (count>=5) {
         self.timer = nil;
         [self.timer invalidate];
     }else{
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
-        param[@"trade_no"] = self.trade_no;
-        param[@"type"] = @"1"; //1:支付宝，2：微信
-        [NetBaseTool postWithUrl:MJT_CHECKPAY_PATH params:param decryptResponse:YES showHud:NO  success:^(id responseDict) {
+        
+        NSString *payFrom = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayFrom"];
+        NSString *path = MJT_CHECKPAY_PATH;
+        bool isDecrypt = YES;
+       if (![payFrom isEqualToString:@"userpay"]) {
+           //从商城过来的
+           path = MJT_CHECK_SHOPPAY_PATH;
+           param[@"transaction"] = self.trade_no;
+           param[@"mobile"] =  [MjtUserInfo sharedUser].mobile;
+           param[@"isDecrypt"] = @"NO";
+           isDecrypt= NO;
+       }else{
+         param[@"trade_no"] = self.trade_no;
+         param[@"type"] = @"1"; //1:支付宝，2：微信
+       }
+        [NetBaseTool postWithUrl:path params:param decryptResponse:isDecrypt showHud:NO  success:^(id responseDict) {
             if ([responseDict[@"status"] intValue] == 200) {
                 weakSelf.timer = nil;
                 [weakSelf.timer invalidate];
                 [MBProgressHUD wj_showPlainText:@"支付成功" view:self.view];
-                !weakSelf.payAction ?  :weakSelf.payAction();
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                if (![payFrom isEqualToString:@"userpay"]) {
+                    //商城中支付成功
+                     NSString *urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_ORDERLIST_PATH)];
+                    [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+                    
+                }else{
+                    !weakSelf.payAction ?  :weakSelf.payAction();
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }
             }else{
                 if (self->count ==4) {
                     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"支付说明" message:@"用户支付失败或取消支付" preferredStyle:UIAlertControllerStyleAlert];
@@ -232,10 +258,9 @@
                 }
             }
         } failure:^(NSError *error) {
-
+            NSLog(@"请求失败...............");
         }];
     }
-    MJTLog(@"支付完成.....");
 }
 #pragma mark -- WKNavigationDelegate
     // 页面开始加载时调用
