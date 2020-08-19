@@ -65,6 +65,7 @@
     [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jsCallAPPFinish"];
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"serviceOrderPay"];
      [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"loginAction"];
+    [[_webView configuration].userContentController removeScriptMessageHandlerForName:@"jumpnewpage"];
     
     //移除观察者
     [_webView removeObserver:self
@@ -134,15 +135,19 @@
     })];
     [leftView addSubview:backImg];
     
-    MjtBaseButton *closeBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
-    [closeBtn setTitle:@"关闭" forState:0];
-    [closeBtn setTitleColor:MJTColorFromHexString(@"333333") forState:0];
-    closeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [closeBtn addTarget:self action:@selector(_close_Click) forControlEvents:UIControlEventTouchUpInside];
-    closeBtn.frame = CGRectMake(35, 0, 50, 36);
-    closeBtn.hidden = YES;
-    [leftView addSubview:closeBtn];
-    self.closeBtn = closeBtn;
+    //是否显示关闭按钮
+    if(![self.isShowClose isEqualToString:@"NO"]){
+      MjtBaseButton *closeBtn = [MjtBaseButton buttonWithType:UIButtonTypeCustom];
+      [closeBtn setTitle:@"关闭" forState:0];
+      [closeBtn setTitleColor:MJTColorFromHexString(@"333333") forState:0];
+      closeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+      [closeBtn addTarget:self action:@selector(_close_Click) forControlEvents:UIControlEventTouchUpInside];
+      closeBtn.frame = CGRectMake(35, 0, 50, 36);
+      closeBtn.hidden = YES;
+      [leftView addSubview:closeBtn];
+      self.closeBtn = closeBtn;
+    }
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftView];
     
     [self.view addSubview:self.webView];
@@ -185,6 +190,8 @@
             [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
         };
         [self.navigationController pushViewController:loginVC animated:YES];
+    }else if([message.name isEqualToString:@"jumpnewpage"]){
+        !weakSelf.payAction ?  :weakSelf.payAction();
     }
 }
 
@@ -227,7 +234,6 @@
            //从商城过来的
            path = MJT_CHECK_SHOPPAY_PATH;
            param[@"transaction"] = self.trade_no;
-           param[@"mobile"] =  [MjtUserInfo sharedUser].mobile;
            param[@"isDecrypt"] = @"NO";
            isDecrypt= NO;
        }else{
@@ -321,38 +327,37 @@
     // 根据WebView对于即将跳转的HTTP请求头信息和相关信息来决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
-
     
-            //捕获跳转链接
-            NSURL *URL = navigationAction.request.URL;
-            NSString *str = [NSString stringWithFormat:@"%@",URL];
-            if ([str containsString:@"myweb:imageClick:"]) {
-                //查看大图
-                decisionHandler(WKNavigationActionPolicyCancel); // 必须实现 不加载
-                int index = 0;
-                NSString *currentUrl = [str componentsSeparatedByString:@"myweb:imageClick:"][1];
-                NSMutableArray *datas = [NSMutableArray array];
-                
-                for (int i = 0; i < self.imgsArray.count; i++) {
-                    
-                    if ([self.imgsArray[i] isEqualToString:currentUrl]) {
-                        index = i;
-                    }
-                    
-                     // 网络图片
-                    YBIBImageData *data = [YBIBImageData new];
-                    data.imageURL = [NSURL URLWithString:self.imgsArray[i]];
-        //            data.projectiveView = [self viewAtIndex:idx];
-                    [datas addObject:data];
+    //捕获跳转链接
+    NSURL *URL = navigationAction.request.URL;
+    NSString *str = [NSString stringWithFormat:@"%@",URL];
+    if ([str containsString:@"myweb:imageClick:"]) {
+        //查看大图
+        decisionHandler(WKNavigationActionPolicyCancel); // 必须实现 不加载
+        int index = 0;
+        NSString *currentUrl = [str componentsSeparatedByString:@"myweb:imageClick:"][1];
+        NSMutableArray *datas = [NSMutableArray array];
+        
+        for (int i = 0; i < self.imgsArray.count; i++) {
+            
+            if ([self.imgsArray[i] isEqualToString:currentUrl]) {
+                index = i;
+            }
+            
+             // 网络图片
+            YBIBImageData *data = [YBIBImageData new];
+            data.imageURL = [NSURL URLWithString:self.imgsArray[i]];
+//            data.projectiveView = [self viewAtIndex:idx];
+            [datas addObject:data];
 
-                }
+        }
 
-                YBImageBrowser *browser = [YBImageBrowser new];
-                browser.dataSourceArray = datas;
-                browser.currentPage = index;
-                // 只有一个保存操作的时候，可以直接右上角显示保存按钮
-                browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
-                [browser show];
+        YBImageBrowser *browser = [YBImageBrowser new];
+        browser.dataSourceArray = datas;
+        browser.currentPage = index;
+        // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+        browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+        [browser show];
         
     }else {
         decisionHandler(WKNavigationActionPolicyAllow);  // 必须实现 加载
@@ -429,7 +434,7 @@
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jsCallAPPFinish"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"serviceOrderPay"];
         [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"loginAction"];
-       
+       [wkUController addScriptMessageHandler:weakScriptMessageDelegate  name:@"jumpnewpage"];
        config.userContentController = wkUController;
       _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-TOP_BAR_HEIGHT) configuration:config];
          // UI代理
@@ -444,6 +449,17 @@
 }
 #pragma mark -- 点击事件
 - (void)_backClick{
+    if([self.isShowClose isEqualToString:@"NO"]){
+       [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    NSString *payFrom = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayFrom"];
+    if (payFrom == nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+//        [self.webView.backForwardList performSelector:NSSelectorFromString(@"_removeAllItems")];
+    }
     if (!self.webView.canGoBack) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *urlString;
 @property (nonatomic, strong) NSString *showPhotoBrowser;
 
-
+@property (nonatomic, strong) NSString *isShowClose;
 @property (nonatomic, strong) void(^payAction)();
 
 @end

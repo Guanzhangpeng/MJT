@@ -13,6 +13,7 @@
 #import "MjtBaseButton.h"
 #import "SPAlertController.h"
 #import "MjtTabBarController.h"
+#import "MjtWebView.h"
 @interface MjtSettingVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray  *sectionArray; /**< section模型数组*/
@@ -61,6 +62,7 @@
 }
 
 - (void)_setupData{
+    WeakSelf;
     MjtSettingItemModel *item1 = [[MjtSettingItemModel alloc] init];
     item1.funcName = @"个人资料";
     item1.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
@@ -68,6 +70,12 @@
     MjtSettingItemModel *item2 = [[MjtSettingItemModel alloc] init];
     item2.funcName = @"关于美嘉兔";
     item2.accessoryType = MJTSettingAccessoryTypeDisclosureIndicator;
+    item2.executeCode = ^{
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.title = @"关于我们";
+        webView.urlString = KURL(MJT_ABOUTME_PATH);
+       [weakSelf.navigationController pushViewController:webView animated:YES];
+    };
     
     MjtSettingItemModel *item3 = [[MjtSettingItemModel alloc] init];
     item3.funcName = @"当前版本";

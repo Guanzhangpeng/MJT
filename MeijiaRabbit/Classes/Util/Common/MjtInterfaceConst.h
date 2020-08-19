@@ -125,4 +125,9 @@
 /// 厨卫防水
 #define MJT_TOILET_PATH @"/userapipage/toilet.php"
 
+/// 关于美嘉兔
+#define MJT_ABOUTME_PATH @"/userapipage/aboutus.php"
+
+
+
 #endif /* MjtInterfaceConst_h */
