@@ -93,7 +93,7 @@
 //   navBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
    NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
                             NSFontAttributeName: [UIFont systemFontOfSize:17],
-                            NSForegroundColorAttributeName:[UIColor whiteColor]};
+                            NSForegroundColorAttributeName:[UIColor blackColor]};
    [navBar setTitleTextAttributes:attrs];
    [navBar setTintColor:[UIColor whiteColor]];
 }

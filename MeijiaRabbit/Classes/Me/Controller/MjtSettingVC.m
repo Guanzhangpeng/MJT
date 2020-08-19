@@ -14,7 +14,12 @@
 #import "SPAlertController.h"
 #import "MjtTabBarController.h"
 #import "MjtWebView.h"
+#import "SDImageCache.h"
+
 @interface MjtSettingVC ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSString *cacheCount;
+}
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic,strong) NSArray  *sectionArray; /**< section模型数组*/
 @end
@@ -23,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self _setupUI];
     [self _setupSubViews];
     [self _setupData];
@@ -62,6 +68,8 @@
 }
 
 - (void)_setupData{
+    [self loadSize];
+    
     WeakSelf;
     MjtSettingItemModel *item1 = [[MjtSettingItemModel alloc] init];
     item1.funcName = @"个人资料";
@@ -86,12 +94,39 @@
     MjtSettingItemModel *item4 = [[MjtSettingItemModel alloc] init];
     item4.funcName = @"清除缓存";
     item4.accessoryType = MJTSettingAccessoryTypeNone;
-    item4.detailText = @"120M";
+    item4.detailText = cacheCount;
+    item4.executeCode = ^{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"确定要清理缓存" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSArray *path = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *filePath4  = [[path objectAtIndex:0] stringByAppendingPathComponent:@"Caches/"];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath4])
+            {
+                [[NSFileManager defaultManager] removeItemAtPath:filePath4 error:nil];
+            }
+            NSString *filePath2  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/ImageCache"];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath2]){
+                [[NSFileManager defaultManager] removeItemAtPath:filePath2 error:nil];
+            }
+            [MBProgressHUD wj_showPlainText:@"清除成功" view:weakSelf.view];
+            self -> cacheCount = @"0.00M";
+            [weakSelf _setupData];
+            [weakSelf.tableView reloadData];
+            }];
+           UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+               
+           }];
+           
+           [alertController addAction:defaultAction];
+           [alertController addAction:cancelAction];
+           [weakSelf presentViewController:alertController animated:YES completion:nil];
+    };
     
     MjtSettingSectionModel *sectionItem = [[MjtSettingSectionModel alloc] init];
     sectionItem.itemArray = @[item2,item3,item4];
     self.sectionArray = @[sectionItem];
 }
+
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -159,5 +194,45 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
     
+}
+
+-(void)loadSize{
+    float count = 0.0;
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *filePath4  = [[path objectAtIndex:0] stringByAppendingPathComponent:@"/Caches"];
+    NSString *filePath3  = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/"];
+    NSString *filePath2  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/ImageCache"];
+    count += [self folderSizeAtPath:filePath4];
+    count += [self folderSizeAtPath:filePath2];
+    count += [self folderSizeAtPath:filePath3];
+
+    cacheCount = [NSString stringWithFormat:@"%.2fM",count];
+}
+//遍历文件夹获得文件夹大小，返回多少M
+- (float ) folderSizeAtPath:(NSString*) folderPath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString* fileName;
+    float folderSize = 0.0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    
+    if(folderSize <= 0 || !folderSize){
+        return 0;
+    }else{
+        return folderSize/(1024*1024.0);
+    }
+}
+//单个文件的大小
+- (long long) fileSizeAtPath:(NSString*) filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
 }
 @end
