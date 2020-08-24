@@ -28,7 +28,7 @@
 #import "MJExtension.h"
 #import "MjtLoginVC.h"
 #import "NSDate+Extension.h"
-
+#import "YeeBadgeViewHeader.h"
 
 #import "NSString+Extension.h"
 #define RSA_Public_key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJUIlZwVc8gBL4q1/GjwXnTgCq+PO72t1lj9kBVLcHMm8Pko68YKsrNEEkSnEckwVaoRj9WhSP262uSm73SNhLwQsCue8YznzI3UAjuM69AuYt5afYlFiOrcw7QK0rFWAMCZBJn/OQBGD9h1jBRUb9Vi+7MZxLCQN+JrBW4T87OQIDAQAB"
@@ -39,7 +39,6 @@
 @property (nonatomic, weak) UIView *mainFunView;///主功能
 @property (nonatomic, weak) MjtGuideView *guideView;///装修流程
 @property (nonatomic, weak) UIView *specialPriceView;///每日特价
-@property (nonatomic, weak) UIView *dotView;
 
 @property (nonatomic, strong) MjtBaseButton *locationBtn;
 @end
@@ -86,12 +85,11 @@
     
 }
 - (void)_requestData{
-    
     [NetBaseTool postWithUrl:MJT_MESSAGEUNREAD_PATH params:nil decryptResponse:NO showHud:NO success:^(id responseDict) {
         if ([responseDict[@"status"] intValue] == 200) {
             NSInteger serviceCount = [responseDict[@"data"][@"serviceMessageLen"] integerValue];
             NSInteger systemCount = [responseDict[@"data"][@"systemMessageLen"] integerValue];
-            self.dotView.hidden = (serviceCount + systemCount) == 0;
+            self.navigationItem.rightBarButtonItem.redDotNumber = (serviceCount + systemCount);
         }
     } failure:^(NSError *error) {
     }];
@@ -153,24 +151,19 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addressBtn];
     self.locationBtn = addressBtn;
     
-    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 19, 23)];
-    rightView.userInteractionEnabled = YES;
-    [rightView addGestureRecognizer:({
-        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_messageClick)];
-        tapGes;
-    })];
-    UIImageView *ringImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 19, 23)];
-    ringImg.contentMode = UIViewContentModeScaleAspectFit;
-    ringImg.image = [UIImage imageNamed:@"nav_message"];
-    [rightView addSubview:ringImg];
-    UIView *dotView = [[UIView alloc] initWithFrame:CGRectMake(14, 0, 6, 6)];
-    dotView.layer.cornerRadius = 3;
-    dotView.hidden = NO;
-    dotView.backgroundColor = [UIColor redColor];
-    [rightView addSubview:dotView];
-    self.dotView = dotView;    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightView];
+    UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [messageBtn setFrame:CGRectMake(0, 0, 19, 23)];
+    [messageBtn addTarget:self action:@selector(_messageClick) forControlEvents:UIControlEventTouchUpInside];
+    [messageBtn setImage:[UIImage imageNamed:@"nav_message"] forState:UIControlStateNormal];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:messageBtn];
+    self.navigationItem.rightBarButtonItem = rightItem;    
     
+    self.navigationItem.rightBarButtonItem.redDotColor = [UIColor redColor];
+    self.navigationItem.rightBarButtonItem.redDotRadius = 5.0;
+    self.navigationItem.rightBarButtonItem.redDotOffset = CGPointMake(4, +5);
+    self.navigationItem.rightBarButtonItem.redDotBorderColor = [UIColor orangeColor];
+    self.navigationItem.rightBarButtonItem.redDotBorderWidth = 1.0;
+    [self.navigationItem.rightBarButtonItem ShowBadgeView];
 
     //处理导航栏有条线的问题
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];

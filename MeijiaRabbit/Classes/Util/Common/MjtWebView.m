@@ -247,8 +247,9 @@
                 [MBProgressHUD wj_showPlainText:@"支付成功" view:self.view];
                 if (![payFrom isEqualToString:@"userpay"]) {
                     //商城中支付成功
-                     NSString *urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_ORDERLIST_PATH)];
-                    [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+//                     NSString *urlString = [NSString stringWithFormat:@"%@/mobile/api/do_login?mobile=%@&url=%@",MJT_HTMLSHOPROOT_PATH,[MjtUserInfo sharedUser].mobile,KShopUrl(MJT_ORDERLIST_PATH)];
+//                    [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+                    [weakSelf.webView reload];
                     
                 }else{
                     !weakSelf.payAction ?  :weakSelf.payAction();

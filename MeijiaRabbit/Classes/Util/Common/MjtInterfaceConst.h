@@ -128,6 +128,9 @@
 /// 关于美嘉兔
 #define MJT_ABOUTME_PATH @"/userapipage/aboutus.php"
 
+/// 付款收货等未读消息数量
+#define MJT_SHOP_UNREADCOUNT_PATH @"/mobile/api/userinfo"
+
 
 
 #endif /* MjtInterfaceConst_h */

@@ -96,6 +96,11 @@
 		1959A9642448653B00C6C090 /* MjtDiscountListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9632448653B00C6C090 /* MjtDiscountListVC.m */; };
 		1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959A9672448669200C6C090 /* MjtDiscountCell.m */; };
 		1959A96A2448669200C6C090 /* MjtDiscountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1959A9682448669200C6C090 /* MjtDiscountCell.xib */; };
+		19616F5124EFD86C0063A350 /* YeeBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19616F4C24EFD86B0063A350 /* YeeBadgeView.m */; };
+		19616F5224EFD86C0063A350 /* UITabBarItem+YeeBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 19616F4D24EFD86B0063A350 /* UITabBarItem+YeeBadge.m */; };
+		19616F5324EFD86C0063A350 /* UIBarButtonItem+YeeBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 19616F4F24EFD86C0063A350 /* UIBarButtonItem+YeeBadge.m */; };
+		19616F5424EFD86C0063A350 /* UIView+YeeBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 19616F5024EFD86C0063A350 /* UIView+YeeBadge.m */; };
+		19616F7C24F38A860063A350 /* MjtShopReadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19616F7B24F38A860063A350 /* MjtShopReadModel.m */; };
 		1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC852462B203005B60CD /* MjtRangeModel.m */; };
 		1964CC892462B21C005B60CD /* MjtDetailRangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CC882462B21C005B60CD /* MjtDetailRangeModel.m */; };
 		1964CCB424640F16005B60CD /* ContentBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964CCB324640F16005B60CD /* ContentBaseViewController.m */; };
@@ -327,6 +332,18 @@
 		1959A9662448669200C6C090 /* MjtDiscountCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDiscountCell.h; sourceTree = "<group>"; };
 		1959A9672448669200C6C090 /* MjtDiscountCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtDiscountCell.m; sourceTree = "<group>"; };
 		1959A9682448669200C6C090 /* MjtDiscountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MjtDiscountCell.xib; sourceTree = "<group>"; };
+		19616F4724EFD86B0063A350 /* YeeBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YeeBadgeView.h; sourceTree = "<group>"; };
+		19616F4824EFD86B0063A350 /* UITabBarItem+YeeBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+YeeBadge.h"; sourceTree = "<group>"; };
+		19616F4924EFD86B0063A350 /* UIBarButtonItem+YeeBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+YeeBadge.h"; sourceTree = "<group>"; };
+		19616F4A24EFD86B0063A350 /* UIView+YeeBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YeeBadge.h"; sourceTree = "<group>"; };
+		19616F4B24EFD86B0063A350 /* YeeBadgeViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YeeBadgeViewHeader.h; sourceTree = "<group>"; };
+		19616F4C24EFD86B0063A350 /* YeeBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YeeBadgeView.m; sourceTree = "<group>"; };
+		19616F4D24EFD86B0063A350 /* UITabBarItem+YeeBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+YeeBadge.m"; sourceTree = "<group>"; };
+		19616F4E24EFD86C0063A350 /* YeeBadgeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YeeBadgeProtocol.h; sourceTree = "<group>"; };
+		19616F4F24EFD86C0063A350 /* UIBarButtonItem+YeeBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+YeeBadge.m"; sourceTree = "<group>"; };
+		19616F5024EFD86C0063A350 /* UIView+YeeBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YeeBadge.m"; sourceTree = "<group>"; };
+		19616F7A24F38A860063A350 /* MjtShopReadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtShopReadModel.h; sourceTree = "<group>"; };
+		19616F7B24F38A860063A350 /* MjtShopReadModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtShopReadModel.m; sourceTree = "<group>"; };
 		1964CC842462B203005B60CD /* MjtRangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtRangeModel.h; sourceTree = "<group>"; };
 		1964CC852462B203005B60CD /* MjtRangeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MjtRangeModel.m; sourceTree = "<group>"; };
 		1964CC872462B21C005B60CD /* MjtDetailRangeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MjtDetailRangeModel.h; sourceTree = "<group>"; };
@@ -613,6 +630,7 @@
 		191D59A324111154005632D0 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				19616F4624EFD86B0063A350 /* YeeBadgeView */,
 				193F27CE2418CE270000EB3B /* Tools */,
 				191D59A424111154005632D0 /* Category */,
 				191D59A524111154005632D0 /* Network */,
@@ -1019,6 +1037,24 @@
 			path = "每日特价";
 			sourceTree = "<group>";
 		};
+		19616F4624EFD86B0063A350 /* YeeBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				19616F4724EFD86B0063A350 /* YeeBadgeView.h */,
+				19616F4824EFD86B0063A350 /* UITabBarItem+YeeBadge.h */,
+				19616F4924EFD86B0063A350 /* UIBarButtonItem+YeeBadge.h */,
+				19616F4A24EFD86B0063A350 /* UIView+YeeBadge.h */,
+				19616F4B24EFD86B0063A350 /* YeeBadgeViewHeader.h */,
+				19616F4C24EFD86B0063A350 /* YeeBadgeView.m */,
+				19616F4D24EFD86B0063A350 /* UITabBarItem+YeeBadge.m */,
+				19616F4E24EFD86C0063A350 /* YeeBadgeProtocol.h */,
+				19616F4F24EFD86C0063A350 /* UIBarButtonItem+YeeBadge.m */,
+				19616F5024EFD86C0063A350 /* UIView+YeeBadge.m */,
+			);
+			name = YeeBadgeView;
+			path = Tools/YeeBadgeView;
+			sourceTree = "<group>";
+		};
 		1980FF482455A9E200652AAD /* MBProgressHud+Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1076,6 +1112,8 @@
 			children = (
 				19C8927F245ABF4D0052813B /* MjtServiceModel.h */,
 				19C89280245ABF4D0052813B /* MjtServiceModel.m */,
+				19616F7A24F38A860063A350 /* MjtShopReadModel.h */,
+				19616F7B24F38A860063A350 /* MjtShopReadModel.m */,
 			);
 			path = "服务";
 			sourceTree = "<group>";
@@ -1377,6 +1415,7 @@
 				1980FF47245596C800652AAD /* RegularHelp.m in Sources */,
 				1911AD2F240E20BE006FB7A3 /* main.m in Sources */,
 				193F279024152D3B0000EB3B /* JFCSBaseInfoModel.m in Sources */,
+				19616F5424EFD86C0063A350 /* UIView+YeeBadge.m in Sources */,
 				193F279C24152D3B0000EB3B /* JFCSDataOpreation.m in Sources */,
 				1974DFA0244D523800C1D65C /* OttoFPSButton.m in Sources */,
 				191D59E92411197A005632D0 /* UIButton+Extension.m in Sources */,
@@ -1388,13 +1427,16 @@
 				1980FF512455AA3400652AAD /* WJColouredRibbonAnimation.m in Sources */,
 				193F276124128B200000EB3B /* MjtButton.m in Sources */,
 				191D59C124111390005632D0 /* DesignViewController.m in Sources */,
+				19616F5324EFD86C0063A350 /* UIBarButtonItem+YeeBadge.m in Sources */,
 				19D60A1D2423172A00DE37B8 /* ZHFAddTitleAddressView.m in Sources */,
 				1980FF6C2456E8B700652AAD /* MjtServiceCell.m in Sources */,
 				193F27CA2418C0E20000EB3B /* MjtRegisterVC.m in Sources */,
 				1959A9692448669200C6C090 /* MjtDiscountCell.m in Sources */,
 				19D60A222423172A00DE37B8 /* ProvinceModel.m in Sources */,
+				19616F7C24F38A860063A350 /* MjtShopReadModel.m in Sources */,
 				19B3EDCD2451C38B00251AFD /* DES3Util.m in Sources */,
 				193F279D24152D3B0000EB3B /* JFCSData.m in Sources */,
+				19616F5224EFD86C0063A350 /* UITabBarItem+YeeBadge.m in Sources */,
 				19C89298245FEBCF0052813B /* MjtPublishServiceVC.m in Sources */,
 				194ADAE42481134D00099BF1 /* MjtMessageCell.m in Sources */,
 				19C89292245FDC0C0052813B /* MjtFindServiceCell.m in Sources */,
@@ -1414,6 +1456,7 @@
 				1964CC862462B203005B60CD /* MjtRangeModel.m in Sources */,
 				191D59B2241111B2005632D0 /* MjtTabBarController.m in Sources */,
 				1941EEEC248B6E5A00D98273 /* MjtMessageDetailVC.m in Sources */,
+				19616F5124EFD86C0063A350 /* YeeBadgeView.m in Sources */,
 				193F27E3241A29A30000EB3B /* MjtSettingVC.m in Sources */,
 				19D60A1F2423172A00DE37B8 /* CityModel.m in Sources */,
 				194ADAEB248131EA00099BF1 /* NSDate+Extension.m in Sources */,

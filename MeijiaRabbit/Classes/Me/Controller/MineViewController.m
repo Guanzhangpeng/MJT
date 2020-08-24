@@ -25,6 +25,9 @@
 #import "MjtServiceListVC.h"
 #import "UIImageView+WebCache.h"
 #import "MjtWebView.h"
+#import "MjtShopReadModel.h"
+#import "MJExtension.h"
+#import "YeeBadgeViewHeader.h"
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -37,7 +40,12 @@
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIImageView *avatar;
 @property (nonatomic, strong) UILabel *nickNameLbl;
-
+@property (nonatomic, strong) MjtShopReadModel *shopModel;
+@property (nonatomic, strong) MjtButton *waitPayBtn;//代付款
+@property (nonatomic, strong) MjtButton *waitSendBtn;//代发货
+@property (nonatomic, strong) MjtButton *waitReceiveBtn;//代收货
+@property (nonatomic, strong) MjtButton *comment_countBtn;//代评价
+@property (nonatomic, strong) MjtButton *return_countBtn;//售后
 @end
 
 @implementation MineViewController
@@ -50,6 +58,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+     [self _requestData];
     //处理导航栏有条线的问题
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
@@ -59,6 +68,24 @@
     [self _setupNavigation];
     [self _setupSubviews];
     [self _setupData];
+   
+}
+- (void)_requestData{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"isDecrypt"] = @"NO";
+    [NetBaseTool postWithUrl:MJT_SHOP_UNREADCOUNT_PATH params:param decryptResponse:NO showHud:NO success:^(id responseDict) {
+        if ([responseDict[@"status"] intValue] == 200) {
+            self.shopModel = [MjtShopReadModel mj_objectWithKeyValues:responseDict[@"data"]];
+            self.waitPayBtn.redDotNumber = self.shopModel.waitPay;
+            self.waitSendBtn.redDotNumber = self.shopModel.waitSend;
+            self.waitReceiveBtn.redDotNumber = self.shopModel.waitReceive;
+            self.comment_countBtn.redDotNumber = self.shopModel.comment_count;
+            self.return_countBtn.redDotNumber = self.shopModel.return_count;
+            
+        }
+
+       } failure:^(NSError *error) {
+       }];
 }
 - (void)_setup{
     self.view.backgroundColor = [UIColor whiteColor];
@@ -221,9 +248,11 @@
        MjtButton *lastBtn;
        for (int i = 0; i < self.dataArray.count; i++)
        {
+           
            NSDictionary *dic = self.dataArray[i];
+           NSString *title = dic[@"title"];
            MjtButton *btn = [MjtButton buttonWithType:UIButtonTypeCustom];
-           [btn setTitle:dic[@"title"] forState:UIControlStateNormal];
+           [btn setTitle:title forState:UIControlStateNormal];
            [btn setImage:[UIImage imageNamed:dic[@"icon"]] forState:UIControlStateNormal];
            btn.titleLabel.font = [UIFont systemFontOfSize:12];
            [btn addTarget:self action:@selector(_buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -235,6 +264,27 @@
            btn.imageWH = 30;
            btn.margin = 12.f;
            btn.frame = CGRectMake(x, y, kAppViewW, kAppViewH);
+           
+           btn.redDotColor = [UIColor redColor];
+           btn.redDotNumber = 0;
+           btn.redDotRadius = 5.0;
+           btn.redDotOffset = CGPointMake(-10, 2);
+           btn.redDotBorderColor = [UIColor orangeColor];
+           btn.redDotBorderWidth = 1.0;
+           
+           if ([title isEqualToString:@"待付款"]) {
+               self.waitPayBtn = btn;
+           }else  if ([title isEqualToString:@"待发货"]) {
+               self.waitSendBtn = btn;
+           }else  if ([title isEqualToString:@"待收货"]) {
+               self.waitReceiveBtn = btn;
+           }else  if ([title isEqualToString:@"评价"]) {
+               self.comment_countBtn = btn;
+           }else  if ([title isEqualToString:@"售后"]) {
+               self.return_countBtn = btn;
+           }
+           [btn  ShowBadgeView];
+//           [btn setBackgroundColor:MJTRandomColor];
            [self.headerView addSubview:btn];
            if (i == self.dataArray.count - 1) {
                lastBtn = btn;
