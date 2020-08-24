@@ -65,6 +65,9 @@
                              NSForegroundColorAttributeName:MJTColorFromHexString(@"#333333")};
     [self.navigationController.navigationBar setTitleTextAttributes:attrs];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    // 请求接口
+     [self _requestData];
 }
 
 - (void)viewDidLoad {
@@ -78,10 +81,6 @@
     
     // 设置子控件
     [self _setupSubViews];
-    
-    // 请求接口
-    [self _requestData];
-    
     
 }
 - (void)_requestData{
@@ -156,13 +155,16 @@
     [messageBtn addTarget:self action:@selector(_messageClick) forControlEvents:UIControlEventTouchUpInside];
     [messageBtn setImage:[UIImage imageNamed:@"nav_message"] forState:UIControlStateNormal];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:messageBtn];
-    self.navigationItem.rightBarButtonItem = rightItem;    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    self.navigationItem.rightBarButtonItem.redDotNumber = 0;
     
     self.navigationItem.rightBarButtonItem.redDotColor = [UIColor redColor];
     self.navigationItem.rightBarButtonItem.redDotRadius = 5.0;
     self.navigationItem.rightBarButtonItem.redDotOffset = CGPointMake(4, +5);
     self.navigationItem.rightBarButtonItem.redDotBorderColor = [UIColor orangeColor];
     self.navigationItem.rightBarButtonItem.redDotBorderWidth = 1.0;
+    
+    
     [self.navigationItem.rightBarButtonItem ShowBadgeView];
 
     //处理导航栏有条线的问题
