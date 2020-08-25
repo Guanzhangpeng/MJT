@@ -12,9 +12,11 @@
 #import "MjtMessageModel.h"
 #import "MjtMessageCell.h"
 #import "MjtMessageDetailVC.h"
+#import <LYEmptyView/LYEmptyViewHeader.h>
 @interface MjtMessageListVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray<MjtMessageModel *> *dataSource;
 @property (nonatomic, strong) NSIndexPath *deleteIndexpath;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation MjtMessageListVC
@@ -26,28 +28,35 @@ static NSString *CellID = @"MjtMessageCell";
 }
 - (void)_setup{
     self.title = @"消息中心";
-    self.noDataImgName=@"message_empty";
-    self.isShowEmptyData = true;
 }
 -(void)setMessageType:(MJTMessageType)messageType{
     _messageType = messageType;
 }
 - (void)_setupSubviews{
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT - 50) style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.frame = CGRectMake(0.f, 0.f, ScreenWidth, ScreenHeight - TOP_BAR_HEIGHT - 40);
     self.tableView.rowHeight = 120;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.estimatedRowHeight = 165;
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.rowHeight=UITableViewAutomaticDimension;
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MjtMessageCell class]) bundle:nil] forCellReuseIdentifier:CellID];
+    //方式1
+    LYEmptyView *empty = [LYEmptyView emptyViewWithImageStr:@"message_empty"
+                                                   titleStr:@""
+                                                  detailStr:@""];
+    empty.autoShowEmptyView = NO;//框架默认自动显隐，初始化tableView没有数据时会显示emptyView，故此处应关闭自动显隐
+    self.tableView.ly_emptyView = empty;
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(_loadNewData)];
        self.tableView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(_loadMoreData)];
        [self.tableView.mj_header beginRefreshing];
     [self.view addSubview:self.tableView];
+    
+
 }
 - (void)_loadData{
+    //网络请求时调用
+    [self.tableView ly_startLoading];
+    
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"type"] = @"1";//类型1：消息列表，2：消息详情，3：删除
     param[@"message_type"] = [NSString stringWithFormat:@"%lu",(unsigned long)self.messageType];
@@ -57,6 +66,7 @@ static NSString *CellID = @"MjtMessageCell";
         if ([responseDict[@"status"] intValue] == 200) {
             self.dataSource = [MjtMessageModel mj_objectArrayWithKeyValuesArray:responseDict[@"data"]];
             [self.tableView reloadData];
+            [self.tableView ly_endLoading];//必须保证在reloadData后调用
         }
     } failure:^(NSError *error) {
         [self.tableView.mj_header endRefreshing];

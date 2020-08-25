@@ -124,13 +124,12 @@
 - (void)_setupSubviews{
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 36)];
     leftView.userInteractionEnabled = YES;
-    UIImageView *backImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 7, 22, 22)];
+    UIImageView *backImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 16, 16)];
     backImg.contentMode = UIViewContentModeScaleAspectFit;
     backImg.image = [UIImage imageNamed:@"nav_back"];
     backImg.userInteractionEnabled = YES;
     [backImg addGestureRecognizer:({
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_backClick)];
-        
         tapGes;
     })];
     [leftView addSubview:backImg];
@@ -142,7 +141,7 @@
       [closeBtn setTitleColor:MJTColorFromHexString(@"333333") forState:0];
       closeBtn.titleLabel.font = [UIFont systemFontOfSize:15];
       [closeBtn addTarget:self action:@selector(_close_Click) forControlEvents:UIControlEventTouchUpInside];
-      closeBtn.frame = CGRectMake(35, 0, 50, 36);
+      closeBtn.frame = CGRectMake(22, 0, 50, 36);
       closeBtn.hidden = YES;
       [leftView addSubview:closeBtn];
       self.closeBtn = closeBtn;
@@ -453,13 +452,6 @@
     if([self.isShowClose isEqualToString:@"NO"]){
        [self.navigationController popViewControllerAnimated:YES];
         return;
-    }
-    
-    NSString *payFrom = [[NSUserDefaults standardUserDefaults] objectForKey:@"PayFrom"];
-    if (payFrom == nil) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-//        [self.webView.backForwardList performSelector:NSSelectorFromString(@"_removeAllItems")];
     }
     if (!self.webView.canGoBack) {
         [self.navigationController popViewControllerAnimated:YES];

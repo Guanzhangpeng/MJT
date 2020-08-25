@@ -131,6 +131,9 @@
 /// 付款收货等未读消息数量
 #define MJT_SHOP_UNREADCOUNT_PATH @"/mobile/api/userinfo"
 
+/// 我的方案
+#define MJT_SCHEMA_PATH @"/userapipage/fa.php"
+
 
 
 #endif /* MjtInterfaceConst_h */

@@ -324,7 +324,13 @@
 //    }
 }
 - (void)_homeBtnClick:(MjtBaseButton *)button{
-    MJTLog(button.titleLabel.text);
+    MJTLog(button.titleLabel.text );
+    if([button.titleLabel.text isEqualToString:@"我的方案"]){
+        MjtWebView *webView = [[MjtWebView alloc] init];
+        webView.title = @"我的方案";
+        webView.urlString = KURL(MJT_SCHEMA_PATH);
+        [self.navigationController pushViewController:webView animated:YES];
+    }
 }
 - (void)_orderButton_Click{
     MjtWebView *webView = [[MjtWebView alloc] init];
