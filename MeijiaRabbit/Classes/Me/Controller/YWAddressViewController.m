@@ -163,9 +163,33 @@
     } failure:^(NSError *error) {
         
     }];
+    
+    //同步商城地址
+    NSMutableDictionary *param2 = [NSMutableDictionary dictionary];
+    
+    param2[@"type"] = @"2";//类型（1:更新 2：新增）
+    param2[@"consignee"] = _model.name;//收货人
+    param2[@"phone"] =_model.phone;//联系电话
+    param2[@"province_code"] = _model.province_code;//省份code
+    param2[@"city_code"] = _model.city_code;//省份code
+    param2[@"area_code"] = _model.area_code;//省份code
+    param2[@"street_code"] = _model.street_code;//省份code
+    param2[@"detail_address"] = _model.house_number;//省份code
+    param2[@"is_default"] =  [_model.default_address isEqualToString:@"1"] ? @"1" : @"0";//是否设默认地址（1：是，2：否）（0:否 1:是）
+    param2[@"isDecrypt"] = @"NO";
+    if(self.isEditing){
+        param2[@"type"] = @"1";
+        param2[@"address_id"] = _model.ID;
+    }
+    [NetBaseTool postWithUrl:MJT_SYNADRESS_PATH params:param2 decryptResponse:NO showHud:NO success:^(id responseDict) {
+        if([responseDict[@"status"] intValue] == 200){
+           
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 // textView 水印字体

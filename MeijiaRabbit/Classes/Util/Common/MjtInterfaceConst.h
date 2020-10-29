@@ -38,6 +38,9 @@
 //添加 或者 修改地址
 #define MJT_ADDADDRESS_PATH @"/userapi/useraddresschange.php"
 
+//商城同步地址 --- 添加 或者 修改地址
+#define MJT_SYNADRESS_PATH @"/mobile/api/synAdress"
+
 //省份城市区域街道接口
 #define MJT_LOCATION_PATH @"/userapi/province.php"
 
