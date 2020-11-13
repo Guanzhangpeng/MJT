@@ -21,6 +21,7 @@
 // iOS10 注册 APNs 所需头文件
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
+#import "IQKeyboardManager.h"
 #endif
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 #import <AdSupport/AdSupport.h>
@@ -32,6 +33,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+     [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];
     [NSThread sleepForTimeInterval:2.f];
     self.application=application;
     [self setupJPushWithOptions:launchOptions];//集成极光推送
@@ -41,6 +43,14 @@
     self.window.backgroundColor = [UIColor whiteColor];
      self.window.rootViewController = [[MjtTabBarController alloc] init];
      [self.window makeKeyAndVisible];
+    
+    //IQKeyboardManager的相关设置
+       IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+       manager.enable = YES;
+       manager.shouldResignOnTouchOutside = YES;
+       manager.shouldToolbarUsesTextFieldTintColor = NO;
+       manager.enableAutoToolbar = YES;
+       IQKeyboardManager.sharedManager.toolbarDoneBarButtonItemText = @"完成";
     
 //    //FPS
 //    CGRect frame = CGRectMake(0, 300, 80, 30);
@@ -83,7 +93,7 @@
 //   navBar.backgroundColor = MJTColorFromHexString(@"#FFCE00");
    NSDictionary *attrs = @{ NSStrokeWidthAttributeName: @(0),
                             NSFontAttributeName: [UIFont systemFontOfSize:17],
-                            NSForegroundColorAttributeName:[UIColor whiteColor]};
+                            NSForegroundColorAttributeName:[UIColor blackColor]};
    [navBar setTitleTextAttributes:attrs];
    [navBar setTintColor:[UIColor whiteColor]];
 }

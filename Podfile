@@ -26,4 +26,5 @@ target 'MeijiaRabbit' do
   pod 'SPAlertController'
   pod 'AlipaySDK-iOS'
   pod 'YBImageBrowser'
+  pod 'LYEmptyView'
 end
